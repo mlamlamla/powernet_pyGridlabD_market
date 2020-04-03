@@ -1,0 +1,5 @@
+id,run,city,start_time,end_time,player_dir,tmy,month,slack_node,flexible_houses,PV_share,EV_share,Batt_share,line_capacity,market_data,p_max,unresp_factor,fixed_tariff,interval,allocation_rule,delta,price_intervals,which_price,include_SO,prec,M
+0,FinalReport_Jan,SanDiego,2015-01-12 00:00:00,2015-01-18 23:59:00,players_SanDiego_2015,722900TYA.tmy3,july,node_149,0,0.0,0.0,0.0,2000,CAISO_KETTNER_2015_1.csv,100,1.05,False,300,by_award,3,12,DA,False,4,10000
+1,FinalReport_Jan,SanDiego,2015-01-12 00:00:00,2015-01-18 23:59:00,players_SanDiego_2015,722900TYA.tmy3,july,node_149,100,0.0,0.0,0.0,2000,CAISO_KETTNER_2015_1.csv,100,1.05,False,300,by_award,3,12,DA,False,4,10000
+2,FinalReport_Jan,SanDiego,2015-01-12 00:00:00,2015-01-18 23:59:00,players_SanDiego_2015,722900TYA.tmy3,july,node_149,300,0.0,0.0,0.0,2000,CAISO_KETTNER_2015_1.csv,100,1.05,False,300,by_award,3,12,DA,False,4,10000
+3,FinalReport_Jan,SanDiego,2015-01-12 00:00:00,2015-01-18 23:59:00,players_SanDiego_2015,722900TYA.tmy3,july,node_149,500,0.0,0.0,0.0,2000,CAISO_KETTNER_2015_1.csv,100,1.05,False,300,by_award,3,12,DA,False,4,10000

@@ -1,0 +1,108 @@
+//Generates the PV files used for PV area calibration
+
+clock {
+	timezone EST+5EDT;
+	starttime  '2015-07-01 00:00:00';
+	stoptime  '2015-08-01 00:00:00';
+}
+
+module residential {
+	implicit_enduses NONE;
+}
+
+module climate;
+
+module tape;
+
+module generators;
+
+module powerflow {
+	solver_method NR;
+	default_maximum_voltage_error 1e-6;
+	NR_iteration_limit 50;
+	NR_superLU_procs 1;
+}
+
+object climate {
+	name tmy_file;
+	tmyfile "722540TYA.tmy3";
+	interpolate LINEAR;
+}
+
+object triplex_line_conductor {
+	name "c1/0 AA triplex";
+	resistance 0.97;
+	geometric_mean_radius 0.0111;
+}
+
+object triplex_line_configuration {
+	name triplex_line_config;
+	conductor_1 "c1/0 AA triplex";
+	conductor_2 "c1/0 AA triplex";
+	conductor_N "c1/0 AA triplex";
+	insulation_thickness 0.08;
+	diameter 0.368;
+}
+
+
+object triplex_node {
+	name node_GLD_0001;
+	nominal_voltage 120V;
+	phases AS;
+	bustype SWING;
+}
+
+object triplex_line {
+	name PV_line_1080;
+	from node_GLD_0001;
+	to PV_meter_1;
+	phases AS;
+	length 30 ft;
+	configuration triplex_line_config;
+}
+
+object triplex_meter {
+	name PV_meter_1;
+	nominal_voltage 124.00;
+	phases AS;
+}
+
+object recorder {
+	name rec_PV_power;
+	parent PV_meter_1;
+	property measured_real_power;
+	file PV_power_1150.csv;
+	interval 60;
+}
+
+object inverter {
+	name PV_inverter_1;
+	phases AS;
+	parent PV_meter_1;
+	generator_status ONLINE;
+	inverter_type FOUR_QUADRANT;
+	four_quadrant_control_mode CONSTANT_PF;
+	generator_mode SUPPLY_DRIVEN;
+	rated_power 25000;
+	inverter_efficiency 0.95;
+}
+
+object solar {
+	name PV_array_1;
+	phases AS;
+	parent PV_inverter_1;
+	generator_status ONLINE;
+	generator_mode SUPPLY_DRIVEN;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	area 1150 ft^2;
+	tilt_angle 25;
+	efficiency 0.15;
+	soiling 0.95;
+	derating 0.99;
+	a_coeff -3.2;
+	//dTcoeff 1;
+	orientation_azimuth 180;
+	orientation FIXED_AXIS;
+	SOLAR_TILT_MODEL SOLPOS;
+	SOLAR_POWER_MODEL FLATPLATE;
+}

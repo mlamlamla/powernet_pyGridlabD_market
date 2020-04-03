@@ -1,0 +1,649 @@
+// Validation thermal model of the system
+module gridlabd_functions;
+
+clock {
+	starttime '2015-07-13 00:00:00'; //changed bec prices only av for 07/13 - 07/19
+	stoptime '2015-07-19 23:59:00'; //prev: '2015-07-01 00:00:00' - '2015-07-10 23:59:00'
+	}
+
+module residential;
+
+module climate;
+
+module assert;
+
+module powerflow {
+	solver_method NR;
+	default_maximum_voltage_error 1e-6;
+	NR_iteration_limit 50;
+	NR_superLU_procs 1;
+	}
+	
+
+module residential {
+	implicit_enduses NONE;
+}
+
+module tape;  //Remove this ----------------%%%%%%%%%%%%%%%%%
+
+module generators;
+
+class player {
+	double value;
+}
+
+//Included by ML
+class house {
+	double k;
+	double T_max;
+	double T_min;
+}
+
+class battery {
+	char8 charging_type;
+	double k;
+}
+
+object climate {
+	name tmy_file;
+//	tmyfile "724940TYA.tmy3";
+	tmyfile 722900TYA.tmy3;
+	interpolate LINEAR;
+	object recorder {
+		file ControlTest/climate_out.csv;
+		interval 3600;
+		limit 120;
+		property temperature,humidity;
+		};
+}
+
+//object climate {
+//	temperature 100;
+//	humidity .50;
+//	object recorder {
+//		file climate_out.csv;
+//		interval 3600;
+//		limit 120;
+//		property temperature,humidity;
+//	};
+//	}
+	
+// Power distribution ------------------
+
+object triplex_node {
+	name node_42;
+	nominal_voltage 2401.7771 V;
+	phases "AS";
+	bustype SWING;
+	}
+
+//Line, conductor, and transformer configurations
+
+//Line and conductor configurations
+
+object triplex_line_conductor {
+	name "c1/0 AA triplex";
+	resistance 0.97;
+	geometric_mean_radius 0.0111;
+}
+
+object triplex_line_configuration {
+	name triplex_line_config;
+	conductor_1 "c1/0 AA triplex";
+	conductor_2 "c1/0 AA triplex";
+	conductor_N "c1/0 AA triplex";
+	insulation_thickness 0.08;
+	diameter 0.368;
+}
+
+object transformer_configuration {
+	name house_transformer;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	install_type PADMOUNT;
+	primary_voltage 2401.7771 V;
+	secondary_voltage 124 V;
+	power_rating 250;
+	impedance 0.015+0.0675j;
+}
+
+// -----Triplex line, triplex meter, and house objects
+
+object triplex_node {
+	name node_42_A;
+	nominal_voltage 124.00;
+	phases AS;
+}
+
+object transformer {
+	name house_trans_42_A;
+	phases AS;
+	from node_42;
+	to node_42_A;
+	configuration house_transformer;
+}
+
+object triplex_line {
+	name house_line_GLD_0001;
+	from node_42_A;
+	to meter_GLD_0001;
+	phases AS;
+	length 30 ft;
+	configuration triplex_line_config;
+}
+
+object triplex_line {
+	name house_line_GLD_0002;
+	from node_42_A;
+	to meter_GLD_0002;
+	phases AS;
+	length 30 ft;
+	configuration triplex_line_config;
+}
+
+object triplex_line {
+	name house_line_GLD_0003;
+	from node_42_A;
+	to meter_GLD_0003;
+	phases AS;
+	length 30 ft;
+	configuration triplex_line_config;
+}
+
+object triplex_line {
+	name house_line_GLD_0004;
+	from node_42_A;
+	to meter_GLD_0004;
+	phases AS;
+	length 30 ft;
+	configuration triplex_line_config;
+}
+
+//object triplex_node {
+//	name node_4_A;
+//	nominal_voltage 124.00;
+//	phases AS;
+//}
+
+//object transformer {
+//	name house_trans_4_C;
+//	phases CS;
+//	from node_42;
+//	to node_4_C;
+//	configuration house_transformer;
+//}
+	
+
+// Full houses ----------------------------
+
+// Meter objects/House/ZIP load GLD_0001
+
+object triplex_meter {
+	name meter_GLD_0001;
+	nominal_voltage 124.00;
+	phases AS;
+	object recorder {
+		property measured_power.real, measured_power.imag;
+		interval 60;
+		file ControlTest/out_power_meter1.csv;
+		};
+	object recorder {	
+		property measured_current_1;
+		interval 60;
+		file ControlTest/out_current1.csv;
+					};
+}
+											
+object house {
+	name GLD_0001;
+	number_of_stories 2;
+	cooling_setpoint 75;
+	heating_setpoint 65;
+//	T_min 59;
+//	T_max 73;
+//	k 2.8;
+    cooling_system_type HEAT_PUMP;
+	heating_system_type HEAT_PUMP;
+//	thermostat_control NONE;
+	floor_area 4000;
+	window_wall_ratio 0.18;
+	airchange_per_hour 0.1;
+	parent meter_GLD_0001;
+	air_temperature 80.86483403405988;
+	mass_temperature 81.33283403405987;
+	
+	object recorder {
+		interval 60;
+		property outdoor_temperature,outdoor_rh,incident_solar_radiation;
+		file ControlTest/out_temperature.csv;
+					};					
+
+	object recorder {
+		interval 60;
+		property air_temperature,mass_temperature,outdoor_temperature,incident_solar_radiation;
+		file ControlTest/temperature1.csv;
+	};
+	
+		object recorder {
+		interval 60;
+		property Qa, solar_gain, hvac_load, cooling_demand;
+		file ControlTest/heat1.csv;
+	};
+	
+	object recorder {
+        property air_heat_capacity, mass_heat_capacity, UA, mass_heat_coeff, window_wall_ratio, airchange_per_hour, floor_area,number_of_stories; 
+		// Ca, Cm, Ua, Hm: air_heat_capacity[Btu/degF], mass_heat_capacity[Btu/degF], UA[Btu/degF/h], mass_heat_coeff[Btu/degF/h]
+		file ControlTest/TH_param1.csv;		
+	};
+	
+}
+
+object player {
+	name player_1;
+	file glm_generation_SanDiego/players_SanDiego_2015/ps_d_2032015.player;
+}
+
+object ZIPload {
+	parent GLD_0001;
+	name zip_GLD_0001;
+	power_fraction 0.5;
+	impedance_fraction 0.5;
+	current_fraction 0.0;
+	power_pf 0.9;
+	current_pf 0.9;
+	impedance_pf 0.9;
+	heat_fraction 0.0;
+	base_power player_1.value;
+	object recorder {	
+		property actual_power;
+		interval 60;
+		file ControlTest/out_power_ZIP.csv;
+	};
+}
+
+
+// Meter objects/House/ZIP load GLD_0002
+
+object triplex_meter {
+	name meter_GLD_0002;
+	nominal_voltage 124.00;
+	phases AS;
+	object recorder {
+		property measured_power.real, measured_power.imag;
+		interval 60;
+		file ControlTest/out_power_meter2.csv;
+		};
+}
+
+
+object house {
+	name GLD_0002;
+	number_of_stories 1;
+	cooling_setpoint 75;
+	heating_setpoint 65;
+	cooling_system_type ELECTRIC;
+	heating_system_type RESISTANCE;
+	floor_area 1000;
+	window_wall_ratio 0.1;
+	airchange_per_hour 0.95;
+	parent meter_GLD_0002;	
+
+	// included by MLA	
+	T_min 60;
+	T_max 80;
+	k 4.0;
+	thermostat_control NONE;		
+
+	object recorder {
+		interval 60;
+		property air_temperature,mass_temperature,outdoor_temperature,incident_solar_radiation;
+		file ControlTest/temperature2.csv;
+	};
+	
+		object recorder {
+		interval 60;
+		property Qa, solar_gain, hvac_load, cooling_demand;
+		file ControlTest/heat2.csv;
+	};
+	
+	object recorder {
+        property air_heat_capacity, mass_heat_capacity, UA, mass_heat_coeff, window_wall_ratio, airchange_per_hour, floor_area,number_of_stories; 
+		// Ca, Cm, Ua, Hm: air_heat_capacity[Btu/degF], mass_heat_capacity[Btu/degF], UA[Btu/degF/h], mass_heat_coeff[Btu/degF/h]
+		file ControlTest/TH_param2.csv;		
+	};
+}
+
+//object player {
+//	name player_4;
+//	file glm_generation_SanDiego/players_SanDiego_2015/ps_d_17312015.player;
+//}
+
+object ZIPload {
+	parent GLD_0002;
+	name zip_GLD_0002;
+	power_fraction 0.5;
+	impedance_fraction 0.5;
+	current_fraction 0.0;
+	power_pf 0.9;
+	current_pf 0.9;
+	impedance_pf 0.9;
+	heat_fraction 0.0;
+	base_power player_1.value;
+}
+
+// Meter objects/House/ZIP load GLD_0003
+
+object triplex_meter {
+	name meter_GLD_0003;
+	nominal_voltage 124.00;
+	phases AS;
+	object recorder {
+		property measured_power.real, measured_power.imag;
+		interval 60;
+		file ControlTest/out_power_meter3.csv;
+		};
+}
+															
+object house {
+	name GLD_0003;
+	number_of_stories 2;
+	cooling_setpoint 75;
+	heating_setpoint 65;
+//	T_min 59;
+//	T_max 73;
+//	k 2.8;
+    cooling_system_type HEAT_PUMP;
+	heating_system_type HEAT_PUMP;
+//	thermostat_control NONE;
+
+	// included by MLA	
+	T_min 60;
+	T_max 80;
+	k 4.0;
+	thermostat_control NONE;	
+
+	floor_area 4000;
+	window_wall_ratio 0.1;
+	airchange_per_hour 0.1;
+	parent meter_GLD_0003;
+	air_temperature 80.86483403405988;
+	mass_temperature 81.33283403405987;				
+
+	object recorder {
+		interval 60;
+		property air_temperature,mass_temperature,outdoor_temperature,incident_solar_radiation;
+		file ControlTest/temperature3.csv;
+	};
+	
+		object recorder {
+		interval 60;
+		property Qa, solar_gain, hvac_load, cooling_demand;
+		file ControlTest/heat3.csv;
+	};
+	
+	object recorder {
+        property air_heat_capacity, mass_heat_capacity, UA, mass_heat_coeff, window_wall_ratio, airchange_per_hour, floor_area,number_of_stories; 
+		// Ca, Cm, Ua, Hm: air_heat_capacity[Btu/degF], mass_heat_capacity[Btu/degF], UA[Btu/degF/h], mass_heat_coeff[Btu/degF/h]
+		file ControlTest/TH_param3.csv;		
+	};
+	
+}
+
+//object player {
+//	name player_4;
+//	file glm_generation_SanDiego/players_SanDiego_2015/ps_d_17312015.player;
+//}
+
+object ZIPload {
+	parent GLD_0003;
+	name zip_GLD_0003;
+	power_fraction 0.5;
+	impedance_fraction 0.5;
+	current_fraction 0.0;
+	power_pf 0.9;
+	current_pf 0.9;
+	impedance_pf 0.9;
+	heat_fraction 0.0;
+	base_power player_1.value;
+}
+
+// Meter objects/House/ZIP load GLD_0004
+
+object triplex_meter {
+	name meter_GLD_0004;
+	nominal_voltage 124.00;
+	phases AS;
+	object recorder {
+		property measured_power.real, measured_power.imag;
+		interval 60;
+		file ControlTest/out_power_meter4.csv;
+		};
+}
+															
+object house {
+	name GLD_0004;
+	number_of_stories 2;
+	cooling_setpoint 75;
+	heating_setpoint 65;
+//	T_min 59;
+//	T_max 73;
+//	k 2.8;
+    cooling_system_type HEAT_PUMP;
+	heating_system_type HEAT_PUMP;
+//	thermostat_control NONE;
+	floor_area 4000;
+	window_wall_ratio 0.18;
+	airchange_per_hour 0.95;
+	parent meter_GLD_0004;
+	air_temperature 80.86483403405988;
+	mass_temperature 81.33283403405987;	
+
+	// included by MLA	
+	T_min 60;
+	T_max 80;
+	k 4.0;
+	thermostat_control NONE;			
+
+	object recorder {
+		interval 60;
+		property air_temperature,mass_temperature,outdoor_temperature,incident_solar_radiation;
+		file ControlTest/temperature4.csv;
+	};
+	
+		object recorder {
+		interval 60;
+		property Qa, solar_gain, hvac_load, cooling_demand;
+		file ControlTest/heat4.csv;
+	};
+	
+	object recorder {
+        property air_heat_capacity, mass_heat_capacity, UA, mass_heat_coeff, window_wall_ratio, airchange_per_hour, floor_area,number_of_stories; 
+		// Ca, Cm, Ua, Hm: air_heat_capacity[Btu/degF], mass_heat_capacity[Btu/degF], UA[Btu/degF/h], mass_heat_coeff[Btu/degF/h]
+		file ControlTest/TH_param4.csv;		
+	};
+	
+}
+
+//object player {
+//	name player_4;
+//	file glm_generation_SanDiego/players_SanDiego_2015/ps_d_17312015.player;
+//}
+
+object ZIPload {
+	parent GLD_0004;
+	name zip_GLD_0004;
+	power_fraction 0.5;
+	impedance_fraction 0.5;
+	current_fraction 0.0;
+	power_pf 0.9;
+	current_pf 0.9;
+	impedance_pf 0.9;
+	heat_fraction 0.0;
+	base_power player_1.value;
+}
+
+
+// House # 1 in M-L's file
+
+object triplex_line {
+	name house_line_GLD_B1_N48_C_0001;
+	from node_42_A;
+	to meter_GLD_B1_N48_C_0001;
+	phases AS;
+	length 30 ft;
+	configuration triplex_line_config;
+}
+
+object triplex_meter {
+	name meter_GLD_B1_N48_C_0001;
+	nominal_voltage 124.00;
+	phases AS;
+	object recorder {
+		property measured_power.real, measured_power.imag;
+		interval 60;
+		file ControlTest/out_power_meter5.csv;
+		};
+
+}
+
+object house {
+	name GLD_B1_N48_C_0001;
+	number_of_stories 1;
+	cooling_setpoint 69;
+	heating_setpoint 63;
+//	T_min 60;
+//	T_max 72;
+//	k 4.0;
+	cooling_system_type ELECTRIC;
+	heating_system_type GAS;
+
+	// included by MLA	
+	T_min 60;
+	T_max 80;
+	k 4.0;
+	thermostat_control NONE;
+
+//	thermostat_control NONE;
+	floor_area 2561;
+	window_wall_ratio 0.14;
+	airchange_per_hour 0.6;
+	parent meter_GLD_B1_N48_C_0001;
+	air_temperature 68.74746394750713;
+	mass_temperature 68.82116394750713;
+	
+	object recorder {
+		interval 60;
+		property air_temperature,mass_temperature,outdoor_temperature,incident_solar_radiation;
+		file ControlTest/temperature5.csv;
+	};
+	
+		object recorder {
+		interval 60;
+		property Qa, solar_gain, hvac_load, cooling_demand;
+		file ControlTest/heat5.csv;
+	};
+	
+	object recorder {
+        property air_heat_capacity, mass_heat_capacity, UA, mass_heat_coeff, window_wall_ratio, airchange_per_hour, floor_area,number_of_stories; 
+		// Ca, Cm, Ua, Hm: air_heat_capacity[Btu/degF], mass_heat_capacity[Btu/degF], UA[Btu/degF/h], mass_heat_coeff[Btu/degF/h]
+		file ControlTest/TH_param5.csv;		
+	};
+}
+
+
+
+// Battery objects (triplex line, triplex meter, inverter, battery) 
+
+object triplex_line {
+	name Bat_line_1;
+	from node_42_A;
+	to Bat_meter_1;
+	phases AS;
+	length 30 ft;
+	configuration triplex_line_config;
+}
+
+object triplex_meter {
+	name Bat_meter_1;
+	nominal_voltage 124.00;
+	phases AS;
+}
+
+object inverter {
+	name Bat_inverter_1;
+	generator_status ONLINE;
+	inverter_type FOUR_QUADRANT;
+	four_quadrant_control_mode CONSTANT_PQ;
+	parent Bat_meter_1;
+	rated_power 3000.0;
+	inverter_efficiency 0.999;
+	P_Out 120;
+	Q_Out 0;
+}
+
+object battery {
+	name Battery_1;
+	parent Bat_inverter_1;
+	use_internal_battery_model TRUE;
+	battery_type LI_ION;
+	power_factor 1.0;
+	V_Max 260;
+	I_Max 15;
+	E_Max 7000;
+	power_type DC;
+	battery_capacity 7000;
+	base_efficiency 0.95;
+	state_of_charge 0.5;
+	generator_mode SUPPLY_DRIVEN;
+	object recorder {
+		property state_of_charge;
+		interval 60;
+		file ControlTest/SOC_batt.csv;
+					};		
+}
+
+// PV objects (triplex line, triplex meter, inverter, solar) 
+
+object triplex_line {
+	name PV_line_1;
+	from node_42_A;
+	to PV_meter_1;
+	phases AS;
+	length 30 ft;
+	configuration triplex_line_config;
+}
+
+object triplex_meter {
+	name PV_meter_1;
+	nominal_voltage 124.00;
+	phases AS;
+}
+
+object inverter {
+	name PV_inverter_array_1; //name modified by ML
+	phases AS;
+	parent PV_meter_1;
+	generator_status ONLINE;
+	inverter_type FOUR_QUADRANT;
+	four_quadrant_control_mode CONSTANT_PF;
+	generator_mode SUPPLY_DRIVEN;
+	rated_power 5000;
+	inverter_efficiency 0.95;
+}
+
+object solar {
+	name PV_array_1;
+	phases AS;
+	parent PV_inverter_array_1;
+	generator_status ONLINE;
+	generator_mode SUPPLY_DRIVEN;
+	panel_type SINGLE_CRYSTAL_SILICON;
+	area 420 ft^2;
+	tilt_angle 47.0;
+	efficiency 0.135;
+	orientation_azimuth 180;
+	orientation FIXED_AXIS;
+	SOLAR_TILT_MODEL SOLPOS;
+	SOLAR_POWER_MODEL FLATPLATE;
+}
+
+//#endif				

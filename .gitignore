@@ -1,0 +1,15 @@
+__pycache__/
+0001_Calibration/
+ControlTest/
+FinalReport/
+FInalReport2/
+glm_generation_*/
+gridlabd/
+old/
+old_woZIP/
+Paper/
+TESS/
+Test/
+Timerun_tests/
+*.png
+runs.sh

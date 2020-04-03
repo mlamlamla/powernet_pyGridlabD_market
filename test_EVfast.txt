@@ -1,0 +1,73 @@
+#set iteration_limit=100000;
+
+#set minimum_timestep=60
+
+clock {
+	starttime "2015-07-15 00:00";
+	stoptime "2015-07-15 03:59";
+}
+
+//module residential {
+//	implicit_enduses NONE;
+//}
+
+//module climate;
+
+module tape;
+
+module generators;
+
+
+//class battery {
+//	char8 charging_type;
+//	double k;
+//}
+
+object inverter {
+	name EV_inverter;
+	P_Out 1000.0;
+	//generator_status ONLINE;
+//	inverter_type FOUR_QUADRANT;
+	//four_quadrant_control_mode CONSTANT_PQ;
+	//parent EV_meter_B1_N79_A_0646;
+//	rated_power 3000.0;
+//	inverter_efficiency 0.95;
+	//Q_Out 0;
+}
+
+object battery {
+	name EV;
+	parent EV_inverter;
+	//use_internal_battery_model TRUE;
+	battery_type LI_ION;
+	//power_factor 1.0;
+	//V_Max 260;
+	//I_Max 15;
+	//E_Max 7000;
+	power_type DC;
+	battery_capacity 7000.0;
+	base_efficiency 0.95;
+	state_of_charge 0.2;
+	//generator_mode SUPPLY_DRIVEN;
+	generator_mode CONSTANT_PQ;
+	//charging_type commercial;
+	//k 0;
+}
+
+//object group_recorder {
+//	name rec_pv_infeed;
+//	group "class=inverter";
+//	property P_Out;
+//	file EVtest_total_P_Out.csv;
+//	interval 60;
+//	limit 100000;
+//}
+
+object group_recorder {
+	name rec_batt_soc;
+	group "class=battery";
+	property state_of_charge;
+	file EVtest_battery_SOC.csv;
+	interval 60;
+	limit 100000;
+}
