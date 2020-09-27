@@ -1,10 +1,10 @@
 #set iteration_limit=100000;
 
-#set minimum_timestep=60
+#set minimum_timestep=300
 
 clock {
-	starttime "2015-07-15 00:00";
-	stoptime "2015-07-16 23:59";
+	starttime "2016/07/31 00:00";
+	stoptime "2016/08/08 00:00";
 }
 
 module gridlabd_functions;
@@ -1535,8 +1535,8 @@ object meter {
 	nominal_voltage 2401.7771;
 	object recorder {
 		property measured_real_power;
-		interval 60;
-		file FinalReport2/FinalReport2_0113/load_node_149.csv;
+		interval 300;
+		file Diss/Diss_0065/load_node_149.csv;
 	};
 }
 object node {

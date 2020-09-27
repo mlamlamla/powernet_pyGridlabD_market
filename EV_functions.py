@@ -14,6 +14,7 @@ import numpy as np
 import pandas
 from dateutil import parser
 from datetime import timedelta
+#import scipy.stats
 
 """NEW FUNCTIONS / MYSQL DATABASE AVAILABLE"""
 
@@ -131,7 +132,21 @@ def get_settings_EVs_rnd(EVlist,interval,mysql=False):
             gridlabd.set_value(EV,'state_of_charge',str(soc_t))
             SOC_t = soc_t*SOC_max
             connected = 1
-            gridlabd.set_value(EV,'generator_status','ONLINE')
+
+            #Set EV
+            gridlabd.set_value(EV,'generator_status','ONLINE')  
+            #gridlabd.set_value(EV,'state_of_charge',str(next_soc))
+            #gridlabd.set_value(EV,'battery_capacity',str(next_socmax*1000))
+            #i_max = 1000*next_u/df_EV_state['v_max'].loc[EV]
+            #gridlabd.set_value(EV,'I_Max',str(i_max))
+            gridlabd.set_value(EV,'P_Max',str(u_max*1000))
+            gridlabd.set_value(EV,'E_Max',str(u_max*1000*1))
+            EV_inv = 'EV_inverter' + EV[2:]
+            #import pdb; pdb.set_trace()
+            gridlabd.set_value(EV_inv,'rated_power',str(1.2*u_max*1000))
+            gridlabd.set_value(EV_inv,'rated_battery_power',str(1.2*u_max*1000))
+            #import pdb; pdb.set_trace()
+
             next_event = start_time + pandas.Timedelta(hours=np.random.choice(dep_hours),minutes=np.random.choice(range(60))) #Next event: disconnection
             #Save
             df_EV = df_EV.append(pandas.Series([EV,house_name,SOC_max,i_max,v_max,u_max,eff,charging_type,k,soc_t,SOC_t,connected,next_event,0,0],index=cols_EV),ignore_index=True)
@@ -173,9 +188,9 @@ def update_EV(dt_sim_time,df_EV_state):
                         gridlabd.set_value(EV,'P_Max',str(next_u*1000))
                         gridlabd.set_value(EV,'E_Max',str(next_u*1000*1))
                         EV_inv = 'EV_inverter' + EV[2:]
+
                         gridlabd.set_value(EV_inv,'rated_power',str(1.2*next_u*1000))
                         gridlabd.set_value(EV_inv,'rated_battery_power',str(1.2*next_u*1000))
-                        #import pdb; pdb.set_trace()
                          
                         #Set df_EV_state   
                         df_EV_state.at[EV,'SOC_max'] = next_socmax
@@ -229,8 +244,7 @@ def update_EV(dt_sim_time,df_EV_state):
 
 def update_EV_rnd(dt_sim_time,df_EV_state):
       print('Update EV')
-      df_EV_state['active_t-1'] = df_EV_state['active_t']
-      df_EV_state['active_t'] = 0
+      df_EV_state['u_t'] = 0.0
 
 
       today = pandas.Timestamp(dt_sim_time.year,dt_sim_time.month,dt_sim_time.day)
@@ -260,6 +274,7 @@ def update_EV_rnd(dt_sim_time,df_EV_state):
                         gridlabd.set_value(EV,'I_Max',str(i_max))
                         gridlabd.set_value(EV,'P_Max',str(next_u*1000))
                         gridlabd.set_value(EV,'E_Max',str(next_u*1000*1))
+
                         EV_inv = 'EV_inverter' + EV[2:]
                         gridlabd.set_value(EV_inv,'rated_power',str(1.2*next_u*1000))
                         gridlabd.set_value(EV_inv,'rated_battery_power',str(1.2*next_u*1000))
@@ -269,6 +284,8 @@ def update_EV_rnd(dt_sim_time,df_EV_state):
                         df_EV_state.at[EV,'connected'] = 1 #Does this one not work such that delay in connection?
                         df_EV_state.at[EV,'soc_t'] = soc_t
                         df_EV_state.at[EV,'SOC_t'] = soc_t*df_EV_state['SOC_max'].loc[EV]
+                        u = (df_EV_state['SOC_max'].loc[EV] - df_EV_state['SOC_t'].loc[EV])*(3600./interval) #hypothetical u for constant charging during interval
+                        df_EV_state.at[EV,'u_t'] = min(u,df_EV_state['u_max'].loc[EV])
                         
                         #Departure time tomorrow
                         df_EV_state.at[EV,'next_event'] = today + pandas.Timedelta(days=1,hours=np.random.choice(dep_hours),minutes=np.random.choice(range(60))) #Next event: disconnection
@@ -277,10 +294,12 @@ def update_EV_rnd(dt_sim_time,df_EV_state):
                         #Set EV (only switch off)
                         gridlabd.set_value(EV,'generator_status','OFFLINE')  
                         gridlabd.set_value(EV,'state_of_charge',str(0.0))
+                        gridlabd.set_value('EV_inverter_'+EV[3:],'P_Out',str(0.0))
                         #Set df_EV_state   
                         df_EV_state.at[EV,'connected'] = 0 #Does this one not work such that delay in connection?
                         df_EV_state.at[EV,'soc_t'] = 0.0
                         df_EV_state.at[EV,'SOC_t'] = 0.0
+
                         #Arrival time today
                         df_EV_state.at[EV,'next_event'] = today + pandas.Timedelta(hours=np.random.choice(arr_hours),minutes=np.random.choice(range(60))) #Next event: disconnection
             
@@ -296,11 +315,59 @@ def update_EV_rnd(dt_sim_time,df_EV_state):
                   # Updating using df
                   #print('GLD battery model is not used for EVs, manual updating!')
                   gridlabd.set_value(EV,'state_of_charge',str(df_EV_state['soc_t'].loc[EV])) #in p.u. 
+                  
+                  #Calculate possible charging rate and stop charging if around 0
+                  u = (df_EV_state['SOC_max'].loc[EV] - df_EV_state['SOC_t'].loc[EV])*(3600./interval) #hypothetical u for constant charging during interval
+                  u_t = min(u,df_EV_state['u_max'].loc[EV])
+                  if u_t < 0.01:
+                        u_t = 0.0
+                  df_EV_state.at[EV,'u_t'] = u_t
+                  if u_t == 0.0:
+                        gridlabd.set_value('EV_inverter_'+EV[3:],'P_Out',str(0.0))
             else:
                   pass
 
       return df_EV_state
 
+#TESS
+# def calc_bids_EV(dt_sim_time,df_bids_EV,retail,mean_p,var_p):
+#       #Quantity
+#       safety_fac = 1.0
+#       df_bids_EV['q_buy'] = 0.0 #general
+#       #df_bids_EV['residual_u'] = round((3600./interval)*(safety_fac*df_bids_EV['SOC_max'] - df_bids_EV['SOC_t']),prec) #u at which EV would need to be charged during the interval to completely fill it
+#       df_bids_EV['residual_u'] = (3600./interval)*(safety_fac*df_bids_EV['SOC_max'] - df_bids_EV['SOC_t']).values.astype(float).round(prec) #u at which EV would need to be charged during the interval to completely fill it
+#       df_bids_EV['q_buy'].loc[df_bids_EV['connected'] == 1] = df_bids_EV.loc[df_bids_EV['connected'] == 1][['residual_u','u_max']].min(axis=1) #in kW
+#       df_bids_EV['q_buy'].loc[df_bids_EV['q_buy'] < 1.] = 0.0
+
+#       #Price
+#       df_bids_EV['p_buy'] = 0.0 #general
+#       #Commercial
+#       df_bids_EV.loc[df_bids_EV['charging_type'].str.contains('comm') & (df_bids_EV['connected'] == 1) & (df_bids_EV['q_buy'] > 0.001),'p_buy'] = retail.Pmax #max for commercial cars
+#       #Home-based charging
+#       df_bids_EV['delta'] = df_bids_EV['next_event'] - dt_sim_time
+#       df_bids_EV['residual_t'] = df_bids_EV['delta'].apply(lambda x: x.seconds)/3600.      #residual time until departure
+#       rel_index = df_bids_EV.loc[df_bids_EV['charging_type'].str.contains('resi') & (df_bids_EV['connected'] == 1) & (df_bids_EV['q_buy'] > 0.0) & (df_bids_EV['residual_t']*3600 >= interval),'p_buy'].index
+#       #Bid calculation
+#       #df_bids_EV.at[rel_index,'p_buy'] = retail.Pmax - df_bids_EV['k'].loc[rel_index] * df_bids_EV['residual_t'].loc[rel_index]
+#       #Uncommented on 12/23
+#       #df_bids_EV['intercept'] = mean_p - df_bids_EV['k']*df_bids_EV['u_max']
+#       #df_bids_EV.at[rel_index,'p_buy'] =  df_bids_EV['intercept'].loc[rel_index] + df_bids_EV['k'].loc[rel_index]*df_bids_EV['residual_u'].loc[rel_index]/df_bids_EV['residual_t'].loc[rel_index]
+#       #Test on 12/23 - consistent with final report Powernet: Diss ind=4
+#       #df_bids_EV.at[rel_index,'p_buy'] =  p_max - df_bids_EV['k'].loc[rel_index]*df_bids_EV['u_max'].loc[rel_index] - df_bids_EV['residual_u'].loc[rel_index]
+#       #Ref price dependent EV charging: Diss ind>=5
+#       df_bids_EV.at[rel_index,'p_buy'] =  mean_p + df_bids_EV['k'].loc[rel_index]*var_p*(2*df_bids_EV['residual_u'].loc[rel_index]/df_bids_EV['u_max'].loc[rel_index] - 1.)
+
+#       df_bids_EV['lower_bound'] = 0.0
+#       df_bids_EV['upper_bound'] = p_max
+#       df_bids_EV['p_buy'] = df_bids_EV[['p_buy','lower_bound']].max(axis=1) #non-negative bids
+#       df_bids_EV['p_buy'] = df_bids_EV[['p_buy','upper_bound']].min(axis=1) #non-negative bids
+#       #print(df_bids_EV[['residual_SOC','delta','p_buy']])
+
+#       #For no market case
+#       #df_bids_EV.loc[df_bids_EV['charging_type'].str.contains('resi') & (df_bids_EV['connected'] == 1) & (df_bids_EV['residual_SOC'] > 0.001),'p_buy'] = retail.Pmax
+#       return df_bids_EV
+
+#Percentile-based
 def calc_bids_EV(dt_sim_time,df_bids_EV,retail,mean_p,var_p):
       #Quantity
       safety_fac = 1.0
@@ -317,20 +384,21 @@ def calc_bids_EV(dt_sim_time,df_bids_EV,retail,mean_p,var_p):
       #Home-based charging
       df_bids_EV['delta'] = df_bids_EV['next_event'] - dt_sim_time
       df_bids_EV['residual_t'] = df_bids_EV['delta'].apply(lambda x: x.seconds)/3600.      #residual time until departure
+      df_bids_EV['needed_t'] = ((safety_fac*df_bids_EV['SOC_max'] - df_bids_EV['SOC_t'])/df_bids_EV['u_max']).values.astype(float).round(prec) #in hours
       rel_index = df_bids_EV.loc[df_bids_EV['charging_type'].str.contains('resi') & (df_bids_EV['connected'] == 1) & (df_bids_EV['q_buy'] > 0.0) & (df_bids_EV['residual_t']*3600 >= interval),'p_buy'].index
-      #Bid calculation
-      #df_bids_EV.at[rel_index,'p_buy'] = retail.Pmax - df_bids_EV['k'].loc[rel_index] * df_bids_EV['residual_t'].loc[rel_index]
-      #Uncommented on 12/23
-      #df_bids_EV['intercept'] = mean_p - df_bids_EV['k']*df_bids_EV['u_max']
-      #df_bids_EV.at[rel_index,'p_buy'] =  df_bids_EV['intercept'].loc[rel_index] + df_bids_EV['k'].loc[rel_index]*df_bids_EV['residual_u'].loc[rel_index]/df_bids_EV['residual_t'].loc[rel_index]
-      #Test on 12/23 - consistent with final report
-      df_bids_EV.at[rel_index,'p_buy'] =  p_max - df_bids_EV['k'].loc[rel_index]*(df_bids_EV['u_max'].loc[rel_index] - df_bids_EV['residual_u'].loc[rel_index])
+      
+      df_bids_EV['duty_cycle'] = 0.0
+      df_bids_EV['duty_cycle'].loc[rel_index] = df_bids_EV['needed_t'].loc[rel_index]/df_bids_EV['residual_t'].loc[rel_index]
+      df_bids_EV['p_min'] = 0.0
+      df_bids_EV['p_min'].loc[rel_index] = scipy.stats.norm.ppf(df_bids_EV['duty_cycle'].loc[rel_index],loc=mean_p,scale=var_p) #var_p is std 
+      df_bids_EV['p_buy'].loc[rel_index] =  df_bids_EV['p_min'].loc[rel_index]*(100 + df_bids_EV['k'].loc[rel_index])/100
 
       df_bids_EV['lower_bound'] = 0.0
       df_bids_EV['upper_bound'] = p_max
       df_bids_EV['p_buy'] = df_bids_EV[['p_buy','lower_bound']].max(axis=1) #non-negative bids
       df_bids_EV['p_buy'] = df_bids_EV[['p_buy','upper_bound']].min(axis=1) #non-negative bids
       #print(df_bids_EV[['residual_SOC','delta','p_buy']])
+      #import pdb; pdb.set_trace()
 
       #For no market case
       #df_bids_EV.loc[df_bids_EV['charging_type'].str.contains('resi') & (df_bids_EV['connected'] == 1) & (df_bids_EV['residual_SOC'] > 0.001),'p_buy'] = retail.Pmax
@@ -343,6 +411,21 @@ def submit_bids_EV(dt_sim_time,retail,df_bids,df_buy_bids):
                   #mysql_functions.set_values('buy_bids', '(bid_price,bid_quantity,timedate,appliance_name)',(float(df_bids['p_buy'].loc[ind]),float(df_bids['q_buy'].loc[ind]),dt_sim_time,ind,))
                   df_buy_bids = df_buy_bids.append(pandas.DataFrame(columns=df_buy_bids.columns,data=[[dt_sim_time,ind,float(df_bids['p_buy'].loc[ind]),float(df_bids['q_buy'].loc[ind])]]),ignore_index=True)
       return retail,df_buy_bids
+
+def charge_EV(dt_sim_time,df_EV_state):
+      df_EV_state_red = df_EV_state.loc[df_EV_state['connected'] == 1]
+      df_EV_state_red = df_EV_state_red.loc[df_EV_state_red['u_t'] > 0.0]
+      for EV in df_EV_state_red.index:
+            EV_number = int(EV.split('_')[-1]) #int(battery.split('_')[1])
+            SOC = df_EV_state['SOC_t'].loc[EV] #this is SOC at the beginning of the period t
+            u = -1000*df_EV_state['u_t'].loc[EV]
+            gridlabd.set_value('EV_inverter_'+EV[3:],'P_Out',str(u)) #kW -> W
+
+      print('GLD battery model is not used for EV, manual updating!')
+      df_EV_state['SOC_t'] = df_EV_state['SOC_t'] + df_EV_state['connected']*df_EV_state['u_t']/12.
+      df_EV_state['soc_t'] = df_EV_state['SOC_t']/df_EV_state['SOC_max']
+      return df_EV_state
+
 
 #Partial charging if car drives off?
 def set_EV_GLD(dt_sim_time,df_bids_EV,df_awarded_bids):

@@ -36,14 +36,16 @@ def create_market(df_WS,df_prices,p_max,prec,price_intervals,dt_sim_time):
         if len(df_prices) > 0:
             mean_p = df_prices['clearing_price'].iloc[-price_intervals:].mean() #last hour
             var_p = df_prices['clearing_price'].iloc[-price_intervals:].var()
+            var_p = sqrt(var_p) #should actually be std
         else:
-            mean_p = (retail.Pmax - retail.Pmin)/2
+            mean_p = 50. #(retail.Pmax - retail.Pmin)/2
             var_p = 0.10
     #forward prices
     elif ref_price == 'forward':
         minutes = int(price_intervals*interval/60)
-        mean_p = df_WS[which_price].loc[dt_sim_time:dt_sim_time+datetime.timedelta(minutes=minutes)].mean()
-        var_p = df_WS[which_price].loc[dt_sim_time:dt_sim_time+datetime.timedelta(minutes=minutes)].var()
+        mean_p = df_WS['DA'].loc[dt_sim_time:dt_sim_time+datetime.timedelta(minutes=minutes)].mean()
+        var_p = df_WS['DA'].loc[dt_sim_time:dt_sim_time+datetime.timedelta(minutes=minutes)].var()
+        var_p = sqrt(var_p) #should actually by std
     #forward prices
     elif ref_price == 'none':
         mean_p = p_max*100. #willing to pay maximum price
@@ -76,6 +78,7 @@ def include_unresp_load(dt_sim_time,retail,df_prices,df_buy_bids,df_awarded_bids
             #Myopic based on awarded bids
             #Works only if no WS market bids or unresp load in df_awarded!
             unresp_load = (load_SLACK - prev_loc_demand + prev_loc_supply)*unresp_factor
+            #import pdb; pdb.set_trace()
         #Perfect max forecast
         elif load_forecast == 'perfect':
             df_baseload = pandas.read_csv('glm_generation_'+city+'/perfect_baseload_forecast_'+month+'.csv')

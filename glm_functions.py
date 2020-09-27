@@ -7,14 +7,43 @@ import re
 import sys
 import shutil
 
-#from scipy.stats import norm
-#from scipy.stats import truncnorm
 import math
 import copy
 import random
 
 from HH_global import city, player_dir, results_folder
 from HH_global import slack_node, start_time_str, end_time_str, interval, flexible_houses, EV_share, PV_share, Batt_share, tmy_file
+
+time_step = 300
+
+#Climate zone for Austin / Texas
+#https://openei.org/wiki/Climate_Zone_2A
+clim_zone = '1A-2A'
+clim_zone_ACH = '2A'
+
+#from RECS2015.xsl
+floor_1_mean = 1977
+floor_2_mean = 3202
+
+floor_1_std = 47.0
+floor_2_std = 226.4
+
+heat_mean = 70.8
+heat_std = 2.9
+
+cool_mean = 73.7
+cool_std = 3.3
+
+prob_houses_or=[0.2490299,0.096398671,0.296920266,0.114936877,0.174980066,0.067734219] #SW-American
+#prob_houses_or=[0.65196,0.23572,0.074451,0.02692,0.0085,0.00291] #Lily
+
+#region-independent
+safety_factor=0.66
+ADMD_per_house=4.592431590450016 #1.9613980468000005
+k_min = 2.0
+k_max = 4.0
+delta_set = cool_mean - heat_mean
+delta_min_max = delta_set*2
 
 #First run for new settings (new players, new house parameters, new weather)
 def write_calibrationfile():
@@ -27,11 +56,11 @@ def write_calibrationfile():
     #Total number of houses to generate
     tot_num_houses=2000
     #Probability of each home type
-    prob_houses=[0.65196,0.23572,0.074451,0.02692,0.0085,0.00291]
-    prob_houses=[m/sum(prob_houses) for m in prob_houses]
-    
-    #Climate zone for california
-    clim_zone="3C"
+    #type_vec=["elec_gas_1","elec_gas_2","elec_res_1","elec_res_2","HP_1","HP_2"]
+    #prob_houses=[0.188619078,0.287520124,0.056304203,0.085826903,0.151219438,0.230510254] #All-American
+    #Lily'probs
+    #prob_houses=[0.65196,0.23572,0.074451,0.02692,0.0085,0.00291]
+    prob_houses=[m/sum(prob_houses_or) for m in prob_houses_or]
     
     #Avilable players
     player_list_tmp = os.listdir(player_dir)
@@ -54,7 +83,7 @@ def write_calibrationfile():
     os.chdir(root)
     return
 
-def rewrite_glmfile(rewrite_houses=True,run_file=True):
+def rewrite_glmfile(rewrite_houses=True,run_file=True,mode=None):
     #Change absolute path
     root = '/docker_powernet'
     out_dir = 'glm_generation_' + city
@@ -70,9 +99,15 @@ def rewrite_glmfile(rewrite_houses=True,run_file=True):
     #Reset directory and copy 'IEEE_123_homes_1min.glm' into main folder
     if not rewrite_houses:
         shutil.copy('IEEE_123_homes_1min.glm', root)
-        shutil.copy('IEEE123_BP_2bus_1min.glm', root)
+        #shutil.copy('IEEE123_BP_2bus_1min.glm', root)
+
+    #import right gld module
     os.chdir(root)
     print(os.getcwd())
+    
+    #Modifies glm file with relevant gridlabd_functions module and copies to base
+    modify_gldfcts(out_dir,mode)
+
     return
 
 def add_flexHVAC():
@@ -93,6 +128,52 @@ def add_flexHVAC():
     new_glm.close()
     return
 
+def modify_gldfcts(out_dir,mode):
+    #import pdb; pdb.set_trace()
+    file = out_dir+'/IEEE123_BP_2bus_1min.glm'
+    new_file = 'IEEE123_BP_2bus_1min.glm'
+
+    glm = open(file,'r') 
+    new_glm = open(new_file,'w') 
+    
+    for line in glm:
+        if 'module gridlabd_functions;' in line:
+            if mode == 'noDER_nomarket':
+                pass
+            elif mode == 'DER_nomarket':
+                new_glm.write('module gridlabd_functions_DER_nomarket;\n')
+            else:
+                print('No such mode: '+str(mode))
+                new_glm.write(line)
+        else:
+            new_glm.write(line)
+    glm.close()
+    new_glm.close()
+    return
+
+def modify_k(out_dir):
+    #import pdb; pdb.set_trace()
+    file = out_dir+'/IEEE_123_homes_1min.glm'
+    new_file = 'IEEE_123_homes_1min.glm'
+
+    glm = open(file,'r') 
+    new_glm = open(new_file,'w') 
+    
+    for line in glm:
+        if 'cooling_setpoint' in line:
+            new_glm.write('\tcooling_setpoint 73;\n')
+        elif 'heating_setpoint' in line:
+            new_glm.write('\theating_setpoint 69;\n')
+        elif '\tk ' in line:
+            #import pdb; pdb.set_trace()
+            k = np.random.choice(range(101))*4
+            new_glm.write('\tk '+str(k)+';\n')
+        else:
+            new_glm.write(line)
+    glm.close()
+    new_glm.close()
+    return
+
 def gen_glm(out_dir,start_time_str,end_time_str,PV_penetration,bat_penetration,EV_penetration,player_interval,regen_players,rewrite_houses,run_file):
     ##### NETWORK: Load modified GLM file for fully populated case
     base_glm_file='Base_123_full.glm'
@@ -101,6 +182,7 @@ def gen_glm(out_dir,start_time_str,end_time_str,PV_penetration,bat_penetration,E
     sync_list_base=[]
     glm_dict_base[0]['starttime'] = '"'+start_time_str+'"'
     glm_dict_base[0]['stoptime'] = '"'+end_time_str+'"'
+    #import pdb; pdb.set_trace()
     network_target_file_name='IEEE123_BP_2bus_1min.glm'
     write_base_glm(glm_dict_base,obj_type_base,globals_list_base,include_list_base,out_dir,network_target_file_name,sync_list_base)
     print('Loaded network')
@@ -185,10 +267,8 @@ def gen_glm(out_dir,start_time_str,end_time_str,PV_penetration,bat_penetration,E
         #Total number of houses to generate
         tot_num_houses=2000
         #Probability of each home type
-        prob_houses=[0.65196,0.23572,0.074451,0.02692,0.0085,0.00291]
-        prob_houses=[m/sum(prob_houses) for m in prob_houses]
+        prob_houses=[m/sum(prob_houses_or) for m in prob_houses_or]
         #Climate zone for california
-        clim_zone="3C"
         house_dict,player,outputs=gen_home_inputs(out_dir,tot_num_houses,prob_houses,clim_zone,
                                                              tot_zip_dict_sim)
         #mean_day_energy = np.array(pandas.read_csv('mean_day_energy.csv',header=-1))
@@ -203,12 +283,9 @@ def gen_glm(out_dir,start_time_str,end_time_str,PV_penetration,bat_penetration,E
         PV_area,bat_size=PV_battery_sizing(mean_day_energy,PV_day_mean,PV_area_ref,outputs)
         
         # % House placement in network     
-        #bus safety factor
-        safety_factor=0.66
         home_bus_list=[]
 
         #Based on ADMD
-        ADMD_per_house=4.611774756466676 #1.9613980468000005
         num_placed_homes,home_bus_list_aug=house_placement2(out_dir,safety_factor,ADMD_per_house,
                                         outputs,home_bus_list,0,rewrite_houses)
     os.chdir(out_dir)
@@ -342,7 +419,7 @@ def write_base_glm(glm_dict,obj_type,globals_list,include_list,out_dir,file_name
     if calibration:
         #Write header
         glm_out.write('#set iteration_limit=100000;\n\n')
-        glm_out.write('#set minimum_timestep=60;\n\n')
+        glm_out.write('#set minimum_timestep='+str(time_step)+';\n\n')
         glm_out.write('clock {\n')
         glm_out.write('\tstarttime "'+start_time_str+'";\n')
         glm_out.write('\tstoptime "'+end_time_str+'";\n')
@@ -493,6 +570,9 @@ def player_gen_csv(start,end,file_name,data_dir,out_dir,inc_ind_zip,player_inter
     return temp_zip_dict
 
 def gen_home_inputs(input_dir,tot_num_houses,prob_houses,clim_zone,tot_zip_dict):
+    from scipy.stats import norm
+    from scipy.stats import truncnorm
+
     '''Generate parameters of homes'''
     #print(input_dir)
 
@@ -508,20 +588,41 @@ def gen_home_inputs(input_dir,tot_num_houses,prob_houses,clim_zone,tot_zip_dict)
     #Heating type mapping
     heat_equip=dict([("elec_gas_1","GAS"),("elec_gas_2","GAS"),("elec_res_1","RESISTANCE"),("elec_res_2","RESISTANCE"),("HP_1","HEAT_PUMP"),("HP_2","HEAT_PUMP")])
     #Factor for converting units of air flow rate, specific to each climate zone
-    LBL_factor_1=dict([("1A-2A",20),("2B",21.5),("3A",24.5),("3B-4B",21.3),
+    #https://www.energystar.gov/ia/home_improvement/home_sealing/ES_HS_Spec_v1_0b.pdf
+    #Use Zone 2 for Austin/1A-2A
+    LBL_factor_1=dict([("1A-2A",18.5),("2B",21.5),("3A",24.5),("3B-4B",21.3),
                        ("3C",21.5),("4A",18.5),("4C",21.5),("5A",18.5),
                        ("5B-5C",18.5),("6A-6B",17),("7A-7B-7AK-8AK",18.5)])
-    LBL_factor_2=dict([("1A-2A",16),("2B",17.2),("3A",19.6),("3B-4B",17.4),
+    LBL_factor_2=dict([("1A-2A",14.8),("2B",17.2),("3A",19.6),("3B-4B",17.4),
                        ("3C",17.2),("4A",14.8),("4C",17.5),("5A",14.8),
                        ("5B-5C",14.8),("6A-6B",13.6),("7A-7B-7AK-8AK",14.8)])
     
     #Mean and std of various input parameters, derived from EIA RECS data
-    floor_area_mean=dict([("elec_gas_1",2041),("elec_gas_2",3104),("elec_res_1",2041),("elec_res_2",3104),("HP_1",2041),("HP_2",3104)])
-    floor_area_sd=dict([("elec_gas_1",801),("elec_gas_2",1069),("elec_res_1",801),("elec_res_2",1069),("HP_1",801),("HP_2",1069)])
-    cool_set_mean=dict([("elec_gas_1",70.9),("elec_gas_2",71),("elec_res_1",70.9),("elec_res_2",71),("HP_1",70.9),("HP_2",71)])
-    cool_set_sd=dict([("elec_gas_1",1),("elec_gas_2",1),("elec_res_1",1),("elec_res_2",1),("HP_1",1),("HP_2",1)])
-    heat_set_mean=dict([("elec_gas_1",66.3),("elec_gas_2",66.6),("elec_res_1",66.3),("elec_res_2",66.6),("HP_1",66.3),("HP_2",66.6)])
-    heat_set_sd=dict([("elec_gas_1",4.59),("elec_gas_2",4.21),("elec_res_1",4.59),("elec_res_2",4.21),("HP_1",4.59),("HP_2",4.21)])
+    #Average square footage of single family homes (single houses with one story, two stories)
+    #https://www.eia.gov/consumption/residential/data/2015/hc/php/hc10.14.php
+    #US total
+    #Number 1 story: 47.5, 2story: 29.5 = probs: 61.7% , 38.3%
+    floor_area_mean=dict([("elec_gas_1",floor_1_mean),("elec_gas_2",floor_2_mean),("elec_res_1",floor_1_mean),("elec_res_2",floor_2_mean),("HP_1",floor_1_mean),("HP_2",floor_2_mean)])
+    #rse: 1.1; 1.5
+    floor_area_sd=dict([("elec_gas_1",floor_1_std),("elec_gas_2",floor_2_std),("elec_res_1",floor_1_std),("elec_res_2",floor_2_std),("HP_1",floor_1_std),("HP_2",floor_2_std)])
+    #Mean for single detached houses: summer / indoors / when sb is home
+    #No of houses with electric cooling 38.5, heatpump: 14.8 --> probs: 72.2% vs. 27.8%
+    cool_set_mean=dict([("elec_gas_1",cool_mean),("elec_gas_2",cool_mean),("elec_res_1",cool_mean),("elec_res_2",cool_mean),("HP_1",cool_mean),("HP_2",cool_mean)])
+    #av rse: 3.9
+    cool_set_sd=dict([("elec_gas_1",cool_std),("elec_gas_2",cool_std),("elec_res_1",cool_std),("elec_res_2",cool_std),("HP_1",cool_std),("HP_2",cool_std)])
+    #Mean for single detached houses: winter / indoors / when sb is home
+    #No of houses with electric heating: 12.0, HP: 8.9, other: 51.5 --> probs: 16.7% vs. 12.3% vs. 71.0%
+    heat_set_mean=dict([("elec_gas_1",heat_mean),("elec_gas_2",heat_mean),("elec_res_1",heat_mean),("elec_res_2",heat_mean),("HP_1",heat_mean),("HP_2",heat_mean)])
+    #av rse: 3.4
+    heat_set_sd=dict([("elec_gas_1",heat_std),("elec_gas_2",heat_std),("elec_res_1",heat_std),("elec_res_2",heat_std),("HP_1",heat_std),("HP_2",heat_std)])
+    
+    #Old: Lily's values
+    # floor_area_mean=dict([("elec_gas_1",2041),("elec_gas_2",3104),("elec_res_1",2041),("elec_res_2",3104),("HP_1",2041),("HP_2",3104)])
+    # floor_area_sd=dict([("elec_gas_1",801),("elec_gas_2",1069),("elec_res_1",801),("elec_res_2",1069),("HP_1",801),("HP_2",1069)])
+    # cool_set_mean=dict([("elec_gas_1",70.9),("elec_gas_2",71),("elec_res_1",70.9),("elec_res_2",71),("HP_1",70.9),("HP_2",71)])
+    # cool_set_sd=dict([("elec_gas_1",1),("elec_gas_2",1),("elec_res_1",1),("elec_res_2",1),("HP_1",1),("HP_2",1)])
+    # heat_set_mean=dict([("elec_gas_1",66.3),("elec_gas_2",66.6),("elec_res_1",66.3),("elec_res_2",66.6),("HP_1",66.3),("HP_2",66.6)])
+    # heat_set_sd=dict([("elec_gas_1",4.59),("elec_gas_2",4.21),("elec_res_1",4.59),("elec_res_2",4.21),("HP_1",4.59),("HP_2",4.21)])
     
     #number of homes we have Pecan Street data for zip loads
     num_ps_homes=len(tot_zip_dict)
@@ -563,13 +664,13 @@ def gen_home_inputs(input_dir,tot_num_houses,prob_houses,clim_zone,tot_zip_dict)
         cooling_setpoint_temp=int(np.random.normal(cool_set_mean[type_house],cool_set_sd[type_house],1))
         #cooling_setpoint_temp=heating_setpoint_temp+5
 
-        if heating_setpoint_temp + 5.0 > cooling_setpoint_temp:
-            heating_setpoint_temp = cooling_setpoint_temp - 5.0
+        if heating_setpoint_temp + (delta_set - 1.0) > cooling_setpoint_temp:
+            heating_setpoint_temp = cooling_setpoint_temp - (delta_set - 1.0)
         
         #set HVAC settings
-        T_min = heating_setpoint_temp - 3
-        T_max = cooling_setpoint_temp + 3
-        k = round(max(min(float(np.random.normal(3.0,1,1)),4.0),2.0),1)
+        T_min = heating_setpoint_temp - delta_min_max
+        T_max = cooling_setpoint_temp + delta_min_max
+        k = round(max(min(float(np.random.normal((k_min + k_max)/2,1,1)),k_max),k_min),1)
         
         #Air change per hour
         #Bin homesize to get info from probability distribution
@@ -588,7 +689,7 @@ def gen_home_inputs(input_dir,tot_num_houses,prob_houses,clim_zone,tot_zip_dict)
         else:
             sqft_rnd=4000
 
-        ACH_subset=ACH[(ACH.IECC_Climate=="3C")&(ACH.sqft==sqft_rnd)]
+        ACH_subset=ACH[(ACH.IECC_Climate==clim_zone_ACH)&(ACH.sqft==sqft_rnd)]
         #random_gen=max(min(np.random.norm(0.5,0.125),0.0),1.0)
         random_gen = np.random.uniform()
         ACH_subset2=ACH_subset[(ACH.CDF<random_gen)]
@@ -620,12 +721,12 @@ def gen_home_inputs(input_dir,tot_num_houses,prob_houses,clim_zone,tot_zip_dict)
                 'window_wall_ratio':str(wall_window_ratio_temp),
                 'airchange_per_hour':str(round(airchange_per_hour_temp,2))}
         
-        #Append for output dataframe  
+        #Append for output dataframe
         name.append(name_temp)
         number_of_stories.append(num_stor)
         floor_area.append(floor_area_temp)
         heating_setpoint.append(heating_setpoint_temp)
-        cooling_setpoint.append(heating_setpoint_temp+5)
+        cooling_setpoint.append(cooling_setpoint_temp)
         T_min_l.append(house_dict[i]['T_min'])
         T_max_l.append(house_dict[i]['T_max'])
         k_l.append(house_dict[i]['k'])
@@ -764,7 +865,7 @@ def write_slack(file,gld_dict,dict_key,obj_type):
     #Recorder
     file.write('\t'+'object'+' '+'recorder'+' {\n')
     file.write('\t\t'+'property measured_real_power;\n')
-    file.write('\t\t'+'interval 60;\n')
+    file.write('\t\t'+'interval '+str(time_step)+';\n')
     file.write('\t\t'+'file '+results_folder+'/load_node_149.csv;\n')
     file.write('\t'+'};\n')
     file.write('}\n')
@@ -847,7 +948,7 @@ def PV_calibration(data_dir):
     PV_area_ref=np.zeros((PV_cal_num,1))
 
     for j in range(PV_cal_num):
-        PV_area_ref[j,0]=int(140+20*j)
+        PV_area_ref[j,0]=int(140+10*j)
         power_file="PV_power_"+str(int(PV_area_ref[j,0]))+".csv"
         power_data_temp = pandas.read_csv(power_file,header=8,names=['timestamp','measured_real_power'])
         power_data_temp.measured_real_power[len(power_data_temp.measured_real_power)-1]=0
@@ -959,6 +1060,7 @@ def house_placement2(input_dir,safety_factor,ADMD_per_house,outputs,home_bus_lis
 #    plt.ylabel("ADMD per node (kW)")
     
     #save data
+    #import pdb; pdb.set_trace()
     node_num_df=pandas.DataFrame(node_num,columns=["node_num"])
     node_num_df.to_csv('house_placement.csv',index=False)
     if rewrite_houses:
@@ -1505,28 +1607,32 @@ def gen_network_glm(input_dir,net_sym_params,house_dict,player,inputs,tot_zip_di
             key_index=key_index+1
 
     #Recorders
-    glm_dict[key_index]={'name':'rec_total_load','group':'"class=house"','property':'total_load','file':results_folder+'/total_load_all.csv','interval':'60','limit':'100000'}
+    glm_dict[key_index]={'name':'rec_total_load','group':'"class=house"','property':'total_load','file':results_folder+'/total_load_all.csv','interval':str(time_step)}
     obj_type[key_index]={'object':'group_recorder'}
     key_index=key_index+1
     
-    glm_dict[key_index]={'name':'rec_hvac_load','group':'"class=house"','property':'hvac_load','file':results_folder+'/hvac_load_all.csv','interval':'60','limit':'100000'}
+    glm_dict[key_index]={'name':'rec_hvac_load','group':'"class=house"','property':'hvac_load','file':results_folder+'/hvac_load_all.csv','interval':str(time_step)}
     obj_type[key_index]={'object':'group_recorder'}
     key_index=key_index+1
     
-    glm_dict[key_index]={'name':'rec_T','group':'"class=house"','property':'air_temperature','file':results_folder+'/T_all.csv','interval':'60','limit':'100000'}
+    glm_dict[key_index]={'name':'rec_T','group':'"class=house"','property':'air_temperature','file':results_folder+'/T_all.csv','interval':str(time_step)}
     obj_type[key_index]={'object':'group_recorder'}
     key_index=key_index+1
     
-    glm_dict[key_index]={'name':'rec_Tm','group':'"class=house"','property':'mass_temperature','file':results_folder+'/Tm_all.csv','interval':'60','limit':'100000'}
+    glm_dict[key_index]={'name':'rec_Tm','group':'"class=house"','property':'mass_temperature','file':results_folder+'/Tm_all.csv','interval':str(time_step)}
     obj_type[key_index]={'object':'group_recorder'}
     key_index=key_index+1
     
-    glm_dict[key_index]={'name':'rec_pv_infeed','group':'"class=inverter"','property':'P_Out','file':results_folder+'/total_P_Out.csv','interval':'60','limit':'100000'}
+    glm_dict[key_index]={'name':'rec_pv_infeed','group':'"class=inverter"','property':'P_Out','file':results_folder+'/total_P_Out.csv','interval':str(time_step)}
     obj_type[key_index]={'object':'group_recorder'}
     key_index=key_index+1
 
-    glm_dict[key_index]={'name':'rec_batt_soc','group':'"class=battery"','property':'state_of_charge','file':results_folder+'/battery_SOC.csv','interval':'60','limit':'100000'}
+    glm_dict[key_index]={'name':'rec_batt_soc','group':'"class=battery"','property':'state_of_charge','file':results_folder+'/battery_SOC.csv','interval':str(time_step)}
     obj_type[key_index]={'object':'group_recorder'}
+    key_index=key_index+1
+
+    glm_dict[key_index]={'name':'T_out','parent':'tmy_file','property':'temperature','file':results_folder+'/T_out.csv','interval':str(time_step)}
+    obj_type[key_index]={'object':'recorder'}
     key_index=key_index+1
 
     #glm_dict[key_index]={'filename':results_folder+'/Vdump.csv','filemode':'"a"','runtime':'TS_NEVER','maxcount':'1500','mode':'polar'}
@@ -1626,15 +1732,15 @@ def gen_calibration_glm(input_dir,house_dict,player,inputs,tot_zip_dict,num_dupl
         key_index=key_index+1
 
     #Recorders
-    glm_dict[key_index]={'name':'rec_total_load','group':'"class=house"','property':'total_load','file':'glm_generation_'+city+'/calibration_total_load.csv','interval':'60','limit':'100000'}
+    glm_dict[key_index]={'name':'rec_total_load','group':'"class=house"','property':'total_load','file':'glm_generation_'+city+'/calibration_total_load.csv','interval':'60'}
     obj_type[key_index]={'object':'group_recorder'}
     key_index=key_index+1
     
-    glm_dict[key_index]={'name':'rec_T','group':'"class=house"','property':'air_temperature','file':'glm_generation_'+city+'/calibration_T_all.csv','interval':'60','limit':'100000'}
+    glm_dict[key_index]={'name':'rec_T','group':'"class=house"','property':'air_temperature','file':'glm_generation_'+city+'/calibration_T_all.csv','interval':'60'}
     obj_type[key_index]={'object':'group_recorder'}
     key_index=key_index+1
     
-    glm_dict[key_index]={'name':'rec_Tm','group':'"class=house"','property':'mass_temperature','file':'glm_generation_'+city+'/calibration_Tm_all.csv','interval':'60','limit':'100000'}
+    glm_dict[key_index]={'name':'rec_Tm','group':'"class=house"','property':'mass_temperature','file':'glm_generation_'+city+'/calibration_Tm_all.csv','interval':'60'}
     obj_type[key_index]={'object':'group_recorder'}
     key_index=key_index+1
 
@@ -1656,7 +1762,7 @@ def modify_glmfile():
 
     #Write header
     new_glm.write('#set iteration_limit=100000;\n\n')
-    new_glm.write('#set minimum_timestep=60;\n\n')
+    new_glm.write('#set minimum_timestep='+str(time_step)+';\n\n')
     new_glm.write('clock {\n')
     new_glm.write('\tstarttime "2015-07-01 00:00:00";\n')
     new_glm.write('\tstoptime "2015-07-31 23:59:00";\n')
@@ -1685,7 +1791,7 @@ def modify_glmfile():
     new_glm.write('\tproperty mass_temperature;\n')
     new_glm.write('\tfile glm_generation_'+city+'/calibration_Tm_all.csv;\n')
     new_glm.write('\tinterval 60;\n')
-    new_glm.write('\tlimit 100000;\n')
+    #new_glm.write('\tlimit 100000;\n')
     new_glm.write('}\n\n')
 
     new_glm.write('object group_recorder {\n')
@@ -1694,7 +1800,7 @@ def modify_glmfile():
     new_glm.write('\tproperty air_temperature;\n')
     new_glm.write('\tfile glm_generation_'+city+'/calibration_T_all.csv;\n')
     new_glm.write('\tinterval 60;\n')
-    new_glm.write('\tlimit 100000;\n')
+    #new_glm.write('\tlimit 100000;\n')
     new_glm.write('}\n\n')
 
     new_glm.write('object group_recorder {\n')
@@ -1703,7 +1809,7 @@ def modify_glmfile():
     new_glm.write('\tproperty hvac_load;\n')
     new_glm.write('\tfile glm_generation_'+city+'/calibration_hvac_load.csv;\n')
     new_glm.write('\tinterval 60;\n')
-    new_glm.write('\tlimit 100000;\n')
+    #new_glm.write('\tlimit 100000;\n')
     new_glm.write('}\n')
 
     new_glm.write('object group_recorder {\n')
@@ -1712,7 +1818,7 @@ def modify_glmfile():
     new_glm.write('\tproperty total_load;\n')
     new_glm.write('\tfile group_recorder_'+city+'.csv;\n')
     new_glm.write('\tinterval 60;\n')
-    new_glm.write('\tlimit 100000;\n')
+    #new_glm.write('\tlimit 100000;\n')
     new_glm.write('}\n')
 
     glm.close()

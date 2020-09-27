@@ -2,9 +2,9 @@ import gldimport
 import os
 import random
 import pandas
-import json
+# import json
 import numpy as np
-import datetime
+# import datetime
 from datetime import timedelta
 from dateutil import parser
 import HH_functions as HHfct
@@ -17,6 +17,9 @@ import time
 from HH_global import results_folder, flexible_houses, C, p_max, market_data, which_price, city, month
 from HH_global import interval, prec, price_intervals, allocation_rule, unresp_factor, load_forecast
 from HH_global import FIXED_TARIFF, include_SO, EV_data
+
+#retail_kWh = 0.03245935410676796 # (july) # 0.02391749988554048 (year) #USD/kWh
+retail_kWh = 0.02254690804746962 #mid-Dec
 
 def on_init(t):
 	global t0;
@@ -38,8 +41,8 @@ def on_init(t):
 	else:
 		houses = gldimport.find_objects('class=house')[:flexible_houses]
 	
-	#global df_house_state;
-	#df_house_state = HHfct.get_settings_houses(houses,interval)
+	# global df_house_state;
+	# df_house_state = HHfct.get_settings_houses(houses,interval)
 
 	batteries = gldimport.find_objects('class=battery')
 	global batterylist, EVlist;
@@ -71,11 +74,11 @@ def on_init(t):
 			df_PV_forecast = None
 
 	global df_prices, df_WS;
-	df_prices = pandas.DataFrame(columns=['clearing_price','clearing_quantity','unresponsive_loads','slack_t-1'])
+	df_prices = pandas.DataFrame(columns=['p_mean','p_std','clearing_price','clearing_quantity','unresponsive_loads','slack_t-1'])
 	df_WS = pandas.read_csv('glm_generation_'+city+'/'+market_data,parse_dates=[-1],index_col=[0])
 	df_WS = pandas.DataFrame(index=pandas.to_datetime(df_WS.index.astype(str)),columns=df_WS.columns,data=df_WS.values.astype(float))
 	
-	#Align weekdays of Pecan Street Data and WS: For yearly data only (TESS, not powernet)
+	# Align weekdays of Pecan Street Data and WS: For yearly data only (TESS, not powernet)
 	# year_sim = parser.parse(gridlabd.get_global('clock')).replace(tzinfo=None).year
 	# first_weekday = pandas.Timestamp(year_sim,1,1).weekday() 
 	# first_weekday_WS = df_WS.index[0].weekday()
@@ -118,15 +121,17 @@ def on_precommit(t):
 			#i = int(step/(saving_interval*12)) #for 5min interval
 			dt_sim_time_prev = dt_sim_time - pandas.Timedelta(days=1)
 			specifier = str(dt_sim_time_prev.year)+format(dt_sim_time_prev.month,'02d')+format(dt_sim_time_prev.day,'02d')
+
 			df_supply_bids.to_csv(results_folder+'/df_supply_bids_'+specifier+'.csv')
-			#df_supply_bids = pandas.DataFrame(columns = df_supply_bids.columns)
 			df_buy_bids.to_csv(results_folder+'/df_buy_bids_'+specifier+'.csv')
-			#df_buy_bids = pandas.DataFrame(columns = df_buy_bids.columns)
+			df_awarded_bids = df_awarded_bids.loc[df_awarded_bids['timestamp'] >= dt_sim_time_prev] #keep last period for unresp_load calculation
 			df_awarded_bids.to_csv(results_folder+'/df_awarded_bids_'+specifier+'.csv')
-			#df_awarded_bids = pandas.DataFrame(columns = df_awarded_bids.columns)
+
+			dt_sim_time_lastperiod = dt_sim_time - pandas.Timedelta(seconds=interval)
+			df_awarded_bids = df_awarded_bids.loc[df_awarded_bids['timestamp'] == dt_sim_time_lastperiod]
 			df_buy_bids = pandas.DataFrame(columns=['timestamp','appliance_name','bid_price','bid_quantity'])
 			df_supply_bids = pandas.DataFrame(columns=['timestamp','appliance_name','bid_price','bid_quantity'])
-			df_awarded_bids = pandas.DataFrame(columns=['timestamp','appliance_name','bid_price','bid_quantity','S_D'])
+			#df_awarded_bids = pandas.DataFrame(columns=['timestamp','appliance_name','bid_price','bid_quantity','S_D'])
 			time_dayend = time.time()
 			print('Time needed for past simulation day '+str(dt_sim_time)+': '+str((time_dayend - time_daystart)/60.)+' min')
 			time_daystart = time_dayend
@@ -149,7 +154,9 @@ def on_precommit(t):
 
 		retail, mean_p, var_p = Mfct.create_market(df_WS,df_prices,p_max,prec,price_intervals,dt_sim_time)
 		#Submit bids
-		df_house_state = HHfct.calc_bids_HVAC(dt_sim_time,df_house_state,retail,mean_p,var_p)
+		#df_house_state = HHfct.calc_bids_HVAC_cdf(dt_sim_time,df_house_state,retail,mean_p,var_p)
+		df_house_state = HHfct.calc_bids_HVAC_stationary(dt_sim_time,df_house_state,retail,mean_p,var_p)
+
 		retail,df_buy_bids = HHfct.submit_bids_HVAC(dt_sim_time,retail,df_house_state,df_buy_bids)
 
 		#Batteries
@@ -184,18 +191,20 @@ def on_precommit(t):
 		#df_awarded_bids = df_awarded_bids.append(pandas.DataFrame(columns=df_awarded_bids.columns,data=[[dt_sim_time,'unresp_load',float(p_max),unresp_load,'S']]),ignore_index=True)
 
 		#Include supply
-		supply_costs = float(min(df_WS[which_price].loc[dt_sim_time],retail.Pmax))
+		supply_costs = float(min(df_WS['RT'].loc[dt_sim_time],retail.Pmax))
 		retail.sell(C,supply_costs,gen_name='WS') #in [USD/kW] #How can I tweak clearing that we can name biider 'WS'?
+		retail.buy(C,supply_costs-0.01,appliance_name='WS_export') #in [USD/kW] #How can I tweak clearing that we can name biider 'WS'?
 		df_supply_bids = df_supply_bids.append(pandas.DataFrame(columns=df_supply_bids.columns,data=[[dt_sim_time,'WS',supply_costs,C]]),ignore_index=True)
 		print('Supply costs: '+str(supply_costs))
 
 		#Market clearing
 		retail.clear()
 		Pd = retail.Pd # cleared demand price
+		#Pd = retail_kWh*1000 #USD/MWh
 		print('Clearing price: '+str(Pd))
 		Qd = retail.Qd #in kW
 		print('Clearing quantity: '+str(Qd))
-		df_temp = pandas.DataFrame(index=[dt_sim_time],columns=['clearing_price','clearing_quantity','unresponsive_loads','slack_t-1'],data=[[Pd,Qd,unresp_load,load_SLACK]])
+		df_temp = pandas.DataFrame(index=[dt_sim_time],columns=['p_mean','p_std','clearing_price','clearing_quantity','unresponsive_loads','slack_t-1'],data=[[mean_p,var_p,Pd,Qd,unresp_load,load_SLACK]])
 		df_prices = df_prices.append(df_temp)
 		###
 		#Redistribute prices and quantities to market participants
@@ -267,6 +276,7 @@ def saving_results():
 	#Saving former mysql
 	global df_prices;
 	df_prices.to_csv(results_folder+'/df_prices.csv')
+
 	global df_supply_bids;
 	df_supply_bids.to_csv(results_folder+'/df_supply_bids.csv')
 	global df_buy_bids;

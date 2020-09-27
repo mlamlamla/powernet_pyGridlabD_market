@@ -11,7 +11,7 @@ def calc_ADMD():
     '''Calculate ADMD from group recorder outputs'''
 
     #get timestamp and power data from GridLAB-D output
-    power_data_temp = pandas.read_csv('glm_generation_'+city+'/calibration_total_load.csv',header=8,usecols=range(1501)) #in kW
+    power_data_temp = pandas.read_csv('glm_generation_'+city+'/calibration_total_load.csv',header=8,usecols=range(2001)) #in kW
     time_data=[[] for k in range(len(power_data_temp['# timestamp']))]
     for t in range(len(power_data_temp['# timestamp'])):
         timestamp_sample=str(power_data_temp['# timestamp'][t])
@@ -54,8 +54,6 @@ def calc_ADMD():
 def main():
     out_dir='glm_generation_'+city
     ADMD_per_house,day_energy,max_day_energy,mean_day_energy=calc_ADMD()
-    print(ADMD_per_house)
-    print(ADMD_per_house)
     print(ADMD_per_house)
 #    day_energy.to_csv('day_energy.csv',index=False)
 #    max_day_energy.to_csv('max_day_energy.csv',index=False)

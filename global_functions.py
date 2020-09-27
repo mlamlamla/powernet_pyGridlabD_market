@@ -21,6 +21,7 @@ def write_global(series_settings,ind,ip_address):
     glm.write('slack_node = \''+series_settings['slack_node']+'\'\n\n')
 
     glm.write('#Flexible appliances\n')
+    glm.write('settings_file = \'' +str(series_settings['settings_file'])+'\'\n')
     glm.write('flexible_houses = '+str(series_settings['flexible_houses'])+'\n')
     glm.write('PV_share = '+str(float(series_settings['PV_share']))+'\n')
     glm.write('EV_share = '+str(float(series_settings['EV_share']))+'\n')
