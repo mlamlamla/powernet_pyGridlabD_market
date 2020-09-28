@@ -1,4 +1,8 @@
-#Evaluates the physical parameters of the system
+# Evaluates the physical parameters of the system for the whole year
+
+# Will work to fill missing parameters (e.g. if no heating in July)
+
+# Prior to 01b_evaluate_physicalcharacteristics.py
 
 import pandas as pd
 import numpy as np
@@ -19,11 +23,11 @@ def plot_error(df_house_OFF,name):
 	ppt.savefig(folder+'/settings/'+house+'_temperature_estimation_'+name+'.pdf', bbox_inches='tight')
 	ppt.close()
 
-
+# Get average estimates for the whole year
 ind = 46
 use_existing_beta = False
-start = pd.Timestamp(2016,12,19)
-end = pd.Timestamp(2016,12,26)
+start = pd.Timestamp(2016,1,1)
+end = pd.Timestamp(2017,1,1)
 
 folder = 'Diss/Diss_' + "{:04d}".format(ind) # + '_5min'
 

@@ -3,8 +3,8 @@
 #set minimum_timestep=300
 
 clock {
-	starttime "2016/07/31 00:00";
-	stoptime "2016/08/08 00:00";
+	starttime "2016/09/11 00:00";
+	stoptime "2016/09/19 00:00";
 }
 
 module gridlabd_functions;
@@ -1536,7 +1536,7 @@ object meter {
 	object recorder {
 		property measured_real_power;
 		interval 300;
-		file Diss/Diss_0065/load_node_149.csv;
+		file Diss/Diss_0066/load_node_149.csv;
 	};
 }
 object node {

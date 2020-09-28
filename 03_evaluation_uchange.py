@@ -3,22 +3,95 @@
 import pandas as pd
 import matplotlib.pyplot as ppt
 
-ind_b = 46
-ind_WS = 49
-start = pd.Timestamp(2016,12,19)
-end = pd.Timestamp(2016,12,26)
-recalculate_df_welfare = False
-recread_data = False
+# Energy procurement cost scenario
+ind_WS = 67
+start = pd.Timestamp(2016,8,1)
+end = pd.Timestamp(2016,8,8)
 
+ind_WS = 65
+start = pd.Timestamp(2016,7,18)
+end = pd.Timestamp(2016,7,25)
+
+ind_WS = 66
+start = pd.Timestamp(2016,9,12)
+end = pd.Timestamp(2016,9,19)
+
+# Capacity scenario
+# ind_WS = 64
+# start = pd.Timestamp(2016,12,19)
+# end = pd.Timestamp(2016,12,26)
+
+recread_data = True 
+recalculate_df_welfare = True
+
+ind_b = 46
 house_no = 0
 
+run = 'Diss'
 folder_b = 'Diss/Diss_00'+str(ind_b) #+'_5min'
 folder_WS = 'Diss/Diss_00'+str(ind_WS)
-retail_kWh = 0.02254690804746962 #mid-Dec
-retail_MWh = retail_kWh*1000.
+# retail_kWh = 0.02391749988554048 #USD/kWh
+# retail_kWh = 0.03245935410676796 # (july) # 0.02391749988554048 (year) #USD/kWh
+# retail_kWh = 0.026003645505416464 #first week July
+# retail_kWh = 0.0704575196993475 #first week of august
+#retail_kWh = 0.02254690804746962 #mid-Dec
 
-df_HVAC = pd.read_csv('Diss/HVAC_settings_2016-08-01_2016-08-08_ext.csv',index_col=[0])
-df_HVAC = pd.read_csv('Diss/HVAC_settings_2016-12-19_2016-12-26_ext.csv',index_col=[0])
+##################
+#
+# Calculate retail rate in fixed price scenario / no TS
+#
+##################
+
+folder = folder_b
+city = 'Austin'
+market_file = 'Ercot_HBSouth.csv'
+
+df_slack = pd.read_csv(folder+'/load_node_149.csv',skiprows=range(8))
+df_slack['# timestamp'] = df_slack['# timestamp'].map(lambda x: str(x)[:-4])
+df_slack = df_slack.iloc[:-1]
+df_slack['# timestamp'] = pd.to_datetime(df_slack['# timestamp'])
+df_slack.set_index('# timestamp',inplace=True)
+df_slack = df_slack.loc[start:end]
+df_slack = df_slack/1000 #kW
+
+df_WS = pd.read_csv('glm_generation_'+city+'/'+market_file,parse_dates=[0])
+df_WS.rename(columns={'Unnamed: 0':'timestamp'},inplace=True)
+df_WS.set_index('timestamp',inplace=True)
+df_WS = df_WS.loc[start:end]
+
+df_WS['system_load'] = df_slack['measured_real_power']
+df_WS['supply_cost'] = df_WS['system_load']/1000.*df_WS['RT']/12.
+supply_cost = df_WS['supply_cost'].sum()
+
+df_total_load = pd.read_csv(folder+'/total_load_all.csv',skiprows=range(8)) #in kW
+df_total_load['# timestamp'] = df_total_load['# timestamp'].map(lambda x: str(x)[:-4])
+df_total_load = df_total_load.iloc[:-1]
+df_total_load['# timestamp'] = pd.to_datetime(df_total_load['# timestamp'])
+df_total_load.set_index('# timestamp',inplace=True)
+df_total_load = df_total_load.loc[start:end]
+total_load = (df_total_load.sum(axis=1)/12.).sum() #kWh
+
+df_inv_load = pd.read_csv(folder+'/total_P_Out.csv',skiprows=range(8)) #in W
+df_inv_load['# timestamp'] = df_inv_load['# timestamp'].map(lambda x: str(x)[:-4])
+df_inv_load = df_inv_load.iloc[:-1]
+df_inv_load['# timestamp'] = pd.to_datetime(df_inv_load['# timestamp'])
+df_inv_load.set_index('# timestamp',inplace=True)  
+df_inv_load = df_inv_load.loc[start:end]
+PV_supply = (df_inv_load.sum(axis=1)/1000./12.).sum() #in kWh
+
+net_demand  = total_load - PV_supply
+
+retail_kWh = supply_cost/net_demand
+retail_MWh = retail_kWh*1000.
+print(retail_kWh)
+
+##################
+#
+# Evaluate utility
+#
+##################
+
+df_HVAC = pd.read_csv(run+'/HVAC_settings_'+str(start).split(' ')[0]+'_'+str(end).split(' ')[0]+'_ext.csv',index_col=[0])
 
 #Data
 if recread_data:
@@ -60,7 +133,8 @@ if recalculate_df_welfare:
 	df_u_b = df_T_b.copy()
 	df_welfare = pd.DataFrame(index=df_u.columns,columns=['fixed_u','fixed_cost','fixed_T_mean','fixed_T_var','fixed_av_retail','LEM_u','LEM_cost','LEM_T_mean','LEM_T_var','LEM_av_retail'])
 	for col in df_u.columns:
-		print(col)
+		#print(col)
+		#import pdb; pdb.set_trace()
 
 		alpha = df_HVAC['alpha'].loc[col]
 		T_com = df_HVAC['comf_temperature'].loc[col]
@@ -90,7 +164,10 @@ if recalculate_df_welfare:
 
 df_welfare = pd.read_csv(folder_WS + '/df_welfare_withparameters.csv',index_col=[0],parse_dates=True)
 df_welfare['u_change'] = (df_welfare['LEM_u'] - df_welfare['LEM_cost']) - (df_welfare['fixed_u'] - df_welfare['fixed_cost'])
+print('Average utility change')
 print(df_welfare['u_change'].mean())
+print('Total utility change')
+print(df_welfare['u_change'].sum())
 
 # #Temperature of a single house vs. price: Dow does temperature depend on price?
 # fig = ppt.figure(figsize=(8,4),dpi=150)   
@@ -130,6 +207,7 @@ ax.set_ylim(0,50)
 ax.set_xlabel('Utility change')
 ax.set_ylabel('Number of houses')
 ppt.savefig(folder_WS+'/hist_uchange_'+str(ind_WS)+'.png', bbox_inches='tight')
+
 
 
 

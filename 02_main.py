@@ -6,13 +6,13 @@ import pandas
 #import pdb; pdb.set_trace()
 
 ###USER input
-ind = 65
+ind = 66
 df_settings = pandas.read_csv('settings_Diss.csv',index_col=[0]) #,parse_dates=['start_time','end_time'])
 
 ##################
 #Assemble correct glm files
 #################
-if False:
+if True:
 	#write global file with settings from csv file: HH_global.py
 	import global_functions
 	global_functions.write_global(df_settings.loc[ind],ind,'none')
