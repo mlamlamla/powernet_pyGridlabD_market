@@ -14,6 +14,7 @@ import random
 from HH_global import city, player_dir, results_folder
 from HH_global import slack_node, start_time_str, end_time_str, interval, flexible_houses, EV_share, PV_share, Batt_share, tmy_file
 
+use_NOAA = True
 time_step = 300
 
 #Climate zone for Austin / Texas
@@ -440,7 +441,7 @@ def write_base_glm(glm_dict,obj_type,globals_list,include_list,out_dir,file_name
     #for i in range(len(glm_dict)):
         if 'module' in obj_type[i].keys():
             write_mod_dict(glm_out,glm_dict[i],obj_type[i]['module'])
-    
+
     for i in range(len(include_list)):
         glm_out.write(include_list[i]+'\n\n')
 
@@ -452,6 +453,11 @@ def write_base_glm(glm_dict,obj_type,globals_list,include_list,out_dir,file_name
         if 'class' in obj_type[i].keys():
             write_class_dict(glm_out,glm_dict[i],obj_type[i]['class'])
     
+    for i in glm_dict.keys():    
+    #for i in range(len(glm_dict)):
+        if '#include' in obj_type[i].keys():
+            glm_out.write('#include "TX_Austin_2016.glm";\n\n')
+            
     for i in glm_dict.keys():    
     #for i in range(len(glm_dict)):f
         if 'object' in obj_type[i].keys():
@@ -1223,9 +1229,10 @@ def gen_network_glm(input_dir,net_sym_params,house_dict,player,inputs,tot_zip_di
         obj_type[key_index]={'module':'residential'}
         key_index=key_index+1       
         
-    glm_dict[key_index]={}
-    obj_type[key_index]={'module':'climate'}
-    key_index=key_index+1
+    if not use_NOAA:
+        glm_dict[key_index]={}
+        obj_type[key_index]={'module':'climate'}
+        key_index=key_index+1
     
     glm_dict[key_index]={}
     obj_type[key_index]={'module':'tape'}
@@ -1241,11 +1248,16 @@ def gen_network_glm(input_dir,net_sym_params,house_dict,player,inputs,tot_zip_di
     #key_index=key_index+1
     
     #Climate object
-    glm_dict[key_index]={'name':'tmy_file',
-               'tmyfile':tmy_file,
-               'interpolate':'LINEAR'}
-    obj_type[key_index]={'object':'climate'}
-    key_index=key_index+1
+    if not use_NOAA:
+        glm_dict[key_index]={'name':'tmy_file',
+                   'tmyfile':tmy_file,
+                   'interpolate':'LINEAR'}
+        obj_type[key_index]={'object':'climate'}
+        key_index=key_index+1
+    else:
+        glm_dict[key_index]={}
+        obj_type[key_index]={'#include':'"TX_Austin_2016.glm"'}
+        key_index=key_index+1
 
     #Triplex line conductor
     if grid:

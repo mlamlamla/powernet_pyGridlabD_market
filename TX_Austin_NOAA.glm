@@ -1,0 +1,18 @@
+// converted from file:TX_Austin_NOAA.csv to TX_Austin_NOAA.glm on 2020-10-14 17:19:24.739049
+
+module tape;
+class weather {
+	char32 station_id;
+	double temperature[degF];
+	double humidity[%];
+}	
+object weather
+{
+	name "TX_Austin_NOAA";
+	station_id "72254013904";
+	object player
+	{
+		file "TX_Austin_NOAA.csv";
+		property "temperature,humidity";
+	};
+}

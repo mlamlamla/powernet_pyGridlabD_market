@@ -19,7 +19,9 @@ from HH_global import interval, prec, price_intervals, allocation_rule, unresp_f
 from HH_global import FIXED_TARIFF, include_SO, EV_data
 
 #retail_kWh = 0.03245935410676796 # (july) # 0.02391749988554048 (year) #USD/kWh
-retail_kWh = 0.02254690804746962 #mid-Dec
+#retail_kWh = 0.02254690804746962 #mid-Dec
+
+share_t = 1/12. # 5 min / 1 hour
 
 def on_init(t):
 	global t0;

@@ -18,6 +18,8 @@ from dateutil import parser
 from datetime import timedelta
 from HH_global import delta
 
+share_t = 1/12. # 5 min / 1 hour
+
 """NEW FUNCTIONS / MYSQL DATABASE AVAILABLE"""
 
 #HVAC
@@ -52,7 +54,7 @@ def get_settings_houses(houselist,interval,mysql=False):
 		#	mysql_functions.set_values('market_HVAC_meter', '(system_mode,av_power,heating_setpoint,cooling_setpoint,active,timedate,appliance_id)',('OFF',0.0,heating_setpoint,cooling_setpoint,0,prev_timedate,int(house.split('_')[-1]),))           
 	
 	#Import HVAC characteristics
-	df_HVAC = pandas.read_csv(results_folder.split('/')[0] + '/' + settings_file,index_col=[0])
+	df_HVAC = pandas.read_csv(results_folder.split('/')[0] + '/HVAC_settings/' + settings_file,index_col=[0])
 	
 	df_market_hvac.set_index('house_name',inplace=True)
 	df_market_hvac['heating_system'] = df_HVAC['heating_system']
@@ -215,9 +217,10 @@ def calc_bids_HVAC_stationary(dt_sim_time,df_house_state,retail,mean_p,var_p):
 	heat_ind = df_bids.loc[df_bids['system_mode'] == 'HEAT'].index
 	
 	#import pdb; pdb.set_trace() #VZ testen (m)
-	df_bids['air_temperature_t+1'] = df_bids['beta']*df_bids['air_temperature'] + (1. - df_bids['beta'])*T_out + 1./12.*df_bids['m']*df_bids['P_heat']*df_bids['gamma_heat']
+	#df_bids['air_temperature_t+1'] = df_bids['beta']*df_bids['air_temperature'] + (1. - df_bids['beta'])*T_out + df_bids['m']*df_bids['P_heat']*df_bids['gamma_heat']
+	df_bids['air_temperature_t+1'] = df_bids['beta']*df_bids['air_temperature'] + (1. - df_bids['beta'])*T_out + df_bids['m']*df_bids['P_heat']*df_bids['gamma_heat']*share_t
 	df_bids['air_temperature_mean'] = (df_bids['air_temperature'] + df_bids['air_temperature_t+1'])/2.
-	
+	#import pdb; pdb.set_trace()
 	df_bids['bid_p'].loc[heat_ind] = (2*df_bids['alpha']*df_bids['gamma_heat']*(df_bids['comf_temperature'] - df_bids['air_temperature_mean'])/(1. - df_bids['beta'])).loc[heat_ind]
 	df_bids['bid_p'].loc[heat_ind] = df_bids['bid_p'].loc[heat_ind]*1000. #USD/MWh
 	#df_bids['bid_p'].loc[df_bids['air_temperature'] <= df_bids['T_min']] = retail.Pmax
@@ -227,7 +230,9 @@ def calc_bids_HVAC_stationary(dt_sim_time,df_house_state,retail,mean_p,var_p):
 	df_bids['m'].loc[df_bids['air_temperature'] >= df_bids['T_c0']] = -1.
 	cool_ind = df_bids.loc[df_bids['system_mode'] == 'COOL'].index
 	
-	df_bids['air_temperature_t+1'] = df_bids['beta']*df_bids['air_temperature'] + (1. - df_bids['beta'])*T_out + 1./12.*df_bids['m']*df_bids['P_cool']*df_bids['gamma_cool']
+	#df_bids['air_temperature_t+1'] = df_bids['beta']*df_bids['air_temperature'] + (1. - df_bids['beta'])*T_out + df_bids['m']*df_bids['P_cool']*df_bids['gamma_cool']
+	#import pdb; pdb.set_trace() # check gamma_cool <0 und Virzeichen
+	df_bids['air_temperature_t+1'] = df_bids['beta']*df_bids['air_temperature'] + (1. - df_bids['beta'])*T_out + df_bids['m']*df_bids['P_cool']*df_bids['gamma_cool']*share_t
 	df_bids['air_temperature_mean'] = (df_bids['air_temperature'] + df_bids['air_temperature_t+1'])/2.
 	
 	df_bids['bid_p'].loc[cool_ind] = (2*df_bids['alpha']*df_bids['gamma_cool']*(df_bids['air_temperature_mean'] - df_bids['comf_temperature'])/(1. - df_bids['beta'])).loc[cool_ind]
@@ -308,6 +313,7 @@ def set_HVAC_GLD(dt_sim_time,df_house_state,df_awarded_bids):
 			gridlabd.set_value(house,'thermostat_control',thermostat_control)
 		#Set system_mode for active systems
 		if df_house_state['active'].loc[ind] == 1:
+			#import pdb; pdb.set_trace()
 			system_mode = df_house_state['system_mode'].loc[ind]
 			gridlabd.set_value(house,'system_mode',system_mode) #Cool or heat
 			p_bid = df_house_state['bid_p'].loc[ind]

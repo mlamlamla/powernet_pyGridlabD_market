@@ -2,8 +2,6 @@ module residential {
 	implicit_enduses NONE;
 }
 
-module climate;
-
 module tape;
 
 module generators;
@@ -23,11 +21,7 @@ class battery {
 	double k;
 }
 
-object climate {
-	name tmy_file;
-	tmyfile 722540TYA.tmy3;
-	interpolate LINEAR;
-}
+#include "TX_Austin_2016.glm";
 
 object triplex_line_conductor {
 	name "c1/0 AA triplex";
@@ -1946,8 +1940,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 1.24;
 	parent meter_GLD_B1_N48_C_0001;
-	air_temperature 69.49367622399765;
-	mass_temperature 69.58197622399766;
+	air_temperature 69.38872270969644;
+	mass_temperature 69.47702270969644;
 }
 
 object ZIPload {
@@ -1994,8 +1988,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N19_A_0002;
-	air_temperature 73.02284725572872;
-	mass_temperature 72.90344725572872;
+	air_temperature 71.02923444166655;
+	mass_temperature 70.90983444166655;
 }
 
 object ZIPload {
@@ -2042,8 +2036,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N84_C_0003;
-	air_temperature 73.80322679192588;
-	mass_temperature 73.61772679192588;
+	air_temperature 75.07641634805668;
+	mass_temperature 74.89091634805668;
 }
 
 object ZIPload {
@@ -2090,8 +2084,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.38;
 	parent meter_GLD_B1_N12_B_0004;
-	air_temperature 80.0685537912812;
-	mass_temperature 80.1374537912812;
+	air_temperature 79.57484177606226;
+	mass_temperature 79.64374177606226;
 }
 
 object ZIPload {
@@ -2138,8 +2132,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.43;
 	parent meter_GLD_B1_N87_B_0005;
-	air_temperature 76.97459192809715;
-	mass_temperature 76.98169192809716;
+	air_temperature 78.67055405494344;
+	mass_temperature 78.67765405494345;
 }
 
 object ZIPload {
@@ -2186,8 +2180,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N7_A_0006;
-	air_temperature 74.80476276560412;
-	mass_temperature 74.59816276560413;
+	air_temperature 73.94985783050397;
+	mass_temperature 73.74325783050398;
 }
 
 object ZIPload {
@@ -2234,8 +2228,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N94_A_0007;
-	air_temperature 69.75338082826985;
-	mass_temperature 69.28028082826985;
+	air_temperature 67.97613253004937;
+	mass_temperature 67.50303253004937;
 }
 
 object ZIPload {
@@ -2282,8 +2276,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N76_A_0008;
-	air_temperature 75.28244300636757;
-	mass_temperature 75.18084300636757;
+	air_temperature 75.67870548274621;
+	mass_temperature 75.5771054827462;
 }
 
 object ZIPload {
@@ -2330,8 +2324,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.88;
 	parent meter_GLD_B1_N28_A_0009;
-	air_temperature 76.1700235753862;
-	mass_temperature 76.1201235753862;
+	air_temperature 76.89417745462018;
+	mass_temperature 76.84427745462018;
 }
 
 object ZIPload {
@@ -2378,8 +2372,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.35;
 	parent meter_GLD_B1_N2_B_0010;
-	air_temperature 72.71944112017921;
-	mass_temperature 73.02624112017921;
+	air_temperature 72.26409249478505;
+	mass_temperature 72.57089249478504;
 }
 
 object ZIPload {
@@ -2426,8 +2420,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.16;
 	parent meter_GLD_B1_N88_A_0011;
-	air_temperature 70.78889923128263;
-	mass_temperature 72.24139923128263;
+	air_temperature 70.59361925016628;
+	mass_temperature 72.04611925016629;
 }
 
 object ZIPload {
@@ -2474,8 +2468,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.22;
 	parent meter_GLD_B1_N83_C_0012;
-	air_temperature 76.9981198809937;
-	mass_temperature 76.9507198809937;
+	air_temperature 77.93219834652083;
+	mass_temperature 77.88479834652084;
 }
 
 object ZIPload {
@@ -2522,8 +2516,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.3;
 	parent meter_GLD_B1_N9_A_0013;
-	air_temperature 73.66394001867687;
-	mass_temperature 73.49484001867687;
+	air_temperature 74.61796345670794;
+	mass_temperature 74.44886345670794;
 }
 
 object ZIPload {
@@ -2570,8 +2564,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N38_B_0014;
-	air_temperature 74.44024658826683;
-	mass_temperature 74.27624658826683;
+	air_temperature 75.60730855661458;
+	mass_temperature 75.44330855661458;
 }
 
 object ZIPload {
@@ -2618,8 +2612,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.95;
 	parent meter_GLD_B1_N62_C_0015;
-	air_temperature 73.45394444122526;
-	mass_temperature 73.27304444122527;
+	air_temperature 74.95614180401243;
+	mass_temperature 74.77524180401244;
 }
 
 object ZIPload {
@@ -2666,8 +2660,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.27;
 	parent meter_GLD_B1_N32_C_0016;
-	air_temperature 76.05789416913034;
-	mass_temperature 75.99839416913034;
+	air_temperature 75.44363268336267;
+	mass_temperature 75.38413268336267;
 }
 
 object ZIPload {
@@ -2714,8 +2708,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.3;
 	parent meter_GLD_B1_N30_A_0017;
-	air_temperature 71.69522662916998;
-	mass_temperature 71.45762662916998;
+	air_temperature 69.55340084834059;
+	mass_temperature 69.31580084834059;
 }
 
 object ZIPload {
@@ -2762,8 +2756,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 1.46;
 	parent meter_GLD_B1_N100_C_0018;
-	air_temperature 69.36325376861107;
-	mass_temperature 70.67235376861107;
+	air_temperature 68.71277209253593;
+	mass_temperature 70.02187209253593;
 }
 
 object ZIPload {
@@ -2810,8 +2804,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.68;
 	parent meter_GLD_B1_N17_C_0019;
-	air_temperature 77.02980559360367;
-	mass_temperature 76.93800559360368;
+	air_temperature 76.69033451433853;
+	mass_temperature 76.59853451433854;
 }
 
 object ZIPload {
@@ -2858,8 +2852,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.81;
 	parent meter_GLD_B1_N42_A_0020;
-	air_temperature 70.3474946617522;
-	mass_temperature 69.9660946617522;
+	air_temperature 71.14840319235513;
+	mass_temperature 70.76700319235513;
 }
 
 object ZIPload {
@@ -2906,8 +2900,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.97;
 	parent meter_GLD_B1_N43_B_0021;
-	air_temperature 69.38404929918438;
-	mass_temperature 69.48194929918438;
+	air_temperature 70.82876194092563;
+	mass_temperature 70.92666194092563;
 }
 
 object ZIPload {
@@ -2954,8 +2948,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 1.22;
 	parent meter_GLD_B1_N22_B_0022;
-	air_temperature 74.79516141906396;
-	mass_temperature 74.61746141906396;
+	air_temperature 76.02991924329692;
+	mass_temperature 75.85221924329691;
 }
 
 object ZIPload {
@@ -3002,8 +2996,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N62_C_0023;
-	air_temperature 76.84012117072783;
-	mass_temperature 76.74762117072783;
+	air_temperature 74.45212117938162;
+	mass_temperature 74.35962117938162;
 }
 
 object ZIPload {
@@ -3050,8 +3044,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.42;
 	parent meter_GLD_B1_N79_A_0024;
-	air_temperature 71.13343603553592;
-	mass_temperature 72.59833603553592;
+	air_temperature 70.74067096032469;
+	mass_temperature 72.20557096032469;
 }
 
 object ZIPload {
@@ -3098,8 +3092,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N104_C_0025;
-	air_temperature 73.77039195748523;
-	mass_temperature 74.30759195748523;
+	air_temperature 72.35400832305133;
+	mass_temperature 72.89120832305133;
 }
 
 object ZIPload {
@@ -3146,8 +3140,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.35;
 	parent meter_GLD_B1_N104_C_0026;
-	air_temperature 74.63576565574795;
-	mass_temperature 74.54386565574795;
+	air_temperature 74.90164098960857;
+	mass_temperature 74.80974098960857;
 }
 
 object ZIPload {
@@ -3194,8 +3188,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.92;
 	parent meter_GLD_B1_N114_A_0027;
-	air_temperature 69.81054642470606;
-	mass_temperature 70.27454642470606;
+	air_temperature 70.02565593148111;
+	mass_temperature 70.48965593148111;
 }
 
 object ZIPload {
@@ -3242,8 +3236,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N103_C_0028;
-	air_temperature 68.34509178943772;
-	mass_temperature 68.35239178943772;
+	air_temperature 66.50606785800333;
+	mass_temperature 66.51336785800333;
 }
 
 object ZIPload {
@@ -3290,8 +3284,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.32;
 	parent meter_GLD_B1_N20_A_0029;
-	air_temperature 68.354447035682;
-	mass_temperature 69.64634703568201;
+	air_temperature 69.38996693783216;
+	mass_temperature 70.68186693783217;
 }
 
 object ZIPload {
@@ -3338,8 +3332,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.61;
 	parent meter_GLD_B1_N12_B_0030;
-	air_temperature 71.65593046109032;
-	mass_temperature 72.08523046109032;
+	air_temperature 72.55917211214428;
+	mass_temperature 72.98847211214428;
 }
 
 object ZIPload {
@@ -3386,8 +3380,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.95;
 	parent meter_GLD_B1_N10_A_0031;
-	air_temperature 73.69264763186925;
-	mass_temperature 73.49864763186925;
+	air_temperature 73.76017626249678;
+	mass_temperature 73.56617626249678;
 }
 
 object ZIPload {
@@ -3434,8 +3428,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.76;
 	parent meter_GLD_B1_N75_C_0032;
-	air_temperature 73.15497282739616;
-	mass_temperature 72.92927282739616;
+	air_temperature 74.30742667461037;
+	mass_temperature 74.08172667461037;
 }
 
 object ZIPload {
@@ -3482,8 +3476,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N73_C_0033;
-	air_temperature 75.28105060743324;
-	mass_temperature 75.21995060743323;
+	air_temperature 77.38829417651242;
+	mass_temperature 77.3271941765124;
 }
 
 object ZIPload {
@@ -3530,8 +3524,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.35;
 	parent meter_GLD_B1_N34_C_0034;
-	air_temperature 71.94288824873894;
-	mass_temperature 73.31948824873895;
+	air_temperature 70.31296913809658;
+	mass_temperature 71.68956913809659;
 }
 
 object ZIPload {
@@ -3578,8 +3572,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 1.08;
 	parent meter_GLD_B1_N68_A_0035;
-	air_temperature 74.21183719153429;
-	mass_temperature 73.94683719153429;
+	air_temperature 73.11424905275977;
+	mass_temperature 72.84924905275977;
 }
 
 object ZIPload {
@@ -3626,8 +3620,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.38;
 	parent meter_GLD_B1_N2_B_0036;
-	air_temperature 76.30692371272876;
-	mass_temperature 76.21472371272877;
+	air_temperature 75.39228628978199;
+	mass_temperature 75.300086289782;
 }
 
 object ZIPload {
@@ -3674,8 +3668,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.16;
 	parent meter_GLD_B1_N1_A_0037;
-	air_temperature 68.24204076332849;
-	mass_temperature 68.62784076332849;
+	air_temperature 68.40328803777706;
+	mass_temperature 68.78908803777706;
 }
 
 object ZIPload {
@@ -3722,8 +3716,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.86;
 	parent meter_GLD_B1_N71_A_0038;
-	air_temperature 71.59601465990015;
-	mass_temperature 71.26511465990015;
+	air_temperature 72.48374405863645;
+	mass_temperature 72.15284405863645;
 }
 
 object ZIPload {
@@ -3770,8 +3764,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.86;
 	parent meter_GLD_B1_N96_B_0039;
-	air_temperature 71.30905353609847;
-	mass_temperature 70.94235353609847;
+	air_temperature 70.88189176441891;
+	mass_temperature 70.5151917644189;
 }
 
 object ZIPload {
@@ -3818,8 +3812,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 1.46;
 	parent meter_GLD_B1_N11_A_0040;
-	air_temperature 71.55637293912451;
-	mass_temperature 71.43237293912452;
+	air_temperature 72.91258966324436;
+	mass_temperature 72.78858966324437;
 }
 
 object ZIPload {
@@ -3866,8 +3860,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.38;
 	parent meter_GLD_B1_N106_B_0041;
-	air_temperature 74.06640483910097;
-	mass_temperature 73.99750483910097;
+	air_temperature 74.65518100762392;
+	mass_temperature 74.58628100762392;
 }
 
 object ZIPload {
@@ -3914,8 +3908,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N20_A_0042;
-	air_temperature 77.83561816521963;
-	mass_temperature 77.79071816521963;
+	air_temperature 77.31307616916317;
+	mass_temperature 77.26817616916317;
 }
 
 object ZIPload {
@@ -3962,8 +3956,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.3;
 	parent meter_GLD_B1_N58_B_0043;
-	air_temperature 68.83388329322123;
-	mass_temperature 69.42368329322123;
+	air_temperature 71.1706849811119;
+	mass_temperature 71.7604849811119;
 }
 
 object ZIPload {
@@ -4010,8 +4004,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N84_C_0044;
-	air_temperature 74.36513108177182;
-	mass_temperature 74.22433108177182;
+	air_temperature 73.34470764846093;
+	mass_temperature 73.20390764846093;
 }
 
 object ZIPload {
@@ -4058,8 +4052,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.32;
 	parent meter_GLD_B1_N45_A_0045;
-	air_temperature 72.46076050923084;
-	mass_temperature 72.29516050923084;
+	air_temperature 74.5519734275055;
+	mass_temperature 74.3863734275055;
 }
 
 object ZIPload {
@@ -4106,8 +4100,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.97;
 	parent meter_GLD_B1_N83_C_0046;
-	air_temperature 75.64640377924664;
-	mass_temperature 75.58700377924663;
+	air_temperature 76.88764397722892;
+	mass_temperature 76.82824397722891;
 }
 
 object ZIPload {
@@ -4154,8 +4148,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N5_C_0047;
-	air_temperature 73.10449062008198;
-	mass_temperature 72.90809062008198;
+	air_temperature 74.10097955946446;
+	mass_temperature 73.90457955946447;
 }
 
 object ZIPload {
@@ -4202,8 +4196,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N82_A_0048;
-	air_temperature 77.4960795513102;
-	mass_temperature 77.5006795513102;
+	air_temperature 76.65571310222339;
+	mass_temperature 76.66031310222338;
 }
 
 object ZIPload {
@@ -4250,8 +4244,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 1.08;
 	parent meter_GLD_B1_N33_A_0049;
-	air_temperature 75.1799356943428;
-	mass_temperature 74.9287356943428;
+	air_temperature 74.2556600409532;
+	mass_temperature 74.0044600409532;
 }
 
 object ZIPload {
@@ -4298,8 +4292,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.35;
 	parent meter_GLD_B1_N60_A_0050;
-	air_temperature 77.74717028241396;
-	mass_temperature 77.70467028241397;
+	air_temperature 78.0647169780173;
+	mass_temperature 78.02221697801731;
 }
 
 object ZIPload {
@@ -4346,8 +4340,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.14;
 	parent meter_GLD_B1_N68_A_0051;
-	air_temperature 74.69896147693518;
-	mass_temperature 75.59726147693519;
+	air_temperature 76.33943830014647;
+	mass_temperature 77.23773830014648;
 }
 
 object ZIPload {
@@ -4394,8 +4388,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.38;
 	parent meter_GLD_B1_N5_C_0052;
-	air_temperature 76.24535934373128;
-	mass_temperature 76.20265934373128;
+	air_temperature 77.37393959945743;
+	mass_temperature 77.33123959945743;
 }
 
 object ZIPload {
@@ -4442,8 +4436,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.47;
 	parent meter_GLD_B1_N79_A_0053;
-	air_temperature 75.09335729671493;
-	mass_temperature 74.96755729671493;
+	air_temperature 73.20732483550285;
+	mass_temperature 73.08152483550285;
 }
 
 object ZIPload {
@@ -4490,8 +4484,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N37_A_0054;
-	air_temperature 77.28748280469303;
-	mass_temperature 77.29808280469302;
+	air_temperature 77.28911183533337;
+	mass_temperature 77.29971183533337;
 }
 
 object ZIPload {
@@ -4538,8 +4532,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.38;
 	parent meter_GLD_B1_N52_A_0055;
-	air_temperature 73.72235998964682;
-	mass_temperature 74.65595998964682;
+	air_temperature 73.86219816855655;
+	mass_temperature 74.79579816855654;
 }
 
 object ZIPload {
@@ -4586,8 +4580,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 1.19;
 	parent meter_GLD_B1_N88_A_0056;
-	air_temperature 71.80282993541499;
-	mass_temperature 71.47132993541499;
+	air_temperature 72.68125413991046;
+	mass_temperature 72.34975413991046;
 }
 
 object ZIPload {
@@ -4634,8 +4628,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.41;
 	parent meter_GLD_B1_N39_B_0057;
-	air_temperature 72.14320860642916;
-	mass_temperature 71.95440860642915;
+	air_temperature 72.03964027311866;
+	mass_temperature 71.85084027311866;
 }
 
 object ZIPload {
@@ -4682,8 +4676,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.38;
 	parent meter_GLD_B1_N64_B_0058;
-	air_temperature 73.42941474014049;
-	mass_temperature 73.29361474014048;
+	air_temperature 74.7659442744318;
+	mass_temperature 74.6301442744318;
 }
 
 object ZIPload {
@@ -4730,8 +4724,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N95_B_0059;
-	air_temperature 70.48995457700792;
-	mass_temperature 70.18445457700791;
+	air_temperature 69.87775867983132;
+	mass_temperature 69.57225867983131;
 }
 
 object ZIPload {
@@ -4778,8 +4772,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N50_C_0060;
-	air_temperature 70.86105171494795;
-	mass_temperature 70.49205171494795;
+	air_temperature 70.36153793848266;
+	mass_temperature 69.99253793848266;
 }
 
 object ZIPload {
@@ -4826,8 +4820,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 1.03;
 	parent meter_GLD_B1_N98_A_0061;
-	air_temperature 73.59074383374524;
-	mass_temperature 73.40194383374524;
+	air_temperature 73.92099896181053;
+	mass_temperature 73.73219896181052;
 }
 
 object ZIPload {
@@ -4874,8 +4868,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.19;
 	parent meter_GLD_B1_N24_C_0062;
-	air_temperature 79.73200859904308;
-	mass_temperature 79.78720859904308;
+	air_temperature 79.94992240015641;
+	mass_temperature 80.00512240015641;
 }
 
 object ZIPload {
@@ -4922,8 +4916,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.68;
 	parent meter_GLD_B1_N76_A_0063;
-	air_temperature 78.04550664532934;
-	mass_temperature 78.03950664532934;
+	air_temperature 79.06944598643945;
+	mass_temperature 79.06344598643945;
 }
 
 object ZIPload {
@@ -4970,8 +4964,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N79_A_0064;
-	air_temperature 72.37810464692642;
-	mass_temperature 72.09900464692642;
+	air_temperature 71.86913589421292;
+	mass_temperature 71.59003589421292;
 }
 
 object ZIPload {
@@ -5018,8 +5012,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.43;
 	parent meter_GLD_B1_N38_B_0065;
-	air_temperature 76.77056250141261;
-	mass_temperature 76.77746250141261;
+	air_temperature 78.36022469733332;
+	mass_temperature 78.36712469733332;
 }
 
 object ZIPload {
@@ -5066,8 +5060,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.86;
 	parent meter_GLD_B1_N104_C_0066;
-	air_temperature 74.32468408865;
-	mass_temperature 74.09318408865;
+	air_temperature 73.71319595118472;
+	mass_temperature 73.48169595118472;
 }
 
 object ZIPload {
@@ -5114,8 +5108,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.97;
 	parent meter_GLD_B1_N10_A_0067;
-	air_temperature 73.19024819502387;
-	mass_temperature 74.87434819502387;
+	air_temperature 74.01762622272241;
+	mass_temperature 75.70172622272241;
 }
 
 object ZIPload {
@@ -5162,8 +5156,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N39_B_0068;
-	air_temperature 74.11967373709732;
-	mass_temperature 73.92597373709732;
+	air_temperature 73.13668925554013;
+	mass_temperature 72.94298925554014;
 }
 
 object ZIPload {
@@ -5210,8 +5204,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.88;
 	parent meter_GLD_B1_N34_C_0069;
-	air_temperature 75.90583797155261;
-	mass_temperature 75.84713797155261;
+	air_temperature 76.0987734231852;
+	mass_temperature 76.04007342318519;
 }
 
 object ZIPload {
@@ -5258,8 +5252,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.44;
 	parent meter_GLD_B1_N77_B_0070;
-	air_temperature 74.1248560370877;
-	mass_temperature 73.9378560370877;
+	air_temperature 71.65270443049448;
+	mass_temperature 71.46570443049448;
 }
 
 object ZIPload {
@@ -5306,8 +5300,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.32;
 	parent meter_GLD_B1_N35_A_0071;
-	air_temperature 81.48169442903982;
-	mass_temperature 81.68769442903982;
+	air_temperature 81.00955691742948;
+	mass_temperature 81.21555691742948;
 }
 
 object ZIPload {
@@ -5354,8 +5348,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.27;
 	parent meter_GLD_B1_N41_C_0072;
-	air_temperature 73.58613040286369;
-	mass_temperature 73.38203040286369;
+	air_temperature 73.20208749931231;
+	mass_temperature 72.99798749931232;
 }
 
 object ZIPload {
@@ -5402,8 +5396,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.81;
 	parent meter_GLD_B1_N48_C_0073;
-	air_temperature 77.17861507172182;
-	mass_temperature 77.06461507172183;
+	air_temperature 75.60215047205845;
+	mass_temperature 75.48815047205846;
 }
 
 object ZIPload {
@@ -5450,8 +5444,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 1.73;
 	parent meter_GLD_B1_N99_B_0074;
-	air_temperature 77.53411711829217;
-	mass_temperature 77.54341711829218;
+	air_temperature 76.46540625756704;
+	mass_temperature 76.47470625756705;
 }
 
 object ZIPload {
@@ -5498,8 +5492,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.86;
 	parent meter_GLD_B1_N49_A_0075;
-	air_temperature 74.63798419959056;
-	mass_temperature 76.56448419959057;
+	air_temperature 74.02902394729108;
+	mass_temperature 75.95552394729108;
 }
 
 object ZIPload {
@@ -5546,8 +5540,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.43;
 	parent meter_GLD_B1_N11_A_0076;
-	air_temperature 79.82286165440148;
-	mass_temperature 79.88546165440148;
+	air_temperature 79.24198437133566;
+	mass_temperature 79.30458437133566;
 }
 
 object ZIPload {
@@ -5594,8 +5588,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N47_A_0077;
-	air_temperature 76.83895284553469;
-	mass_temperature 76.8283528455347;
+	air_temperature 77.01730670433429;
+	mass_temperature 77.00670670433429;
 }
 
 object ZIPload {
@@ -5642,8 +5636,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.74;
 	parent meter_GLD_B1_N47_C_0078;
-	air_temperature 73.06710460026625;
-	mass_temperature 72.84570460026625;
+	air_temperature 73.12508382357392;
+	mass_temperature 72.90368382357391;
 }
 
 object ZIPload {
@@ -5690,8 +5684,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N16_C_0079;
-	air_temperature 74.75697215391092;
-	mass_temperature 75.73297215391092;
+	air_temperature 72.62912428353772;
+	mass_temperature 73.60512428353772;
 }
 
 object ZIPload {
@@ -5738,8 +5732,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.64;
 	parent meter_GLD_B1_N35_A_0080;
-	air_temperature 78.41233743308838;
-	mass_temperature 78.37573743308839;
+	air_temperature 76.25156050702228;
+	mass_temperature 76.21496050702228;
 }
 
 object ZIPload {
@@ -5786,8 +5780,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N24_C_0081;
-	air_temperature 75.88622283416915;
-	mass_temperature 75.80032283416914;
+	air_temperature 74.62850745956493;
+	mass_temperature 74.54260745956492;
 }
 
 object ZIPload {
@@ -5834,8 +5828,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 1.3;
 	parent meter_GLD_B1_N104_C_0082;
-	air_temperature 75.53570996032629;
-	mass_temperature 76.02130996032629;
+	air_temperature 74.49965409445815;
+	mass_temperature 74.98525409445816;
 }
 
 object ZIPload {
@@ -5882,8 +5876,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.38;
 	parent meter_GLD_B1_N112_A_0083;
-	air_temperature 72.90306846843275;
-	mass_temperature 72.67996846843275;
+	air_temperature 71.83777940731467;
+	mass_temperature 71.61467940731467;
 }
 
 object ZIPload {
@@ -5930,8 +5924,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.64;
 	parent meter_GLD_B1_N86_B_0084;
-	air_temperature 77.86230573213786;
-	mass_temperature 77.86770573213785;
+	air_temperature 76.77559852722806;
+	mass_temperature 76.78099852722805;
 }
 
 object ZIPload {
@@ -5978,8 +5972,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.76;
 	parent meter_GLD_B1_N74_C_0085;
-	air_temperature 75.28451825438881;
-	mass_temperature 75.11681825438882;
+	air_temperature 73.62962903973828;
+	mass_temperature 73.46192903973828;
 }
 
 object ZIPload {
@@ -6026,8 +6020,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.32;
 	parent meter_GLD_B1_N56_B_0086;
-	air_temperature 70.96816705662015;
-	mass_temperature 70.66316705662014;
+	air_temperature 69.6780481159282;
+	mass_temperature 69.3730481159282;
 }
 
 object ZIPload {
@@ -6074,8 +6068,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.74;
 	parent meter_GLD_B1_N47_A_0087;
-	air_temperature 70.94428450578376;
-	mass_temperature 70.84808450578375;
+	air_temperature 70.53634800971389;
+	mass_temperature 70.44014800971388;
 }
 
 object ZIPload {
@@ -6122,8 +6116,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.03;
 	parent meter_GLD_B1_N106_B_0088;
-	air_temperature 73.90566166486444;
-	mass_temperature 74.30396166486443;
+	air_temperature 72.4965281491914;
+	mass_temperature 72.8948281491914;
 }
 
 object ZIPload {
@@ -6170,8 +6164,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 1.24;
 	parent meter_GLD_B1_N35_A_0089;
-	air_temperature 79.92366065188493;
-	mass_temperature 80.01266065188493;
+	air_temperature 80.24844431465708;
+	mass_temperature 80.33744431465708;
 }
 
 object ZIPload {
@@ -6218,8 +6212,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.08;
 	parent meter_GLD_B1_N65_C_0090;
-	air_temperature 70.1026514466801;
-	mass_temperature 71.2595514466801;
+	air_temperature 69.81661594492647;
+	mass_temperature 70.97351594492648;
 }
 
 object ZIPload {
@@ -6266,8 +6260,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N76_B_0091;
-	air_temperature 72.56306868337487;
-	mass_temperature 72.31696868337485;
+	air_temperature 72.36899775780769;
+	mass_temperature 72.12289775780768;
 }
 
 object ZIPload {
@@ -6314,8 +6308,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.38;
 	parent meter_GLD_B1_N90_B_0092;
-	air_temperature 70.84055704022477;
-	mass_temperature 70.94315704022476;
+	air_temperature 73.44312270370216;
+	mass_temperature 73.54572270370215;
 }
 
 object ZIPload {
@@ -6362,8 +6356,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.92;
 	parent meter_GLD_B1_N1_A_0093;
-	air_temperature 75.70999298732609;
-	mass_temperature 75.61919298732609;
+	air_temperature 75.76222009191969;
+	mass_temperature 75.67142009191969;
 }
 
 object ZIPload {
@@ -6410,8 +6404,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.41;
 	parent meter_GLD_B1_N90_B_0094;
-	air_temperature 75.31618420807202;
-	mass_temperature 75.13198420807201;
+	air_temperature 74.43358914676047;
+	mass_temperature 74.24938914676046;
 }
 
 object ZIPload {
@@ -6458,8 +6452,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.38;
 	parent meter_GLD_B1_N9_A_0095;
-	air_temperature 75.29514300609846;
-	mass_temperature 75.12144300609846;
+	air_temperature 75.40847104845083;
+	mass_temperature 75.23477104845084;
 }
 
 object ZIPload {
@@ -6506,8 +6500,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N64_B_0096;
-	air_temperature 70.54275778251639;
-	mass_temperature 70.34925778251639;
+	air_temperature 69.25227885035414;
+	mass_temperature 69.05877885035414;
 }
 
 object ZIPload {
@@ -6554,8 +6548,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.47;
 	parent meter_GLD_B1_N102_C_0097;
-	air_temperature 73.83563478086094;
-	mass_temperature 73.68613478086094;
+	air_temperature 74.71143229572345;
+	mass_temperature 74.56193229572345;
 }
 
 object ZIPload {
@@ -6602,8 +6596,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.95;
 	parent meter_GLD_B1_N82_A_0098;
-	air_temperature 71.26345969384244;
-	mass_temperature 71.00645969384243;
+	air_temperature 71.63657268934178;
+	mass_temperature 71.37957268934177;
 }
 
 object ZIPload {
@@ -6650,8 +6644,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N4_C_0099;
-	air_temperature 79.16140201089098;
-	mass_temperature 79.16610201089098;
+	air_temperature 79.19222800889813;
+	mass_temperature 79.19692800889813;
 }
 
 object ZIPload {
@@ -6698,8 +6692,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N88_A_0100;
-	air_temperature 79.69282986329605;
-	mass_temperature 79.72892986329605;
+	air_temperature 78.67634318428371;
+	mass_temperature 78.7124431842837;
 }
 
 object ZIPload {
@@ -6746,8 +6740,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N111_A_0101;
-	air_temperature 76.79107287774782;
-	mass_temperature 76.74127287774783;
+	air_temperature 77.7241984754349;
+	mass_temperature 77.67439847543491;
 }
 
 object ZIPload {
@@ -6794,8 +6788,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.64;
 	parent meter_GLD_B1_N33_A_0102;
-	air_temperature 76.9060187689798;
-	mass_temperature 76.91121876897981;
+	air_temperature 77.05826897389093;
+	mass_temperature 77.06346897389093;
 }
 
 object ZIPload {
@@ -6842,8 +6836,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 1.08;
 	parent meter_GLD_B1_N87_B_0103;
-	air_temperature 69.58264743762716;
-	mass_temperature 69.99684743762717;
+	air_temperature 72.14735308690219;
+	mass_temperature 72.5615530869022;
 }
 
 object ZIPload {
@@ -6890,8 +6884,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.35;
 	parent meter_GLD_B1_N90_B_0104;
-	air_temperature 70.40749467294269;
-	mass_temperature 70.14679467294269;
+	air_temperature 71.92771839784054;
+	mass_temperature 71.66701839784054;
 }
 
 object ZIPload {
@@ -6938,8 +6932,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N87_B_0105;
-	air_temperature 73.24640921074413;
-	mass_temperature 73.02750921074414;
+	air_temperature 71.35442747752846;
+	mass_temperature 71.13552747752847;
 }
 
 object ZIPload {
@@ -6986,8 +6980,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N88_A_0106;
-	air_temperature 70.11791110879462;
-	mass_temperature 69.80021110879461;
+	air_temperature 70.53435855431194;
+	mass_temperature 70.21665855431193;
 }
 
 object ZIPload {
@@ -7034,8 +7028,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.28;
 	parent meter_GLD_B1_N52_A_0107;
-	air_temperature 75.41517171116864;
-	mass_temperature 75.24037171116863;
+	air_temperature 75.31415227913426;
+	mass_temperature 75.13935227913426;
 }
 
 object ZIPload {
@@ -7082,8 +7076,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N32_C_0108;
-	air_temperature 74.71543275277484;
-	mass_temperature 74.59353275277483;
+	air_temperature 74.26494062290627;
+	mass_temperature 74.14304062290626;
 }
 
 object ZIPload {
@@ -7130,8 +7124,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.64;
 	parent meter_GLD_B1_N45_A_0109;
-	air_temperature 75.9014250929574;
-	mass_temperature 75.8108250929574;
+	air_temperature 75.59915162659885;
+	mass_temperature 75.50855162659886;
 }
 
 object ZIPload {
@@ -7178,8 +7172,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N48_B_0110;
-	air_temperature 76.16101694410665;
-	mass_temperature 76.11841694410664;
+	air_temperature 75.84741288694147;
+	mass_temperature 75.80481288694146;
 }
 
 object ZIPload {
@@ -7226,8 +7220,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.88;
 	parent meter_GLD_B1_N55_A_0111;
-	air_temperature 70.83939237282483;
-	mass_temperature 70.65469237282483;
+	air_temperature 72.20203950995332;
+	mass_temperature 72.01733950995332;
 }
 
 object ZIPload {
@@ -7274,8 +7268,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N79_A_0112;
-	air_temperature 74.65868687207364;
-	mass_temperature 74.56168687207365;
+	air_temperature 75.59803999287703;
+	mass_temperature 75.50103999287704;
 }
 
 object ZIPload {
@@ -7322,8 +7316,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N98_A_0113;
-	air_temperature 73.9401251003502;
-	mass_temperature 73.6726251003502;
+	air_temperature 73.64029853261677;
+	mass_temperature 73.37279853261677;
 }
 
 object ZIPload {
@@ -7370,8 +7364,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 1.35;
 	parent meter_GLD_B1_N20_A_0114;
-	air_temperature 76.372015122428;
-	mass_temperature 76.361315122428;
+	air_temperature 78.95173568029197;
+	mass_temperature 78.94103568029198;
 }
 
 object ZIPload {
@@ -7418,8 +7412,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.35;
 	parent meter_GLD_B1_N16_C_0115;
-	air_temperature 73.42070783204645;
-	mass_temperature 73.20260783204645;
+	air_temperature 71.8948542958645;
+	mass_temperature 71.67675429586451;
 }
 
 object ZIPload {
@@ -7466,8 +7460,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N35_A_0116;
-	air_temperature 73.14188012070179;
-	mass_temperature 72.94888012070177;
+	air_temperature 72.92261351323118;
+	mass_temperature 72.72961351323117;
 }
 
 object ZIPload {
@@ -7514,8 +7508,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.81;
 	parent meter_GLD_B1_N96_B_0117;
-	air_temperature 75.02847396012699;
-	mass_temperature 74.86027396012699;
+	air_temperature 75.05967610420925;
+	mass_temperature 74.89147610420925;
 }
 
 object ZIPload {
@@ -7562,8 +7556,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.49;
 	parent meter_GLD_B1_N37_A_0118;
-	air_temperature 77.67366921838021;
-	mass_temperature 77.66586921838021;
+	air_temperature 77.93169953820829;
+	mass_temperature 77.92389953820829;
 }
 
 object ZIPload {
@@ -7610,8 +7604,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.57;
 	parent meter_GLD_B1_N86_B_0119;
-	air_temperature 74.52884248248192;
-	mass_temperature 74.44884248248192;
+	air_temperature 74.76148500669443;
+	mass_temperature 74.68148500669443;
 }
 
 object ZIPload {
@@ -7658,8 +7652,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N112_A_0120;
-	air_temperature 76.23148712141415;
-	mass_temperature 76.18578712141415;
+	air_temperature 77.40152945697152;
+	mass_temperature 77.35582945697152;
 }
 
 object ZIPload {
@@ -7706,8 +7700,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N47_A_0121;
-	air_temperature 78.11163717738108;
-	mass_temperature 78.10653717738109;
+	air_temperature 78.52891505308861;
+	mass_temperature 78.52381505308861;
 }
 
 object ZIPload {
@@ -7754,8 +7748,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N19_A_0122;
-	air_temperature 73.33109522441825;
-	mass_temperature 73.17129522441824;
+	air_temperature 73.56121481070093;
+	mass_temperature 73.40141481070093;
 }
 
 object ZIPload {
@@ -7802,8 +7796,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N76_B_0123;
-	air_temperature 77.09372317001664;
-	mass_temperature 77.03902317001663;
+	air_temperature 76.43336086377424;
+	mass_temperature 76.37866086377423;
 }
 
 object ZIPload {
@@ -7850,8 +7844,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 1.08;
 	parent meter_GLD_B1_N114_A_0124;
-	air_temperature 71.5198347704262;
-	mass_temperature 71.21563477042619;
+	air_temperature 70.28234149499573;
+	mass_temperature 69.97814149499573;
 }
 
 object ZIPload {
@@ -7898,8 +7892,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N71_A_0125;
-	air_temperature 69.92060291692897;
-	mass_temperature 69.81090291692897;
+	air_temperature 70.81571767833623;
+	mass_temperature 70.70601767833622;
 }
 
 object ZIPload {
@@ -7946,8 +7940,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N37_A_0126;
-	air_temperature 77.07305968048391;
-	mass_temperature 77.0216596804839;
+	air_temperature 77.20270698249337;
+	mass_temperature 77.15130698249337;
 }
 
 object ZIPload {
@@ -7994,8 +7988,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N98_A_0127;
-	air_temperature 75.44947019561779;
-	mass_temperature 75.94457019561779;
+	air_temperature 74.53757380103092;
+	mass_temperature 75.03267380103091;
 }
 
 object ZIPload {
@@ -8042,8 +8036,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.32;
 	parent meter_GLD_B1_N4_C_0128;
-	air_temperature 77.50515389288978;
-	mass_temperature 77.51315389288978;
+	air_temperature 78.92915165077225;
+	mass_temperature 78.93715165077225;
 }
 
 object ZIPload {
@@ -8090,8 +8084,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.3;
 	parent meter_GLD_B1_N16_C_0129;
-	air_temperature 79.20678577159667;
-	mass_temperature 79.21258577159666;
+	air_temperature 77.74643710515306;
+	mass_temperature 77.75223710515306;
 }
 
 object ZIPload {
@@ -8138,8 +8132,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 1.01;
 	parent meter_GLD_B1_N65_B_0130;
-	air_temperature 76.91704823667365;
-	mass_temperature 76.90524823667364;
+	air_temperature 77.40989673878013;
+	mass_temperature 77.39809673878013;
 }
 
 object ZIPload {
@@ -8186,8 +8180,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.14;
 	parent meter_GLD_B1_N98_A_0131;
-	air_temperature 72.61363247943274;
-	mass_temperature 72.35353247943274;
+	air_temperature 72.59485614915774;
+	mass_temperature 72.33475614915774;
 }
 
 object ZIPload {
@@ -8234,8 +8228,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.34;
 	parent meter_GLD_B1_N103_C_0132;
-	air_temperature 74.76999367934314;
-	mass_temperature 74.66389367934315;
+	air_temperature 73.18152738759952;
+	mass_temperature 73.07542738759952;
 }
 
 object ZIPload {
@@ -8282,8 +8276,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.38;
 	parent meter_GLD_B1_N82_A_0133;
-	air_temperature 75.08604497763517;
-	mass_temperature 74.90474497763518;
+	air_temperature 73.9697417873451;
+	mass_temperature 73.7884417873451;
 }
 
 object ZIPload {
@@ -8330,8 +8324,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.35;
 	parent meter_GLD_B1_N76_C_0134;
-	air_temperature 73.06794321120368;
-	mass_temperature 72.89654321120368;
+	air_temperature 72.50648902355805;
+	mass_temperature 72.33508902355804;
 }
 
 object ZIPload {
@@ -8378,8 +8372,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N59_B_0135;
-	air_temperature 66.42169350596177;
-	mass_temperature 66.12369350596177;
+	air_temperature 65.56228337117031;
+	mass_temperature 65.26428337117031;
 }
 
 object ZIPload {
@@ -8426,8 +8420,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.37;
 	parent meter_GLD_B1_N65_B_0136;
-	air_temperature 70.25058901334637;
-	mass_temperature 70.00408901334637;
+	air_temperature 70.78583973320545;
+	mass_temperature 70.53933973320545;
 }
 
 object ZIPload {
@@ -8474,8 +8468,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.03;
 	parent meter_GLD_B1_N24_C_0137;
-	air_temperature 71.64622068312313;
-	mass_temperature 71.33232068312314;
+	air_temperature 72.55287301638167;
+	mass_temperature 72.23897301638168;
 }
 
 object ZIPload {
@@ -8522,8 +8516,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N7_A_0138;
-	air_temperature 72.76534561231125;
-	mass_temperature 72.61034561231125;
+	air_temperature 75.15326984569836;
+	mass_temperature 74.99826984569836;
 }
 
 object ZIPload {
@@ -8570,8 +8564,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.37;
 	parent meter_GLD_B1_N29_A_0139;
-	air_temperature 72.88676963178644;
-	mass_temperature 72.70506963178644;
+	air_temperature 73.47704939246866;
+	mass_temperature 73.29534939246867;
 }
 
 object ZIPload {
@@ -8618,8 +8612,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.44;
 	parent meter_GLD_B1_N51_A_0140;
-	air_temperature 72.85901324988143;
-	mass_temperature 72.65741324988143;
+	air_temperature 73.11690659804212;
+	mass_temperature 72.91530659804212;
 }
 
 object ZIPload {
@@ -8666,8 +8660,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.16;
 	parent meter_GLD_B1_N59_B_0141;
-	air_temperature 74.60834504641113;
-	mass_temperature 74.45234504641114;
+	air_temperature 74.68612167149966;
+	mass_temperature 74.53012167149967;
 }
 
 object ZIPload {
@@ -8714,8 +8708,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.3;
 	parent meter_GLD_B1_N34_C_0142;
-	air_temperature 75.60568612609113;
-	mass_temperature 75.50638612609113;
+	air_temperature 74.89134654626721;
+	mass_temperature 74.79204654626722;
 }
 
 object ZIPload {
@@ -8762,8 +8756,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N20_A_0143;
-	air_temperature 76.20002276853333;
-	mass_temperature 76.19482276853333;
+	air_temperature 78.60392600432728;
+	mass_temperature 78.59872600432728;
 }
 
 object ZIPload {
@@ -8810,8 +8804,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.32;
 	parent meter_GLD_B1_N65_A_0144;
-	air_temperature 74.31145757092104;
-	mass_temperature 74.21635757092103;
+	air_temperature 76.42258116723893;
+	mass_temperature 76.32748116723893;
 }
 
 object ZIPload {
@@ -8858,8 +8852,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N100_C_0145;
-	air_temperature 81.20329728212332;
-	mass_temperature 81.35719728212332;
+	air_temperature 80.0507845899385;
+	mass_temperature 80.20468458993851;
 }
 
 object ZIPload {
@@ -8906,8 +8900,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N16_C_0146;
-	air_temperature 77.42992997342436;
-	mass_temperature 77.39622997342435;
+	air_temperature 78.1993331160055;
+	mass_temperature 78.1656331160055;
 }
 
 object ZIPload {
@@ -8954,8 +8948,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N65_C_0147;
-	air_temperature 78.12073282888879;
-	mass_temperature 78.07003282888878;
+	air_temperature 76.2096249717188;
+	mass_temperature 76.15892497171879;
 }
 
 object ZIPload {
@@ -9002,8 +8996,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.76;
 	parent meter_GLD_B1_N73_C_0148;
-	air_temperature 72.87299537995746;
-	mass_temperature 72.65949537995745;
+	air_temperature 75.2678731004918;
+	mass_temperature 75.05437310049179;
 }
 
 object ZIPload {
@@ -9050,8 +9044,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.3;
 	parent meter_GLD_B1_N66_C_0149;
-	air_temperature 79.36140412767729;
-	mass_temperature 79.39230412767729;
+	air_temperature 77.93716889156657;
+	mass_temperature 77.96806889156657;
 }
 
 object ZIPload {
@@ -9098,8 +9092,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.92;
 	parent meter_GLD_B1_N107_B_0150;
-	air_temperature 73.86461946315862;
-	mass_temperature 73.57111946315861;
+	air_temperature 73.26690897236891;
+	mass_temperature 72.9734089723689;
 }
 
 object ZIPload {
@@ -9146,8 +9140,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N33_A_0151;
-	air_temperature 75.83109892114518;
-	mass_temperature 75.7855989211452;
+	air_temperature 76.14388855067376;
+	mass_temperature 76.09838855067377;
 }
 
 object ZIPload {
@@ -9194,8 +9188,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N99_B_0152;
-	air_temperature 71.79349485990802;
-	mass_temperature 71.75909485990802;
+	air_temperature 71.47541662378939;
+	mass_temperature 71.44101662378938;
 }
 
 object ZIPload {
@@ -9242,8 +9236,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N22_B_0153;
-	air_temperature 72.98342575083302;
-	mass_temperature 72.78312575083302;
+	air_temperature 72.47878648058114;
+	mass_temperature 72.27848648058114;
 }
 
 object ZIPload {
@@ -9290,8 +9284,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N20_A_0154;
-	air_temperature 73.79149365665003;
-	mass_temperature 73.54729365665003;
+	air_temperature 72.35303277243395;
+	mass_temperature 72.10883277243394;
 }
 
 object ZIPload {
@@ -9338,8 +9332,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 1.3;
 	parent meter_GLD_B1_N100_C_0155;
-	air_temperature 72.46160535950266;
-	mass_temperature 72.18420535950266;
+	air_temperature 74.59206221882123;
+	mass_temperature 74.31466221882123;
 }
 
 object ZIPload {
@@ -9386,8 +9380,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.97;
 	parent meter_GLD_B1_N52_A_0156;
-	air_temperature 71.69780843731331;
-	mass_temperature 73.34310843731332;
+	air_temperature 74.02300414693683;
+	mass_temperature 75.66830414693683;
 }
 
 object ZIPload {
@@ -9434,8 +9428,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.76;
 	parent meter_GLD_B1_N9_A_0157;
-	air_temperature 79.51815242841136;
-	mass_temperature 79.58965242841136;
+	air_temperature 78.44414154817667;
+	mass_temperature 78.51564154817667;
 }
 
 object ZIPload {
@@ -9482,8 +9476,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.41;
 	parent meter_GLD_B1_N90_B_0158;
-	air_temperature 72.30084258253544;
-	mass_temperature 74.02984258253544;
+	air_temperature 70.61296879652515;
+	mass_temperature 72.34196879652515;
 }
 
 object ZIPload {
@@ -9530,8 +9524,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.43;
 	parent meter_GLD_B1_N66_C_0159;
-	air_temperature 71.8072269324048;
-	mass_temperature 71.5777269324048;
+	air_temperature 72.23229284967739;
+	mass_temperature 72.00279284967739;
 }
 
 object ZIPload {
@@ -9578,8 +9572,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N70_A_0160;
-	air_temperature 70.67606609265346;
-	mass_temperature 71.49076609265344;
+	air_temperature 69.45262297952459;
+	mass_temperature 70.26732297952458;
 }
 
 object ZIPload {
@@ -9626,8 +9620,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.47;
 	parent meter_GLD_B1_N24_C_0161;
-	air_temperature 69.39610738487956;
-	mass_temperature 69.01660738487956;
+	air_temperature 68.62977369652685;
+	mass_temperature 68.25027369652686;
 }
 
 object ZIPload {
@@ -9674,8 +9668,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N37_A_0162;
-	air_temperature 74.55921171171067;
-	mass_temperature 74.45251171171067;
+	air_temperature 74.48600982438819;
+	mass_temperature 74.37930982438819;
 }
 
 object ZIPload {
@@ -9722,8 +9716,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.68;
 	parent meter_GLD_B1_N76_C_0163;
-	air_temperature 79.59198494049808;
-	mass_temperature 79.62798494049808;
+	air_temperature 77.65632740741981;
+	mass_temperature 77.69232740741981;
 }
 
 object ZIPload {
@@ -9770,8 +9764,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N65_A_0164;
-	air_temperature 70.93360414716359;
-	mass_temperature 70.6969041471636;
+	air_temperature 72.44242888946843;
+	mass_temperature 72.20572888946843;
 }
 
 object ZIPload {
@@ -9818,8 +9812,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N80_B_0165;
-	air_temperature 79.04668345057883;
-	mass_temperature 79.13968345057883;
+	air_temperature 79.48224710992312;
+	mass_temperature 79.57524710992313;
 }
 
 object ZIPload {
@@ -9866,8 +9860,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.41;
 	parent meter_GLD_B1_N48_B_0166;
-	air_temperature 74.02025725267136;
-	mass_temperature 73.89085725267135;
+	air_temperature 76.17443588822442;
+	mass_temperature 76.04503588822442;
 }
 
 object ZIPload {
@@ -9914,8 +9908,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N33_A_0167;
-	air_temperature 70.73026481823801;
-	mass_temperature 70.43606481823801;
+	air_temperature 70.61155936526326;
+	mass_temperature 70.31735936526326;
 }
 
 object ZIPload {
@@ -9962,8 +9956,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N49_C_0168;
-	air_temperature 78.23232098949774;
-	mass_temperature 78.30462098949774;
+	air_temperature 78.63620524172981;
+	mass_temperature 78.70850524172981;
 }
 
 object ZIPload {
@@ -10010,8 +10004,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.27;
 	parent meter_GLD_B1_N90_B_0169;
-	air_temperature 73.45542125358293;
-	mass_temperature 73.29052125358292;
+	air_temperature 74.18717628876482;
+	mass_temperature 74.02227628876481;
 }
 
 object ZIPload {
@@ -10058,8 +10052,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.92;
 	parent meter_GLD_B1_N111_A_0170;
-	air_temperature 74.646782137738;
-	mass_temperature 74.494182137738;
+	air_temperature 74.82961936167213;
+	mass_temperature 74.67701936167212;
 }
 
 object ZIPload {
@@ -10106,8 +10100,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.61;
 	parent meter_GLD_B1_N60_A_0171;
-	air_temperature 71.85092907115637;
-	mass_temperature 71.64552907115637;
+	air_temperature 72.48350572421376;
+	mass_temperature 72.27810572421376;
 }
 
 object ZIPload {
@@ -10154,8 +10148,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N58_B_0172;
-	air_temperature 72.22860677590953;
-	mass_temperature 73.25270677590953;
+	air_temperature 72.51529058039718;
+	mass_temperature 73.53939058039718;
 }
 
 object ZIPload {
@@ -10202,8 +10196,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.49;
 	parent meter_GLD_B1_N49_C_0173;
-	air_temperature 77.73176180532957;
-	mass_temperature 77.76316180532956;
+	air_temperature 77.47483107200135;
+	mass_temperature 77.50623107200134;
 }
 
 object ZIPload {
@@ -10250,8 +10244,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.97;
 	parent meter_GLD_B1_N92_C_0174;
-	air_temperature 71.9469735269731;
-	mass_temperature 71.58167352697309;
+	air_temperature 72.57249952726394;
+	mass_temperature 72.20719952726394;
 }
 
 object ZIPload {
@@ -10298,8 +10292,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.27;
 	parent meter_GLD_B1_N55_A_0175;
-	air_temperature 80.59330365503537;
-	mass_temperature 80.65740365503538;
+	air_temperature 78.31614702514591;
+	mass_temperature 78.38024702514592;
 }
 
 object ZIPload {
@@ -10346,8 +10340,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N104_C_0176;
-	air_temperature 75.17200977357474;
-	mass_temperature 75.05570977357475;
+	air_temperature 76.58255184334116;
+	mass_temperature 76.46625184334117;
 }
 
 object ZIPload {
@@ -10394,8 +10388,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.43;
 	parent meter_GLD_B1_N28_A_0177;
-	air_temperature 74.87070353742945;
-	mass_temperature 74.76940353742945;
+	air_temperature 74.7006319090143;
+	mass_temperature 74.59933190901431;
 }
 
 object ZIPload {
@@ -10442,8 +10436,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 1.3;
 	parent meter_GLD_B1_N42_A_0178;
-	air_temperature 73.9270230281482;
-	mass_temperature 75.06212302814819;
+	air_temperature 74.47780211070926;
+	mass_temperature 75.61290211070926;
 }
 
 object ZIPload {
@@ -10490,8 +10484,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.57;
 	parent meter_GLD_B1_N77_B_0179;
-	air_temperature 77.00122413383495;
-	mass_temperature 76.95252413383496;
+	air_temperature 77.91988442455386;
+	mass_temperature 77.87118442455386;
 }
 
 object ZIPload {
@@ -10538,8 +10532,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.3;
 	parent meter_GLD_B1_N76_C_0180;
-	air_temperature 75.33278101022735;
-	mass_temperature 75.25468101022736;
+	air_temperature 76.41809077308116;
+	mass_temperature 76.33999077308117;
 }
 
 object ZIPload {
@@ -10586,8 +10580,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N92_C_0181;
-	air_temperature 80.15738466904482;
-	mass_temperature 80.24978466904481;
+	air_temperature 79.38920325737953;
+	mass_temperature 79.48160325737953;
 }
 
 object ZIPload {
@@ -10634,8 +10628,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N56_B_0182;
-	air_temperature 69.70197647916162;
-	mass_temperature 70.38367647916162;
+	air_temperature 67.98262543894963;
+	mass_temperature 68.66432543894963;
 }
 
 object ZIPload {
@@ -10682,8 +10676,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.27;
 	parent meter_GLD_B1_N1_A_0183;
-	air_temperature 74.20989995091678;
-	mass_temperature 74.00469995091677;
+	air_temperature 73.84117585078373;
+	mass_temperature 73.63597585078372;
 }
 
 object ZIPload {
@@ -10730,8 +10724,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N43_B_0184;
-	air_temperature 73.88463549581827;
-	mass_temperature 73.75773549581828;
+	air_temperature 74.21570131597588;
+	mass_temperature 74.08880131597589;
 }
 
 object ZIPload {
@@ -10778,8 +10772,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.47;
 	parent meter_GLD_B1_N75_C_0185;
-	air_temperature 80.79896470291465;
-	mass_temperature 80.95316470291465;
+	air_temperature 82.90236822041845;
+	mass_temperature 83.05656822041846;
 }
 
 object ZIPload {
@@ -10826,8 +10820,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.55;
 	parent meter_GLD_B1_N87_B_0186;
-	air_temperature 74.6864096572907;
-	mass_temperature 74.4796096572907;
+	air_temperature 76.2331101684735;
+	mass_temperature 76.0263101684735;
 }
 
 object ZIPload {
@@ -10874,8 +10868,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.95;
 	parent meter_GLD_B1_N48_A_0187;
-	air_temperature 71.7220960875719;
-	mass_temperature 71.4733960875719;
+	air_temperature 72.09633741354357;
+	mass_temperature 71.84763741354357;
 }
 
 object ZIPload {
@@ -10922,8 +10916,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 2.22;
 	parent meter_GLD_B1_N65_A_0188;
-	air_temperature 76.82797646353731;
-	mass_temperature 76.7447764635373;
+	air_temperature 76.20341447983594;
+	mass_temperature 76.12021447983594;
 }
 
 object ZIPload {
@@ -10970,8 +10964,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.44;
 	parent meter_GLD_B1_N113_A_0189;
-	air_temperature 77.75496509312026;
-	mass_temperature 77.77966509312026;
+	air_temperature 79.20215185413342;
+	mass_temperature 79.22685185413341;
 }
 
 object ZIPload {
@@ -11018,8 +11012,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.49;
 	parent meter_GLD_B1_N47_B_0190;
-	air_temperature 69.84723236890314;
-	mass_temperature 69.46033236890312;
+	air_temperature 69.13355263583516;
+	mass_temperature 68.74665263583515;
 }
 
 object ZIPload {
@@ -11066,8 +11060,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N4_C_0191;
-	air_temperature 73.80997419959644;
-	mass_temperature 74.08557419959644;
+	air_temperature 72.06729540968885;
+	mass_temperature 72.34289540968885;
 }
 
 object ZIPload {
@@ -11114,8 +11108,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.24;
 	parent meter_GLD_B1_N100_C_0192;
-	air_temperature 77.88342257744145;
-	mass_temperature 77.99242257744146;
+	air_temperature 80.72877358460552;
+	mass_temperature 80.83777358460553;
 }
 
 object ZIPload {
@@ -11162,8 +11156,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 1.03;
 	parent meter_GLD_B1_N99_B_0193;
-	air_temperature 65.57777307960076;
-	mass_temperature 64.95177307960077;
+	air_temperature 66.17590238699361;
+	mass_temperature 65.54990238699362;
 }
 
 object ZIPload {
@@ -11210,8 +11204,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.34;
 	parent meter_GLD_B1_N65_B_0194;
-	air_temperature 73.42438728159651;
-	mass_temperature 73.32338728159651;
+	air_temperature 74.3041903827334;
+	mass_temperature 74.2031903827334;
 }
 
 object ZIPload {
@@ -11258,8 +11252,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.38;
 	parent meter_GLD_B1_N47_A_0195;
-	air_temperature 79.17776670101546;
-	mass_temperature 79.21816670101546;
+	air_temperature 79.79260985877019;
+	mass_temperature 79.8330098587702;
 }
 
 object ZIPload {
@@ -11306,8 +11300,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.81;
 	parent meter_GLD_B1_N65_C_0196;
-	air_temperature 71.95495217530768;
-	mass_temperature 71.68115217530769;
+	air_temperature 74.23344977566626;
+	mass_temperature 73.95964977566626;
 }
 
 object ZIPload {
@@ -11354,8 +11348,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N98_A_0197;
-	air_temperature 69.06045732630469;
-	mass_temperature 68.68245732630467;
+	air_temperature 69.70411641033466;
+	mass_temperature 69.32611641033465;
 }
 
 object ZIPload {
@@ -11402,8 +11396,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.68;
 	parent meter_GLD_B1_N46_A_0198;
-	air_temperature 77.56645217805276;
-	mass_temperature 77.56205217805275;
+	air_temperature 78.07608220306021;
+	mass_temperature 78.0716822030602;
 }
 
 object ZIPload {
@@ -11450,8 +11444,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N11_A_0199;
-	air_temperature 73.86212366344276;
-	mass_temperature 73.72562366344276;
+	air_temperature 75.27703580893316;
+	mass_temperature 75.14053580893317;
 }
 
 object ZIPload {
@@ -11498,8 +11492,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.34;
 	parent meter_GLD_B1_N47_A_0200;
-	air_temperature 73.30002819464394;
-	mass_temperature 73.15862819464394;
+	air_temperature 74.82488981208695;
+	mass_temperature 74.68348981208695;
 }
 
 object ZIPload {
@@ -11546,8 +11540,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.35;
 	parent meter_GLD_B1_N11_A_0201;
-	air_temperature 69.87063542432351;
-	mass_temperature 69.4903354243235;
+	air_temperature 67.93737006860171;
+	mass_temperature 67.5570700686017;
 }
 
 object ZIPload {
@@ -11594,8 +11588,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.16;
 	parent meter_GLD_B1_N100_C_0202;
-	air_temperature 72.46770061317778;
-	mass_temperature 73.88260061317779;
+	air_temperature 70.10423440146188;
+	mass_temperature 71.51913440146188;
 }
 
 object ZIPload {
@@ -11642,8 +11636,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.97;
 	parent meter_GLD_B1_N62_C_0203;
-	air_temperature 72.35686540179272;
-	mass_temperature 72.04826540179272;
+	air_temperature 72.22426998424875;
+	mass_temperature 71.91566998424875;
 }
 
 object ZIPload {
@@ -11690,8 +11684,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 1.57;
 	parent meter_GLD_B1_N94_A_0204;
-	air_temperature 74.3159073284151;
-	mass_temperature 74.0073073284151;
+	air_temperature 73.64412266863762;
+	mass_temperature 73.33552266863762;
 }
 
 object ZIPload {
@@ -11738,8 +11732,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 1.14;
 	parent meter_GLD_B1_N50_C_0205;
-	air_temperature 76.04859839767173;
-	mass_temperature 75.97119839767173;
+	air_temperature 76.09121441923506;
+	mass_temperature 76.01381441923506;
 }
 
 object ZIPload {
@@ -11786,8 +11780,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.41;
 	parent meter_GLD_B1_N76_A_0206;
-	air_temperature 71.43563994039934;
-	mass_temperature 72.32043994039934;
+	air_temperature 72.11096998026706;
+	mass_temperature 72.99576998026706;
 }
 
 object ZIPload {
@@ -11834,8 +11828,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.37;
 	parent meter_GLD_B1_N99_B_0207;
-	air_temperature 63.547091761864436;
-	mass_temperature 63.714191761864434;
+	air_temperature 63.241649792758594;
+	mass_temperature 63.40874979275859;
 }
 
 object ZIPload {
@@ -11882,8 +11876,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N37_A_0208;
-	air_temperature 74.43759835032557;
-	mass_temperature 74.31489835032558;
+	air_temperature 73.29343933579096;
+	mass_temperature 73.17073933579097;
 }
 
 object ZIPload {
@@ -11930,8 +11924,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.41;
 	parent meter_GLD_B1_N53_A_0209;
-	air_temperature 79.0262507732384;
-	mass_temperature 79.08085077323841;
+	air_temperature 77.87523494501765;
+	mass_temperature 77.92983494501766;
 }
 
 object ZIPload {
@@ -11978,8 +11972,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N24_C_0210;
-	air_temperature 76.31235345592309;
-	mass_temperature 76.20835345592309;
+	air_temperature 74.40202910212376;
+	mass_temperature 74.29802910212376;
 }
 
 object ZIPload {
@@ -12026,8 +12020,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.76;
 	parent meter_GLD_B1_N22_B_0211;
-	air_temperature 74.52564478090339;
-	mass_temperature 74.35734478090339;
+	air_temperature 75.6558379249378;
+	mass_temperature 75.4875379249378;
 }
 
 object ZIPload {
@@ -12074,8 +12068,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.57;
 	parent meter_GLD_B1_N31_C_0212;
-	air_temperature 79.11866078727095;
-	mass_temperature 79.11756078727096;
+	air_temperature 77.29208160594496;
+	mass_temperature 77.29098160594496;
 }
 
 object ZIPload {
@@ -12122,8 +12116,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N103_C_0213;
-	air_temperature 74.93893862213282;
-	mass_temperature 74.78173862213282;
+	air_temperature 73.6083639542606;
+	mass_temperature 73.4511639542606;
 }
 
 object ZIPload {
@@ -12170,8 +12164,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.27;
 	parent meter_GLD_B1_N65_A_0214;
-	air_temperature 71.9970500336955;
-	mass_temperature 71.71035003369549;
+	air_temperature 70.7980471066743;
+	mass_temperature 70.5113471066743;
 }
 
 object ZIPload {
@@ -12218,8 +12212,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.81;
 	parent meter_GLD_B1_N71_A_0215;
-	air_temperature 69.43923951946611;
-	mass_temperature 69.0271395194661;
+	air_temperature 68.99496383473303;
+	mass_temperature 68.58286383473302;
 }
 
 object ZIPload {
@@ -12266,8 +12260,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.47;
 	parent meter_GLD_B1_N47_C_0216;
-	air_temperature 73.19482901168732;
-	mass_temperature 73.04722901168732;
+	air_temperature 72.82584396023881;
+	mass_temperature 72.67824396023882;
 }
 
 object ZIPload {
@@ -12314,8 +12308,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.64;
 	parent meter_GLD_B1_N31_C_0217;
-	air_temperature 75.57928558602447;
-	mass_temperature 75.52568558602448;
+	air_temperature 77.7137595139607;
+	mass_temperature 77.6601595139607;
 }
 
 object ZIPload {
@@ -12362,8 +12356,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.35;
 	parent meter_GLD_B1_N77_B_0218;
-	air_temperature 78.90946331771165;
-	mass_temperature 78.96736331771166;
+	air_temperature 78.82962341819143;
+	mass_temperature 78.88752341819144;
 }
 
 object ZIPload {
@@ -12410,8 +12404,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N99_B_0219;
-	air_temperature 73.65398150434089;
-	mass_temperature 73.46728150434089;
+	air_temperature 73.73512892543215;
+	mass_temperature 73.54842892543215;
 }
 
 object ZIPload {
@@ -12458,8 +12452,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.41;
 	parent meter_GLD_B1_N49_A_0220;
-	air_temperature 73.90595900280971;
-	mass_temperature 73.6772590028097;
+	air_temperature 73.75958148006146;
+	mass_temperature 73.53088148006145;
 }
 
 object ZIPload {
@@ -12506,8 +12500,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.76;
 	parent meter_GLD_B1_N94_A_0221;
-	air_temperature 72.99229610819658;
-	mass_temperature 72.66849610819658;
+	air_temperature 71.81468036656969;
+	mass_temperature 71.49088036656968;
 }
 
 object ZIPload {
@@ -12554,8 +12548,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 1.03;
 	parent meter_GLD_B1_N75_C_0222;
-	air_temperature 79.04657870960861;
-	mass_temperature 79.05207870960862;
+	air_temperature 78.10771923055555;
+	mass_temperature 78.11321923055556;
 }
 
 object ZIPload {
@@ -12602,8 +12596,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N51_A_0223;
-	air_temperature 76.01209570182286;
-	mass_temperature 75.97329570182285;
+	air_temperature 75.73893714790348;
+	mass_temperature 75.70013714790348;
 }
 
 object ZIPload {
@@ -12650,8 +12644,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N76_C_0224;
-	air_temperature 70.48903090690206;
-	mass_temperature 70.16153090690206;
+	air_temperature 69.52787406477582;
+	mass_temperature 69.20037406477581;
 }
 
 object ZIPload {
@@ -12698,8 +12692,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N106_B_0225;
-	air_temperature 70.7589948429996;
-	mass_temperature 70.94229484299959;
+	air_temperature 71.76553636183077;
+	mass_temperature 71.94883636183076;
 }
 
 object ZIPload {
@@ -12746,8 +12740,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N29_A_0226;
-	air_temperature 74.1451096636963;
-	mass_temperature 73.9276096636963;
+	air_temperature 74.0593032373007;
+	mass_temperature 73.8418032373007;
 }
 
 object ZIPload {
@@ -12794,8 +12788,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N79_A_0227;
-	air_temperature 74.21557192009374;
-	mass_temperature 74.01247192009373;
+	air_temperature 74.5537157489227;
+	mass_temperature 74.35061574892269;
 }
 
 object ZIPload {
@@ -12842,8 +12836,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.68;
 	parent meter_GLD_B1_N76_A_0228;
-	air_temperature 72.03656960374803;
-	mass_temperature 73.41626960374803;
+	air_temperature 72.55857749585844;
+	mass_temperature 73.93827749585844;
 }
 
 object ZIPload {
@@ -12890,8 +12884,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N71_A_0229;
-	air_temperature 74.49745961755589;
-	mass_temperature 74.35215961755588;
+	air_temperature 72.99611934135989;
+	mass_temperature 72.85081934135988;
 }
 
 object ZIPload {
@@ -12938,8 +12932,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 1.42;
 	parent meter_GLD_B1_N92_C_0230;
-	air_temperature 70.03479489173006;
-	mass_temperature 70.68329489173007;
+	air_temperature 68.38606771017818;
+	mass_temperature 69.0345677101782;
 }
 
 object ZIPload {
@@ -12986,8 +12980,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.76;
 	parent meter_GLD_B1_N29_A_0231;
-	air_temperature 72.2488300782103;
-	mass_temperature 71.96843007821029;
+	air_temperature 72.57763597197214;
+	mass_temperature 72.29723597197213;
 }
 
 object ZIPload {
@@ -13034,8 +13028,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.24;
 	parent meter_GLD_B1_N49_B_0232;
-	air_temperature 73.51669205197649;
-	mass_temperature 73.3159920519765;
+	air_temperature 74.00604487375993;
+	mass_temperature 73.80534487375994;
 }
 
 object ZIPload {
@@ -13082,8 +13076,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.41;
 	parent meter_GLD_B1_N48_A_0233;
-	air_temperature 75.98230301463397;
-	mass_temperature 75.76990301463397;
+	air_temperature 74.70818880007779;
+	mass_temperature 74.49578880007779;
 }
 
 object ZIPload {
@@ -13130,8 +13124,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N34_C_0234;
-	air_temperature 74.85924862474745;
-	mass_temperature 74.71874862474745;
+	air_temperature 76.30489214814271;
+	mass_temperature 76.16439214814271;
 }
 
 object ZIPload {
@@ -13178,8 +13172,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.81;
 	parent meter_GLD_B1_N49_A_0235;
-	air_temperature 72.86849484468979;
-	mass_temperature 72.68909484468979;
+	air_temperature 72.57638423686508;
+	mass_temperature 72.39698423686508;
 }
 
 object ZIPload {
@@ -13226,8 +13220,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N50_C_0236;
-	air_temperature 73.74879676270771;
-	mass_temperature 73.54379676270771;
+	air_temperature 75.08366115711866;
+	mass_temperature 74.87866115711866;
 }
 
 object ZIPload {
@@ -13274,8 +13268,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.61;
 	parent meter_GLD_B1_N82_A_0237;
-	air_temperature 72.18626825846204;
-	mass_temperature 72.62936825846204;
+	air_temperature 72.93662399479548;
+	mass_temperature 73.37972399479548;
 }
 
 object ZIPload {
@@ -13322,8 +13316,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.95;
 	parent meter_GLD_B1_N62_C_0238;
-	air_temperature 70.66626249967156;
-	mass_temperature 71.15486249967157;
+	air_temperature 70.7788900327609;
+	mass_temperature 71.2674900327609;
 }
 
 object ZIPload {
@@ -13370,8 +13364,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.3;
 	parent meter_GLD_B1_N74_C_0239;
-	air_temperature 73.62162152207466;
-	mass_temperature 73.48562152207467;
+	air_temperature 72.92450217009288;
+	mass_temperature 72.78850217009288;
 }
 
 object ZIPload {
@@ -13418,8 +13412,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.32;
 	parent meter_GLD_B1_N53_A_0240;
-	air_temperature 72.72871290756079;
-	mass_temperature 72.56161290756079;
+	air_temperature 72.34925917606672;
+	mass_temperature 72.18215917606672;
 }
 
 object ZIPload {
@@ -13466,8 +13460,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.47;
 	parent meter_GLD_B1_N65_B_0241;
-	air_temperature 69.58385933467036;
-	mass_temperature 69.27895933467036;
+	air_temperature 70.80850170691328;
+	mass_temperature 70.50360170691327;
 }
 
 object ZIPload {
@@ -13514,8 +13508,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N1_A_0242;
-	air_temperature 71.12217204839854;
-	mass_temperature 70.94617204839854;
+	air_temperature 70.45224027845424;
+	mass_temperature 70.27624027845424;
 }
 
 object ZIPload {
@@ -13562,8 +13556,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.95;
 	parent meter_GLD_B1_N103_C_0243;
-	air_temperature 73.29699582671705;
-	mass_temperature 73.14029582671705;
+	air_temperature 75.72172580194221;
+	mass_temperature 75.56502580194221;
 }
 
 object ZIPload {
@@ -13610,8 +13604,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.41;
 	parent meter_GLD_B1_N28_A_0244;
-	air_temperature 72.2806095058626;
-	mass_temperature 72.33530950586261;
+	air_temperature 72.28704534521545;
+	mass_temperature 72.34174534521546;
 }
 
 object ZIPload {
@@ -13658,8 +13652,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N63_A_0245;
-	air_temperature 71.58305775073579;
-	mass_temperature 71.32515775073578;
+	air_temperature 72.01675147651082;
+	mass_temperature 71.75885147651081;
 }
 
 object ZIPload {
@@ -13706,8 +13700,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.38;
 	parent meter_GLD_B1_N16_C_0246;
-	air_temperature 72.79650377749469;
-	mass_temperature 72.56900377749469;
+	air_temperature 72.93976944066242;
+	mass_temperature 72.71226944066241;
 }
 
 object ZIPload {
@@ -13754,8 +13748,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.97;
 	parent meter_GLD_B1_N35_A_0247;
-	air_temperature 76.61531735196583;
-	mass_temperature 76.71591735196583;
+	air_temperature 76.37969590300176;
+	mass_temperature 76.48029590300176;
 }
 
 object ZIPload {
@@ -13802,8 +13796,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.3;
 	parent meter_GLD_B1_N22_B_0248;
-	air_temperature 71.67666879836764;
-	mass_temperature 71.38136879836763;
+	air_temperature 71.37084827145483;
+	mass_temperature 71.07554827145482;
 }
 
 object ZIPload {
@@ -13850,8 +13844,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.41;
 	parent meter_GLD_B1_N75_C_0249;
-	air_temperature 75.70071250481742;
-	mass_temperature 75.57031250481742;
+	air_temperature 75.05783573964017;
+	mass_temperature 74.92743573964017;
 }
 
 object ZIPload {
@@ -13898,8 +13892,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 1.55;
 	parent meter_GLD_B1_N33_A_0250;
-	air_temperature 80.67409509966656;
-	mass_temperature 80.81629509966656;
+	air_temperature 79.22017880415109;
+	mass_temperature 79.36237880415109;
 }
 
 object ZIPload {
@@ -13946,8 +13940,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N66_C_0251;
-	air_temperature 72.22334825717265;
-	mass_temperature 71.96034825717265;
+	air_temperature 73.11779578857124;
+	mass_temperature 72.85479578857125;
 }
 
 object ZIPload {
@@ -13994,8 +13988,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N106_B_0252;
-	air_temperature 70.68993319223998;
-	mass_temperature 70.84673319223998;
+	air_temperature 71.26052910711496;
+	mass_temperature 71.41732910711497;
 }
 
 object ZIPload {
@@ -14042,8 +14036,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.03;
 	parent meter_GLD_B1_N95_B_0253;
-	air_temperature 77.41404626197115;
-	mass_temperature 77.36204626197116;
+	air_temperature 78.40941300303543;
+	mass_temperature 78.35741300303543;
 }
 
 object ZIPload {
@@ -14090,8 +14084,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.37;
 	parent meter_GLD_B1_N65_B_0254;
-	air_temperature 75.20091939934817;
-	mass_temperature 75.13591939934817;
+	air_temperature 76.76770292847279;
+	mass_temperature 76.70270292847279;
 }
 
 object ZIPload {
@@ -14138,8 +14132,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N94_A_0255;
-	air_temperature 75.70412865777699;
-	mass_temperature 75.60542865777698;
+	air_temperature 75.76940769392382;
+	mass_temperature 75.67070769392382;
 }
 
 object ZIPload {
@@ -14186,8 +14180,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N22_B_0256;
-	air_temperature 71.76122765811444;
-	mass_temperature 71.43312765811443;
+	air_temperature 72.3797227790782;
+	mass_temperature 72.05162277907819;
 }
 
 object ZIPload {
@@ -14234,8 +14228,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.43;
 	parent meter_GLD_B1_N65_A_0257;
-	air_temperature 76.88933364237721;
-	mass_temperature 76.84573364237721;
+	air_temperature 77.09268610607148;
+	mass_temperature 77.04908610607148;
 }
 
 object ZIPload {
@@ -14282,8 +14276,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.64;
 	parent meter_GLD_B1_N69_A_0258;
-	air_temperature 73.62794753149842;
-	mass_temperature 73.42044753149843;
+	air_temperature 73.26491967607403;
+	mass_temperature 73.05741967607403;
 }
 
 object ZIPload {
@@ -14330,8 +14324,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.92;
 	parent meter_GLD_B1_N102_C_0259;
-	air_temperature 77.82860847680142;
-	mass_temperature 77.83260847680143;
+	air_temperature 77.6135972436005;
+	mass_temperature 77.6175972436005;
 }
 
 object ZIPload {
@@ -14378,8 +14372,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.38;
 	parent meter_GLD_B1_N43_B_0260;
-	air_temperature 75.329193431605;
-	mass_temperature 75.23099343160501;
+	air_temperature 75.74870134891195;
+	mass_temperature 75.65050134891196;
 }
 
 object ZIPload {
@@ -14426,8 +14420,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.64;
 	parent meter_GLD_B1_N53_A_0261;
-	air_temperature 76.46168335510704;
-	mass_temperature 76.40968335510703;
+	air_temperature 75.16573369859638;
+	mass_temperature 75.11373369859638;
 }
 
 object ZIPload {
@@ -14474,8 +14468,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N48_C_0262;
-	air_temperature 73.04290765857455;
-	mass_temperature 73.49230765857455;
+	air_temperature 72.11245380784491;
+	mass_temperature 72.56185380784491;
 }
 
 object ZIPload {
@@ -14522,8 +14516,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.35;
 	parent meter_GLD_B1_N34_C_0263;
-	air_temperature 74.76013654683675;
-	mass_temperature 74.63173654683675;
+	air_temperature 75.67928727735999;
+	mass_temperature 75.55088727735999;
 }
 
 object ZIPload {
@@ -14570,8 +14564,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N88_A_0264;
-	air_temperature 72.58544355953143;
-	mass_temperature 72.41824355953143;
+	air_temperature 72.58180456473848;
+	mass_temperature 72.41460456473848;
 }
 
 object ZIPload {
@@ -14618,8 +14612,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.76;
 	parent meter_GLD_B1_N19_A_0265;
-	air_temperature 74.49716451946985;
-	mass_temperature 74.32536451946986;
+	air_temperature 75.95172761505668;
+	mass_temperature 75.77992761505669;
 }
 
 object ZIPload {
@@ -14666,8 +14660,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.68;
 	parent meter_GLD_B1_N70_A_0266;
-	air_temperature 75.87363297868121;
-	mass_temperature 75.79403297868122;
+	air_temperature 76.87623169580188;
+	mass_temperature 76.79663169580188;
 }
 
 object ZIPload {
@@ -14714,8 +14708,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.57;
 	parent meter_GLD_B1_N49_B_0267;
-	air_temperature 76.41406172664446;
-	mass_temperature 76.37026172664446;
+	air_temperature 75.72815663715207;
+	mass_temperature 75.68435663715206;
 }
 
 object ZIPload {
@@ -14762,8 +14756,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.27;
 	parent meter_GLD_B1_N52_A_0268;
-	air_temperature 68.59156019205292;
-	mass_temperature 69.01696019205293;
+	air_temperature 69.94824079899385;
+	mass_temperature 70.37364079899386;
 }
 
 object ZIPload {
@@ -14810,8 +14804,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.3;
 	parent meter_GLD_B1_N49_A_0269;
-	air_temperature 72.00102113994141;
-	mass_temperature 71.88462113994143;
+	air_temperature 71.81320663778138;
+	mass_temperature 71.69680663778139;
 }
 
 object ZIPload {
@@ -14858,8 +14852,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.61;
 	parent meter_GLD_B1_N80_B_0270;
-	air_temperature 71.33944046758106;
-	mass_temperature 71.69144046758105;
+	air_temperature 69.87059347770476;
+	mass_temperature 70.22259347770475;
 }
 
 object ZIPload {
@@ -14906,8 +14900,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N47_B_0271;
-	air_temperature 75.33285010784893;
-	mass_temperature 75.21255010784893;
+	air_temperature 75.75201730383704;
+	mass_temperature 75.63171730383704;
 }
 
 object ZIPload {
@@ -14954,8 +14948,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 1.01;
 	parent meter_GLD_B1_N52_A_0272;
-	air_temperature 72.04328657593906;
-	mass_temperature 72.64408657593907;
+	air_temperature 73.33499128445085;
+	mass_temperature 73.93579128445086;
 }
 
 object ZIPload {
@@ -15002,8 +14996,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N66_C_0273;
-	air_temperature 76.57795042733926;
-	mass_temperature 76.57915042733926;
+	air_temperature 78.46216636165727;
+	mass_temperature 78.46336636165726;
 }
 
 object ZIPload {
@@ -15050,8 +15044,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.41;
 	parent meter_GLD_B1_N80_B_0274;
-	air_temperature 70.11149975663582;
-	mass_temperature 70.47979975663583;
+	air_temperature 70.22342801294593;
+	mass_temperature 70.59172801294594;
 }
 
 object ZIPload {
@@ -15098,8 +15092,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.81;
 	parent meter_GLD_B1_N85_C_0275;
-	air_temperature 72.97370666571656;
-	mass_temperature 72.78420666571657;
+	air_temperature 73.0205270643682;
+	mass_temperature 72.8310270643682;
 }
 
 object ZIPload {
@@ -15146,8 +15140,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N64_B_0276;
-	air_temperature 64.92120264257275;
-	mass_temperature 65.24270264257275;
+	air_temperature 65.57335473505317;
+	mass_temperature 65.89485473505317;
 }
 
 object ZIPload {
@@ -15194,8 +15188,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N107_B_0277;
-	air_temperature 75.44181518529527;
-	mass_temperature 75.32621518529527;
+	air_temperature 75.94621237448185;
+	mass_temperature 75.83061237448184;
 }
 
 object ZIPload {
@@ -15242,8 +15236,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.47;
 	parent meter_GLD_B1_N41_C_0278;
-	air_temperature 73.42626423899857;
-	mass_temperature 74.94976423899858;
+	air_temperature 73.22846658935534;
+	mass_temperature 74.75196658935535;
 }
 
 object ZIPload {
@@ -15290,8 +15284,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N76_A_0279;
-	air_temperature 73.4604777180339;
-	mass_temperature 73.2028777180339;
+	air_temperature 73.73034952729012;
+	mass_temperature 73.47274952729012;
 }
 
 object ZIPload {
@@ -15338,8 +15332,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.97;
 	parent meter_GLD_B1_N64_B_0280;
-	air_temperature 76.927441819073;
-	mass_temperature 77.04494181907299;
+	air_temperature 74.97192448237939;
+	mass_temperature 75.08942448237939;
 }
 
 object ZIPload {
@@ -15386,8 +15380,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N82_A_0281;
-	air_temperature 74.83393941150484;
-	mass_temperature 74.64993941150485;
+	air_temperature 74.92038093908766;
+	mass_temperature 74.73638093908767;
 }
 
 object ZIPload {
@@ -15434,8 +15428,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.41;
 	parent meter_GLD_B1_N19_A_0282;
-	air_temperature 77.95792518938798;
-	mass_temperature 77.91412518938797;
+	air_temperature 75.55075132964764;
+	mass_temperature 75.50695132964763;
 }
 
 object ZIPload {
@@ -15482,8 +15476,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.88;
 	parent meter_GLD_B1_N49_B_0283;
-	air_temperature 69.65339940349024;
-	mass_temperature 70.28819940349024;
+	air_temperature 67.41374192676749;
+	mass_temperature 68.04854192676748;
 }
 
 object ZIPload {
@@ -15530,8 +15524,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N73_C_0284;
-	air_temperature 75.9248135170411;
-	mass_temperature 75.76531351704111;
+	air_temperature 74.75476354310236;
+	mass_temperature 74.59526354310236;
 }
 
 object ZIPload {
@@ -15578,8 +15572,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.38;
 	parent meter_GLD_B1_N48_B_0285;
-	air_temperature 77.00365779521071;
-	mass_temperature 77.00655779521071;
+	air_temperature 79.13129690209712;
+	mass_temperature 79.13419690209712;
 }
 
 object ZIPload {
@@ -15626,8 +15620,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.92;
 	parent meter_GLD_B1_N76_C_0286;
-	air_temperature 68.66980740128382;
-	mass_temperature 68.41760740128382;
+	air_temperature 70.40796311678834;
+	mass_temperature 70.15576311678834;
 }
 
 object ZIPload {
@@ -15674,8 +15668,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.76;
 	parent meter_GLD_B1_N50_C_0287;
-	air_temperature 68.94956736777233;
-	mass_temperature 69.62786736777232;
+	air_temperature 70.54489974352651;
+	mass_temperature 71.22319974352651;
 }
 
 object ZIPload {
@@ -15722,8 +15716,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N106_B_0288;
-	air_temperature 69.60458300320118;
-	mass_temperature 70.98238300320118;
+	air_temperature 69.67938567149857;
+	mass_temperature 71.05718567149856;
 }
 
 object ZIPload {
@@ -15770,8 +15764,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.08;
 	parent meter_GLD_B1_N113_A_0289;
-	air_temperature 68.68490979886461;
-	mass_temperature 70.45870979886462;
+	air_temperature 67.67650224021033;
+	mass_temperature 69.45030224021033;
 }
 
 object ZIPload {
@@ -15818,8 +15812,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.38;
 	parent meter_GLD_B1_N17_C_0290;
-	air_temperature 78.6278917192549;
-	mass_temperature 78.66359171925491;
+	air_temperature 79.87375927354597;
+	mass_temperature 79.90945927354598;
 }
 
 object ZIPload {
@@ -15866,8 +15860,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 1.08;
 	parent meter_GLD_B1_N48_B_0291;
-	air_temperature 72.16546206508129;
-	mass_temperature 71.84586206508128;
+	air_temperature 72.08062434924518;
+	mass_temperature 71.76102434924518;
 }
 
 object ZIPload {
@@ -15914,8 +15908,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N28_A_0292;
-	air_temperature 76.87206379002512;
-	mass_temperature 76.87726379002513;
+	air_temperature 76.83070605879124;
+	mass_temperature 76.83590605879124;
 }
 
 object ZIPload {
@@ -15962,8 +15956,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.81;
 	parent meter_GLD_B1_N48_A_0293;
-	air_temperature 74.0918137636836;
-	mass_temperature 73.86641376368361;
+	air_temperature 74.10311423792129;
+	mass_temperature 73.8777142379213;
 }
 
 object ZIPload {
@@ -16010,8 +16004,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N50_C_0294;
-	air_temperature 81.36154891206739;
-	mass_temperature 81.51824891206739;
+	air_temperature 79.94980657723575;
+	mass_temperature 80.10650657723575;
 }
 
 object ZIPload {
@@ -16058,8 +16052,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.34;
 	parent meter_GLD_B1_N4_C_0295;
-	air_temperature 74.00376840894964;
-	mass_temperature 73.83816840894964;
+	air_temperature 72.08909915237209;
+	mass_temperature 71.92349915237209;
 }
 
 object ZIPload {
@@ -16106,8 +16100,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N113_A_0296;
-	air_temperature 77.0640155170453;
-	mass_temperature 77.05871551704531;
+	air_temperature 76.99039593749767;
+	mass_temperature 76.98509593749768;
 }
 
 object ZIPload {
@@ -16154,8 +16148,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N48_B_0297;
-	air_temperature 77.7631257089943;
-	mass_temperature 77.71382570899429;
+	air_temperature 77.42118357629394;
+	mass_temperature 77.37188357629394;
 }
 
 object ZIPload {
@@ -16202,8 +16196,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.76;
 	parent meter_GLD_B1_N4_C_0298;
-	air_temperature 69.39846060239196;
-	mass_temperature 69.72276060239196;
+	air_temperature 70.53203861427443;
+	mass_temperature 70.85633861427442;
 }
 
 object ZIPload {
@@ -16250,8 +16244,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.68;
 	parent meter_GLD_B1_N48_B_0299;
-	air_temperature 71.68069148706954;
-	mass_temperature 71.37679148706954;
+	air_temperature 72.08348902328017;
+	mass_temperature 71.77958902328017;
 }
 
 object ZIPload {
@@ -16298,8 +16292,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.68;
 	parent meter_GLD_B1_N49_C_0300;
-	air_temperature 73.1216835069695;
-	mass_temperature 72.8742835069695;
+	air_temperature 72.1789047173801;
+	mass_temperature 71.93150471738011;
 }
 
 object ZIPload {
@@ -16346,8 +16340,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.86;
 	parent meter_GLD_B1_N30_A_0301;
-	air_temperature 73.73698644405;
-	mass_temperature 74.09268644405;
+	air_temperature 73.11389559919589;
+	mass_temperature 73.46959559919588;
 }
 
 object ZIPload {
@@ -16394,8 +16388,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.47;
 	parent meter_GLD_B1_N49_A_0302;
-	air_temperature 73.1029586971954;
-	mass_temperature 73.0231586971954;
+	air_temperature 75.90303063760017;
+	mass_temperature 75.82323063760016;
 }
 
 object ZIPload {
@@ -16442,8 +16436,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.43;
 	parent meter_GLD_B1_N75_C_0303;
-	air_temperature 72.86463820856775;
-	mass_temperature 73.86113820856775;
+	air_temperature 72.90064757631178;
+	mass_temperature 73.89714757631178;
 }
 
 object ZIPload {
@@ -16490,8 +16484,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N107_B_0304;
-	air_temperature 74.37522128353073;
-	mass_temperature 75.06302128353074;
+	air_temperature 75.27818947707439;
+	mass_temperature 75.9659894770744;
 }
 
 object ZIPload {
@@ -16538,8 +16532,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.76;
 	parent meter_GLD_B1_N92_C_0305;
-	air_temperature 76.22994665137156;
-	mass_temperature 76.07044665137157;
+	air_temperature 74.25726703747256;
+	mass_temperature 74.09776703747256;
 }
 
 object ZIPload {
@@ -16586,8 +16580,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N87_B_0306;
-	air_temperature 75.0443820944358;
-	mass_temperature 75.3716820944358;
+	air_temperature 73.23897225728113;
+	mass_temperature 73.56627225728113;
 }
 
 object ZIPload {
@@ -16634,8 +16628,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.44;
 	parent meter_GLD_B1_N69_A_0307;
-	air_temperature 68.84130293988608;
-	mass_temperature 69.26310293988608;
+	air_temperature 67.49624233304465;
+	mass_temperature 67.91804233304465;
 }
 
 object ZIPload {
@@ -16682,8 +16676,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N69_A_0308;
-	air_temperature 68.76213319749397;
-	mass_temperature 68.33173319749396;
+	air_temperature 68.09356388793279;
+	mass_temperature 67.66316388793278;
 }
 
 object ZIPload {
@@ -16730,8 +16724,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 1.08;
 	parent meter_GLD_B1_N28_A_0309;
-	air_temperature 76.54445917098847;
-	mass_temperature 76.41125917098847;
+	air_temperature 77.1804426144356;
+	mass_temperature 77.0472426144356;
 }
 
 object ZIPload {
@@ -16778,8 +16772,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N48_C_0310;
-	air_temperature 75.12633996142203;
-	mass_temperature 74.92643996142203;
+	air_temperature 73.7041922237022;
+	mass_temperature 73.5042922237022;
 }
 
 object ZIPload {
@@ -16826,8 +16820,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.76;
 	parent meter_GLD_B1_N9_A_0311;
-	air_temperature 75.44242910419474;
-	mass_temperature 76.51512910419476;
+	air_temperature 74.0878402551333;
+	mass_temperature 75.16054025513331;
 }
 
 object ZIPload {
@@ -16874,8 +16868,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.44;
 	parent meter_GLD_B1_N48_A_0312;
-	air_temperature 68.25322107352514;
-	mass_temperature 67.91342107352514;
+	air_temperature 69.88666676920398;
+	mass_temperature 69.54686676920399;
 }
 
 object ZIPload {
@@ -16922,8 +16916,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.57;
 	parent meter_GLD_B1_N1_A_0313;
-	air_temperature 76.69733481672223;
-	mass_temperature 76.61713481672223;
+	air_temperature 75.64252756659582;
+	mass_temperature 75.56232756659581;
 }
 
 object ZIPload {
@@ -16970,8 +16964,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.27;
 	parent meter_GLD_B1_N48_B_0314;
-	air_temperature 70.36504460377027;
-	mass_temperature 72.21304460377027;
+	air_temperature 70.51977437426689;
+	mass_temperature 72.36777437426689;
 }
 
 object ZIPload {
@@ -17018,8 +17012,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.24;
 	parent meter_GLD_B1_N30_A_0315;
-	air_temperature 71.98068508031267;
-	mass_temperature 71.82158508031267;
+	air_temperature 72.31595464622669;
+	mass_temperature 72.15685464622669;
 }
 
 object ZIPload {
@@ -17066,8 +17060,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.49;
 	parent meter_GLD_B1_N64_B_0316;
-	air_temperature 72.86602853677145;
-	mass_temperature 72.62392853677146;
+	air_temperature 73.38536403123211;
+	mass_temperature 73.14326403123212;
 }
 
 object ZIPload {
@@ -17114,8 +17108,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N62_C_0317;
-	air_temperature 78.15748556426301;
-	mass_temperature 78.21748556426301;
+	air_temperature 79.00594024990316;
+	mass_temperature 79.06594024990316;
 }
 
 object ZIPload {
@@ -17162,8 +17156,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.81;
 	parent meter_GLD_B1_N43_B_0318;
-	air_temperature 74.84777626954879;
-	mass_temperature 74.66057626954878;
+	air_temperature 73.710909065762;
+	mass_temperature 73.52370906576199;
 }
 
 object ZIPload {
@@ -17210,8 +17204,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.64;
 	parent meter_GLD_B1_N73_C_0319;
-	air_temperature 66.09062742794188;
-	mass_temperature 66.71792742794187;
+	air_temperature 64.29499452387248;
+	mass_temperature 64.92229452387247;
 }
 
 object ZIPload {
@@ -17258,8 +17252,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.34;
 	parent meter_GLD_B1_N11_A_0320;
-	air_temperature 65.46106874967961;
-	mass_temperature 65.8528687496796;
+	air_temperature 65.64532857022752;
+	mass_temperature 66.03712857022751;
 }
 
 object ZIPload {
@@ -17306,8 +17300,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N49_C_0321;
-	air_temperature 75.29326338839407;
-	mass_temperature 75.19256338839406;
+	air_temperature 76.36165789649134;
+	mass_temperature 76.26095789649133;
 }
 
 object ZIPload {
@@ -17354,8 +17348,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N76_C_0322;
-	air_temperature 77.90699672317915;
-	mass_temperature 77.85579672317915;
+	air_temperature 76.66394564332242;
+	mass_temperature 76.61274564332243;
 }
 
 object ZIPload {
@@ -17402,8 +17396,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.47;
 	parent meter_GLD_B1_N76_A_0323;
-	air_temperature 74.69849711546857;
-	mass_temperature 74.59229711546857;
+	air_temperature 73.96592630836402;
+	mass_temperature 73.85972630836402;
 }
 
 object ZIPload {
@@ -17450,8 +17444,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N19_A_0324;
-	air_temperature 71.84246779020252;
-	mass_temperature 71.59956779020251;
+	air_temperature 73.93566091755291;
+	mass_temperature 73.6927609175529;
 }
 
 object ZIPload {
@@ -17498,8 +17492,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.95;
 	parent meter_GLD_B1_N29_A_0325;
-	air_temperature 70.14324786315878;
-	mass_temperature 69.68964786315878;
+	air_temperature 68.66209560170216;
+	mass_temperature 68.20849560170217;
 }
 
 object ZIPload {
@@ -17546,8 +17540,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.86;
 	parent meter_GLD_B1_N47_B_0326;
-	air_temperature 71.4466583658914;
-	mass_temperature 71.0608583658914;
+	air_temperature 71.39372697397788;
+	mass_temperature 71.00792697397789;
 }
 
 object ZIPload {
@@ -17594,8 +17588,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.37;
 	parent meter_GLD_B1_N103_C_0327;
-	air_temperature 76.64318805755534;
-	mass_temperature 76.57968805755533;
+	air_temperature 76.45476999372984;
+	mass_temperature 76.39126999372984;
 }
 
 object ZIPload {
@@ -17642,8 +17636,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.35;
 	parent meter_GLD_B1_N64_B_0328;
-	air_temperature 74.98296375055692;
-	mass_temperature 74.84866375055692;
+	air_temperature 75.41676971328341;
+	mass_temperature 75.28246971328342;
 }
 
 object ZIPload {
@@ -17690,8 +17684,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 1.08;
 	parent meter_GLD_B1_N66_C_0329;
-	air_temperature 74.80760059219084;
-	mass_temperature 74.68180059219085;
+	air_temperature 74.82426213385037;
+	mass_temperature 74.69846213385038;
 }
 
 object ZIPload {
@@ -17738,8 +17732,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.28;
 	parent meter_GLD_B1_N92_C_0330;
-	air_temperature 74.95669750463784;
-	mass_temperature 74.77649750463785;
+	air_temperature 75.54978208990144;
+	mass_temperature 75.36958208990144;
 }
 
 object ZIPload {
@@ -17786,8 +17780,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.61;
 	parent meter_GLD_B1_N6_C_0331;
-	air_temperature 72.21063624201565;
-	mass_temperature 72.03533624201566;
+	air_temperature 74.35742349779211;
+	mass_temperature 74.18212349779212;
 }
 
 object ZIPload {
@@ -17834,8 +17828,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 1.14;
 	parent meter_GLD_B1_N69_A_0332;
-	air_temperature 65.5646763056631;
-	mass_temperature 65.8137763056631;
+	air_temperature 64.58581702435804;
+	mass_temperature 64.83491702435803;
 }
 
 object ZIPload {
@@ -17882,8 +17876,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.95;
 	parent meter_GLD_B1_N73_C_0333;
-	air_temperature 70.73821841046144;
-	mass_temperature 71.31131841046145;
+	air_temperature 73.22340039775933;
+	mass_temperature 73.79650039775935;
 }
 
 object ZIPload {
@@ -17930,8 +17924,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N30_A_0334;
-	air_temperature 73.78458637072774;
-	mass_temperature 73.58458637072775;
+	air_temperature 72.94611907294727;
+	mass_temperature 72.74611907294728;
 }
 
 object ZIPload {
@@ -17978,8 +17972,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.88;
 	parent meter_GLD_B1_N71_A_0335;
-	air_temperature 69.70567917114053;
-	mass_temperature 70.72667917114053;
+	air_temperature 70.47163016563798;
+	mass_temperature 71.49263016563798;
 }
 
 object ZIPload {
@@ -18026,8 +18020,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.43;
 	parent meter_GLD_B1_N46_A_0336;
-	air_temperature 75.9218392141273;
-	mass_temperature 75.7845392141273;
+	air_temperature 74.41213755687367;
+	mass_temperature 74.27483755687368;
 }
 
 object ZIPload {
@@ -18074,8 +18068,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.61;
 	parent meter_GLD_B1_N53_A_0337;
-	air_temperature 70.95073479167871;
-	mass_temperature 72.57083479167872;
+	air_temperature 71.49436215713916;
+	mass_temperature 73.11446215713917;
 }
 
 object ZIPload {
@@ -18122,8 +18116,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.08;
 	parent meter_GLD_B1_N74_C_0338;
-	air_temperature 77.07525836675383;
-	mass_temperature 77.11455836675383;
+	air_temperature 78.55586601864742;
+	mass_temperature 78.59516601864742;
 }
 
 object ZIPload {
@@ -18170,8 +18164,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.81;
 	parent meter_GLD_B1_N94_A_0339;
-	air_temperature 76.30596448884125;
-	mass_temperature 76.25026448884125;
+	air_temperature 76.91216247705722;
+	mass_temperature 76.85646247705722;
 }
 
 object ZIPload {
@@ -18218,8 +18212,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 2.43;
 	parent meter_GLD_B1_N47_B_0340;
-	air_temperature 71.88838199017765;
-	mass_temperature 72.92128199017765;
+	air_temperature 70.1680414043504;
+	mass_temperature 71.2009414043504;
 }
 
 object ZIPload {
@@ -18266,8 +18260,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.86;
 	parent meter_GLD_B1_N6_C_0341;
-	air_temperature 78.09052204243788;
-	mass_temperature 78.02482204243788;
+	air_temperature 77.5794346279482;
+	mass_temperature 77.5137346279482;
 }
 
 object ZIPload {
@@ -18314,8 +18308,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.41;
 	parent meter_GLD_B1_N49_B_0342;
-	air_temperature 68.60787599163481;
-	mass_temperature 68.25197599163481;
+	air_temperature 71.16812658230533;
+	mass_temperature 70.81222658230533;
 }
 
 object ZIPload {
@@ -18362,8 +18356,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.41;
 	parent meter_GLD_B1_N77_B_0343;
-	air_temperature 76.43829544337622;
-	mass_temperature 76.44199544337621;
+	air_temperature 76.81821063192517;
+	mass_temperature 76.82191063192516;
 }
 
 object ZIPload {
@@ -18410,8 +18404,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N47_C_0344;
-	air_temperature 70.29505136178379;
-	mass_temperature 70.01525136178378;
+	air_temperature 71.32625932698423;
+	mass_temperature 71.04645932698422;
 }
 
 object ZIPload {
@@ -18458,8 +18452,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.3;
 	parent meter_GLD_B1_N47_C_0345;
-	air_temperature 66.99298090142771;
-	mass_temperature 68.25688090142772;
+	air_temperature 66.72650502561166;
+	mass_temperature 67.99040502561166;
 }
 
 object ZIPload {
@@ -18506,8 +18500,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N49_C_0346;
-	air_temperature 76.73465424961995;
-	mass_temperature 76.69365424961995;
+	air_temperature 75.76989710702794;
+	mass_temperature 75.72889710702795;
 }
 
 object ZIPload {
@@ -18554,8 +18548,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.24;
 	parent meter_GLD_B1_N80_B_0347;
-	air_temperature 71.22241667441524;
-	mass_temperature 70.81891667441523;
+	air_temperature 70.80878270841069;
+	mass_temperature 70.40528270841068;
 }
 
 object ZIPload {
@@ -18602,8 +18596,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.43;
 	parent meter_GLD_B1_N48_C_0348;
-	air_temperature 73.06880796515873;
-	mass_temperature 72.84260796515873;
+	air_temperature 74.00360707837712;
+	mass_temperature 73.77740707837712;
 }
 
 object ZIPload {
@@ -18650,8 +18644,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.44;
 	parent meter_GLD_B1_N47_B_0349;
-	air_temperature 69.0438104600155;
-	mass_temperature 68.7463104600155;
+	air_temperature 70.55478846911578;
+	mass_temperature 70.25728846911578;
 }
 
 object ZIPload {
@@ -18698,8 +18692,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N63_A_0350;
-	air_temperature 72.47696791089936;
-	mass_temperature 72.30676791089937;
+	air_temperature 72.42198448072452;
+	mass_temperature 72.25178448072452;
 }
 
 object ZIPload {
@@ -18746,8 +18740,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N77_B_0351;
-	air_temperature 73.79981907308625;
-	mass_temperature 73.58321907308625;
+	air_temperature 73.11548116501667;
+	mass_temperature 72.89888116501668;
 }
 
 object ZIPload {
@@ -18794,8 +18788,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 1.35;
 	parent meter_GLD_B1_N48_C_0352;
-	air_temperature 72.5473521060038;
-	mass_temperature 72.1389521060038;
+	air_temperature 70.85157639286854;
+	mass_temperature 70.44317639286854;
 }
 
 object ZIPload {
@@ -18842,8 +18836,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.37;
 	parent meter_GLD_B1_N76_A_0353;
-	air_temperature 72.96900907478683;
-	mass_temperature 72.83570907478682;
+	air_temperature 73.40407589087226;
+	mass_temperature 73.27077589087226;
 }
 
 object ZIPload {
@@ -18890,8 +18884,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N48_C_0354;
-	air_temperature 73.53468604002731;
-	mass_temperature 73.3417860400273;
+	air_temperature 73.24971432839628;
+	mass_temperature 73.05681432839627;
 }
 
 object ZIPload {
@@ -18938,8 +18932,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N113_A_0355;
-	air_temperature 74.92089682255092;
-	mass_temperature 74.83029682255092;
+	air_temperature 76.01121373581854;
+	mass_temperature 75.92061373581855;
 }
 
 object ZIPload {
@@ -18986,8 +18980,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.24;
 	parent meter_GLD_B1_N30_A_0356;
-	air_temperature 73.59075813869687;
-	mass_temperature 73.42685813869687;
+	air_temperature 75.20239902664686;
+	mass_temperature 75.03849902664686;
 }
 
 object ZIPload {
@@ -19034,8 +19028,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.64;
 	parent meter_GLD_B1_N64_B_0357;
-	air_temperature 75.7550254221467;
-	mass_temperature 75.6768254221467;
+	air_temperature 76.61593248047231;
+	mass_temperature 76.53773248047231;
 }
 
 object ZIPload {
@@ -19082,8 +19076,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 1.14;
 	parent meter_GLD_B1_N113_A_0358;
-	air_temperature 73.74048080114191;
-	mass_temperature 73.99718080114191;
+	air_temperature 74.10518840892449;
+	mass_temperature 74.36188840892449;
 }
 
 object ZIPload {
@@ -19130,8 +19124,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.37;
 	parent meter_GLD_B1_N48_B_0359;
-	air_temperature 73.99640683729562;
-	mass_temperature 73.85890683729562;
+	air_temperature 72.80975747251875;
+	mass_temperature 72.67225747251875;
 }
 
 object ZIPload {
@@ -19178,8 +19172,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N43_B_0360;
-	air_temperature 76.36017585891223;
-	mass_temperature 76.27707585891223;
+	air_temperature 75.65833732528081;
+	mass_temperature 75.57523732528081;
 }
 
 object ZIPload {
@@ -19226,8 +19220,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 1.57;
 	parent meter_GLD_B1_N49_B_0361;
-	air_temperature 79.09961242526204;
-	mass_temperature 79.09001242526205;
+	air_temperature 76.29345551749316;
+	mass_temperature 76.28385551749317;
 }
 
 object ZIPload {
@@ -19274,8 +19268,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N65_C_0362;
-	air_temperature 69.43646415515258;
-	mass_temperature 69.10856415515258;
+	air_temperature 71.97412559376525;
+	mass_temperature 71.64622559376525;
 }
 
 object ZIPload {
@@ -19322,8 +19316,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.49;
 	parent meter_GLD_B1_N109_A_0363;
-	air_temperature 77.24698661529673;
-	mass_temperature 77.25698661529673;
+	air_temperature 76.9390102525993;
+	mass_temperature 76.9490102525993;
 }
 
 object ZIPload {
@@ -19370,8 +19364,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N29_A_0364;
-	air_temperature 70.73043543630314;
-	mass_temperature 70.87163543630314;
+	air_temperature 69.43093047455591;
+	mass_temperature 69.5721304745559;
 }
 
 object ZIPload {
@@ -19418,8 +19412,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.74;
 	parent meter_GLD_B1_N66_C_0365;
-	air_temperature 72.9120311122631;
-	mass_temperature 72.9571311122631;
+	air_temperature 71.55540046085554;
+	mass_temperature 71.60050046085554;
 }
 
 object ZIPload {
@@ -19466,8 +19460,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.92;
 	parent meter_GLD_B1_N63_A_0366;
-	air_temperature 71.24222820327994;
-	mass_temperature 71.19732820327994;
+	air_temperature 72.83853630159312;
+	mass_temperature 72.79363630159312;
 }
 
 object ZIPload {
@@ -19514,8 +19508,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.14;
 	parent meter_GLD_B1_N74_C_0367;
-	air_temperature 76.72013569368163;
-	mass_temperature 76.66713569368163;
+	air_temperature 75.98031834909061;
+	mass_temperature 75.92731834909061;
 }
 
 object ZIPload {
@@ -19562,8 +19556,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.27;
 	parent meter_GLD_B1_N63_A_0368;
-	air_temperature 73.57676256805328;
-	mass_temperature 73.41436256805329;
+	air_temperature 75.23482063304289;
+	mass_temperature 75.0724206330429;
 }
 
 object ZIPload {
@@ -19610,8 +19604,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.32;
 	parent meter_GLD_B1_N64_B_0369;
-	air_temperature 72.02566342538094;
-	mass_temperature 71.76046342538093;
+	air_temperature 69.93666880483218;
+	mass_temperature 69.67146880483217;
 }
 
 object ZIPload {
@@ -19658,8 +19652,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N63_A_0370;
-	air_temperature 75.7457733069587;
-	mass_temperature 75.68867330695869;
+	air_temperature 77.44629151115657;
+	mass_temperature 77.38919151115657;
 }
 
 object ZIPload {
@@ -19706,8 +19700,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.49;
 	parent meter_GLD_B1_N76_B_0371;
-	air_temperature 77.17153827384004;
-	mass_temperature 77.08263827384003;
+	air_temperature 77.00846824382704;
+	mass_temperature 76.91956824382703;
 }
 
 object ZIPload {
@@ -19754,8 +19748,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.57;
 	parent meter_GLD_B1_N53_A_0372;
-	air_temperature 75.52355249978996;
-	mass_temperature 75.62635249978996;
+	air_temperature 77.08029242095562;
+	mass_temperature 77.18309242095562;
 }
 
 object ZIPload {
@@ -19802,8 +19796,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N48_B_0373;
-	air_temperature 71.9971862601353;
-	mass_temperature 71.7770862601353;
+	air_temperature 70.92247613048768;
+	mass_temperature 70.70237613048769;
 }
 
 object ZIPload {
@@ -19850,8 +19844,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.68;
 	parent meter_GLD_B1_N47_C_0374;
-	air_temperature 72.18567925858414;
-	mass_temperature 71.98117925858415;
+	air_temperature 72.8156420483226;
+	mass_temperature 72.6111420483226;
 }
 
 object ZIPload {
@@ -19898,8 +19892,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N64_B_0375;
-	air_temperature 75.82768719742063;
-	mass_temperature 75.71458719742063;
+	air_temperature 74.29519097487089;
+	mass_temperature 74.18209097487089;
 }
 
 object ZIPload {
@@ -19946,8 +19940,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.32;
 	parent meter_GLD_B1_N76_A_0376;
-	air_temperature 76.56454452150813;
-	mass_temperature 76.52944452150813;
+	air_temperature 78.38177727559854;
+	mass_temperature 78.34667727559854;
 }
 
 object ZIPload {
@@ -19994,8 +19988,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.3;
 	parent meter_GLD_B1_N107_B_0377;
-	air_temperature 67.41808783771849;
-	mass_temperature 68.22548783771849;
+	air_temperature 69.52102020855475;
+	mass_temperature 70.32842020855475;
 }
 
 object ZIPload {
@@ -20042,8 +20036,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N69_A_0378;
-	air_temperature 76.78499162674596;
-	mass_temperature 76.68339162674597;
+	air_temperature 76.89839526673943;
+	mass_temperature 76.79679526673944;
 }
 
 object ZIPload {
@@ -20090,8 +20084,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.86;
 	parent meter_GLD_B1_N6_C_0379;
-	air_temperature 82.20339860339503;
-	mass_temperature 82.40779860339504;
+	air_temperature 81.31815975407945;
+	mass_temperature 81.52255975407945;
 }
 
 object ZIPload {
@@ -20138,8 +20132,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N76_C_0380;
-	air_temperature 65.78162195935498;
-	mass_temperature 65.53792195935497;
+	air_temperature 63.09820439498561;
+	mass_temperature 62.854504394985604;
 }
 
 object ZIPload {
@@ -20186,8 +20180,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.3;
 	parent meter_GLD_B1_N48_C_0381;
-	air_temperature 73.0053601620766;
-	mass_temperature 72.8267601620766;
+	air_temperature 73.05134361724247;
+	mass_temperature 72.87274361724246;
 }
 
 object ZIPload {
@@ -20234,8 +20228,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N48_A_0382;
-	air_temperature 77.22232985615143;
-	mass_temperature 77.18172985615143;
+	air_temperature 77.71465219367276;
+	mass_temperature 77.67405219367276;
 }
 
 object ZIPload {
@@ -20282,8 +20276,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.44;
 	parent meter_GLD_B1_N74_C_0383;
-	air_temperature 74.46788132267979;
-	mass_temperature 74.39428132267979;
+	air_temperature 76.02114638878464;
+	mass_temperature 75.94754638878464;
 }
 
 object ZIPload {
@@ -20330,8 +20324,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.24;
 	parent meter_GLD_B1_N9_A_0384;
-	air_temperature 75.03777427193494;
-	mass_temperature 74.93537427193493;
+	air_temperature 75.24362108958553;
+	mass_temperature 75.14122108958553;
 }
 
 object ZIPload {
@@ -20378,8 +20372,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.43;
 	parent meter_GLD_B1_N76_B_0385;
-	air_temperature 77.24781935911682;
-	mass_temperature 77.19171935911682;
+	air_temperature 76.1264586512077;
+	mass_temperature 76.0703586512077;
 }
 
 object ZIPload {
@@ -20426,8 +20420,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.41;
 	parent meter_GLD_B1_N76_C_0386;
-	air_temperature 71.42816627050742;
-	mass_temperature 71.26466627050742;
+	air_temperature 72.85655973848064;
+	mass_temperature 72.69305973848064;
 }
 
 object ZIPload {
@@ -20474,8 +20468,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.27;
 	parent meter_GLD_B1_N6_C_0387;
-	air_temperature 76.61589690193209;
-	mass_temperature 76.58049690193208;
+	air_temperature 77.5165400051786;
+	mass_temperature 77.48114000517859;
 }
 
 object ZIPload {
@@ -20522,8 +20516,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.3;
 	parent meter_GLD_B1_N109_A_0388;
-	air_temperature 64.67730742306195;
-	mass_temperature 65.26850742306195;
+	air_temperature 64.2846974677469;
+	mass_temperature 64.8758974677469;
 }
 
 object ZIPload {
@@ -20570,8 +20564,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 1.73;
 	parent meter_GLD_B1_N48_C_0389;
-	air_temperature 75.43763456611319;
-	mass_temperature 75.2692345661132;
+	air_temperature 76.28598978619759;
+	mass_temperature 76.1175897861976;
 }
 
 object ZIPload {
@@ -20618,8 +20612,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.92;
 	parent meter_GLD_B1_N80_B_0390;
-	air_temperature 74.66195995227068;
-	mass_temperature 74.55155995227068;
+	air_temperature 74.72686893736133;
+	mass_temperature 74.61646893736133;
 }
 
 object ZIPload {
@@ -20666,8 +20660,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.62;
 	parent meter_GLD_B1_N49_B_0391;
-	air_temperature 79.13310657351865;
-	mass_temperature 79.17680657351865;
+	air_temperature 78.94989839253086;
+	mass_temperature 78.99359839253086;
 }
 
 object ZIPload {
@@ -20714,8 +20708,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N48_C_0392;
-	air_temperature 74.27759355648962;
-	mass_temperature 74.46019355648961;
+	air_temperature 73.23469865217737;
+	mass_temperature 73.41729865217737;
 }
 
 object ZIPload {
@@ -20762,8 +20756,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N66_C_0393;
-	air_temperature 68.80653789839329;
-	mass_temperature 68.44953789839329;
+	air_temperature 69.76948444418251;
+	mass_temperature 69.41248444418251;
 }
 
 object ZIPload {
@@ -20810,8 +20804,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.41;
 	parent meter_GLD_B1_N48_B_0394;
-	air_temperature 74.48174626320905;
-	mass_temperature 74.32814626320904;
+	air_temperature 75.05202122001667;
+	mass_temperature 74.89842122001666;
 }
 
 object ZIPload {
@@ -20858,8 +20852,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.32;
 	parent meter_GLD_B1_N76_C_0395;
-	air_temperature 72.23471971200628;
-	mass_temperature 71.97961971200628;
+	air_temperature 70.8940738772731;
+	mass_temperature 70.6389738772731;
 }
 
 object ZIPload {
@@ -20906,8 +20900,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.32;
 	parent meter_GLD_B1_N49_B_0396;
-	air_temperature 73.51977705416058;
-	mass_temperature 73.38537705416059;
+	air_temperature 74.84293283643389;
+	mass_temperature 74.70853283643389;
 }
 
 object ZIPload {
@@ -20954,8 +20948,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.92;
 	parent meter_GLD_B1_N65_C_0397;
-	air_temperature 70.34918964375483;
-	mass_temperature 70.00068964375482;
+	air_temperature 71.11714270992879;
+	mass_temperature 70.76864270992878;
 }
 
 object ZIPload {
@@ -21002,8 +20996,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N65_C_0398;
-	air_temperature 76.70492670886077;
-	mass_temperature 76.59852670886077;
+	air_temperature 77.028698650824;
+	mass_temperature 76.922298650824;
 }
 
 object ZIPload {
@@ -21050,8 +21044,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.92;
 	parent meter_GLD_B1_N76_A_0399;
-	air_temperature 74.50228510710718;
-	mass_temperature 74.43468510710719;
+	air_temperature 76.20248310073812;
+	mass_temperature 76.13488310073812;
 }
 
 object ZIPload {
@@ -21098,8 +21092,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.22;
 	parent meter_GLD_B1_N109_A_0400;
-	air_temperature 79.1108410040421;
-	mass_temperature 79.1189410040421;
+	air_temperature 78.18717582180345;
+	mass_temperature 78.19527582180345;
 }
 
 object ZIPload {
@@ -21146,8 +21140,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.88;
 	parent meter_GLD_B1_N64_B_0401;
-	air_temperature 79.98223411029093;
-	mass_temperature 80.03903411029093;
+	air_temperature 79.9803439381456;
+	mass_temperature 80.03714393814559;
 }
 
 object ZIPload {
@@ -21194,8 +21188,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.38;
 	parent meter_GLD_B1_N76_B_0402;
-	air_temperature 73.66918498148313;
-	mass_temperature 73.48618498148313;
+	air_temperature 73.06748162947726;
+	mass_temperature 72.88448162947726;
 }
 
 object ZIPload {
@@ -21242,8 +21236,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 1.19;
 	parent meter_GLD_B1_N107_B_0403;
-	air_temperature 70.56533790183526;
-	mass_temperature 70.16973790183526;
+	air_temperature 72.21148608151351;
+	mass_temperature 71.81588608151351;
 }
 
 object ZIPload {
@@ -21290,8 +21284,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 1.41;
 	parent meter_GLD_B1_N76_A_0404;
-	air_temperature 73.83467173654184;
-	mass_temperature 75.10107173654183;
+	air_temperature 75.09715381594468;
+	mass_temperature 76.36355381594467;
 }
 
 object ZIPload {
@@ -21338,8 +21332,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N109_A_0405;
-	air_temperature 70.81044108754257;
-	mass_temperature 72.11644108754257;
+	air_temperature 70.60534199037659;
+	mass_temperature 71.91134199037658;
 }
 
 object ZIPload {
@@ -21386,8 +21380,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N49_B_0406;
-	air_temperature 69.37530795728742;
-	mass_temperature 70.39290795728742;
+	air_temperature 70.95772048898364;
+	mass_temperature 71.97532048898364;
 }
 
 object ZIPload {
@@ -21434,8 +21428,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.74;
 	parent meter_GLD_B1_N6_C_0407;
-	air_temperature 73.00065203869283;
-	mass_temperature 72.73175203869283;
+	air_temperature 72.60348227406443;
+	mass_temperature 72.33458227406443;
 }
 
 object ZIPload {
@@ -21482,8 +21476,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N76_A_0408;
-	air_temperature 72.0465648592706;
-	mass_temperature 71.7360648592706;
+	air_temperature 72.79318793014154;
+	mass_temperature 72.48268793014154;
 }
 
 object ZIPload {
@@ -21530,8 +21524,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.49;
 	parent meter_GLD_B1_N66_C_0409;
-	air_temperature 77.01986751631938;
-	mass_temperature 77.05086751631937;
+	air_temperature 77.88340843945626;
+	mass_temperature 77.91440843945625;
 }
 
 object ZIPload {
@@ -21578,8 +21572,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N65_C_0410;
-	air_temperature 70.77781972286436;
-	mass_temperature 70.42861972286435;
+	air_temperature 70.21557940438218;
+	mass_temperature 69.86637940438217;
 }
 
 object ZIPload {
@@ -21626,8 +21620,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.57;
 	parent meter_GLD_B1_N85_C_0411;
-	air_temperature 77.14899071865388;
-	mass_temperature 77.11419071865387;
+	air_temperature 76.98953983622955;
+	mass_temperature 76.95473983622955;
 }
 
 object ZIPload {
@@ -21674,8 +21668,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.86;
 	parent meter_GLD_B1_N76_B_0412;
-	air_temperature 71.03088090771793;
-	mass_temperature 70.67818090771793;
+	air_temperature 72.77357678518176;
+	mass_temperature 72.42087678518176;
 }
 
 object ZIPload {
@@ -21722,8 +21716,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.24;
 	parent meter_GLD_B1_N49_B_0413;
-	air_temperature 75.648506447995;
-	mass_temperature 75.584906447995;
+	air_temperature 76.82061098031718;
+	mass_temperature 76.75701098031718;
 }
 
 object ZIPload {
@@ -21770,8 +21764,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.3;
 	parent meter_GLD_B1_N76_C_0414;
-	air_temperature 68.84898893110575;
-	mass_temperature 68.52208893110576;
+	air_temperature 67.53154521599063;
+	mass_temperature 67.20464521599064;
 }
 
 object ZIPload {
@@ -21818,8 +21812,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.68;
 	parent meter_GLD_B1_N66_C_0415;
-	air_temperature 75.9570319502286;
-	mass_temperature 75.9172319502286;
+	air_temperature 76.9403607029104;
+	mass_temperature 76.9005607029104;
 }
 
 object ZIPload {
@@ -21866,8 +21860,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N85_C_0416;
-	air_temperature 69.69839151339617;
-	mass_temperature 69.35649151339618;
+	air_temperature 67.32789851394588;
+	mass_temperature 66.98599851394589;
 }
 
 object ZIPload {
@@ -21914,8 +21908,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 1.03;
 	parent meter_GLD_B1_N109_A_0417;
-	air_temperature 70.02885971865051;
-	mass_temperature 70.3240597186505;
+	air_temperature 71.75105735632192;
+	mass_temperature 72.04625735632192;
 }
 
 object ZIPload {
@@ -21962,8 +21956,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.81;
 	parent meter_GLD_B1_N76_A_0418;
-	air_temperature 72.0675145894249;
-	mass_temperature 73.03441458942491;
+	air_temperature 71.93275461533447;
+	mass_temperature 72.89965461533448;
 }
 
 object ZIPload {
@@ -22010,8 +22004,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.88;
 	parent meter_GLD_B1_N85_C_0419;
-	air_temperature 71.2962026489242;
-	mass_temperature 71.00580264892419;
+	air_temperature 70.7907041898279;
+	mass_temperature 70.5003041898279;
 }
 
 object ZIPload {
@@ -22058,8 +22052,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.92;
 	parent meter_GLD_B1_N76_B_0420;
-	air_temperature 71.2433892041472;
-	mass_temperature 70.87028920414721;
+	air_temperature 69.33116520990129;
+	mass_temperature 68.95806520990129;
 }
 
 object ZIPload {
@@ -22106,8 +22100,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N76_A_0421;
-	air_temperature 77.09469871237988;
-	mass_temperature 76.99999871237988;
+	air_temperature 76.91171558388206;
+	mass_temperature 76.81701558388205;
 }
 
 object ZIPload {
@@ -22154,8 +22148,8 @@ object house {
 	window_wall_ratio 0.18;
 	airchange_per_hour 0.43;
 	parent meter_GLD_B1_N65_C_0422;
-	air_temperature 72.89682113086644;
-	mass_temperature 72.69682113086644;
+	air_temperature 75.0789636586149;
+	mass_temperature 74.8789636586149;
 }
 
 object ZIPload {
@@ -22202,8 +22196,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.51;
 	parent meter_GLD_B1_N65_C_0423;
-	air_temperature 68.11254586826833;
-	mass_temperature 69.08524586826832;
+	air_temperature 68.26384758786732;
+	mass_temperature 69.2365475878673;
 }
 
 object ZIPload {
@@ -22250,8 +22244,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N76_A_0424;
-	air_temperature 74.7430936432399;
-	mass_temperature 74.59259364323991;
+	air_temperature 75.50145939080804;
+	mass_temperature 75.35095939080804;
 }
 
 object ZIPload {
@@ -22298,8 +22292,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N85_C_0425;
-	air_temperature 75.25843515128588;
-	mass_temperature 75.11473515128588;
+	air_temperature 74.93728943358019;
+	mass_temperature 74.7935894335802;
 }
 
 object ZIPload {
@@ -22346,8 +22340,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.97;
 	parent meter_GLD_B1_N76_B_0426;
-	air_temperature 71.83360869666097;
-	mass_temperature 71.60990869666098;
+	air_temperature 70.86898402500891;
+	mass_temperature 70.64528402500892;
 }
 
 object ZIPload {
@@ -22394,8 +22388,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N48_A_0427;
-	air_temperature 69.09036958309477;
-	mass_temperature 68.70626958309477;
+	air_temperature 68.64695138462388;
+	mass_temperature 68.26285138462387;
 }
 
 object ZIPload {
@@ -22442,8 +22436,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.49;
 	parent meter_GLD_B1_N76_A_0428;
-	air_temperature 77.33718226473408;
-	mass_temperature 77.28208226473409;
+	air_temperature 76.01698720231542;
+	mass_temperature 75.96188720231542;
 }
 
 object ZIPload {
@@ -22490,8 +22484,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N66_C_0429;
-	air_temperature 82.1224052103451;
-	mass_temperature 82.29060521034509;
+	air_temperature 79.79280596377411;
+	mass_temperature 79.96100596377411;
 }
 
 object ZIPload {
@@ -22538,8 +22532,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.37;
 	parent meter_GLD_B1_N48_A_0430;
-	air_temperature 63.64774012348003;
-	mass_temperature 64.23724012348003;
+	air_temperature 65.87928829087812;
+	mass_temperature 66.46878829087812;
 }
 
 object ZIPload {
@@ -22586,8 +22580,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N65_C_0431;
-	air_temperature 71.92105001226825;
-	mass_temperature 72.90695001226825;
+	air_temperature 71.31307696958838;
+	mass_temperature 72.29897696958838;
 }
 
 object ZIPload {
@@ -22634,8 +22628,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.76;
 	parent meter_GLD_B1_N76_B_0432;
-	air_temperature 67.79591260765851;
-	mass_temperature 67.27561260765852;
+	air_temperature 67.8818910906069;
+	mass_temperature 67.36159109060691;
 }
 
 object ZIPload {
@@ -22682,8 +22676,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N48_A_0433;
-	air_temperature 76.89496903882583;
-	mass_temperature 76.90366903882584;
+	air_temperature 78.77751208640912;
+	mass_temperature 78.78621208640912;
 }
 
 object ZIPload {
@@ -22730,8 +22724,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.27;
 	parent meter_GLD_B1_N48_A_0434;
-	air_temperature 77.0869101758876;
-	mass_temperature 77.0155101758876;
+	air_temperature 75.38612284282121;
+	mass_temperature 75.31472284282121;
 }
 
 object ZIPload {
@@ -22778,8 +22772,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N48_A_0435;
-	air_temperature 68.46995091266838;
-	mass_temperature 68.15565091266838;
+	air_temperature 69.9653692882607;
+	mass_temperature 69.6510692882607;
 }
 
 object ZIPload {
@@ -22826,8 +22820,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.01;
 	parent meter_GLD_B1_N49_B_0436;
-	air_temperature 75.5892782905564;
-	mass_temperature 75.5525782905564;
+	air_temperature 76.1267697435937;
+	mass_temperature 76.0900697435937;
 }
 
 object ZIPload {
@@ -22874,8 +22868,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.68;
 	parent meter_GLD_B1_N76_B_0437;
-	air_temperature 72.04926835168631;
-	mass_temperature 71.83476835168631;
+	air_temperature 72.49632586398441;
+	mass_temperature 72.28182586398441;
 }
 
 object ZIPload {
@@ -22900,2079 +22894,11 @@ object triplex_line {
 	configuration triplex_line_config;
 }
 
-object triplex_line {
-	name PV_line_1;
-	from node_109_A;
-	to PV_meter_B1_N109_A_0363;
-	phases AS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N109_A_0363;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases AS;
-}
-
-object inverter {
-	name PV_inverter_B1_N109_A_0363;
-	phases AS;
-	parent PV_meter_B1_N109_A_0363;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 12000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N109_A_0363;
-	phases AS;
-	parent PV_inverter_B1_N109_A_0363;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 611 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_2;
-	from node_76_C;
-	to PV_meter_B1_N76_C_0163;
-	phases CS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N76_C_0163;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases CS;
-}
-
-object inverter {
-	name PV_inverter_B1_N76_C_0163;
-	phases CS;
-	parent PV_meter_B1_N76_C_0163;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 12000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N76_C_0163;
-	phases CS;
-	parent PV_inverter_B1_N76_C_0163;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 594 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_3;
-	from node_47_A;
-	to PV_meter_B1_N47_A_0195;
-	phases AS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N47_A_0195;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases AS;
-}
-
-object inverter {
-	name PV_inverter_B1_N47_A_0195;
-	phases AS;
-	parent PV_meter_B1_N47_A_0195;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 8000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N47_A_0195;
-	phases AS;
-	parent PV_inverter_B1_N47_A_0195;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 342 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_4;
-	from node_66_C;
-	to PV_meter_B1_N66_C_0159;
-	phases CS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N66_C_0159;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases CS;
-}
-
-object inverter {
-	name PV_inverter_B1_N66_C_0159;
-	phases CS;
-	parent PV_meter_B1_N66_C_0159;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 15000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N66_C_0159;
-	phases CS;
-	parent PV_inverter_B1_N66_C_0159;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 705 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_5;
-	from node_82_A;
-	to PV_meter_B1_N82_A_0048;
-	phases AS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N82_A_0048;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases AS;
-}
-
-object inverter {
-	name PV_inverter_B1_N82_A_0048;
-	phases AS;
-	parent PV_meter_B1_N82_A_0048;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 8000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N82_A_0048;
-	phases AS;
-	parent PV_inverter_B1_N82_A_0048;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 342 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_6;
-	from node_73_C;
-	to PV_meter_B1_N73_C_0319;
-	phases CS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N73_C_0319;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases CS;
-}
-
-object inverter {
-	name PV_inverter_B1_N73_C_0319;
-	phases CS;
-	parent PV_meter_B1_N73_C_0319;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 12000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N73_C_0319;
-	phases CS;
-	parent PV_inverter_B1_N73_C_0319;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 570 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_7;
-	from node_37_A;
-	to PV_meter_B1_N37_A_0118;
-	phases AS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N37_A_0118;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases AS;
-}
-
-object inverter {
-	name PV_inverter_B1_N37_A_0118;
-	phases AS;
-	parent PV_meter_B1_N37_A_0118;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 10000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N37_A_0118;
-	phases AS;
-	parent PV_inverter_B1_N37_A_0118;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 464 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_8;
-	from node_62_C;
-	to PV_meter_B1_N62_C_0203;
-	phases CS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N62_C_0203;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases CS;
-}
-
-object inverter {
-	name PV_inverter_B1_N62_C_0203;
-	phases CS;
-	parent PV_meter_B1_N62_C_0203;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 12000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N62_C_0203;
-	phases CS;
-	parent PV_inverter_B1_N62_C_0203;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 620 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_9;
-	from node_35_A;
-	to PV_meter_B1_N35_A_0071;
-	phases AS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N35_A_0071;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases AS;
-}
-
-object inverter {
-	name PV_inverter_B1_N35_A_0071;
-	phases AS;
-	parent PV_meter_B1_N35_A_0071;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 6000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N35_A_0071;
-	phases AS;
-	parent PV_inverter_B1_N35_A_0071;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 286 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_10;
-	from node_65_C;
-	to PV_meter_B1_N65_C_0090;
-	phases CS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N65_C_0090;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases CS;
-}
-
-object inverter {
-	name PV_inverter_B1_N65_C_0090;
-	phases CS;
-	parent PV_meter_B1_N65_C_0090;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 12000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N65_C_0090;
-	phases CS;
-	parent PV_inverter_B1_N65_C_0090;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 640 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_11;
-	from node_107_B;
-	to PV_meter_B1_N107_B_0403;
-	phases BS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N107_B_0403;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases BS;
-}
-
-object inverter {
-	name PV_inverter_B1_N107_B_0403;
-	phases BS;
-	parent PV_meter_B1_N107_B_0403;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 12000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N107_B_0403;
-	phases BS;
-	parent PV_inverter_B1_N107_B_0403;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 631 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_12;
-	from node_99_B;
-	to PV_meter_B1_N99_B_0207;
-	phases BS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N99_B_0207;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases BS;
-}
-
-object inverter {
-	name PV_inverter_B1_N99_B_0207;
-	phases BS;
-	parent PV_meter_B1_N99_B_0207;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 12000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N99_B_0207;
-	phases BS;
-	parent PV_inverter_B1_N99_B_0207;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 652 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_13;
-	from node_47_B;
-	to PV_meter_B1_N47_B_0349;
-	phases BS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N47_B_0349;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases BS;
-}
-
-object inverter {
-	name PV_inverter_B1_N47_B_0349;
-	phases BS;
-	parent PV_meter_B1_N47_B_0349;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 12000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N47_B_0349;
-	phases BS;
-	parent PV_inverter_B1_N47_B_0349;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 648 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_14;
-	from node_47_C;
-	to PV_meter_B1_N47_C_0078;
-	phases CS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N47_C_0078;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases CS;
-}
-
-object inverter {
-	name PV_inverter_B1_N47_C_0078;
-	phases CS;
-	parent PV_meter_B1_N47_C_0078;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 10000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N47_C_0078;
-	phases CS;
-	parent PV_inverter_B1_N47_C_0078;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 516 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_15;
-	from node_49_A;
-	to PV_meter_B1_N49_A_0302;
-	phases AS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N49_A_0302;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases AS;
-}
-
-object inverter {
-	name PV_inverter_B1_N49_A_0302;
-	phases AS;
-	parent PV_meter_B1_N49_A_0302;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 12000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N49_A_0302;
-	phases AS;
-	parent PV_inverter_B1_N49_A_0302;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 612 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_16;
-	from node_30_A;
-	to PV_meter_B1_N30_A_0315;
-	phases AS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N30_A_0315;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases AS;
-}
-
-object inverter {
-	name PV_inverter_B1_N30_A_0315;
-	phases AS;
-	parent PV_meter_B1_N30_A_0315;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 12000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N30_A_0315;
-	phases AS;
-	parent PV_inverter_B1_N30_A_0315;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 601 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_17;
-	from node_6_C;
-	to PV_meter_B1_N6_C_0407;
-	phases CS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N6_C_0407;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases CS;
-}
-
-object inverter {
-	name PV_inverter_B1_N6_C_0407;
-	phases CS;
-	parent PV_meter_B1_N6_C_0407;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 12000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N6_C_0407;
-	phases CS;
-	parent PV_inverter_B1_N6_C_0407;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 625 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_18;
-	from node_33_A;
-	to PV_meter_B1_N33_A_0049;
-	phases AS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N33_A_0049;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases AS;
-}
-
-object inverter {
-	name PV_inverter_B1_N33_A_0049;
-	phases AS;
-	parent PV_meter_B1_N33_A_0049;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 10000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N33_A_0049;
-	phases AS;
-	parent PV_inverter_B1_N33_A_0049;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 539 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_19;
-	from node_76_A;
-	to PV_meter_B1_N76_A_0404;
-	phases AS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N76_A_0404;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases AS;
-}
-
-object inverter {
-	name PV_inverter_B1_N76_A_0404;
-	phases AS;
-	parent PV_meter_B1_N76_A_0404;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 10000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N76_A_0404;
-	phases AS;
-	parent PV_inverter_B1_N76_A_0404;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 489 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_20;
-	from node_84_C;
-	to PV_meter_B1_N84_C_0003;
-	phases CS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N84_C_0003;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases CS;
-}
-
-object inverter {
-	name PV_inverter_B1_N84_C_0003;
-	phases CS;
-	parent PV_meter_B1_N84_C_0003;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 10000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N84_C_0003;
-	phases CS;
-	parent PV_inverter_B1_N84_C_0003;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 471 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_21;
-	from node_48_A;
-	to PV_meter_B1_N48_A_0433;
-	phases AS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N48_A_0433;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases AS;
-}
-
-object inverter {
-	name PV_inverter_B1_N48_A_0433;
-	phases AS;
-	parent PV_meter_B1_N48_A_0433;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 8000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N48_A_0433;
-	phases AS;
-	parent PV_inverter_B1_N48_A_0433;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 356 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_22;
-	from node_47_A;
-	to PV_meter_B1_N47_A_0121;
-	phases AS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N47_A_0121;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases AS;
-}
-
-object inverter {
-	name PV_inverter_B1_N47_A_0121;
-	phases AS;
-	parent PV_meter_B1_N47_A_0121;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 12000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N47_A_0121;
-	phases AS;
-	parent PV_inverter_B1_N47_A_0121;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 634 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_23;
-	from node_48_B;
-	to PV_meter_B1_N48_B_0314;
-	phases BS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N48_B_0314;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases BS;
-}
-
-object inverter {
-	name PV_inverter_B1_N48_B_0314;
-	phases BS;
-	parent PV_meter_B1_N48_B_0314;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 8000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N48_B_0314;
-	phases BS;
-	parent PV_inverter_B1_N48_B_0314;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 362 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_24;
-	from node_19_A;
-	to PV_meter_B1_N19_A_0265;
-	phases AS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N19_A_0265;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases AS;
-}
-
-object inverter {
-	name PV_inverter_B1_N19_A_0265;
-	phases AS;
-	parent PV_meter_B1_N19_A_0265;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 8000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N19_A_0265;
-	phases AS;
-	parent PV_inverter_B1_N19_A_0265;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 431 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_25;
-	from node_50_C;
-	to PV_meter_B1_N50_C_0236;
-	phases CS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N50_C_0236;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases CS;
-}
-
-object inverter {
-	name PV_inverter_B1_N50_C_0236;
-	phases CS;
-	parent PV_meter_B1_N50_C_0236;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 10000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N50_C_0236;
-	phases CS;
-	parent PV_inverter_B1_N50_C_0236;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 492 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_26;
-	from node_59_B;
-	to PV_meter_B1_N59_B_0135;
-	phases BS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N59_B_0135;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases BS;
-}
-
-object inverter {
-	name PV_inverter_B1_N59_B_0135;
-	phases BS;
-	parent PV_meter_B1_N59_B_0135;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 12000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N59_B_0135;
-	phases BS;
-	parent PV_inverter_B1_N59_B_0135;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 665 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_27;
-	from node_50_C;
-	to PV_meter_B1_N50_C_0294;
-	phases CS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N50_C_0294;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases CS;
-}
-
-object inverter {
-	name PV_inverter_B1_N50_C_0294;
-	phases CS;
-	parent PV_meter_B1_N50_C_0294;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 10000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N50_C_0294;
-	phases CS;
-	parent PV_inverter_B1_N50_C_0294;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 467 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_28;
-	from node_65_A;
-	to PV_meter_B1_N65_A_0214;
-	phases AS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N65_A_0214;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases AS;
-}
-
-object inverter {
-	name PV_inverter_B1_N65_A_0214;
-	phases AS;
-	parent PV_meter_B1_N65_A_0214;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 10000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N65_A_0214;
-	phases AS;
-	parent PV_inverter_B1_N65_A_0214;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 464 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_29;
-	from node_39_B;
-	to PV_meter_B1_N39_B_0068;
-	phases BS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N39_B_0068;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases BS;
-}
-
-object inverter {
-	name PV_inverter_B1_N39_B_0068;
-	phases BS;
-	parent PV_meter_B1_N39_B_0068;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 8000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N39_B_0068;
-	phases BS;
-	parent PV_inverter_B1_N39_B_0068;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 404 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_30;
-	from node_49_B;
-	to PV_meter_B1_N49_B_0436;
-	phases BS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N49_B_0436;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases BS;
-}
-
-object inverter {
-	name PV_inverter_B1_N49_B_0436;
-	phases BS;
-	parent PV_meter_B1_N49_B_0436;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 12000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N49_B_0436;
-	phases BS;
-	parent PV_inverter_B1_N49_B_0436;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 601 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_31;
-	from node_52_A;
-	to PV_meter_B1_N52_A_0272;
-	phases AS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N52_A_0272;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases AS;
-}
-
-object inverter {
-	name PV_inverter_B1_N52_A_0272;
-	phases AS;
-	parent PV_meter_B1_N52_A_0272;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 12000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N52_A_0272;
-	phases AS;
-	parent PV_inverter_B1_N52_A_0272;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 593 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_32;
-	from node_99_B;
-	to PV_meter_B1_N99_B_0219;
-	phases BS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N99_B_0219;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases BS;
-}
-
-object inverter {
-	name PV_inverter_B1_N99_B_0219;
-	phases BS;
-	parent PV_meter_B1_N99_B_0219;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 8000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N99_B_0219;
-	phases BS;
-	parent PV_inverter_B1_N99_B_0219;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 430 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_33;
-	from node_94_A;
-	to PV_meter_B1_N94_A_0255;
-	phases AS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N94_A_0255;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases AS;
-}
-
-object inverter {
-	name PV_inverter_B1_N94_A_0255;
-	phases AS;
-	parent PV_meter_B1_N94_A_0255;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 15000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N94_A_0255;
-	phases AS;
-	parent PV_inverter_B1_N94_A_0255;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 712 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_34;
-	from node_107_B;
-	to PV_meter_B1_N107_B_0304;
-	phases BS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N107_B_0304;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases BS;
-}
-
-object inverter {
-	name PV_inverter_B1_N107_B_0304;
-	phases BS;
-	parent PV_meter_B1_N107_B_0304;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 10000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N107_B_0304;
-	phases BS;
-	parent PV_inverter_B1_N107_B_0304;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 451 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_35;
-	from node_109_A;
-	to PV_meter_B1_N109_A_0417;
-	phases AS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N109_A_0417;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases AS;
-}
-
-object inverter {
-	name PV_inverter_B1_N109_A_0417;
-	phases AS;
-	parent PV_meter_B1_N109_A_0417;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 12000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N109_A_0417;
-	phases AS;
-	parent PV_inverter_B1_N109_A_0417;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 625 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_36;
-	from node_48_A;
-	to PV_meter_B1_N48_A_0233;
-	phases AS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N48_A_0233;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases AS;
-}
-
-object inverter {
-	name PV_inverter_B1_N48_A_0233;
-	phases AS;
-	parent PV_meter_B1_N48_A_0233;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 10000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N48_A_0233;
-	phases AS;
-	parent PV_inverter_B1_N48_A_0233;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 547 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_37;
-	from node_87_B;
-	to PV_meter_B1_N87_B_0186;
-	phases BS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N87_B_0186;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases BS;
-}
-
-object inverter {
-	name PV_inverter_B1_N87_B_0186;
-	phases BS;
-	parent PV_meter_B1_N87_B_0186;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 12000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N87_B_0186;
-	phases BS;
-	parent PV_inverter_B1_N87_B_0186;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 621 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_38;
-	from node_24_C;
-	to PV_meter_B1_N24_C_0210;
-	phases CS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N24_C_0210;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases CS;
-}
-
-object inverter {
-	name PV_inverter_B1_N24_C_0210;
-	phases CS;
-	parent PV_meter_B1_N24_C_0210;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 8000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N24_C_0210;
-	phases CS;
-	parent PV_inverter_B1_N24_C_0210;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 376 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_39;
-	from node_19_A;
-	to PV_meter_B1_N19_A_0002;
-	phases AS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N19_A_0002;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases AS;
-}
-
-object inverter {
-	name PV_inverter_B1_N19_A_0002;
-	phases AS;
-	parent PV_meter_B1_N19_A_0002;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 12000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N19_A_0002;
-	phases AS;
-	parent PV_inverter_B1_N19_A_0002;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 606 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_40;
-	from node_47_C;
-	to PV_meter_B1_N47_C_0216;
-	phases CS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N47_C_0216;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases CS;
-}
-
-object inverter {
-	name PV_inverter_B1_N47_C_0216;
-	phases CS;
-	parent PV_meter_B1_N47_C_0216;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 10000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N47_C_0216;
-	phases CS;
-	parent PV_inverter_B1_N47_C_0216;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 531 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_41;
-	from node_92_C;
-	to PV_meter_B1_N92_C_0181;
-	phases CS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N92_C_0181;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases CS;
-}
-
-object inverter {
-	name PV_inverter_B1_N92_C_0181;
-	phases CS;
-	parent PV_meter_B1_N92_C_0181;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 5000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N92_C_0181;
-	phases CS;
-	parent PV_inverter_B1_N92_C_0181;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 277 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_42;
-	from node_64_B;
-	to PV_meter_B1_N64_B_0096;
-	phases BS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N64_B_0096;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases BS;
-}
-
-object inverter {
-	name PV_inverter_B1_N64_B_0096;
-	phases BS;
-	parent PV_meter_B1_N64_B_0096;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 10000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N64_B_0096;
-	phases BS;
-	parent PV_inverter_B1_N64_B_0096;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 531 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_43;
-	from node_114_A;
-	to PV_meter_B1_N114_A_0124;
-	phases AS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N114_A_0124;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases AS;
-}
-
-object inverter {
-	name PV_inverter_B1_N114_A_0124;
-	phases AS;
-	parent PV_meter_B1_N114_A_0124;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 12000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N114_A_0124;
-	phases AS;
-	parent PV_inverter_B1_N114_A_0124;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 667 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
-object triplex_line {
-	name PV_line_44;
-	from node_92_C;
-	to PV_meter_B1_N92_C_0230;
-	phases CS;
-	length 30 ft;
-	configuration triplex_line_config;
-}
-
-object triplex_meter {
-	name PV_meter_B1_N92_C_0230;
-	nominal_voltage 124.00;
-	groupid PV_meter;
-	phases CS;
-}
-
-object inverter {
-	name PV_inverter_B1_N92_C_0230;
-	phases CS;
-	parent PV_meter_B1_N92_C_0230;
-	generator_status ONLINE;
-	inverter_type FOUR_QUADRANT;
-	four_quadrant_control_mode CONSTANT_PF;
-	generator_mode SUPPLY_DRIVEN;
-	rated_power 12000;
-	inverter_efficiency 0.95;
-}
-
-object solar {
-	name PV_B1_N92_C_0230;
-	phases CS;
-	parent PV_inverter_B1_N92_C_0230;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
-	panel_type SINGLE_CRYSTAL_SILICON;
-	area 584 ft^2;
-	tilt_angle 25.0;
-	efficiency 0.15;
-	soiling 0.95;
-	derating 0.99;
-	a_coeff -3.2;
-	orientation_azimuth 225;
-	orientation FIXED_AXIS;
-	SOLAR_TILT_MODEL SOLPOS;
-	SOLAR_POWER_MODEL FLATPLATE;
-}
-
 object group_recorder {
 	name rec_total_load;
 	group "class=house";
 	property total_load;
-	file Diss/Diss_0066/total_load_all.csv;
+	file Diss/Diss_0091/total_load_all.csv;
 	interval 300;
 }
 
@@ -24980,7 +22906,7 @@ object group_recorder {
 	name rec_hvac_load;
 	group "class=house";
 	property hvac_load;
-	file Diss/Diss_0066/hvac_load_all.csv;
+	file Diss/Diss_0091/hvac_load_all.csv;
 	interval 300;
 }
 
@@ -24988,7 +22914,7 @@ object group_recorder {
 	name rec_T;
 	group "class=house";
 	property air_temperature;
-	file Diss/Diss_0066/T_all.csv;
+	file Diss/Diss_0091/T_all.csv;
 	interval 300;
 }
 
@@ -24996,7 +22922,7 @@ object group_recorder {
 	name rec_Tm;
 	group "class=house";
 	property mass_temperature;
-	file Diss/Diss_0066/Tm_all.csv;
+	file Diss/Diss_0091/Tm_all.csv;
 	interval 300;
 }
 
@@ -25004,7 +22930,7 @@ object group_recorder {
 	name rec_pv_infeed;
 	group "class=inverter";
 	property P_Out;
-	file Diss/Diss_0066/total_P_Out.csv;
+	file Diss/Diss_0091/total_P_Out.csv;
 	interval 300;
 }
 
@@ -25012,7 +22938,7 @@ object group_recorder {
 	name rec_batt_soc;
 	group "class=battery";
 	property state_of_charge;
-	file Diss/Diss_0066/battery_SOC.csv;
+	file Diss/Diss_0091/battery_SOC.csv;
 	interval 300;
 }
 
@@ -25020,7 +22946,7 @@ object recorder {
 	name T_out;
 	parent tmy_file;
 	property temperature;
-	file Diss/Diss_0066/T_out.csv;
+	file Diss/Diss_0091/T_out.csv;
 	interval 300;
 }
 

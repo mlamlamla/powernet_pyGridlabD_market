@@ -1,23 +1,23 @@
 import os
 
 #Result file
-results_folder = 'Diss/Diss_0066'
+results_folder = 'Diss/Diss_0091'
 if not os.path.exists(results_folder):
 	os.makedirs(results_folder)
 
 #glm parameters
 city = 'Austin'
 month = 'july'
-start_time_str = '2016/09/11 00:00'
-end_time_str = '2016/09/19 00:00'
+start_time_str = '2016-07-31 00:00'
+end_time_str = '2016-08-08 00:00'
 player_dir = 'players_Austin'
 tmy_file = '722540TYA.tmy3'
 slack_node = 'node_149'
 
 #Flexible appliances
-settings_file = 'HVAC_settings_2016-09-12_2016-09-19_ext.csv'
+settings_file = 'HVAC_settings_2016-08-01_2016-08-08_OLS4.csv'
 flexible_houses = 437
-PV_share = 0.1
+PV_share = 0.0
 EV_share = 0.0
 EV_data = 'None'
 EV_speed = 'slow'
@@ -28,7 +28,7 @@ C = 100000.0
 market_data = 'Ercot_HBSouth.csv'
 p_max = 10000.0
 load_forecast = 'myopic'
-unresp_factor = 1.0
+unresp_factor = 0.0
 FIXED_TARIFF = False
 interval = 300
 allocation_rule = 'by_price'
