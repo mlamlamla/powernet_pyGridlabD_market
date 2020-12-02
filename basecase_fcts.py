@@ -22,8 +22,8 @@ def analyze_year(folder,directory,s_settings,interval):
 	except:
 		if not os.path.isdir(directory):
 			os.mkdir(directory)
-		df_systemdata = get_systemdata(folder,directory)
-	#import pdb; pdb.set_trace()
+		df_systemdata = get_systemdata(folder,s_settings['market_data'],directory)
+	print('HVAC consumption share: '+str(df_systemdata['hvac_load_houses'].sum()/df_systemdata['total_load_houses'].sum()*100))
 	#import pdb; pdb.set_trace()
 	#import pdb; pdb.set_trace()
 	procurement_cost = ((df_systemdata['measured_real_power']/(60./interval))*df_systemdata['RT']/1000.).sum()
@@ -93,7 +93,7 @@ def analyze_week(folder,directory,start,end):
 	ppt.savefig(directory+'/week_'+str(start)+'.pdf', bbox_inches='tight')
 	ppt.savefig(directory+'/week_'+str(start)+'.png', bbox_inches='tight')
 
-def get_systemdata(folder,directory):
+def get_systemdata(folder,market_data,directory):
 	#Physical: total system load at slack bus (node 149 in IEEE123)
     df_slack = pd.read_csv(folder+'/load_node_149.csv',skiprows=range(8))
     df_slack['# timestamp'] = df_slack['# timestamp'].map(lambda x: str(x)[:-4])
@@ -168,7 +168,7 @@ def get_systemdata(folder,directory):
     start = df_systemdata.index[0]
     end = df_systemdata.index[-1]
     #import pdb; pdb.set_trace()
-    df_WS = pd.read_csv('glm_generation_Austin/Ercot_HBSouth.csv',index_col=[0],parse_dates=True)
+    df_WS = pd.read_csv('glm_generation_Austin/'+market_data,index_col=[0],parse_dates=True)
     df_systemdata = df_systemdata.merge(df_WS,how='outer',left_index=True,right_index=True)
     df_systemdata['DA'].fillna(method='ffill',inplace=True)
     df_systemdata['RT'].fillna(method='ffill',inplace=True)
@@ -190,14 +190,17 @@ def get_loaddurationcurve(directory,df_systemdata):
 	print('3% value: '+str(df_loadduration.loc[df_loadduration.index < 3]['measured_real_power'].iloc[-1]))
 	print('4% value: '+str(df_loadduration.loc[df_loadduration.index < 4]['measured_real_power'].iloc[-1]))
 	print('5% value: '+str(df_loadduration.loc[df_loadduration.index < 5]['measured_real_power'].iloc[-1]))
+	print('Minimum load: '+str(df_loadduration['measured_real_power'].nsmallest(2)/1000.))
+	print('Minimum load: '+str(df_loadduration['measured_real_power'].nsmallest(1)/1000.))
 
 	fig = ppt.figure(figsize=(6,3),dpi=150)   
 	ax = fig.add_subplot(111)
 	lns = ax.plot(df_loadduration['measured_real_power']/1000.,'0.5')
 	ax.set_xlabel('Percentiles [%]')
 	ax.set_ylabel('Measured system load [MW]')
-	ax.set_xlim(xmin=0,xmax=100)
-	ax.hlines(0,0,100)
+	ax.set_xlim(xmin=0.,xmax=100.)
+	ax.set_ylim(ymin=0.)
+	#ax.hlines(0,0,100)
 	#lns = lns1 + lns2 + lns3 + lns4
 	#labs = [l.get_label() for l in lns]
 	#L = ax.legend(lns, labs, bbox_to_anchor=(0.5, -0.4), loc='lower center', ncol=len(labs))
@@ -214,7 +217,7 @@ def plot_hourlyav_month(directory,df_systemdata):
 	delta_c = (0.8 - 0.2)/5.
 	min_load = 0.0
 	max_load = 0.0
-	import pdb; pdb.set_trace()
+	#import pdb; pdb.set_trace()
 	for month in range(1,13):
 		#import pdb; pdb.set_trace()
 		try:
@@ -235,6 +238,8 @@ def plot_hourlyav_month(directory,df_systemdata):
 			if max_load < df_systemdata_month['measured_real_power'].max()/1000:
 				max_load = df_systemdata_month['measured_real_power'].max()/1000
 			#ax.hlines(0,df_systemdata_month.index[0],df_systemdata_month.index[-1])
+			#print(month)
+			#print(df_systemdata_month['measured_real_power'].max())
 		except:
 			pass
 	ax.set_xlabel('Daytime')
@@ -250,6 +255,7 @@ def plot_hourlyav_month(directory,df_systemdata):
 	L = ax.legend(lns, labs, bbox_to_anchor=(0.5, -0.5), loc='lower center', ncol=6)
 	ppt.savefig(directory+'/02_hourlyav_month.pdf', bbox_inches='tight')
 	ppt.savefig(directory+'/02_hourlyav_month.png', bbox_inches='tight')
+	#import pdb; pdb.set_trace()
 
 #03
 def plot_baseloadav_month(directory,df_systemdata):
@@ -386,7 +392,8 @@ def get_weeklymeanmax(directory,df_systemdata):
 	df_systemdata['proc_cost'] = (df_systemdata['measured_real_power']/12.)*df_systemdata['RT']
 	df_systemdata['week'] = df_systemdata.index.week
 	df_system_week = pd.DataFrame(index=range(df_systemdata['week'].min(),df_systemdata['week'].max()+1),columns=['week_max'],data=df_systemdata.groupby('week').max()['measured_real_power'].values)
-	df_system_week['week_mean'] = df_systemdata.groupby('week').mean()['measured_real_power'].values
+	df_system_week['week_max'] = df_system_week['week_max']/1000.
+	df_system_week['week_mean'] = df_systemdata.groupby('week').mean()['measured_real_power'].values/1000.
 	df_system_week['week_median'] = df_systemdata.groupby('week').median()['measured_real_power'].values
 	df_system_week['week_max_price'] = df_systemdata.groupby('week').max()['RT'].values
 	df_system_week['week_mean_price'] = df_systemdata.groupby('week').mean()['RT'].values
@@ -409,7 +416,8 @@ def get_weeklymeanmax(directory,df_systemdata):
 	df_system_week.sort_index(inplace=True)
 	for week_ind in df_system_week.index:
 		print('Start week '+str(week_ind)+': '+str(df_systemdata.loc[df_systemdata['week'] == week_ind].index[0]))
-	df_system_week = df_system_week.round(2)
+	df_system_week[['proc_cost_MWh','week_max_price','week_mean_price']] = df_system_week[['proc_cost_MWh','week_max_price','week_mean_price']].round(2)
+	df_system_week[['week_max','week_mean']] = df_system_week[['week_max','week_mean']].round(3)
 	#df_system_week.drop('week_median',axis=1,inplace=True)
 	#df_system_week.drop('week_median_price',axis=1,inplace=True)
 	text_file = open(directory+"/base_case_results.txt", "w")

@@ -2,6 +2,8 @@ module residential {
 	implicit_enduses NONE;
 }
 
+module climate;
+
 module tape;
 
 module generators;
@@ -21,7 +23,11 @@ class battery {
 	double k;
 }
 
-#include "TX_Austin_2016.glm";
+object climate {
+	name tmy_file;
+	tmyfile 722540TYA.tmy3;
+	interpolate LINEAR;
+}
 
 object triplex_line_conductor {
 	name "c1/0 AA triplex";
@@ -1940,8 +1946,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 1.24;
 	parent meter_GLD_B1_N48_C_0001;
-	air_temperature 69.38872270969644;
-	mass_temperature 69.47702270969644;
+	air_temperature 67.8426247837434;
+	mass_temperature 67.93092478374341;
 }
 
 object ZIPload {
@@ -1988,8 +1994,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N19_A_0002;
-	air_temperature 71.02923444166655;
-	mass_temperature 70.90983444166655;
+	air_temperature 72.9978109797231;
+	mass_temperature 72.8784109797231;
 }
 
 object ZIPload {
@@ -2036,8 +2042,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N84_C_0003;
-	air_temperature 75.07641634805668;
-	mass_temperature 74.89091634805668;
+	air_temperature 72.5549401550976;
+	mass_temperature 72.36944015509759;
 }
 
 object ZIPload {
@@ -2084,8 +2090,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.38;
 	parent meter_GLD_B1_N12_B_0004;
-	air_temperature 79.57484177606226;
-	mass_temperature 79.64374177606226;
+	air_temperature 78.35976302796593;
+	mass_temperature 78.42866302796592;
 }
 
 object ZIPload {
@@ -2132,8 +2138,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.43;
 	parent meter_GLD_B1_N87_B_0005;
-	air_temperature 78.67055405494344;
-	mass_temperature 78.67765405494345;
+	air_temperature 77.72022867791947;
+	mass_temperature 77.72732867791947;
 }
 
 object ZIPload {
@@ -2180,8 +2186,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N7_A_0006;
-	air_temperature 73.94985783050397;
-	mass_temperature 73.74325783050398;
+	air_temperature 74.17031244997001;
+	mass_temperature 73.96371244997002;
 }
 
 object ZIPload {
@@ -2228,8 +2234,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N94_A_0007;
-	air_temperature 67.97613253004937;
-	mass_temperature 67.50303253004937;
+	air_temperature 69.16149105460921;
+	mass_temperature 68.68839105460921;
 }
 
 object ZIPload {
@@ -2276,8 +2282,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N76_A_0008;
-	air_temperature 75.67870548274621;
-	mass_temperature 75.5771054827462;
+	air_temperature 75.87679013496802;
+	mass_temperature 75.77519013496801;
 }
 
 object ZIPload {
@@ -2324,8 +2330,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.88;
 	parent meter_GLD_B1_N28_A_0009;
-	air_temperature 76.89417745462018;
-	mass_temperature 76.84427745462018;
+	air_temperature 77.83032255441135;
+	mass_temperature 77.78042255441136;
 }
 
 object ZIPload {
@@ -2372,8 +2378,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.35;
 	parent meter_GLD_B1_N2_B_0010;
-	air_temperature 72.26409249478505;
-	mass_temperature 72.57089249478504;
+	air_temperature 73.7228090489526;
+	mass_temperature 74.0296090489526;
 }
 
 object ZIPload {
@@ -2420,8 +2426,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.16;
 	parent meter_GLD_B1_N88_A_0011;
-	air_temperature 70.59361925016628;
-	mass_temperature 72.04611925016629;
+	air_temperature 71.44664230611401;
+	mass_temperature 72.89914230611402;
 }
 
 object ZIPload {
@@ -2468,8 +2474,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.22;
 	parent meter_GLD_B1_N83_C_0012;
-	air_temperature 77.93219834652083;
-	mass_temperature 77.88479834652084;
+	air_temperature 76.58064988238183;
+	mass_temperature 76.53324988238184;
 }
 
 object ZIPload {
@@ -2516,8 +2522,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.3;
 	parent meter_GLD_B1_N9_A_0013;
-	air_temperature 74.61796345670794;
-	mass_temperature 74.44886345670794;
+	air_temperature 72.60672274136337;
+	mass_temperature 72.43762274136337;
 }
 
 object ZIPload {
@@ -2564,8 +2570,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N38_B_0014;
-	air_temperature 75.60730855661458;
-	mass_temperature 75.44330855661458;
+	air_temperature 74.90060514277988;
+	mass_temperature 74.73660514277988;
 }
 
 object ZIPload {
@@ -2612,8 +2618,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.95;
 	parent meter_GLD_B1_N62_C_0015;
-	air_temperature 74.95614180401243;
-	mass_temperature 74.77524180401244;
+	air_temperature 73.66143883701646;
+	mass_temperature 73.48053883701647;
 }
 
 object ZIPload {
@@ -2660,8 +2666,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.27;
 	parent meter_GLD_B1_N32_C_0016;
-	air_temperature 75.44363268336267;
-	mass_temperature 75.38413268336267;
+	air_temperature 74.80538307091715;
+	mass_temperature 74.74588307091715;
 }
 
 object ZIPload {
@@ -2708,8 +2714,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.3;
 	parent meter_GLD_B1_N30_A_0017;
-	air_temperature 69.55340084834059;
-	mass_temperature 69.31580084834059;
+	air_temperature 69.73188321305172;
+	mass_temperature 69.49428321305172;
 }
 
 object ZIPload {
@@ -2756,8 +2762,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 1.46;
 	parent meter_GLD_B1_N100_C_0018;
-	air_temperature 68.71277209253593;
-	mass_temperature 70.02187209253593;
+	air_temperature 69.38239561310968;
+	mass_temperature 70.69149561310968;
 }
 
 object ZIPload {
@@ -2804,8 +2810,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.68;
 	parent meter_GLD_B1_N17_C_0019;
-	air_temperature 76.69033451433853;
-	mass_temperature 76.59853451433854;
+	air_temperature 76.00509599520707;
+	mass_temperature 75.91329599520708;
 }
 
 object ZIPload {
@@ -2852,8 +2858,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.81;
 	parent meter_GLD_B1_N42_A_0020;
-	air_temperature 71.14840319235513;
-	mass_temperature 70.76700319235513;
+	air_temperature 68.48003833619605;
+	mass_temperature 68.09863833619605;
 }
 
 object ZIPload {
@@ -2900,8 +2906,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.97;
 	parent meter_GLD_B1_N43_B_0021;
-	air_temperature 70.82876194092563;
-	mass_temperature 70.92666194092563;
+	air_temperature 68.70273813792161;
+	mass_temperature 68.80063813792161;
 }
 
 object ZIPload {
@@ -2948,8 +2954,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 1.22;
 	parent meter_GLD_B1_N22_B_0022;
-	air_temperature 76.02991924329692;
-	mass_temperature 75.85221924329691;
+	air_temperature 76.05202013128097;
+	mass_temperature 75.87432013128097;
 }
 
 object ZIPload {
@@ -2996,8 +3002,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N62_C_0023;
-	air_temperature 74.45212117938162;
-	mass_temperature 74.35962117938162;
+	air_temperature 74.55674182658264;
+	mass_temperature 74.46424182658264;
 }
 
 object ZIPload {
@@ -3044,8 +3050,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.42;
 	parent meter_GLD_B1_N79_A_0024;
-	air_temperature 70.74067096032469;
-	mass_temperature 72.20557096032469;
+	air_temperature 72.31809002838166;
+	mass_temperature 73.78299002838166;
 }
 
 object ZIPload {
@@ -3092,8 +3098,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N104_C_0025;
-	air_temperature 72.35400832305133;
-	mass_temperature 72.89120832305133;
+	air_temperature 74.19384176208709;
+	mass_temperature 74.73104176208709;
 }
 
 object ZIPload {
@@ -3140,8 +3146,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.35;
 	parent meter_GLD_B1_N104_C_0026;
-	air_temperature 74.90164098960857;
-	mass_temperature 74.80974098960857;
+	air_temperature 74.92864817392162;
+	mass_temperature 74.83674817392162;
 }
 
 object ZIPload {
@@ -3188,8 +3194,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.92;
 	parent meter_GLD_B1_N114_A_0027;
-	air_temperature 70.02565593148111;
-	mass_temperature 70.48965593148111;
+	air_temperature 69.55869797874657;
+	mass_temperature 70.02269797874656;
 }
 
 object ZIPload {
@@ -3236,8 +3242,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N103_C_0028;
-	air_temperature 66.50606785800333;
-	mass_temperature 66.51336785800333;
+	air_temperature 66.32152842701683;
+	mass_temperature 66.32882842701683;
 }
 
 object ZIPload {
@@ -3284,8 +3290,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.32;
 	parent meter_GLD_B1_N20_A_0029;
-	air_temperature 69.38996693783216;
-	mass_temperature 70.68186693783217;
+	air_temperature 69.28230651217801;
+	mass_temperature 70.57420651217802;
 }
 
 object ZIPload {
@@ -3332,8 +3338,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.61;
 	parent meter_GLD_B1_N12_B_0030;
-	air_temperature 72.55917211214428;
-	mass_temperature 72.98847211214428;
+	air_temperature 73.22090261510971;
+	mass_temperature 73.6502026151097;
 }
 
 object ZIPload {
@@ -3380,8 +3386,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.95;
 	parent meter_GLD_B1_N10_A_0031;
-	air_temperature 73.76017626249678;
-	mass_temperature 73.56617626249678;
+	air_temperature 72.61571048774357;
+	mass_temperature 72.42171048774357;
 }
 
 object ZIPload {
@@ -3428,8 +3434,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.76;
 	parent meter_GLD_B1_N75_C_0032;
-	air_temperature 74.30742667461037;
-	mass_temperature 74.08172667461037;
+	air_temperature 74.31835673306541;
+	mass_temperature 74.09265673306541;
 }
 
 object ZIPload {
@@ -3476,8 +3482,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N73_C_0033;
-	air_temperature 77.38829417651242;
-	mass_temperature 77.3271941765124;
+	air_temperature 76.41693367390803;
+	mass_temperature 76.35583367390802;
 }
 
 object ZIPload {
@@ -3524,8 +3530,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.35;
 	parent meter_GLD_B1_N34_C_0034;
-	air_temperature 70.31296913809658;
-	mass_temperature 71.68956913809659;
+	air_temperature 70.63492690519598;
+	mass_temperature 72.01152690519599;
 }
 
 object ZIPload {
@@ -3572,8 +3578,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 1.08;
 	parent meter_GLD_B1_N68_A_0035;
-	air_temperature 73.11424905275977;
-	mass_temperature 72.84924905275977;
+	air_temperature 73.22280266099436;
+	mass_temperature 72.95780266099436;
 }
 
 object ZIPload {
@@ -3620,8 +3626,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.38;
 	parent meter_GLD_B1_N2_B_0036;
-	air_temperature 75.39228628978199;
-	mass_temperature 75.300086289782;
+	air_temperature 76.32119604606754;
+	mass_temperature 76.22899604606755;
 }
 
 object ZIPload {
@@ -3668,8 +3674,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.16;
 	parent meter_GLD_B1_N1_A_0037;
-	air_temperature 68.40328803777706;
-	mass_temperature 68.78908803777706;
+	air_temperature 66.82482022511356;
+	mass_temperature 67.21062022511356;
 }
 
 object ZIPload {
@@ -3716,8 +3722,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.86;
 	parent meter_GLD_B1_N71_A_0038;
-	air_temperature 72.48374405863645;
-	mass_temperature 72.15284405863645;
+	air_temperature 72.194762164825;
+	mass_temperature 71.863862164825;
 }
 
 object ZIPload {
@@ -3764,8 +3770,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.86;
 	parent meter_GLD_B1_N96_B_0039;
-	air_temperature 70.88189176441891;
-	mass_temperature 70.5151917644189;
+	air_temperature 69.25805698669386;
+	mass_temperature 68.89135698669385;
 }
 
 object ZIPload {
@@ -3812,8 +3818,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 1.46;
 	parent meter_GLD_B1_N11_A_0040;
-	air_temperature 72.91258966324436;
-	mass_temperature 72.78858966324437;
+	air_temperature 71.85235621572551;
+	mass_temperature 71.72835621572551;
 }
 
 object ZIPload {
@@ -3860,8 +3866,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.38;
 	parent meter_GLD_B1_N106_B_0041;
-	air_temperature 74.65518100762392;
-	mass_temperature 74.58628100762392;
+	air_temperature 72.43649974546027;
+	mass_temperature 72.36759974546027;
 }
 
 object ZIPload {
@@ -3908,8 +3914,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N20_A_0042;
-	air_temperature 77.31307616916317;
-	mass_temperature 77.26817616916317;
+	air_temperature 76.14646530638001;
+	mass_temperature 76.10156530638001;
 }
 
 object ZIPload {
@@ -3956,8 +3962,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.3;
 	parent meter_GLD_B1_N58_B_0043;
-	air_temperature 71.1706849811119;
-	mass_temperature 71.7604849811119;
+	air_temperature 69.71297635181791;
+	mass_temperature 70.30277635181791;
 }
 
 object ZIPload {
@@ -4004,8 +4010,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N84_C_0044;
-	air_temperature 73.34470764846093;
-	mass_temperature 73.20390764846093;
+	air_temperature 73.88322284633549;
+	mass_temperature 73.74242284633549;
 }
 
 object ZIPload {
@@ -4052,8 +4058,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.32;
 	parent meter_GLD_B1_N45_A_0045;
-	air_temperature 74.5519734275055;
-	mass_temperature 74.3863734275055;
+	air_temperature 72.56568652562711;
+	mass_temperature 72.40008652562712;
 }
 
 object ZIPload {
@@ -4100,8 +4106,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.97;
 	parent meter_GLD_B1_N83_C_0046;
-	air_temperature 76.88764397722892;
-	mass_temperature 76.82824397722891;
+	air_temperature 76.73314308886914;
+	mass_temperature 76.67374308886913;
 }
 
 object ZIPload {
@@ -4148,8 +4154,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N5_C_0047;
-	air_temperature 74.10097955946446;
-	mass_temperature 73.90457955946447;
+	air_temperature 72.40003020890799;
+	mass_temperature 72.203630208908;
 }
 
 object ZIPload {
@@ -4196,8 +4202,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N82_A_0048;
-	air_temperature 76.65571310222339;
-	mass_temperature 76.66031310222338;
+	air_temperature 78.03481120706526;
+	mass_temperature 78.03941120706526;
 }
 
 object ZIPload {
@@ -4244,8 +4250,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 1.08;
 	parent meter_GLD_B1_N33_A_0049;
-	air_temperature 74.2556600409532;
-	mass_temperature 74.0044600409532;
+	air_temperature 72.43616198653383;
+	mass_temperature 72.18496198653384;
 }
 
 object ZIPload {
@@ -4292,8 +4298,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.35;
 	parent meter_GLD_B1_N60_A_0050;
-	air_temperature 78.0647169780173;
-	mass_temperature 78.02221697801731;
+	air_temperature 77.22717447612334;
+	mass_temperature 77.18467447612335;
 }
 
 object ZIPload {
@@ -4340,8 +4346,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.14;
 	parent meter_GLD_B1_N68_A_0051;
-	air_temperature 76.33943830014647;
-	mass_temperature 77.23773830014648;
+	air_temperature 75.68705874790386;
+	mass_temperature 76.58535874790387;
 }
 
 object ZIPload {
@@ -4388,8 +4394,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.38;
 	parent meter_GLD_B1_N5_C_0052;
-	air_temperature 77.37393959945743;
-	mass_temperature 77.33123959945743;
+	air_temperature 76.08507343611218;
+	mass_temperature 76.04237343611219;
 }
 
 object ZIPload {
@@ -4436,8 +4442,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.47;
 	parent meter_GLD_B1_N79_A_0053;
-	air_temperature 73.20732483550285;
-	mass_temperature 73.08152483550285;
+	air_temperature 73.42302733607009;
+	mass_temperature 73.2972273360701;
 }
 
 object ZIPload {
@@ -4484,8 +4490,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N37_A_0054;
-	air_temperature 77.28911183533337;
-	mass_temperature 77.29971183533337;
+	air_temperature 78.63236540395661;
+	mass_temperature 78.64296540395661;
 }
 
 object ZIPload {
@@ -4532,8 +4538,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.38;
 	parent meter_GLD_B1_N52_A_0055;
-	air_temperature 73.86219816855655;
-	mass_temperature 74.79579816855654;
+	air_temperature 72.76430859928527;
+	mass_temperature 73.69790859928527;
 }
 
 object ZIPload {
@@ -4580,8 +4586,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 1.19;
 	parent meter_GLD_B1_N88_A_0056;
-	air_temperature 72.68125413991046;
-	mass_temperature 72.34975413991046;
+	air_temperature 73.84837962849755;
+	mass_temperature 73.51687962849755;
 }
 
 object ZIPload {
@@ -4628,8 +4634,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.41;
 	parent meter_GLD_B1_N39_B_0057;
-	air_temperature 72.03964027311866;
-	mass_temperature 71.85084027311866;
+	air_temperature 72.61941594356261;
+	mass_temperature 72.43061594356261;
 }
 
 object ZIPload {
@@ -4676,8 +4682,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.38;
 	parent meter_GLD_B1_N64_B_0058;
-	air_temperature 74.7659442744318;
-	mass_temperature 74.6301442744318;
+	air_temperature 75.34339920491723;
+	mass_temperature 75.20759920491723;
 }
 
 object ZIPload {
@@ -4724,8 +4730,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N95_B_0059;
-	air_temperature 69.87775867983132;
-	mass_temperature 69.57225867983131;
+	air_temperature 68.64108553951178;
+	mass_temperature 68.33558553951177;
 }
 
 object ZIPload {
@@ -4772,8 +4778,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N50_C_0060;
-	air_temperature 70.36153793848266;
-	mass_temperature 69.99253793848266;
+	air_temperature 68.551204464985;
+	mass_temperature 68.182204464985;
 }
 
 object ZIPload {
@@ -4820,8 +4826,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 1.03;
 	parent meter_GLD_B1_N98_A_0061;
-	air_temperature 73.92099896181053;
-	mass_temperature 73.73219896181052;
+	air_temperature 74.8730266344748;
+	mass_temperature 74.6842266344748;
 }
 
 object ZIPload {
@@ -4868,8 +4874,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.19;
 	parent meter_GLD_B1_N24_C_0062;
-	air_temperature 79.94992240015641;
-	mass_temperature 80.00512240015641;
+	air_temperature 79.831667513334;
+	mass_temperature 79.886867513334;
 }
 
 object ZIPload {
@@ -4916,8 +4922,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.68;
 	parent meter_GLD_B1_N76_A_0063;
-	air_temperature 79.06944598643945;
-	mass_temperature 79.06344598643945;
+	air_temperature 77.76363194309575;
+	mass_temperature 77.75763194309575;
 }
 
 object ZIPload {
@@ -4964,8 +4970,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N79_A_0064;
-	air_temperature 71.86913589421292;
-	mass_temperature 71.59003589421292;
+	air_temperature 70.89591263209182;
+	mass_temperature 70.61681263209182;
 }
 
 object ZIPload {
@@ -5012,8 +5018,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.43;
 	parent meter_GLD_B1_N38_B_0065;
-	air_temperature 78.36022469733332;
-	mass_temperature 78.36712469733332;
+	air_temperature 78.34155778049912;
+	mass_temperature 78.34845778049912;
 }
 
 object ZIPload {
@@ -5060,8 +5066,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.86;
 	parent meter_GLD_B1_N104_C_0066;
-	air_temperature 73.71319595118472;
-	mass_temperature 73.48169595118472;
+	air_temperature 74.72941568020524;
+	mass_temperature 74.49791568020524;
 }
 
 object ZIPload {
@@ -5108,8 +5114,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.97;
 	parent meter_GLD_B1_N10_A_0067;
-	air_temperature 74.01762622272241;
-	mass_temperature 75.70172622272241;
+	air_temperature 73.87294047864854;
+	mass_temperature 75.55704047864855;
 }
 
 object ZIPload {
@@ -5156,8 +5162,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N39_B_0068;
-	air_temperature 73.13668925554013;
-	mass_temperature 72.94298925554014;
+	air_temperature 73.05127094340705;
+	mass_temperature 72.85757094340705;
 }
 
 object ZIPload {
@@ -5204,8 +5210,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.88;
 	parent meter_GLD_B1_N34_C_0069;
-	air_temperature 76.0987734231852;
-	mass_temperature 76.04007342318519;
+	air_temperature 75.74305372498996;
+	mass_temperature 75.68435372498996;
 }
 
 object ZIPload {
@@ -5252,8 +5258,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.44;
 	parent meter_GLD_B1_N77_B_0070;
-	air_temperature 71.65270443049448;
-	mass_temperature 71.46570443049448;
+	air_temperature 73.2365366465312;
+	mass_temperature 73.04953664653121;
 }
 
 object ZIPload {
@@ -5300,8 +5306,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.32;
 	parent meter_GLD_B1_N35_A_0071;
-	air_temperature 81.00955691742948;
-	mass_temperature 81.21555691742948;
+	air_temperature 81.14006572773724;
+	mass_temperature 81.34606572773724;
 }
 
 object ZIPload {
@@ -5348,8 +5354,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.27;
 	parent meter_GLD_B1_N41_C_0072;
-	air_temperature 73.20208749931231;
-	mass_temperature 72.99798749931232;
+	air_temperature 73.73383732654801;
+	mass_temperature 73.52973732654802;
 }
 
 object ZIPload {
@@ -5396,8 +5402,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.81;
 	parent meter_GLD_B1_N48_C_0073;
-	air_temperature 75.60215047205845;
-	mass_temperature 75.48815047205846;
+	air_temperature 77.13438326176052;
+	mass_temperature 77.02038326176053;
 }
 
 object ZIPload {
@@ -5444,8 +5450,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 1.73;
 	parent meter_GLD_B1_N99_B_0074;
-	air_temperature 76.46540625756704;
-	mass_temperature 76.47470625756705;
+	air_temperature 78.51187306883517;
+	mass_temperature 78.52117306883518;
 }
 
 object ZIPload {
@@ -5492,8 +5498,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.86;
 	parent meter_GLD_B1_N49_A_0075;
-	air_temperature 74.02902394729108;
-	mass_temperature 75.95552394729108;
+	air_temperature 72.86888312037648;
+	mass_temperature 74.79538312037648;
 }
 
 object ZIPload {
@@ -5540,8 +5546,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.43;
 	parent meter_GLD_B1_N11_A_0076;
-	air_temperature 79.24198437133566;
-	mass_temperature 79.30458437133566;
+	air_temperature 77.85070566238313;
+	mass_temperature 77.91330566238314;
 }
 
 object ZIPload {
@@ -5588,8 +5594,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N47_A_0077;
-	air_temperature 77.01730670433429;
-	mass_temperature 77.00670670433429;
+	air_temperature 78.73872080544187;
+	mass_temperature 78.72812080544188;
 }
 
 object ZIPload {
@@ -5636,8 +5642,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.74;
 	parent meter_GLD_B1_N47_C_0078;
-	air_temperature 73.12508382357392;
-	mass_temperature 72.90368382357391;
+	air_temperature 72.92627499599578;
+	mass_temperature 72.70487499599578;
 }
 
 object ZIPload {
@@ -5684,8 +5690,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N16_C_0079;
-	air_temperature 72.62912428353772;
-	mass_temperature 73.60512428353772;
+	air_temperature 72.41230844773614;
+	mass_temperature 73.38830844773614;
 }
 
 object ZIPload {
@@ -5732,8 +5738,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.64;
 	parent meter_GLD_B1_N35_A_0080;
-	air_temperature 76.25156050702228;
-	mass_temperature 76.21496050702228;
+	air_temperature 77.43100429389436;
+	mass_temperature 77.39440429389437;
 }
 
 object ZIPload {
@@ -5780,8 +5786,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N24_C_0081;
-	air_temperature 74.62850745956493;
-	mass_temperature 74.54260745956492;
+	air_temperature 76.39319987938441;
+	mass_temperature 76.3072998793844;
 }
 
 object ZIPload {
@@ -5828,8 +5834,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 1.3;
 	parent meter_GLD_B1_N104_C_0082;
-	air_temperature 74.49965409445815;
-	mass_temperature 74.98525409445816;
+	air_temperature 73.97989823308909;
+	mass_temperature 74.4654982330891;
 }
 
 object ZIPload {
@@ -5876,8 +5882,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.38;
 	parent meter_GLD_B1_N112_A_0083;
-	air_temperature 71.83777940731467;
-	mass_temperature 71.61467940731467;
+	air_temperature 74.29421114221768;
+	mass_temperature 74.07111114221767;
 }
 
 object ZIPload {
@@ -5924,8 +5930,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.64;
 	parent meter_GLD_B1_N86_B_0084;
-	air_temperature 76.77559852722806;
-	mass_temperature 76.78099852722805;
+	air_temperature 77.59286271151765;
+	mass_temperature 77.59826271151765;
 }
 
 object ZIPload {
@@ -5972,8 +5978,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.76;
 	parent meter_GLD_B1_N74_C_0085;
-	air_temperature 73.62962903973828;
-	mass_temperature 73.46192903973828;
+	air_temperature 75.89733061437097;
+	mass_temperature 75.72963061437098;
 }
 
 object ZIPload {
@@ -6020,8 +6026,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.32;
 	parent meter_GLD_B1_N56_B_0086;
-	air_temperature 69.6780481159282;
-	mass_temperature 69.3730481159282;
+	air_temperature 70.44005591281116;
+	mass_temperature 70.13505591281115;
 }
 
 object ZIPload {
@@ -6068,8 +6074,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.74;
 	parent meter_GLD_B1_N47_A_0087;
-	air_temperature 70.53634800971389;
-	mass_temperature 70.44014800971388;
+	air_temperature 71.24832035617082;
+	mass_temperature 71.15212035617081;
 }
 
 object ZIPload {
@@ -6116,8 +6122,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.03;
 	parent meter_GLD_B1_N106_B_0088;
-	air_temperature 72.4965281491914;
-	mass_temperature 72.8948281491914;
+	air_temperature 73.71168100589144;
+	mass_temperature 74.10998100589143;
 }
 
 object ZIPload {
@@ -6164,8 +6170,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 1.24;
 	parent meter_GLD_B1_N35_A_0089;
-	air_temperature 80.24844431465708;
-	mass_temperature 80.33744431465708;
+	air_temperature 79.82381421716357;
+	mass_temperature 79.91281421716357;
 }
 
 object ZIPload {
@@ -6212,8 +6218,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.08;
 	parent meter_GLD_B1_N65_C_0090;
-	air_temperature 69.81661594492647;
-	mass_temperature 70.97351594492648;
+	air_temperature 68.71108976050361;
+	mass_temperature 69.86798976050362;
 }
 
 object ZIPload {
@@ -6260,8 +6266,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N76_B_0091;
-	air_temperature 72.36899775780769;
-	mass_temperature 72.12289775780768;
+	air_temperature 74.31705281505577;
+	mass_temperature 74.07095281505576;
 }
 
 object ZIPload {
@@ -6308,8 +6314,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.38;
 	parent meter_GLD_B1_N90_B_0092;
-	air_temperature 73.44312270370216;
-	mass_temperature 73.54572270370215;
+	air_temperature 73.70760353773197;
+	mass_temperature 73.81020353773197;
 }
 
 object ZIPload {
@@ -6356,8 +6362,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.92;
 	parent meter_GLD_B1_N1_A_0093;
-	air_temperature 75.76222009191969;
-	mass_temperature 75.67142009191969;
+	air_temperature 76.98692821995618;
+	mass_temperature 76.89612821995618;
 }
 
 object ZIPload {
@@ -6404,8 +6410,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.41;
 	parent meter_GLD_B1_N90_B_0094;
-	air_temperature 74.43358914676047;
-	mass_temperature 74.24938914676046;
+	air_temperature 74.23618488373951;
+	mass_temperature 74.05198488373951;
 }
 
 object ZIPload {
@@ -6452,8 +6458,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.38;
 	parent meter_GLD_B1_N9_A_0095;
-	air_temperature 75.40847104845083;
-	mass_temperature 75.23477104845084;
+	air_temperature 74.47409167225385;
+	mass_temperature 74.30039167225385;
 }
 
 object ZIPload {
@@ -6500,8 +6506,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N64_B_0096;
-	air_temperature 69.25227885035414;
-	mass_temperature 69.05877885035414;
+	air_temperature 69.83736616399864;
+	mass_temperature 69.64386616399864;
 }
 
 object ZIPload {
@@ -6548,8 +6554,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.47;
 	parent meter_GLD_B1_N102_C_0097;
-	air_temperature 74.71143229572345;
-	mass_temperature 74.56193229572345;
+	air_temperature 74.22336925444364;
+	mass_temperature 74.07386925444364;
 }
 
 object ZIPload {
@@ -6596,8 +6602,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.95;
 	parent meter_GLD_B1_N82_A_0098;
-	air_temperature 71.63657268934178;
-	mass_temperature 71.37957268934177;
+	air_temperature 72.13262820474021;
+	mass_temperature 71.87562820474021;
 }
 
 object ZIPload {
@@ -6644,8 +6650,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N4_C_0099;
-	air_temperature 79.19222800889813;
-	mass_temperature 79.19692800889813;
+	air_temperature 76.5648730518713;
+	mass_temperature 76.5695730518713;
 }
 
 object ZIPload {
@@ -6692,8 +6698,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N88_A_0100;
-	air_temperature 78.67634318428371;
-	mass_temperature 78.7124431842837;
+	air_temperature 79.7586897096946;
+	mass_temperature 79.79478970969458;
 }
 
 object ZIPload {
@@ -6740,8 +6746,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N111_A_0101;
-	air_temperature 77.7241984754349;
-	mass_temperature 77.67439847543491;
+	air_temperature 77.84464782003484;
+	mass_temperature 77.79484782003485;
 }
 
 object ZIPload {
@@ -6788,8 +6794,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.64;
 	parent meter_GLD_B1_N33_A_0102;
-	air_temperature 77.05826897389093;
-	mass_temperature 77.06346897389093;
+	air_temperature 79.07958199342147;
+	mass_temperature 79.08478199342147;
 }
 
 object ZIPload {
@@ -6836,8 +6842,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 1.08;
 	parent meter_GLD_B1_N87_B_0103;
-	air_temperature 72.14735308690219;
-	mass_temperature 72.5615530869022;
+	air_temperature 70.65236569862643;
+	mass_temperature 71.06656569862643;
 }
 
 object ZIPload {
@@ -6884,8 +6890,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.35;
 	parent meter_GLD_B1_N90_B_0104;
-	air_temperature 71.92771839784054;
-	mass_temperature 71.66701839784054;
+	air_temperature 70.55071199756513;
+	mass_temperature 70.29001199756513;
 }
 
 object ZIPload {
@@ -6932,8 +6938,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N87_B_0105;
-	air_temperature 71.35442747752846;
-	mass_temperature 71.13552747752847;
+	air_temperature 71.72350110392739;
+	mass_temperature 71.5046011039274;
 }
 
 object ZIPload {
@@ -6980,8 +6986,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N88_A_0106;
-	air_temperature 70.53435855431194;
-	mass_temperature 70.21665855431193;
+	air_temperature 70.75966501498168;
+	mass_temperature 70.44196501498168;
 }
 
 object ZIPload {
@@ -7028,8 +7034,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.28;
 	parent meter_GLD_B1_N52_A_0107;
-	air_temperature 75.31415227913426;
-	mass_temperature 75.13935227913426;
+	air_temperature 75.9932158061049;
+	mass_temperature 75.8184158061049;
 }
 
 object ZIPload {
@@ -7076,8 +7082,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N32_C_0108;
-	air_temperature 74.26494062290627;
-	mass_temperature 74.14304062290626;
+	air_temperature 74.4856896498078;
+	mass_temperature 74.36378964980779;
 }
 
 object ZIPload {
@@ -7124,8 +7130,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.64;
 	parent meter_GLD_B1_N45_A_0109;
-	air_temperature 75.59915162659885;
-	mass_temperature 75.50855162659886;
+	air_temperature 74.57736335499247;
+	mass_temperature 74.48676335499248;
 }
 
 object ZIPload {
@@ -7172,8 +7178,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N48_B_0110;
-	air_temperature 75.84741288694147;
-	mass_temperature 75.80481288694146;
+	air_temperature 75.9534944943016;
+	mass_temperature 75.91089449430159;
 }
 
 object ZIPload {
@@ -7220,8 +7226,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.88;
 	parent meter_GLD_B1_N55_A_0111;
-	air_temperature 72.20203950995332;
-	mass_temperature 72.01733950995332;
+	air_temperature 71.46315662716005;
+	mass_temperature 71.27845662716004;
 }
 
 object ZIPload {
@@ -7268,8 +7274,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N79_A_0112;
-	air_temperature 75.59803999287703;
-	mass_temperature 75.50103999287704;
+	air_temperature 76.43014513376333;
+	mass_temperature 76.33314513376334;
 }
 
 object ZIPload {
@@ -7316,8 +7322,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N98_A_0113;
-	air_temperature 73.64029853261677;
-	mass_temperature 73.37279853261677;
+	air_temperature 72.59601293505558;
+	mass_temperature 72.32851293505558;
 }
 
 object ZIPload {
@@ -7364,8 +7370,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 1.35;
 	parent meter_GLD_B1_N20_A_0114;
-	air_temperature 78.95173568029197;
-	mass_temperature 78.94103568029198;
+	air_temperature 77.45553349824822;
+	mass_temperature 77.44483349824822;
 }
 
 object ZIPload {
@@ -7412,8 +7418,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.35;
 	parent meter_GLD_B1_N16_C_0115;
-	air_temperature 71.8948542958645;
-	mass_temperature 71.67675429586451;
+	air_temperature 71.99249428591868;
+	mass_temperature 71.77439428591869;
 }
 
 object ZIPload {
@@ -7460,8 +7466,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N35_A_0116;
-	air_temperature 72.92261351323118;
-	mass_temperature 72.72961351323117;
+	air_temperature 75.0253760624029;
+	mass_temperature 74.83237606240289;
 }
 
 object ZIPload {
@@ -7508,8 +7514,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.81;
 	parent meter_GLD_B1_N96_B_0117;
-	air_temperature 75.05967610420925;
-	mass_temperature 74.89147610420925;
+	air_temperature 73.6451525029074;
+	mass_temperature 73.4769525029074;
 }
 
 object ZIPload {
@@ -7556,8 +7562,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.49;
 	parent meter_GLD_B1_N37_A_0118;
-	air_temperature 77.93169953820829;
-	mass_temperature 77.92389953820829;
+	air_temperature 79.04169496170718;
+	mass_temperature 79.03389496170718;
 }
 
 object ZIPload {
@@ -7604,8 +7610,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.57;
 	parent meter_GLD_B1_N86_B_0119;
-	air_temperature 74.76148500669443;
-	mass_temperature 74.68148500669443;
+	air_temperature 73.77026327763936;
+	mass_temperature 73.69026327763936;
 }
 
 object ZIPload {
@@ -7652,8 +7658,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N112_A_0120;
-	air_temperature 77.40152945697152;
-	mass_temperature 77.35582945697152;
+	air_temperature 77.19138510526183;
+	mass_temperature 77.14568510526183;
 }
 
 object ZIPload {
@@ -7700,8 +7706,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N47_A_0121;
-	air_temperature 78.52891505308861;
-	mass_temperature 78.52381505308861;
+	air_temperature 78.91538132924589;
+	mass_temperature 78.91028132924589;
 }
 
 object ZIPload {
@@ -7748,8 +7754,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N19_A_0122;
-	air_temperature 73.56121481070093;
-	mass_temperature 73.40141481070093;
+	air_temperature 75.02918376689433;
+	mass_temperature 74.86938376689433;
 }
 
 object ZIPload {
@@ -7796,8 +7802,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N76_B_0123;
-	air_temperature 76.43336086377424;
-	mass_temperature 76.37866086377423;
+	air_temperature 77.92042891379312;
+	mass_temperature 77.8657289137931;
 }
 
 object ZIPload {
@@ -7844,8 +7850,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 1.08;
 	parent meter_GLD_B1_N114_A_0124;
-	air_temperature 70.28234149499573;
-	mass_temperature 69.97814149499573;
+	air_temperature 72.12103138380834;
+	mass_temperature 71.81683138380833;
 }
 
 object ZIPload {
@@ -7892,8 +7898,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N71_A_0125;
-	air_temperature 70.81571767833623;
-	mass_temperature 70.70601767833622;
+	air_temperature 71.75304436345283;
+	mass_temperature 71.64334436345283;
 }
 
 object ZIPload {
@@ -7940,8 +7946,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N37_A_0126;
-	air_temperature 77.20270698249337;
-	mass_temperature 77.15130698249337;
+	air_temperature 77.92524514469801;
+	mass_temperature 77.87384514469801;
 }
 
 object ZIPload {
@@ -7988,8 +7994,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N98_A_0127;
-	air_temperature 74.53757380103092;
-	mass_temperature 75.03267380103091;
+	air_temperature 75.29411402562573;
+	mass_temperature 75.78921402562572;
 }
 
 object ZIPload {
@@ -8036,8 +8042,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.32;
 	parent meter_GLD_B1_N4_C_0128;
-	air_temperature 78.92915165077225;
-	mass_temperature 78.93715165077225;
+	air_temperature 77.54057797571569;
+	mass_temperature 77.54857797571569;
 }
 
 object ZIPload {
@@ -8084,8 +8090,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.3;
 	parent meter_GLD_B1_N16_C_0129;
-	air_temperature 77.74643710515306;
-	mass_temperature 77.75223710515306;
+	air_temperature 78.02311917877297;
+	mass_temperature 78.02891917877297;
 }
 
 object ZIPload {
@@ -8132,8 +8138,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 1.01;
 	parent meter_GLD_B1_N65_B_0130;
-	air_temperature 77.40989673878013;
-	mass_temperature 77.39809673878013;
+	air_temperature 77.94026907075077;
+	mass_temperature 77.92846907075077;
 }
 
 object ZIPload {
@@ -8180,8 +8186,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.14;
 	parent meter_GLD_B1_N98_A_0131;
-	air_temperature 72.59485614915774;
-	mass_temperature 72.33475614915774;
+	air_temperature 72.90242182310114;
+	mass_temperature 72.64232182310114;
 }
 
 object ZIPload {
@@ -8228,8 +8234,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.34;
 	parent meter_GLD_B1_N103_C_0132;
-	air_temperature 73.18152738759952;
-	mass_temperature 73.07542738759952;
+	air_temperature 74.81933175245355;
+	mass_temperature 74.71323175245355;
 }
 
 object ZIPload {
@@ -8276,8 +8282,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.38;
 	parent meter_GLD_B1_N82_A_0133;
-	air_temperature 73.9697417873451;
-	mass_temperature 73.7884417873451;
+	air_temperature 73.36268197106301;
+	mass_temperature 73.18138197106302;
 }
 
 object ZIPload {
@@ -8324,8 +8330,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.35;
 	parent meter_GLD_B1_N76_C_0134;
-	air_temperature 72.50648902355805;
-	mass_temperature 72.33508902355804;
+	air_temperature 73.76076483582648;
+	mass_temperature 73.58936483582647;
 }
 
 object ZIPload {
@@ -8372,8 +8378,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N59_B_0135;
-	air_temperature 65.56228337117031;
-	mass_temperature 65.26428337117031;
+	air_temperature 65.1067631099221;
+	mass_temperature 64.8087631099221;
 }
 
 object ZIPload {
@@ -8420,8 +8426,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.37;
 	parent meter_GLD_B1_N65_B_0136;
-	air_temperature 70.78583973320545;
-	mass_temperature 70.53933973320545;
+	air_temperature 71.3545698477749;
+	mass_temperature 71.1080698477749;
 }
 
 object ZIPload {
@@ -8468,8 +8474,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.03;
 	parent meter_GLD_B1_N24_C_0137;
-	air_temperature 72.55287301638167;
-	mass_temperature 72.23897301638168;
+	air_temperature 74.30923508671714;
+	mass_temperature 73.99533508671715;
 }
 
 object ZIPload {
@@ -8516,8 +8522,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N7_A_0138;
-	air_temperature 75.15326984569836;
-	mass_temperature 74.99826984569836;
+	air_temperature 74.68436882233932;
+	mass_temperature 74.52936882233932;
 }
 
 object ZIPload {
@@ -8564,8 +8570,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.37;
 	parent meter_GLD_B1_N29_A_0139;
-	air_temperature 73.47704939246866;
-	mass_temperature 73.29534939246867;
+	air_temperature 72.71617635650378;
+	mass_temperature 72.53447635650379;
 }
 
 object ZIPload {
@@ -8612,8 +8618,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.44;
 	parent meter_GLD_B1_N51_A_0140;
-	air_temperature 73.11690659804212;
-	mass_temperature 72.91530659804212;
+	air_temperature 71.02154825150654;
+	mass_temperature 70.81994825150655;
 }
 
 object ZIPload {
@@ -8660,8 +8666,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.16;
 	parent meter_GLD_B1_N59_B_0141;
-	air_temperature 74.68612167149966;
-	mass_temperature 74.53012167149967;
+	air_temperature 72.95380605224432;
+	mass_temperature 72.79780605224433;
 }
 
 object ZIPload {
@@ -8708,8 +8714,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.3;
 	parent meter_GLD_B1_N34_C_0142;
-	air_temperature 74.89134654626721;
-	mass_temperature 74.79204654626722;
+	air_temperature 75.70075742560194;
+	mass_temperature 75.60145742560194;
 }
 
 object ZIPload {
@@ -8756,8 +8762,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N20_A_0143;
-	air_temperature 78.60392600432728;
-	mass_temperature 78.59872600432728;
+	air_temperature 78.4031942173853;
+	mass_temperature 78.3979942173853;
 }
 
 object ZIPload {
@@ -8804,8 +8810,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.32;
 	parent meter_GLD_B1_N65_A_0144;
-	air_temperature 76.42258116723893;
-	mass_temperature 76.32748116723893;
+	air_temperature 75.49653078551096;
+	mass_temperature 75.40143078551095;
 }
 
 object ZIPload {
@@ -8852,8 +8858,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N100_C_0145;
-	air_temperature 80.0507845899385;
-	mass_temperature 80.20468458993851;
+	air_temperature 81.4429331845865;
+	mass_temperature 81.5968331845865;
 }
 
 object ZIPload {
@@ -8900,8 +8906,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N16_C_0146;
-	air_temperature 78.1993331160055;
-	mass_temperature 78.1656331160055;
+	air_temperature 77.76206468069921;
+	mass_temperature 77.7283646806992;
 }
 
 object ZIPload {
@@ -8948,8 +8954,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N65_C_0147;
-	air_temperature 76.2096249717188;
-	mass_temperature 76.15892497171879;
+	air_temperature 75.8696509359131;
+	mass_temperature 75.8189509359131;
 }
 
 object ZIPload {
@@ -8996,8 +9002,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.76;
 	parent meter_GLD_B1_N73_C_0148;
-	air_temperature 75.2678731004918;
-	mass_temperature 75.05437310049179;
+	air_temperature 72.62270895817399;
+	mass_temperature 72.40920895817398;
 }
 
 object ZIPload {
@@ -9044,8 +9050,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.3;
 	parent meter_GLD_B1_N66_C_0149;
-	air_temperature 77.93716889156657;
-	mass_temperature 77.96806889156657;
+	air_temperature 79.50391092679011;
+	mass_temperature 79.53481092679012;
 }
 
 object ZIPload {
@@ -9092,8 +9098,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.92;
 	parent meter_GLD_B1_N107_B_0150;
-	air_temperature 73.26690897236891;
-	mass_temperature 72.9734089723689;
+	air_temperature 73.63387927479175;
+	mass_temperature 73.34037927479174;
 }
 
 object ZIPload {
@@ -9140,8 +9146,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N33_A_0151;
-	air_temperature 76.14388855067376;
-	mass_temperature 76.09838855067377;
+	air_temperature 77.19425574797033;
+	mass_temperature 77.14875574797034;
 }
 
 object ZIPload {
@@ -9188,8 +9194,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N99_B_0152;
-	air_temperature 71.47541662378939;
-	mass_temperature 71.44101662378938;
+	air_temperature 71.75518667391185;
+	mass_temperature 71.72078667391185;
 }
 
 object ZIPload {
@@ -9236,8 +9242,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N22_B_0153;
-	air_temperature 72.47878648058114;
-	mass_temperature 72.27848648058114;
+	air_temperature 72.67401021175912;
+	mass_temperature 72.47371021175913;
 }
 
 object ZIPload {
@@ -9284,8 +9290,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N20_A_0154;
-	air_temperature 72.35303277243395;
-	mass_temperature 72.10883277243394;
+	air_temperature 73.80187945646564;
+	mass_temperature 73.55767945646564;
 }
 
 object ZIPload {
@@ -9332,8 +9338,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 1.3;
 	parent meter_GLD_B1_N100_C_0155;
-	air_temperature 74.59206221882123;
-	mass_temperature 74.31466221882123;
+	air_temperature 72.9247558209815;
+	mass_temperature 72.6473558209815;
 }
 
 object ZIPload {
@@ -9380,8 +9386,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.97;
 	parent meter_GLD_B1_N52_A_0156;
-	air_temperature 74.02300414693683;
-	mass_temperature 75.66830414693683;
+	air_temperature 72.9067139809409;
+	mass_temperature 74.55201398094091;
 }
 
 object ZIPload {
@@ -9428,8 +9434,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.76;
 	parent meter_GLD_B1_N9_A_0157;
-	air_temperature 78.44414154817667;
-	mass_temperature 78.51564154817667;
+	air_temperature 78.61646180139014;
+	mass_temperature 78.68796180139014;
 }
 
 object ZIPload {
@@ -9476,8 +9482,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.41;
 	parent meter_GLD_B1_N90_B_0158;
-	air_temperature 70.61296879652515;
-	mass_temperature 72.34196879652515;
+	air_temperature 73.12168654603593;
+	mass_temperature 74.85068654603593;
 }
 
 object ZIPload {
@@ -9524,8 +9530,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.43;
 	parent meter_GLD_B1_N66_C_0159;
-	air_temperature 72.23229284967739;
-	mass_temperature 72.00279284967739;
+	air_temperature 71.86427958173307;
+	mass_temperature 71.63477958173307;
 }
 
 object ZIPload {
@@ -9572,8 +9578,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N70_A_0160;
-	air_temperature 69.45262297952459;
-	mass_temperature 70.26732297952458;
+	air_temperature 69.1915810910796;
+	mass_temperature 70.00628109107959;
 }
 
 object ZIPload {
@@ -9620,8 +9626,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.47;
 	parent meter_GLD_B1_N24_C_0161;
-	air_temperature 68.62977369652685;
-	mass_temperature 68.25027369652686;
+	air_temperature 68.34225374897278;
+	mass_temperature 67.96275374897279;
 }
 
 object ZIPload {
@@ -9668,8 +9674,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N37_A_0162;
-	air_temperature 74.48600982438819;
-	mass_temperature 74.37930982438819;
+	air_temperature 77.05621829835323;
+	mass_temperature 76.94951829835323;
 }
 
 object ZIPload {
@@ -9716,8 +9722,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.68;
 	parent meter_GLD_B1_N76_C_0163;
-	air_temperature 77.65632740741981;
-	mass_temperature 77.69232740741981;
+	air_temperature 79.84333881298447;
+	mass_temperature 79.87933881298447;
 }
 
 object ZIPload {
@@ -9764,8 +9770,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N65_A_0164;
-	air_temperature 72.44242888946843;
-	mass_temperature 72.20572888946843;
+	air_temperature 72.98893311205642;
+	mass_temperature 72.75223311205642;
 }
 
 object ZIPload {
@@ -9812,8 +9818,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N80_B_0165;
-	air_temperature 79.48224710992312;
-	mass_temperature 79.57524710992313;
+	air_temperature 79.54460828071596;
+	mass_temperature 79.63760828071597;
 }
 
 object ZIPload {
@@ -9860,8 +9866,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.41;
 	parent meter_GLD_B1_N48_B_0166;
-	air_temperature 76.17443588822442;
-	mass_temperature 76.04503588822442;
+	air_temperature 74.93089657208289;
+	mass_temperature 74.80149657208288;
 }
 
 object ZIPload {
@@ -9908,8 +9914,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N33_A_0167;
-	air_temperature 70.61155936526326;
-	mass_temperature 70.31735936526326;
+	air_temperature 71.716386309513;
+	mass_temperature 71.422186309513;
 }
 
 object ZIPload {
@@ -9956,8 +9962,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N49_C_0168;
-	air_temperature 78.63620524172981;
-	mass_temperature 78.70850524172981;
+	air_temperature 79.81335851268959;
+	mass_temperature 79.88565851268959;
 }
 
 object ZIPload {
@@ -10004,8 +10010,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.27;
 	parent meter_GLD_B1_N90_B_0169;
-	air_temperature 74.18717628876482;
-	mass_temperature 74.02227628876481;
+	air_temperature 73.34252731600235;
+	mass_temperature 73.17762731600234;
 }
 
 object ZIPload {
@@ -10052,8 +10058,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.92;
 	parent meter_GLD_B1_N111_A_0170;
-	air_temperature 74.82961936167213;
-	mass_temperature 74.67701936167212;
+	air_temperature 73.96779169479882;
+	mass_temperature 73.81519169479881;
 }
 
 object ZIPload {
@@ -10100,8 +10106,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.61;
 	parent meter_GLD_B1_N60_A_0171;
-	air_temperature 72.48350572421376;
-	mass_temperature 72.27810572421376;
+	air_temperature 72.54001798689926;
+	mass_temperature 72.33461798689926;
 }
 
 object ZIPload {
@@ -10148,8 +10154,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N58_B_0172;
-	air_temperature 72.51529058039718;
-	mass_temperature 73.53939058039718;
+	air_temperature 72.40666972457436;
+	mass_temperature 73.43076972457436;
 }
 
 object ZIPload {
@@ -10196,8 +10202,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.49;
 	parent meter_GLD_B1_N49_C_0173;
-	air_temperature 77.47483107200135;
-	mass_temperature 77.50623107200134;
+	air_temperature 77.85638471617114;
+	mass_temperature 77.88778471617113;
 }
 
 object ZIPload {
@@ -10244,8 +10250,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.97;
 	parent meter_GLD_B1_N92_C_0174;
-	air_temperature 72.57249952726394;
-	mass_temperature 72.20719952726394;
+	air_temperature 71.3131518799026;
+	mass_temperature 70.9478518799026;
 }
 
 object ZIPload {
@@ -10292,8 +10298,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.27;
 	parent meter_GLD_B1_N55_A_0175;
-	air_temperature 78.31614702514591;
-	mass_temperature 78.38024702514592;
+	air_temperature 78.50515551702655;
+	mass_temperature 78.56925551702656;
 }
 
 object ZIPload {
@@ -10340,8 +10346,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N104_C_0176;
-	air_temperature 76.58255184334116;
-	mass_temperature 76.46625184334117;
+	air_temperature 75.20946546290008;
+	mass_temperature 75.09316546290009;
 }
 
 object ZIPload {
@@ -10388,8 +10394,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.43;
 	parent meter_GLD_B1_N28_A_0177;
-	air_temperature 74.7006319090143;
-	mass_temperature 74.59933190901431;
+	air_temperature 74.29506123746211;
+	mass_temperature 74.19376123746211;
 }
 
 object ZIPload {
@@ -10436,8 +10442,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 1.3;
 	parent meter_GLD_B1_N42_A_0178;
-	air_temperature 74.47780211070926;
-	mass_temperature 75.61290211070926;
+	air_temperature 72.62587816610858;
+	mass_temperature 73.76097816610857;
 }
 
 object ZIPload {
@@ -10484,8 +10490,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.57;
 	parent meter_GLD_B1_N77_B_0179;
-	air_temperature 77.91988442455386;
-	mass_temperature 77.87118442455386;
+	air_temperature 77.74342001890368;
+	mass_temperature 77.69472001890368;
 }
 
 object ZIPload {
@@ -10532,8 +10538,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.3;
 	parent meter_GLD_B1_N76_C_0180;
-	air_temperature 76.41809077308116;
-	mass_temperature 76.33999077308117;
+	air_temperature 76.10324106814744;
+	mass_temperature 76.02514106814745;
 }
 
 object ZIPload {
@@ -10580,8 +10586,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N92_C_0181;
-	air_temperature 79.38920325737953;
-	mass_temperature 79.48160325737953;
+	air_temperature 80.46018458264737;
+	mass_temperature 80.55258458264737;
 }
 
 object ZIPload {
@@ -10628,8 +10634,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N56_B_0182;
-	air_temperature 67.98262543894963;
-	mass_temperature 68.66432543894963;
+	air_temperature 68.19196543861966;
+	mass_temperature 68.87366543861967;
 }
 
 object ZIPload {
@@ -10676,8 +10682,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.27;
 	parent meter_GLD_B1_N1_A_0183;
-	air_temperature 73.84117585078373;
-	mass_temperature 73.63597585078372;
+	air_temperature 74.0878575461705;
+	mass_temperature 73.88265754617049;
 }
 
 object ZIPload {
@@ -10724,8 +10730,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N43_B_0184;
-	air_temperature 74.21570131597588;
-	mass_temperature 74.08880131597589;
+	air_temperature 76.01799978052895;
+	mass_temperature 75.89109978052896;
 }
 
 object ZIPload {
@@ -10772,8 +10778,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.47;
 	parent meter_GLD_B1_N75_C_0185;
-	air_temperature 82.90236822041845;
-	mass_temperature 83.05656822041846;
+	air_temperature 82.87553420512133;
+	mass_temperature 83.02973420512133;
 }
 
 object ZIPload {
@@ -10820,8 +10826,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.55;
 	parent meter_GLD_B1_N87_B_0186;
-	air_temperature 76.2331101684735;
-	mass_temperature 76.0263101684735;
+	air_temperature 74.24959152618435;
+	mass_temperature 74.04279152618435;
 }
 
 object ZIPload {
@@ -10868,8 +10874,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.95;
 	parent meter_GLD_B1_N48_A_0187;
-	air_temperature 72.09633741354357;
-	mass_temperature 71.84763741354357;
+	air_temperature 71.98212795895789;
+	mass_temperature 71.73342795895789;
 }
 
 object ZIPload {
@@ -10916,8 +10922,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 2.22;
 	parent meter_GLD_B1_N65_A_0188;
-	air_temperature 76.20341447983594;
-	mass_temperature 76.12021447983594;
+	air_temperature 76.62530304644284;
+	mass_temperature 76.54210304644283;
 }
 
 object ZIPload {
@@ -10964,8 +10970,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.44;
 	parent meter_GLD_B1_N113_A_0189;
-	air_temperature 79.20215185413342;
-	mass_temperature 79.22685185413341;
+	air_temperature 77.72627843465344;
+	mass_temperature 77.75097843465343;
 }
 
 object ZIPload {
@@ -11012,8 +11018,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.49;
 	parent meter_GLD_B1_N47_B_0190;
-	air_temperature 69.13355263583516;
-	mass_temperature 68.74665263583515;
+	air_temperature 69.45865417656314;
+	mass_temperature 69.07175417656313;
 }
 
 object ZIPload {
@@ -11060,8 +11066,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N4_C_0191;
-	air_temperature 72.06729540968885;
-	mass_temperature 72.34289540968885;
+	air_temperature 73.77427069129162;
+	mass_temperature 74.04987069129162;
 }
 
 object ZIPload {
@@ -11108,8 +11114,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.24;
 	parent meter_GLD_B1_N100_C_0192;
-	air_temperature 80.72877358460552;
-	mass_temperature 80.83777358460553;
+	air_temperature 80.77376052813268;
+	mass_temperature 80.88276052813269;
 }
 
 object ZIPload {
@@ -11156,8 +11162,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 1.03;
 	parent meter_GLD_B1_N99_B_0193;
-	air_temperature 66.17590238699361;
-	mass_temperature 65.54990238699362;
+	air_temperature 64.98831346050399;
+	mass_temperature 64.362313460504;
 }
 
 object ZIPload {
@@ -11204,8 +11210,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.34;
 	parent meter_GLD_B1_N65_B_0194;
-	air_temperature 74.3041903827334;
-	mass_temperature 74.2031903827334;
+	air_temperature 75.93058776746871;
+	mass_temperature 75.82958776746871;
 }
 
 object ZIPload {
@@ -11252,8 +11258,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.38;
 	parent meter_GLD_B1_N47_A_0195;
-	air_temperature 79.79260985877019;
-	mass_temperature 79.8330098587702;
+	air_temperature 78.47076259741273;
+	mass_temperature 78.51116259741273;
 }
 
 object ZIPload {
@@ -11300,8 +11306,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.81;
 	parent meter_GLD_B1_N65_C_0196;
-	air_temperature 74.23344977566626;
-	mass_temperature 73.95964977566626;
+	air_temperature 74.12321734225972;
+	mass_temperature 73.84941734225973;
 }
 
 object ZIPload {
@@ -11348,8 +11354,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N98_A_0197;
-	air_temperature 69.70411641033466;
-	mass_temperature 69.32611641033465;
+	air_temperature 67.89507202986748;
+	mass_temperature 67.51707202986746;
 }
 
 object ZIPload {
@@ -11396,8 +11402,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.68;
 	parent meter_GLD_B1_N46_A_0198;
-	air_temperature 78.07608220306021;
-	mass_temperature 78.0716822030602;
+	air_temperature 76.81690015725374;
+	mass_temperature 76.81250015725374;
 }
 
 object ZIPload {
@@ -11444,8 +11450,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N11_A_0199;
-	air_temperature 75.27703580893316;
-	mass_temperature 75.14053580893317;
+	air_temperature 75.03677082810391;
+	mass_temperature 74.90027082810391;
 }
 
 object ZIPload {
@@ -11492,8 +11498,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.34;
 	parent meter_GLD_B1_N47_A_0200;
-	air_temperature 74.82488981208695;
-	mass_temperature 74.68348981208695;
+	air_temperature 73.86238068232981;
+	mass_temperature 73.72098068232981;
 }
 
 object ZIPload {
@@ -11540,8 +11546,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.35;
 	parent meter_GLD_B1_N11_A_0201;
-	air_temperature 67.93737006860171;
-	mass_temperature 67.5570700686017;
+	air_temperature 69.17974518089764;
+	mass_temperature 68.79944518089764;
 }
 
 object ZIPload {
@@ -11588,8 +11594,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.16;
 	parent meter_GLD_B1_N100_C_0202;
-	air_temperature 70.10423440146188;
-	mass_temperature 71.51913440146188;
+	air_temperature 71.07618979972126;
+	mass_temperature 72.49108979972127;
 }
 
 object ZIPload {
@@ -11636,8 +11642,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.97;
 	parent meter_GLD_B1_N62_C_0203;
-	air_temperature 72.22426998424875;
-	mass_temperature 71.91566998424875;
+	air_temperature 72.56602549318566;
+	mass_temperature 72.25742549318566;
 }
 
 object ZIPload {
@@ -11684,8 +11690,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 1.57;
 	parent meter_GLD_B1_N94_A_0204;
-	air_temperature 73.64412266863762;
-	mass_temperature 73.33552266863762;
+	air_temperature 75.36669912999879;
+	mass_temperature 75.0580991299988;
 }
 
 object ZIPload {
@@ -11732,8 +11738,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 1.14;
 	parent meter_GLD_B1_N50_C_0205;
-	air_temperature 76.09121441923506;
-	mass_temperature 76.01381441923506;
+	air_temperature 76.24941411784059;
+	mass_temperature 76.17201411784059;
 }
 
 object ZIPload {
@@ -11780,8 +11786,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.41;
 	parent meter_GLD_B1_N76_A_0206;
-	air_temperature 72.11096998026706;
-	mass_temperature 72.99576998026706;
+	air_temperature 70.39025917788722;
+	mass_temperature 71.27505917788721;
 }
 
 object ZIPload {
@@ -11828,8 +11834,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.37;
 	parent meter_GLD_B1_N99_B_0207;
-	air_temperature 63.241649792758594;
-	mass_temperature 63.40874979275859;
+	air_temperature 63.48769479257144;
+	mass_temperature 63.65479479257144;
 }
 
 object ZIPload {
@@ -11876,8 +11882,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N37_A_0208;
-	air_temperature 73.29343933579096;
-	mass_temperature 73.17073933579097;
+	air_temperature 74.75524146491179;
+	mass_temperature 74.6325414649118;
 }
 
 object ZIPload {
@@ -11924,8 +11930,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.41;
 	parent meter_GLD_B1_N53_A_0209;
-	air_temperature 77.87523494501765;
-	mass_temperature 77.92983494501766;
+	air_temperature 78.65648424953572;
+	mass_temperature 78.71108424953573;
 }
 
 object ZIPload {
@@ -11972,8 +11978,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N24_C_0210;
-	air_temperature 74.40202910212376;
-	mass_temperature 74.29802910212376;
+	air_temperature 75.82338995233977;
+	mass_temperature 75.71938995233977;
 }
 
 object ZIPload {
@@ -12020,8 +12026,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.76;
 	parent meter_GLD_B1_N22_B_0211;
-	air_temperature 75.6558379249378;
-	mass_temperature 75.4875379249378;
+	air_temperature 73.79407137149965;
+	mass_temperature 73.62577137149965;
 }
 
 object ZIPload {
@@ -12068,8 +12074,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.57;
 	parent meter_GLD_B1_N31_C_0212;
-	air_temperature 77.29208160594496;
-	mass_temperature 77.29098160594496;
+	air_temperature 76.84577494226572;
+	mass_temperature 76.84467494226573;
 }
 
 object ZIPload {
@@ -12116,8 +12122,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N103_C_0213;
-	air_temperature 73.6083639542606;
-	mass_temperature 73.4511639542606;
+	air_temperature 73.60110746803912;
+	mass_temperature 73.44390746803911;
 }
 
 object ZIPload {
@@ -12164,8 +12170,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.27;
 	parent meter_GLD_B1_N65_A_0214;
-	air_temperature 70.7980471066743;
-	mass_temperature 70.5113471066743;
+	air_temperature 70.26348281422426;
+	mass_temperature 69.97678281422425;
 }
 
 object ZIPload {
@@ -12212,8 +12218,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.81;
 	parent meter_GLD_B1_N71_A_0215;
-	air_temperature 68.99496383473303;
-	mass_temperature 68.58286383473302;
+	air_temperature 69.31527058283892;
+	mass_temperature 68.90317058283891;
 }
 
 object ZIPload {
@@ -12260,8 +12266,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.47;
 	parent meter_GLD_B1_N47_C_0216;
-	air_temperature 72.82584396023881;
-	mass_temperature 72.67824396023882;
+	air_temperature 72.36785758208075;
+	mass_temperature 72.22025758208075;
 }
 
 object ZIPload {
@@ -12308,8 +12314,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.64;
 	parent meter_GLD_B1_N31_C_0217;
-	air_temperature 77.7137595139607;
-	mass_temperature 77.6601595139607;
+	air_temperature 77.4738485010478;
+	mass_temperature 77.42024850104781;
 }
 
 object ZIPload {
@@ -12356,8 +12362,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.35;
 	parent meter_GLD_B1_N77_B_0218;
-	air_temperature 78.82962341819143;
-	mass_temperature 78.88752341819144;
+	air_temperature 78.45506514974002;
+	mass_temperature 78.51296514974003;
 }
 
 object ZIPload {
@@ -12404,8 +12410,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N99_B_0219;
-	air_temperature 73.73512892543215;
-	mass_temperature 73.54842892543215;
+	air_temperature 72.98891801134162;
+	mass_temperature 72.80221801134162;
 }
 
 object ZIPload {
@@ -12452,8 +12458,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.41;
 	parent meter_GLD_B1_N49_A_0220;
-	air_temperature 73.75958148006146;
-	mass_temperature 73.53088148006145;
+	air_temperature 71.86828186294365;
+	mass_temperature 71.63958186294364;
 }
 
 object ZIPload {
@@ -12500,8 +12506,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.76;
 	parent meter_GLD_B1_N94_A_0221;
-	air_temperature 71.81468036656969;
-	mass_temperature 71.49088036656968;
+	air_temperature 73.28833389017191;
+	mass_temperature 72.96453389017191;
 }
 
 object ZIPload {
@@ -12548,8 +12554,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 1.03;
 	parent meter_GLD_B1_N75_C_0222;
-	air_temperature 78.10771923055555;
-	mass_temperature 78.11321923055556;
+	air_temperature 78.94336473654089;
+	mass_temperature 78.9488647365409;
 }
 
 object ZIPload {
@@ -12596,8 +12602,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N51_A_0223;
-	air_temperature 75.73893714790348;
-	mass_temperature 75.70013714790348;
+	air_temperature 76.64223076738978;
+	mass_temperature 76.60343076738977;
 }
 
 object ZIPload {
@@ -12644,8 +12650,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N76_C_0224;
-	air_temperature 69.52787406477582;
-	mass_temperature 69.20037406477581;
+	air_temperature 69.50732078443893;
+	mass_temperature 69.17982078443893;
 }
 
 object ZIPload {
@@ -12692,8 +12698,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N106_B_0225;
-	air_temperature 71.76553636183077;
-	mass_temperature 71.94883636183076;
+	air_temperature 70.55639531652957;
+	mass_temperature 70.73969531652956;
 }
 
 object ZIPload {
@@ -12740,8 +12746,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N29_A_0226;
-	air_temperature 74.0593032373007;
-	mass_temperature 73.8418032373007;
+	air_temperature 72.54137731935991;
+	mass_temperature 72.32387731935991;
 }
 
 object ZIPload {
@@ -12788,8 +12794,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N79_A_0227;
-	air_temperature 74.5537157489227;
-	mass_temperature 74.35061574892269;
+	air_temperature 73.5427637821375;
+	mass_temperature 73.33966378213749;
 }
 
 object ZIPload {
@@ -12836,8 +12842,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.68;
 	parent meter_GLD_B1_N76_A_0228;
-	air_temperature 72.55857749585844;
-	mass_temperature 73.93827749585844;
+	air_temperature 72.48558705708177;
+	mass_temperature 73.86528705708177;
 }
 
 object ZIPload {
@@ -12884,8 +12890,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N71_A_0229;
-	air_temperature 72.99611934135989;
-	mass_temperature 72.85081934135988;
+	air_temperature 73.57585433361785;
+	mass_temperature 73.43055433361785;
 }
 
 object ZIPload {
@@ -12932,8 +12938,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 1.42;
 	parent meter_GLD_B1_N92_C_0230;
-	air_temperature 68.38606771017818;
-	mass_temperature 69.0345677101782;
+	air_temperature 69.05892875549996;
+	mass_temperature 69.70742875549998;
 }
 
 object ZIPload {
@@ -12980,8 +12986,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.76;
 	parent meter_GLD_B1_N29_A_0231;
-	air_temperature 72.57763597197214;
-	mass_temperature 72.29723597197213;
+	air_temperature 71.88555663198349;
+	mass_temperature 71.60515663198348;
 }
 
 object ZIPload {
@@ -13028,8 +13034,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.24;
 	parent meter_GLD_B1_N49_B_0232;
-	air_temperature 74.00604487375993;
-	mass_temperature 73.80534487375994;
+	air_temperature 71.63803017424388;
+	mass_temperature 71.43733017424388;
 }
 
 object ZIPload {
@@ -13076,8 +13082,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.41;
 	parent meter_GLD_B1_N48_A_0233;
-	air_temperature 74.70818880007779;
-	mass_temperature 74.49578880007779;
+	air_temperature 74.20859606413586;
+	mass_temperature 73.99619606413586;
 }
 
 object ZIPload {
@@ -13124,8 +13130,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N34_C_0234;
-	air_temperature 76.30489214814271;
-	mass_temperature 76.16439214814271;
+	air_temperature 74.31373590804729;
+	mass_temperature 74.17323590804729;
 }
 
 object ZIPload {
@@ -13172,8 +13178,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.81;
 	parent meter_GLD_B1_N49_A_0235;
-	air_temperature 72.57638423686508;
-	mass_temperature 72.39698423686508;
+	air_temperature 74.29194950050619;
+	mass_temperature 74.11254950050619;
 }
 
 object ZIPload {
@@ -13220,8 +13226,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N50_C_0236;
-	air_temperature 75.08366115711866;
-	mass_temperature 74.87866115711866;
+	air_temperature 73.04505704253955;
+	mass_temperature 72.84005704253956;
 }
 
 object ZIPload {
@@ -13268,8 +13274,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.61;
 	parent meter_GLD_B1_N82_A_0237;
-	air_temperature 72.93662399479548;
-	mass_temperature 73.37972399479548;
+	air_temperature 73.03449207546491;
+	mass_temperature 73.47759207546491;
 }
 
 object ZIPload {
@@ -13316,8 +13322,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.95;
 	parent meter_GLD_B1_N62_C_0238;
-	air_temperature 70.7788900327609;
-	mass_temperature 71.2674900327609;
+	air_temperature 70.75816774613294;
+	mass_temperature 71.24676774613295;
 }
 
 object ZIPload {
@@ -13364,8 +13370,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.3;
 	parent meter_GLD_B1_N74_C_0239;
-	air_temperature 72.92450217009288;
-	mass_temperature 72.78850217009288;
+	air_temperature 73.24668024759345;
+	mass_temperature 73.11068024759345;
 }
 
 object ZIPload {
@@ -13412,8 +13418,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.32;
 	parent meter_GLD_B1_N53_A_0240;
-	air_temperature 72.34925917606672;
-	mass_temperature 72.18215917606672;
+	air_temperature 72.82848286960652;
+	mass_temperature 72.66138286960651;
 }
 
 object ZIPload {
@@ -13460,8 +13466,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.47;
 	parent meter_GLD_B1_N65_B_0241;
-	air_temperature 70.80850170691328;
-	mass_temperature 70.50360170691327;
+	air_temperature 68.88189668904091;
+	mass_temperature 68.57699668904091;
 }
 
 object ZIPload {
@@ -13508,8 +13514,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N1_A_0242;
-	air_temperature 70.45224027845424;
-	mass_temperature 70.27624027845424;
+	air_temperature 70.26354513651259;
+	mass_temperature 70.08754513651259;
 }
 
 object ZIPload {
@@ -13556,8 +13562,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.95;
 	parent meter_GLD_B1_N103_C_0243;
-	air_temperature 75.72172580194221;
-	mass_temperature 75.56502580194221;
+	air_temperature 74.67182798943995;
+	mass_temperature 74.51512798943995;
 }
 
 object ZIPload {
@@ -13604,8 +13610,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.41;
 	parent meter_GLD_B1_N28_A_0244;
-	air_temperature 72.28704534521545;
-	mass_temperature 72.34174534521546;
+	air_temperature 70.72783529868961;
+	mass_temperature 70.78253529868962;
 }
 
 object ZIPload {
@@ -13652,8 +13658,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N63_A_0245;
-	air_temperature 72.01675147651082;
-	mass_temperature 71.75885147651081;
+	air_temperature 73.08590423966409;
+	mass_temperature 72.82800423966408;
 }
 
 object ZIPload {
@@ -13700,8 +13706,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.38;
 	parent meter_GLD_B1_N16_C_0246;
-	air_temperature 72.93976944066242;
-	mass_temperature 72.71226944066241;
+	air_temperature 72.17406308226333;
+	mass_temperature 71.94656308226332;
 }
 
 object ZIPload {
@@ -13748,8 +13754,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.97;
 	parent meter_GLD_B1_N35_A_0247;
-	air_temperature 76.37969590300176;
-	mass_temperature 76.48029590300176;
+	air_temperature 75.92577397479545;
+	mass_temperature 76.02637397479545;
 }
 
 object ZIPload {
@@ -13796,8 +13802,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.3;
 	parent meter_GLD_B1_N22_B_0248;
-	air_temperature 71.37084827145483;
-	mass_temperature 71.07554827145482;
+	air_temperature 71.21113846945863;
+	mass_temperature 70.91583846945862;
 }
 
 object ZIPload {
@@ -13844,8 +13850,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.41;
 	parent meter_GLD_B1_N75_C_0249;
-	air_temperature 75.05783573964017;
-	mass_temperature 74.92743573964017;
+	air_temperature 75.64676726893413;
+	mass_temperature 75.51636726893413;
 }
 
 object ZIPload {
@@ -13892,8 +13898,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 1.55;
 	parent meter_GLD_B1_N33_A_0250;
-	air_temperature 79.22017880415109;
-	mass_temperature 79.36237880415109;
+	air_temperature 79.86950116656935;
+	mass_temperature 80.01170116656935;
 }
 
 object ZIPload {
@@ -13940,8 +13946,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N66_C_0251;
-	air_temperature 73.11779578857124;
-	mass_temperature 72.85479578857125;
+	air_temperature 72.29482695240776;
+	mass_temperature 72.03182695240777;
 }
 
 object ZIPload {
@@ -13988,8 +13994,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N106_B_0252;
-	air_temperature 71.26052910711496;
-	mass_temperature 71.41732910711497;
+	air_temperature 71.50316292394093;
+	mass_temperature 71.65996292394094;
 }
 
 object ZIPload {
@@ -14036,8 +14042,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.03;
 	parent meter_GLD_B1_N95_B_0253;
-	air_temperature 78.40941300303543;
-	mass_temperature 78.35741300303543;
+	air_temperature 75.90966843926861;
+	mass_temperature 75.85766843926862;
 }
 
 object ZIPload {
@@ -14084,8 +14090,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.37;
 	parent meter_GLD_B1_N65_B_0254;
-	air_temperature 76.76770292847279;
-	mass_temperature 76.70270292847279;
+	air_temperature 75.45399776722685;
+	mass_temperature 75.38899776722685;
 }
 
 object ZIPload {
@@ -14132,8 +14138,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N94_A_0255;
-	air_temperature 75.76940769392382;
-	mass_temperature 75.67070769392382;
+	air_temperature 76.26288810625002;
+	mass_temperature 76.16418810625001;
 }
 
 object ZIPload {
@@ -14180,8 +14186,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N22_B_0256;
-	air_temperature 72.3797227790782;
-	mass_temperature 72.05162277907819;
+	air_temperature 71.50246685707619;
+	mass_temperature 71.17436685707618;
 }
 
 object ZIPload {
@@ -14228,8 +14234,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.43;
 	parent meter_GLD_B1_N65_A_0257;
-	air_temperature 77.09268610607148;
-	mass_temperature 77.04908610607148;
+	air_temperature 76.4397790345943;
+	mass_temperature 76.3961790345943;
 }
 
 object ZIPload {
@@ -14276,8 +14282,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.64;
 	parent meter_GLD_B1_N69_A_0258;
-	air_temperature 73.26491967607403;
-	mass_temperature 73.05741967607403;
+	air_temperature 71.8971854412227;
+	mass_temperature 71.68968544122271;
 }
 
 object ZIPload {
@@ -14324,8 +14330,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.92;
 	parent meter_GLD_B1_N102_C_0259;
-	air_temperature 77.6135972436005;
-	mass_temperature 77.6175972436005;
+	air_temperature 78.11674695084778;
+	mass_temperature 78.12074695084779;
 }
 
 object ZIPload {
@@ -14372,8 +14378,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.38;
 	parent meter_GLD_B1_N43_B_0260;
-	air_temperature 75.74870134891195;
-	mass_temperature 75.65050134891196;
+	air_temperature 77.14514361437489;
+	mass_temperature 77.0469436143749;
 }
 
 object ZIPload {
@@ -14420,8 +14426,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.64;
 	parent meter_GLD_B1_N53_A_0261;
-	air_temperature 75.16573369859638;
-	mass_temperature 75.11373369859638;
+	air_temperature 77.62853107794278;
+	mass_temperature 77.57653107794278;
 }
 
 object ZIPload {
@@ -14468,8 +14474,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N48_C_0262;
-	air_temperature 72.11245380784491;
-	mass_temperature 72.56185380784491;
+	air_temperature 72.21538561248344;
+	mass_temperature 72.66478561248344;
 }
 
 object ZIPload {
@@ -14516,8 +14522,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.35;
 	parent meter_GLD_B1_N34_C_0263;
-	air_temperature 75.67928727735999;
-	mass_temperature 75.55088727735999;
+	air_temperature 74.24149923390569;
+	mass_temperature 74.11309923390569;
 }
 
 object ZIPload {
@@ -14564,8 +14570,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N88_A_0264;
-	air_temperature 72.58180456473848;
-	mass_temperature 72.41460456473848;
+	air_temperature 73.73251365048405;
+	mass_temperature 73.56531365048406;
 }
 
 object ZIPload {
@@ -14612,8 +14618,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.76;
 	parent meter_GLD_B1_N19_A_0265;
-	air_temperature 75.95172761505668;
-	mass_temperature 75.77992761505669;
+	air_temperature 74.63989172512042;
+	mass_temperature 74.46809172512043;
 }
 
 object ZIPload {
@@ -14660,8 +14666,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.68;
 	parent meter_GLD_B1_N70_A_0266;
-	air_temperature 76.87623169580188;
-	mass_temperature 76.79663169580188;
+	air_temperature 76.46994276254348;
+	mass_temperature 76.39034276254348;
 }
 
 object ZIPload {
@@ -14708,8 +14714,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.57;
 	parent meter_GLD_B1_N49_B_0267;
-	air_temperature 75.72815663715207;
-	mass_temperature 75.68435663715206;
+	air_temperature 76.473829882943;
+	mass_temperature 76.43002988294299;
 }
 
 object ZIPload {
@@ -14756,8 +14762,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.27;
 	parent meter_GLD_B1_N52_A_0268;
-	air_temperature 69.94824079899385;
-	mass_temperature 70.37364079899386;
+	air_temperature 67.58846031728687;
+	mass_temperature 68.01386031728688;
 }
 
 object ZIPload {
@@ -14804,8 +14810,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.3;
 	parent meter_GLD_B1_N49_A_0269;
-	air_temperature 71.81320663778138;
-	mass_temperature 71.69680663778139;
+	air_temperature 72.19736989905054;
+	mass_temperature 72.08096989905056;
 }
 
 object ZIPload {
@@ -14852,8 +14858,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.61;
 	parent meter_GLD_B1_N80_B_0270;
-	air_temperature 69.87059347770476;
-	mass_temperature 70.22259347770475;
+	air_temperature 71.50826473874417;
+	mass_temperature 71.86026473874416;
 }
 
 object ZIPload {
@@ -14900,8 +14906,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N47_B_0271;
-	air_temperature 75.75201730383704;
-	mass_temperature 75.63171730383704;
+	air_temperature 74.73121959913209;
+	mass_temperature 74.61091959913209;
 }
 
 object ZIPload {
@@ -14948,8 +14954,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 1.01;
 	parent meter_GLD_B1_N52_A_0272;
-	air_temperature 73.33499128445085;
-	mass_temperature 73.93579128445086;
+	air_temperature 73.614421282133;
+	mass_temperature 74.215221282133;
 }
 
 object ZIPload {
@@ -14996,8 +15002,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N66_C_0273;
-	air_temperature 78.46216636165727;
-	mass_temperature 78.46336636165726;
+	air_temperature 77.88038501097292;
+	mass_temperature 77.88158501097291;
 }
 
 object ZIPload {
@@ -15044,8 +15050,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.41;
 	parent meter_GLD_B1_N80_B_0274;
-	air_temperature 70.22342801294593;
-	mass_temperature 70.59172801294594;
+	air_temperature 69.55152635094137;
+	mass_temperature 69.91982635094138;
 }
 
 object ZIPload {
@@ -15092,8 +15098,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.81;
 	parent meter_GLD_B1_N85_C_0275;
-	air_temperature 73.0205270643682;
-	mass_temperature 72.8310270643682;
+	air_temperature 70.41376780703533;
+	mass_temperature 70.22426780703533;
 }
 
 object ZIPload {
@@ -15140,8 +15146,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N64_B_0276;
-	air_temperature 65.57335473505317;
-	mass_temperature 65.89485473505317;
+	air_temperature 65.74425815932645;
+	mass_temperature 66.06575815932645;
 }
 
 object ZIPload {
@@ -15188,8 +15194,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N107_B_0277;
-	air_temperature 75.94621237448185;
-	mass_temperature 75.83061237448184;
+	air_temperature 74.35191970675986;
+	mass_temperature 74.23631970675986;
 }
 
 object ZIPload {
@@ -15236,8 +15242,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.47;
 	parent meter_GLD_B1_N41_C_0278;
-	air_temperature 73.22846658935534;
-	mass_temperature 74.75196658935535;
+	air_temperature 73.16936877362096;
+	mass_temperature 74.69286877362097;
 }
 
 object ZIPload {
@@ -15284,8 +15290,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N76_A_0279;
-	air_temperature 73.73034952729012;
-	mass_temperature 73.47274952729012;
+	air_temperature 72.24612568062757;
+	mass_temperature 71.98852568062757;
 }
 
 object ZIPload {
@@ -15332,8 +15338,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.97;
 	parent meter_GLD_B1_N64_B_0280;
-	air_temperature 74.97192448237939;
-	mass_temperature 75.08942448237939;
+	air_temperature 75.38600060701684;
+	mass_temperature 75.50350060701683;
 }
 
 object ZIPload {
@@ -15380,8 +15386,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N82_A_0281;
-	air_temperature 74.92038093908766;
-	mass_temperature 74.73638093908767;
+	air_temperature 75.36742240987913;
+	mass_temperature 75.18342240987913;
 }
 
 object ZIPload {
@@ -15428,8 +15434,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.41;
 	parent meter_GLD_B1_N19_A_0282;
-	air_temperature 75.55075132964764;
-	mass_temperature 75.50695132964763;
+	air_temperature 75.4812120977613;
+	mass_temperature 75.4374120977613;
 }
 
 object ZIPload {
@@ -15476,8 +15482,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.88;
 	parent meter_GLD_B1_N49_B_0283;
-	air_temperature 67.41374192676749;
-	mass_temperature 68.04854192676748;
+	air_temperature 68.85667118627788;
+	mass_temperature 69.49147118627788;
 }
 
 object ZIPload {
@@ -15524,8 +15530,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N73_C_0284;
-	air_temperature 74.75476354310236;
-	mass_temperature 74.59526354310236;
+	air_temperature 74.63913721802197;
+	mass_temperature 74.47963721802198;
 }
 
 object ZIPload {
@@ -15572,8 +15578,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.38;
 	parent meter_GLD_B1_N48_B_0285;
-	air_temperature 79.13129690209712;
-	mass_temperature 79.13419690209712;
+	air_temperature 76.72812728345411;
+	mass_temperature 76.73102728345411;
 }
 
 object ZIPload {
@@ -15620,8 +15626,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.92;
 	parent meter_GLD_B1_N76_C_0286;
-	air_temperature 70.40796311678834;
-	mass_temperature 70.15576311678834;
+	air_temperature 68.59300771470956;
+	mass_temperature 68.34080771470956;
 }
 
 object ZIPload {
@@ -15668,8 +15674,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.76;
 	parent meter_GLD_B1_N50_C_0287;
-	air_temperature 70.54489974352651;
-	mass_temperature 71.22319974352651;
+	air_temperature 70.1607142602164;
+	mass_temperature 70.83901426021639;
 }
 
 object ZIPload {
@@ -15716,8 +15722,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N106_B_0288;
-	air_temperature 69.67938567149857;
-	mass_temperature 71.05718567149856;
+	air_temperature 68.98384960490907;
+	mass_temperature 70.36164960490906;
 }
 
 object ZIPload {
@@ -15764,8 +15770,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.08;
 	parent meter_GLD_B1_N113_A_0289;
-	air_temperature 67.67650224021033;
-	mass_temperature 69.45030224021033;
+	air_temperature 69.05989284322305;
+	mass_temperature 70.83369284322306;
 }
 
 object ZIPload {
@@ -15812,8 +15818,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.38;
 	parent meter_GLD_B1_N17_C_0290;
-	air_temperature 79.87375927354597;
-	mass_temperature 79.90945927354598;
+	air_temperature 79.93064627986837;
+	mass_temperature 79.96634627986838;
 }
 
 object ZIPload {
@@ -15860,8 +15866,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 1.08;
 	parent meter_GLD_B1_N48_B_0291;
-	air_temperature 72.08062434924518;
-	mass_temperature 71.76102434924518;
+	air_temperature 71.14069064491243;
+	mass_temperature 70.82109064491242;
 }
 
 object ZIPload {
@@ -15908,8 +15914,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N28_A_0292;
-	air_temperature 76.83070605879124;
-	mass_temperature 76.83590605879124;
+	air_temperature 78.30490824154369;
+	mass_temperature 78.31010824154369;
 }
 
 object ZIPload {
@@ -15956,8 +15962,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.81;
 	parent meter_GLD_B1_N48_A_0293;
-	air_temperature 74.10311423792129;
-	mass_temperature 73.8777142379213;
+	air_temperature 74.16540793627046;
+	mass_temperature 73.94000793627046;
 }
 
 object ZIPload {
@@ -16004,8 +16010,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N50_C_0294;
-	air_temperature 79.94980657723575;
-	mass_temperature 80.10650657723575;
+	air_temperature 81.15623878358058;
+	mass_temperature 81.31293878358058;
 }
 
 object ZIPload {
@@ -16052,8 +16058,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.34;
 	parent meter_GLD_B1_N4_C_0295;
-	air_temperature 72.08909915237209;
-	mass_temperature 71.92349915237209;
+	air_temperature 71.55079039498692;
+	mass_temperature 71.38519039498692;
 }
 
 object ZIPload {
@@ -16100,8 +16106,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N113_A_0296;
-	air_temperature 76.99039593749767;
-	mass_temperature 76.98509593749768;
+	air_temperature 77.78189696901744;
+	mass_temperature 77.77659696901745;
 }
 
 object ZIPload {
@@ -16148,8 +16154,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N48_B_0297;
-	air_temperature 77.42118357629394;
-	mass_temperature 77.37188357629394;
+	air_temperature 76.69594841834586;
+	mass_temperature 76.64664841834586;
 }
 
 object ZIPload {
@@ -16196,8 +16202,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.76;
 	parent meter_GLD_B1_N4_C_0298;
-	air_temperature 70.53203861427443;
-	mass_temperature 70.85633861427442;
+	air_temperature 69.34538188749727;
+	mass_temperature 69.66968188749726;
 }
 
 object ZIPload {
@@ -16244,8 +16250,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.68;
 	parent meter_GLD_B1_N48_B_0299;
-	air_temperature 72.08348902328017;
-	mass_temperature 71.77958902328017;
+	air_temperature 70.20830658266337;
+	mass_temperature 69.90440658266337;
 }
 
 object ZIPload {
@@ -16292,8 +16298,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.68;
 	parent meter_GLD_B1_N49_C_0300;
-	air_temperature 72.1789047173801;
-	mass_temperature 71.93150471738011;
+	air_temperature 71.65620825614684;
+	mass_temperature 71.40880825614684;
 }
 
 object ZIPload {
@@ -16340,8 +16346,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.86;
 	parent meter_GLD_B1_N30_A_0301;
-	air_temperature 73.11389559919589;
-	mass_temperature 73.46959559919588;
+	air_temperature 75.45724161984467;
+	mass_temperature 75.81294161984466;
 }
 
 object ZIPload {
@@ -16388,8 +16394,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.47;
 	parent meter_GLD_B1_N49_A_0302;
-	air_temperature 75.90303063760017;
-	mass_temperature 75.82323063760016;
+	air_temperature 74.17388980842941;
+	mass_temperature 74.0940898084294;
 }
 
 object ZIPload {
@@ -16436,8 +16442,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.43;
 	parent meter_GLD_B1_N75_C_0303;
-	air_temperature 72.90064757631178;
-	mass_temperature 73.89714757631178;
+	air_temperature 73.26856658370933;
+	mass_temperature 74.26506658370933;
 }
 
 object ZIPload {
@@ -16484,8 +16490,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N107_B_0304;
-	air_temperature 75.27818947707439;
-	mass_temperature 75.9659894770744;
+	air_temperature 74.76992168709239;
+	mass_temperature 75.4577216870924;
 }
 
 object ZIPload {
@@ -16532,8 +16538,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.76;
 	parent meter_GLD_B1_N92_C_0305;
-	air_temperature 74.25726703747256;
-	mass_temperature 74.09776703747256;
+	air_temperature 74.68574838102492;
+	mass_temperature 74.52624838102493;
 }
 
 object ZIPload {
@@ -16580,8 +16586,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N87_B_0306;
-	air_temperature 73.23897225728113;
-	mass_temperature 73.56627225728113;
+	air_temperature 74.43246080534342;
+	mass_temperature 74.75976080534342;
 }
 
 object ZIPload {
@@ -16628,8 +16634,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.44;
 	parent meter_GLD_B1_N69_A_0307;
-	air_temperature 67.49624233304465;
-	mass_temperature 67.91804233304465;
+	air_temperature 68.98866905302725;
+	mass_temperature 69.41046905302726;
 }
 
 object ZIPload {
@@ -16676,8 +16682,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N69_A_0308;
-	air_temperature 68.09356388793279;
-	mass_temperature 67.66316388793278;
+	air_temperature 69.13190770284479;
+	mass_temperature 68.70150770284478;
 }
 
 object ZIPload {
@@ -16724,8 +16730,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 1.08;
 	parent meter_GLD_B1_N28_A_0309;
-	air_temperature 77.1804426144356;
-	mass_temperature 77.0472426144356;
+	air_temperature 76.19211641637294;
+	mass_temperature 76.05891641637294;
 }
 
 object ZIPload {
@@ -16772,8 +16778,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N48_C_0310;
-	air_temperature 73.7041922237022;
-	mass_temperature 73.5042922237022;
+	air_temperature 73.04058901494649;
+	mass_temperature 72.84068901494649;
 }
 
 object ZIPload {
@@ -16820,8 +16826,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.76;
 	parent meter_GLD_B1_N9_A_0311;
-	air_temperature 74.0878402551333;
-	mass_temperature 75.16054025513331;
+	air_temperature 75.83389134627379;
+	mass_temperature 76.9065913462738;
 }
 
 object ZIPload {
@@ -16868,8 +16874,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.44;
 	parent meter_GLD_B1_N48_A_0312;
-	air_temperature 69.88666676920398;
-	mass_temperature 69.54686676920399;
+	air_temperature 67.59207692470609;
+	mass_temperature 67.2522769247061;
 }
 
 object ZIPload {
@@ -16916,8 +16922,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.57;
 	parent meter_GLD_B1_N1_A_0313;
-	air_temperature 75.64252756659582;
-	mass_temperature 75.56232756659581;
+	air_temperature 75.97295491301868;
+	mass_temperature 75.89275491301868;
 }
 
 object ZIPload {
@@ -16964,8 +16970,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.27;
 	parent meter_GLD_B1_N48_B_0314;
-	air_temperature 70.51977437426689;
-	mass_temperature 72.36777437426689;
+	air_temperature 72.30888954530911;
+	mass_temperature 74.15688954530911;
 }
 
 object ZIPload {
@@ -17012,8 +17018,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.24;
 	parent meter_GLD_B1_N30_A_0315;
-	air_temperature 72.31595464622669;
-	mass_temperature 72.15685464622669;
+	air_temperature 71.90613201574506;
+	mass_temperature 71.74703201574506;
 }
 
 object ZIPload {
@@ -17060,8 +17066,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.49;
 	parent meter_GLD_B1_N64_B_0316;
-	air_temperature 73.38536403123211;
-	mass_temperature 73.14326403123212;
+	air_temperature 71.98322165175331;
+	mass_temperature 71.74112165175332;
 }
 
 object ZIPload {
@@ -17108,8 +17114,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N62_C_0317;
-	air_temperature 79.00594024990316;
-	mass_temperature 79.06594024990316;
+	air_temperature 77.76178256073852;
+	mass_temperature 77.82178256073853;
 }
 
 object ZIPload {
@@ -17156,8 +17162,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.81;
 	parent meter_GLD_B1_N43_B_0318;
-	air_temperature 73.710909065762;
-	mass_temperature 73.52370906576199;
+	air_temperature 74.92784070316031;
+	mass_temperature 74.74064070316031;
 }
 
 object ZIPload {
@@ -17204,8 +17210,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.64;
 	parent meter_GLD_B1_N73_C_0319;
-	air_temperature 64.29499452387248;
-	mass_temperature 64.92229452387247;
+	air_temperature 65.82462418612126;
+	mass_temperature 66.45192418612125;
 }
 
 object ZIPload {
@@ -17252,8 +17258,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.34;
 	parent meter_GLD_B1_N11_A_0320;
-	air_temperature 65.64532857022752;
-	mass_temperature 66.03712857022751;
+	air_temperature 68.02250784230522;
+	mass_temperature 68.4143078423052;
 }
 
 object ZIPload {
@@ -17300,8 +17306,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N49_C_0321;
-	air_temperature 76.36165789649134;
-	mass_temperature 76.26095789649133;
+	air_temperature 74.42079430164485;
+	mass_temperature 74.32009430164484;
 }
 
 object ZIPload {
@@ -17348,8 +17354,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N76_C_0322;
-	air_temperature 76.66394564332242;
-	mass_temperature 76.61274564332243;
+	air_temperature 77.44983618274105;
+	mass_temperature 77.39863618274106;
 }
 
 object ZIPload {
@@ -17396,8 +17402,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.47;
 	parent meter_GLD_B1_N76_A_0323;
-	air_temperature 73.96592630836402;
-	mass_temperature 73.85972630836402;
+	air_temperature 75.03074970556325;
+	mass_temperature 74.92454970556325;
 }
 
 object ZIPload {
@@ -17444,8 +17450,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N19_A_0324;
-	air_temperature 73.93566091755291;
-	mass_temperature 73.6927609175529;
+	air_temperature 72.3482891170802;
+	mass_temperature 72.1053891170802;
 }
 
 object ZIPload {
@@ -17492,8 +17498,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.95;
 	parent meter_GLD_B1_N29_A_0325;
-	air_temperature 68.66209560170216;
-	mass_temperature 68.20849560170217;
+	air_temperature 67.89739782274812;
+	mass_temperature 67.44379782274812;
 }
 
 object ZIPload {
@@ -17540,8 +17546,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.86;
 	parent meter_GLD_B1_N47_B_0326;
-	air_temperature 71.39372697397788;
-	mass_temperature 71.00792697397789;
+	air_temperature 71.20021174285844;
+	mass_temperature 70.81441174285845;
 }
 
 object ZIPload {
@@ -17588,8 +17594,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.37;
 	parent meter_GLD_B1_N103_C_0327;
-	air_temperature 76.45476999372984;
-	mass_temperature 76.39126999372984;
+	air_temperature 74.5390464746646;
+	mass_temperature 74.4755464746646;
 }
 
 object ZIPload {
@@ -17636,8 +17642,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.35;
 	parent meter_GLD_B1_N64_B_0328;
-	air_temperature 75.41676971328341;
-	mass_temperature 75.28246971328342;
+	air_temperature 73.99641448149757;
+	mass_temperature 73.86211448149757;
 }
 
 object ZIPload {
@@ -17684,8 +17690,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 1.08;
 	parent meter_GLD_B1_N66_C_0329;
-	air_temperature 74.82426213385037;
-	mass_temperature 74.69846213385038;
+	air_temperature 75.5802149293184;
+	mass_temperature 75.45441492931842;
 }
 
 object ZIPload {
@@ -17732,8 +17738,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.28;
 	parent meter_GLD_B1_N92_C_0330;
-	air_temperature 75.54978208990144;
-	mass_temperature 75.36958208990144;
+	air_temperature 73.27610391052991;
+	mass_temperature 73.09590391052991;
 }
 
 object ZIPload {
@@ -17780,8 +17786,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.61;
 	parent meter_GLD_B1_N6_C_0331;
-	air_temperature 74.35742349779211;
-	mass_temperature 74.18212349779212;
+	air_temperature 74.76091554589661;
+	mass_temperature 74.58561554589662;
 }
 
 object ZIPload {
@@ -17828,8 +17834,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 1.14;
 	parent meter_GLD_B1_N69_A_0332;
-	air_temperature 64.58581702435804;
-	mass_temperature 64.83491702435803;
+	air_temperature 64.58914360998823;
+	mass_temperature 64.83824360998823;
 }
 
 object ZIPload {
@@ -17876,8 +17882,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.95;
 	parent meter_GLD_B1_N73_C_0333;
-	air_temperature 73.22340039775933;
-	mass_temperature 73.79650039775935;
+	air_temperature 71.92696326918337;
+	mass_temperature 72.50006326918339;
 }
 
 object ZIPload {
@@ -17924,8 +17930,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N30_A_0334;
-	air_temperature 72.94611907294727;
-	mass_temperature 72.74611907294728;
+	air_temperature 73.43124039703446;
+	mass_temperature 73.23124039703447;
 }
 
 object ZIPload {
@@ -17972,8 +17978,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.88;
 	parent meter_GLD_B1_N71_A_0335;
-	air_temperature 70.47163016563798;
-	mass_temperature 71.49263016563798;
+	air_temperature 70.90611283740773;
+	mass_temperature 71.92711283740773;
 }
 
 object ZIPload {
@@ -18020,8 +18026,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.43;
 	parent meter_GLD_B1_N46_A_0336;
-	air_temperature 74.41213755687367;
-	mass_temperature 74.27483755687368;
+	air_temperature 75.25998881952619;
+	mass_temperature 75.12268881952619;
 }
 
 object ZIPload {
@@ -18068,8 +18074,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.61;
 	parent meter_GLD_B1_N53_A_0337;
-	air_temperature 71.49436215713916;
-	mass_temperature 73.11446215713917;
+	air_temperature 71.16748436739366;
+	mass_temperature 72.78758436739366;
 }
 
 object ZIPload {
@@ -18116,8 +18122,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.08;
 	parent meter_GLD_B1_N74_C_0338;
-	air_temperature 78.55586601864742;
-	mass_temperature 78.59516601864742;
+	air_temperature 79.93337848935397;
+	mass_temperature 79.97267848935397;
 }
 
 object ZIPload {
@@ -18164,8 +18170,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.81;
 	parent meter_GLD_B1_N94_A_0339;
-	air_temperature 76.91216247705722;
-	mass_temperature 76.85646247705722;
+	air_temperature 77.96771619086427;
+	mass_temperature 77.91201619086426;
 }
 
 object ZIPload {
@@ -18212,8 +18218,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 2.43;
 	parent meter_GLD_B1_N47_B_0340;
-	air_temperature 70.1680414043504;
-	mass_temperature 71.2009414043504;
+	air_temperature 70.04122789909322;
+	mass_temperature 71.07412789909321;
 }
 
 object ZIPload {
@@ -18260,8 +18266,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.86;
 	parent meter_GLD_B1_N6_C_0341;
-	air_temperature 77.5794346279482;
-	mass_temperature 77.5137346279482;
+	air_temperature 77.36753117887926;
+	mass_temperature 77.30183117887925;
 }
 
 object ZIPload {
@@ -18308,8 +18314,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.41;
 	parent meter_GLD_B1_N49_B_0342;
-	air_temperature 71.16812658230533;
-	mass_temperature 70.81222658230533;
+	air_temperature 69.38131721067226;
+	mass_temperature 69.02541721067226;
 }
 
 object ZIPload {
@@ -18356,8 +18362,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.41;
 	parent meter_GLD_B1_N77_B_0343;
-	air_temperature 76.81821063192517;
-	mass_temperature 76.82191063192516;
+	air_temperature 77.00397617599045;
+	mass_temperature 77.00767617599044;
 }
 
 object ZIPload {
@@ -18404,8 +18410,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N47_C_0344;
-	air_temperature 71.32625932698423;
-	mass_temperature 71.04645932698422;
+	air_temperature 70.0514556213489;
+	mass_temperature 69.77165562134888;
 }
 
 object ZIPload {
@@ -18452,8 +18458,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.3;
 	parent meter_GLD_B1_N47_C_0345;
-	air_temperature 66.72650502561166;
-	mass_temperature 67.99040502561166;
+	air_temperature 68.21241047532281;
+	mass_temperature 69.47631047532282;
 }
 
 object ZIPload {
@@ -18500,8 +18506,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N49_C_0346;
-	air_temperature 75.76989710702794;
-	mass_temperature 75.72889710702795;
+	air_temperature 75.89477627425842;
+	mass_temperature 75.85377627425842;
 }
 
 object ZIPload {
@@ -18548,8 +18554,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.24;
 	parent meter_GLD_B1_N80_B_0347;
-	air_temperature 70.80878270841069;
-	mass_temperature 70.40528270841068;
+	air_temperature 73.20011178057744;
+	mass_temperature 72.79661178057744;
 }
 
 object ZIPload {
@@ -18596,8 +18602,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.43;
 	parent meter_GLD_B1_N48_C_0348;
-	air_temperature 74.00360707837712;
-	mass_temperature 73.77740707837712;
+	air_temperature 73.63117663654634;
+	mass_temperature 73.40497663654635;
 }
 
 object ZIPload {
@@ -18644,8 +18650,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.44;
 	parent meter_GLD_B1_N47_B_0349;
-	air_temperature 70.55478846911578;
-	mass_temperature 70.25728846911578;
+	air_temperature 69.23772998849577;
+	mass_temperature 68.94022998849577;
 }
 
 object ZIPload {
@@ -18692,8 +18698,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N63_A_0350;
-	air_temperature 72.42198448072452;
-	mass_temperature 72.25178448072452;
+	air_temperature 73.41114395866666;
+	mass_temperature 73.24094395866666;
 }
 
 object ZIPload {
@@ -18740,8 +18746,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N77_B_0351;
-	air_temperature 73.11548116501667;
-	mass_temperature 72.89888116501668;
+	air_temperature 73.80506566908785;
+	mass_temperature 73.58846566908785;
 }
 
 object ZIPload {
@@ -18788,8 +18794,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 1.35;
 	parent meter_GLD_B1_N48_C_0352;
-	air_temperature 70.85157639286854;
-	mass_temperature 70.44317639286854;
+	air_temperature 72.40799633493631;
+	mass_temperature 71.99959633493631;
 }
 
 object ZIPload {
@@ -18836,8 +18842,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.37;
 	parent meter_GLD_B1_N76_A_0353;
-	air_temperature 73.40407589087226;
-	mass_temperature 73.27077589087226;
+	air_temperature 74.6622462405349;
+	mass_temperature 74.52894624053489;
 }
 
 object ZIPload {
@@ -18884,8 +18890,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N48_C_0354;
-	air_temperature 73.24971432839628;
-	mass_temperature 73.05681432839627;
+	air_temperature 73.4188030779612;
+	mass_temperature 73.22590307796119;
 }
 
 object ZIPload {
@@ -18932,8 +18938,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N113_A_0355;
-	air_temperature 76.01121373581854;
-	mass_temperature 75.92061373581855;
+	air_temperature 74.49270943352762;
+	mass_temperature 74.40210943352763;
 }
 
 object ZIPload {
@@ -18980,8 +18986,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.24;
 	parent meter_GLD_B1_N30_A_0356;
-	air_temperature 75.20239902664686;
-	mass_temperature 75.03849902664686;
+	air_temperature 74.6486649536146;
+	mass_temperature 74.4847649536146;
 }
 
 object ZIPload {
@@ -19028,8 +19034,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.64;
 	parent meter_GLD_B1_N64_B_0357;
-	air_temperature 76.61593248047231;
-	mass_temperature 76.53773248047231;
+	air_temperature 75.2287968228462;
+	mass_temperature 75.15059682284621;
 }
 
 object ZIPload {
@@ -19076,8 +19082,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 1.14;
 	parent meter_GLD_B1_N113_A_0358;
-	air_temperature 74.10518840892449;
-	mass_temperature 74.36188840892449;
+	air_temperature 71.80263139738881;
+	mass_temperature 72.0593313973888;
 }
 
 object ZIPload {
@@ -19124,8 +19130,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.37;
 	parent meter_GLD_B1_N48_B_0359;
-	air_temperature 72.80975747251875;
-	mass_temperature 72.67225747251875;
+	air_temperature 74.43278660158006;
+	mass_temperature 74.29528660158006;
 }
 
 object ZIPload {
@@ -19172,8 +19178,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N43_B_0360;
-	air_temperature 75.65833732528081;
-	mass_temperature 75.57523732528081;
+	air_temperature 75.83030482115862;
+	mass_temperature 75.74720482115862;
 }
 
 object ZIPload {
@@ -19220,8 +19226,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 1.57;
 	parent meter_GLD_B1_N49_B_0361;
-	air_temperature 76.29345551749316;
-	mass_temperature 76.28385551749317;
+	air_temperature 78.12915886104155;
+	mass_temperature 78.11955886104155;
 }
 
 object ZIPload {
@@ -19268,8 +19274,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N65_C_0362;
-	air_temperature 71.97412559376525;
-	mass_temperature 71.64622559376525;
+	air_temperature 70.20067195742672;
+	mass_temperature 69.87277195742672;
 }
 
 object ZIPload {
@@ -19316,8 +19322,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.49;
 	parent meter_GLD_B1_N109_A_0363;
-	air_temperature 76.9390102525993;
-	mass_temperature 76.9490102525993;
+	air_temperature 78.71252751809854;
+	mass_temperature 78.72252751809853;
 }
 
 object ZIPload {
@@ -19364,8 +19370,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N29_A_0364;
-	air_temperature 69.43093047455591;
-	mass_temperature 69.5721304745559;
+	air_temperature 69.67568202384489;
+	mass_temperature 69.81688202384488;
 }
 
 object ZIPload {
@@ -19412,8 +19418,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.74;
 	parent meter_GLD_B1_N66_C_0365;
-	air_temperature 71.55540046085554;
-	mass_temperature 71.60050046085554;
+	air_temperature 73.57895733955961;
+	mass_temperature 73.62405733955961;
 }
 
 object ZIPload {
@@ -19460,8 +19466,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.92;
 	parent meter_GLD_B1_N63_A_0366;
-	air_temperature 72.83853630159312;
-	mass_temperature 72.79363630159312;
+	air_temperature 72.06533664230233;
+	mass_temperature 72.02043664230233;
 }
 
 object ZIPload {
@@ -19508,8 +19514,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.14;
 	parent meter_GLD_B1_N74_C_0367;
-	air_temperature 75.98031834909061;
-	mass_temperature 75.92731834909061;
+	air_temperature 77.6560589478501;
+	mass_temperature 77.6030589478501;
 }
 
 object ZIPload {
@@ -19556,8 +19562,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.27;
 	parent meter_GLD_B1_N63_A_0368;
-	air_temperature 75.23482063304289;
-	mass_temperature 75.0724206330429;
+	air_temperature 72.84069312276344;
+	mass_temperature 72.67829312276345;
 }
 
 object ZIPload {
@@ -19604,8 +19610,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.32;
 	parent meter_GLD_B1_N64_B_0369;
-	air_temperature 69.93666880483218;
-	mass_temperature 69.67146880483217;
+	air_temperature 72.16942506393251;
+	mass_temperature 71.9042250639325;
 }
 
 object ZIPload {
@@ -19652,8 +19658,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N63_A_0370;
-	air_temperature 77.44629151115657;
-	mass_temperature 77.38919151115657;
+	air_temperature 75.41668612073532;
+	mass_temperature 75.35958612073532;
 }
 
 object ZIPload {
@@ -19700,8 +19706,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.49;
 	parent meter_GLD_B1_N76_B_0371;
-	air_temperature 77.00846824382704;
-	mass_temperature 76.91956824382703;
+	air_temperature 76.47309937929867;
+	mass_temperature 76.38419937929866;
 }
 
 object ZIPload {
@@ -19748,8 +19754,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.57;
 	parent meter_GLD_B1_N53_A_0372;
-	air_temperature 77.08029242095562;
-	mass_temperature 77.18309242095562;
+	air_temperature 76.90551653214187;
+	mass_temperature 77.00831653214188;
 }
 
 object ZIPload {
@@ -19796,8 +19802,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N48_B_0373;
-	air_temperature 70.92247613048768;
-	mass_temperature 70.70237613048769;
+	air_temperature 71.0823800920772;
+	mass_temperature 70.86228009207721;
 }
 
 object ZIPload {
@@ -19844,8 +19850,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.68;
 	parent meter_GLD_B1_N47_C_0374;
-	air_temperature 72.8156420483226;
-	mass_temperature 72.6111420483226;
+	air_temperature 72.23047352761658;
+	mass_temperature 72.02597352761659;
 }
 
 object ZIPload {
@@ -19892,8 +19898,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N64_B_0375;
-	air_temperature 74.29519097487089;
-	mass_temperature 74.18209097487089;
+	air_temperature 75.15978913883626;
+	mass_temperature 75.04668913883626;
 }
 
 object ZIPload {
@@ -19940,8 +19946,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.32;
 	parent meter_GLD_B1_N76_A_0376;
-	air_temperature 78.38177727559854;
-	mass_temperature 78.34667727559854;
+	air_temperature 76.7068164230918;
+	mass_temperature 76.6717164230918;
 }
 
 object ZIPload {
@@ -19988,8 +19994,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.3;
 	parent meter_GLD_B1_N107_B_0377;
-	air_temperature 69.52102020855475;
-	mass_temperature 70.32842020855475;
+	air_temperature 68.50049888512552;
+	mass_temperature 69.30789888512552;
 }
 
 object ZIPload {
@@ -20036,8 +20042,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N69_A_0378;
-	air_temperature 76.89839526673943;
-	mass_temperature 76.79679526673944;
+	air_temperature 76.84147704927327;
+	mass_temperature 76.73987704927328;
 }
 
 object ZIPload {
@@ -20084,8 +20090,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.86;
 	parent meter_GLD_B1_N6_C_0379;
-	air_temperature 81.31815975407945;
-	mass_temperature 81.52255975407945;
+	air_temperature 80.00583623069596;
+	mass_temperature 80.21023623069597;
 }
 
 object ZIPload {
@@ -20132,8 +20138,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N76_C_0380;
-	air_temperature 63.09820439498561;
-	mass_temperature 62.854504394985604;
+	air_temperature 64.40298261376803;
+	mass_temperature 64.15928261376803;
 }
 
 object ZIPload {
@@ -20180,8 +20186,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.3;
 	parent meter_GLD_B1_N48_C_0381;
-	air_temperature 73.05134361724247;
-	mass_temperature 72.87274361724246;
+	air_temperature 74.3161237686182;
+	mass_temperature 74.1375237686182;
 }
 
 object ZIPload {
@@ -20228,8 +20234,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N48_A_0382;
-	air_temperature 77.71465219367276;
-	mass_temperature 77.67405219367276;
+	air_temperature 78.38359503557959;
+	mass_temperature 78.34299503557959;
 }
 
 object ZIPload {
@@ -20276,8 +20282,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.44;
 	parent meter_GLD_B1_N74_C_0383;
-	air_temperature 76.02114638878464;
-	mass_temperature 75.94754638878464;
+	air_temperature 74.88113900945513;
+	mass_temperature 74.80753900945513;
 }
 
 object ZIPload {
@@ -20324,8 +20330,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.24;
 	parent meter_GLD_B1_N9_A_0384;
-	air_temperature 75.24362108958553;
-	mass_temperature 75.14122108958553;
+	air_temperature 75.28354537453178;
+	mass_temperature 75.18114537453178;
 }
 
 object ZIPload {
@@ -20372,8 +20378,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.43;
 	parent meter_GLD_B1_N76_B_0385;
-	air_temperature 76.1264586512077;
-	mass_temperature 76.0703586512077;
+	air_temperature 76.47326690348649;
+	mass_temperature 76.41716690348649;
 }
 
 object ZIPload {
@@ -20420,8 +20426,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.41;
 	parent meter_GLD_B1_N76_C_0386;
-	air_temperature 72.85655973848064;
-	mass_temperature 72.69305973848064;
+	air_temperature 73.11214638525071;
+	mass_temperature 72.94864638525071;
 }
 
 object ZIPload {
@@ -20468,8 +20474,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.27;
 	parent meter_GLD_B1_N6_C_0387;
-	air_temperature 77.5165400051786;
-	mass_temperature 77.48114000517859;
+	air_temperature 78.33117057280411;
+	mass_temperature 78.2957705728041;
 }
 
 object ZIPload {
@@ -20516,8 +20522,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.3;
 	parent meter_GLD_B1_N109_A_0388;
-	air_temperature 64.2846974677469;
-	mass_temperature 64.8758974677469;
+	air_temperature 64.53064184760235;
+	mass_temperature 65.12184184760235;
 }
 
 object ZIPload {
@@ -20564,8 +20570,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 1.73;
 	parent meter_GLD_B1_N48_C_0389;
-	air_temperature 76.28598978619759;
-	mass_temperature 76.1175897861976;
+	air_temperature 76.97023495883172;
+	mass_temperature 76.80183495883173;
 }
 
 object ZIPload {
@@ -20612,8 +20618,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.92;
 	parent meter_GLD_B1_N80_B_0390;
-	air_temperature 74.72686893736133;
-	mass_temperature 74.61646893736133;
+	air_temperature 74.72578893261372;
+	mass_temperature 74.61538893261373;
 }
 
 object ZIPload {
@@ -20660,8 +20666,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.62;
 	parent meter_GLD_B1_N49_B_0391;
-	air_temperature 78.94989839253086;
-	mass_temperature 78.99359839253086;
+	air_temperature 79.79885833219615;
+	mass_temperature 79.84255833219615;
 }
 
 object ZIPload {
@@ -20708,8 +20714,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N48_C_0392;
-	air_temperature 73.23469865217737;
-	mass_temperature 73.41729865217737;
+	air_temperature 71.84682268282555;
+	mass_temperature 72.02942268282554;
 }
 
 object ZIPload {
@@ -20756,8 +20762,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N66_C_0393;
-	air_temperature 69.76948444418251;
-	mass_temperature 69.41248444418251;
+	air_temperature 68.80617491487217;
+	mass_temperature 68.44917491487217;
 }
 
 object ZIPload {
@@ -20804,8 +20810,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.41;
 	parent meter_GLD_B1_N48_B_0394;
-	air_temperature 75.05202122001667;
-	mass_temperature 74.89842122001666;
+	air_temperature 75.04792080303656;
+	mass_temperature 74.89432080303655;
 }
 
 object ZIPload {
@@ -20852,8 +20858,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.32;
 	parent meter_GLD_B1_N76_C_0395;
-	air_temperature 70.8940738772731;
-	mass_temperature 70.6389738772731;
+	air_temperature 70.75233840707577;
+	mass_temperature 70.49723840707577;
 }
 
 object ZIPload {
@@ -20900,8 +20906,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.32;
 	parent meter_GLD_B1_N49_B_0396;
-	air_temperature 74.84293283643389;
-	mass_temperature 74.70853283643389;
+	air_temperature 74.60911905946051;
+	mass_temperature 74.47471905946051;
 }
 
 object ZIPload {
@@ -20948,8 +20954,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.92;
 	parent meter_GLD_B1_N65_C_0397;
-	air_temperature 71.11714270992879;
-	mass_temperature 70.76864270992878;
+	air_temperature 72.55604236859882;
+	mass_temperature 72.20754236859882;
 }
 
 object ZIPload {
@@ -20996,8 +21002,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N65_C_0398;
-	air_temperature 77.028698650824;
-	mass_temperature 76.922298650824;
+	air_temperature 75.30615942162261;
+	mass_temperature 75.19975942162262;
 }
 
 object ZIPload {
@@ -21044,8 +21050,8 @@ object house {
 	window_wall_ratio 0.13;
 	airchange_per_hour 0.92;
 	parent meter_GLD_B1_N76_A_0399;
-	air_temperature 76.20248310073812;
-	mass_temperature 76.13488310073812;
+	air_temperature 75.83564259057853;
+	mass_temperature 75.76804259057853;
 }
 
 object ZIPload {
@@ -21092,8 +21098,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.22;
 	parent meter_GLD_B1_N109_A_0400;
-	air_temperature 78.18717582180345;
-	mass_temperature 78.19527582180345;
+	air_temperature 79.36564925191564;
+	mass_temperature 79.37374925191564;
 }
 
 object ZIPload {
@@ -21140,8 +21146,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.88;
 	parent meter_GLD_B1_N64_B_0401;
-	air_temperature 79.9803439381456;
-	mass_temperature 80.03714393814559;
+	air_temperature 80.27384179485587;
+	mass_temperature 80.33064179485586;
 }
 
 object ZIPload {
@@ -21188,8 +21194,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.38;
 	parent meter_GLD_B1_N76_B_0402;
-	air_temperature 73.06748162947726;
-	mass_temperature 72.88448162947726;
+	air_temperature 73.23963365635943;
+	mass_temperature 73.05663365635944;
 }
 
 object ZIPload {
@@ -21236,8 +21242,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 1.19;
 	parent meter_GLD_B1_N107_B_0403;
-	air_temperature 72.21148608151351;
-	mass_temperature 71.81588608151351;
+	air_temperature 72.98062845942528;
+	mass_temperature 72.58502845942527;
 }
 
 object ZIPload {
@@ -21284,8 +21290,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 1.41;
 	parent meter_GLD_B1_N76_A_0404;
-	air_temperature 75.09715381594468;
-	mass_temperature 76.36355381594467;
+	air_temperature 73.44098077438538;
+	mass_temperature 74.70738077438537;
 }
 
 object ZIPload {
@@ -21332,8 +21338,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N109_A_0405;
-	air_temperature 70.60534199037659;
-	mass_temperature 71.91134199037658;
+	air_temperature 71.35303159589543;
+	mass_temperature 72.65903159589543;
 }
 
 object ZIPload {
@@ -21380,8 +21386,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N49_B_0406;
-	air_temperature 70.95772048898364;
-	mass_temperature 71.97532048898364;
+	air_temperature 70.76662570502485;
+	mass_temperature 71.78422570502485;
 }
 
 object ZIPload {
@@ -21428,8 +21434,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.74;
 	parent meter_GLD_B1_N6_C_0407;
-	air_temperature 72.60348227406443;
-	mass_temperature 72.33458227406443;
+	air_temperature 72.52891436155245;
+	mass_temperature 72.26001436155245;
 }
 
 object ZIPload {
@@ -21476,8 +21482,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N76_A_0408;
-	air_temperature 72.79318793014154;
-	mass_temperature 72.48268793014154;
+	air_temperature 72.73187443741291;
+	mass_temperature 72.42137443741291;
 }
 
 object ZIPload {
@@ -21524,8 +21530,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.49;
 	parent meter_GLD_B1_N66_C_0409;
-	air_temperature 77.88340843945626;
-	mass_temperature 77.91440843945625;
+	air_temperature 78.88431098896378;
+	mass_temperature 78.91531098896377;
 }
 
 object ZIPload {
@@ -21572,8 +21578,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.65;
 	parent meter_GLD_B1_N65_C_0410;
-	air_temperature 70.21557940438218;
-	mass_temperature 69.86637940438217;
+	air_temperature 71.7686920251587;
+	mass_temperature 71.41949202515869;
 }
 
 object ZIPload {
@@ -21620,8 +21626,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.57;
 	parent meter_GLD_B1_N85_C_0411;
-	air_temperature 76.98953983622955;
-	mass_temperature 76.95473983622955;
+	air_temperature 78.08223685427562;
+	mass_temperature 78.04743685427562;
 }
 
 object ZIPload {
@@ -21668,8 +21674,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.86;
 	parent meter_GLD_B1_N76_B_0412;
-	air_temperature 72.77357678518176;
-	mass_temperature 72.42087678518176;
+	air_temperature 72.83922950574903;
+	mass_temperature 72.48652950574903;
 }
 
 object ZIPload {
@@ -21716,8 +21722,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.24;
 	parent meter_GLD_B1_N49_B_0413;
-	air_temperature 76.82061098031718;
-	mass_temperature 76.75701098031718;
+	air_temperature 76.26813356230777;
+	mass_temperature 76.20453356230776;
 }
 
 object ZIPload {
@@ -21764,8 +21770,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.3;
 	parent meter_GLD_B1_N76_C_0414;
-	air_temperature 67.53154521599063;
-	mass_temperature 67.20464521599064;
+	air_temperature 67.25666438293553;
+	mass_temperature 66.92976438293553;
 }
 
 object ZIPload {
@@ -21812,8 +21818,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.68;
 	parent meter_GLD_B1_N66_C_0415;
-	air_temperature 76.9403607029104;
-	mass_temperature 76.9005607029104;
+	air_temperature 77.66854920708305;
+	mass_temperature 77.62874920708305;
 }
 
 object ZIPload {
@@ -21860,8 +21866,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N85_C_0416;
-	air_temperature 67.32789851394588;
-	mass_temperature 66.98599851394589;
+	air_temperature 69.28721062540961;
+	mass_temperature 68.94531062540962;
 }
 
 object ZIPload {
@@ -21908,8 +21914,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 1.03;
 	parent meter_GLD_B1_N109_A_0417;
-	air_temperature 71.75105735632192;
-	mass_temperature 72.04625735632192;
+	air_temperature 71.01315377874184;
+	mass_temperature 71.30835377874183;
 }
 
 object ZIPload {
@@ -21956,8 +21962,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.81;
 	parent meter_GLD_B1_N76_A_0418;
-	air_temperature 71.93275461533447;
-	mass_temperature 72.89965461533448;
+	air_temperature 70.78382924460388;
+	mass_temperature 71.75072924460389;
 }
 
 object ZIPload {
@@ -22004,8 +22010,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.88;
 	parent meter_GLD_B1_N85_C_0419;
-	air_temperature 70.7907041898279;
-	mass_temperature 70.5003041898279;
+	air_temperature 71.3938547599732;
+	mass_temperature 71.10345475997319;
 }
 
 object ZIPload {
@@ -22052,8 +22058,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.92;
 	parent meter_GLD_B1_N76_B_0420;
-	air_temperature 69.33116520990129;
-	mass_temperature 68.95806520990129;
+	air_temperature 71.46393290691235;
+	mass_temperature 71.09083290691235;
 }
 
 object ZIPload {
@@ -22100,8 +22106,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.46;
 	parent meter_GLD_B1_N76_A_0421;
-	air_temperature 76.91171558388206;
-	mass_temperature 76.81701558388205;
+	air_temperature 75.75643059587334;
+	mass_temperature 75.66173059587334;
 }
 
 object ZIPload {
@@ -22148,8 +22154,8 @@ object house {
 	window_wall_ratio 0.18;
 	airchange_per_hour 0.43;
 	parent meter_GLD_B1_N65_C_0422;
-	air_temperature 75.0789636586149;
-	mass_temperature 74.8789636586149;
+	air_temperature 73.30784985251532;
+	mass_temperature 73.10784985251532;
 }
 
 object ZIPload {
@@ -22196,8 +22202,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.51;
 	parent meter_GLD_B1_N65_C_0423;
-	air_temperature 68.26384758786732;
-	mass_temperature 69.2365475878673;
+	air_temperature 69.48287366999259;
+	mass_temperature 70.45557366999257;
 }
 
 object ZIPload {
@@ -22244,8 +22250,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N76_A_0424;
-	air_temperature 75.50145939080804;
-	mass_temperature 75.35095939080804;
+	air_temperature 74.84401976990274;
+	mass_temperature 74.69351976990275;
 }
 
 object ZIPload {
@@ -22292,8 +22298,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N85_C_0425;
-	air_temperature 74.93728943358019;
-	mass_temperature 74.7935894335802;
+	air_temperature 74.76793291520792;
+	mass_temperature 74.62423291520793;
 }
 
 object ZIPload {
@@ -22340,8 +22346,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.97;
 	parent meter_GLD_B1_N76_B_0426;
-	air_temperature 70.86898402500891;
-	mass_temperature 70.64528402500892;
+	air_temperature 70.29646819866747;
+	mass_temperature 70.07276819866748;
 }
 
 object ZIPload {
@@ -22388,8 +22394,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N48_A_0427;
-	air_temperature 68.64695138462388;
-	mass_temperature 68.26285138462387;
+	air_temperature 68.48741464298608;
+	mass_temperature 68.10331464298608;
 }
 
 object ZIPload {
@@ -22436,8 +22442,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.49;
 	parent meter_GLD_B1_N76_A_0428;
-	air_temperature 76.01698720231542;
-	mass_temperature 75.96188720231542;
+	air_temperature 78.04377816583946;
+	mass_temperature 77.98867816583946;
 }
 
 object ZIPload {
@@ -22484,8 +22490,8 @@ object house {
 	window_wall_ratio 0.17;
 	airchange_per_hour 0.54;
 	parent meter_GLD_B1_N66_C_0429;
-	air_temperature 79.79280596377411;
-	mass_temperature 79.96100596377411;
+	air_temperature 82.05042719206622;
+	mass_temperature 82.21862719206622;
 }
 
 object ZIPload {
@@ -22532,8 +22538,8 @@ object house {
 	window_wall_ratio 0.14;
 	airchange_per_hour 0.37;
 	parent meter_GLD_B1_N48_A_0430;
-	air_temperature 65.87928829087812;
-	mass_temperature 66.46878829087812;
+	air_temperature 64.84558942971685;
+	mass_temperature 65.43508942971685;
 }
 
 object ZIPload {
@@ -22580,8 +22586,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.7;
 	parent meter_GLD_B1_N65_C_0431;
-	air_temperature 71.31307696958838;
-	mass_temperature 72.29897696958838;
+	air_temperature 73.00693683613106;
+	mass_temperature 73.99283683613106;
 }
 
 object ZIPload {
@@ -22628,8 +22634,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.76;
 	parent meter_GLD_B1_N76_B_0432;
-	air_temperature 67.8818910906069;
-	mass_temperature 67.36159109060691;
+	air_temperature 67.65322474347609;
+	mass_temperature 67.1329247434761;
 }
 
 object ZIPload {
@@ -22676,8 +22682,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.59;
 	parent meter_GLD_B1_N48_A_0433;
-	air_temperature 78.77751208640912;
-	mass_temperature 78.78621208640912;
+	air_temperature 76.63006306214992;
+	mass_temperature 76.63876306214992;
 }
 
 object ZIPload {
@@ -22724,8 +22730,8 @@ object house {
 	window_wall_ratio 0.16;
 	airchange_per_hour 0.27;
 	parent meter_GLD_B1_N48_A_0434;
-	air_temperature 75.38612284282121;
-	mass_temperature 75.31472284282121;
+	air_temperature 75.6004878522024;
+	mass_temperature 75.52908785220241;
 }
 
 object ZIPload {
@@ -22772,8 +22778,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.51;
 	parent meter_GLD_B1_N48_A_0435;
-	air_temperature 69.9653692882607;
-	mass_temperature 69.6510692882607;
+	air_temperature 69.8745922685017;
+	mass_temperature 69.5602922685017;
 }
 
 object ZIPload {
@@ -22820,8 +22826,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 1.01;
 	parent meter_GLD_B1_N49_B_0436;
-	air_temperature 76.1267697435937;
-	mass_temperature 76.0900697435937;
+	air_temperature 76.7824665316252;
+	mass_temperature 76.74576653162521;
 }
 
 object ZIPload {
@@ -22868,8 +22874,8 @@ object house {
 	window_wall_ratio 0.15;
 	airchange_per_hour 0.68;
 	parent meter_GLD_B1_N76_B_0437;
-	air_temperature 72.49632586398441;
-	mass_temperature 72.28182586398441;
+	air_temperature 72.827704369312;
+	mass_temperature 72.613204369312;
 }
 
 object ZIPload {
@@ -22898,7 +22904,7 @@ object group_recorder {
 	name rec_total_load;
 	group "class=house";
 	property total_load;
-	file Diss/Diss_0091/total_load_all.csv;
+	file Diss/Diss_0158/total_load_all.csv;
 	interval 300;
 }
 
@@ -22906,15 +22912,30 @@ object group_recorder {
 	name rec_hvac_load;
 	group "class=house";
 	property hvac_load;
-	file Diss/Diss_0091/hvac_load_all.csv;
+	file Diss/Diss_0158/hvac_load_all.csv;
 	interval 300;
 }
 
 object group_recorder {
+	name rec_total_load2;
+	group "class=house";
+	property panel.power;
+	file Diss/Diss_0158/total_panel_power_all.csv;
+	interval 300;
+}
+
+object group_recorder {
+	name rec_hvac_load2;
+	group "class=house";
+	property hvac_power;
+	file Diss/Diss_0158/hvac_power_all.csv;
+	interval 300;
+}
+object group_recorder {
 	name rec_T;
 	group "class=house";
 	property air_temperature;
-	file Diss/Diss_0091/T_all.csv;
+	file Diss/Diss_0158/T_all.csv;
 	interval 300;
 }
 
@@ -22922,7 +22943,7 @@ object group_recorder {
 	name rec_Tm;
 	group "class=house";
 	property mass_temperature;
-	file Diss/Diss_0091/Tm_all.csv;
+	file Diss/Diss_0158/Tm_all.csv;
 	interval 300;
 }
 
@@ -22930,7 +22951,7 @@ object group_recorder {
 	name rec_pv_infeed;
 	group "class=inverter";
 	property P_Out;
-	file Diss/Diss_0091/total_P_Out.csv;
+	file Diss/Diss_0158/total_P_Out.csv;
 	interval 300;
 }
 
@@ -22938,7 +22959,7 @@ object group_recorder {
 	name rec_batt_soc;
 	group "class=battery";
 	property state_of_charge;
-	file Diss/Diss_0091/battery_SOC.csv;
+	file Diss/Diss_0158/battery_SOC.csv;
 	interval 300;
 }
 
@@ -22946,7 +22967,7 @@ object recorder {
 	name T_out;
 	parent tmy_file;
 	property temperature;
-	file Diss/Diss_0091/T_out.csv;
+	file Diss/Diss_0158/T_out.csv;
 	interval 300;
 }
 

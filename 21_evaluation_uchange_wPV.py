@@ -7,11 +7,11 @@ run = 'Diss'
 
 # LEM
 
-ind_WS = 87
+ind_WS = 92
 
 # No LEM
 
-ind_b = 46
+ind_b = 90
 
 # Input data
 

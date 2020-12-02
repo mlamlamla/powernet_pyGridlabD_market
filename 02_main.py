@@ -6,7 +6,7 @@ import pandas
 #import pdb; pdb.set_trace()
 
 ###USER input
-ind = 91
+ind = 159
 df_settings = pandas.read_csv('settings_Diss.csv',index_col=[0]) #,parse_dates=['start_time','end_time'])
 
 ##################
@@ -14,6 +14,7 @@ df_settings = pandas.read_csv('settings_Diss.csv',index_col=[0]) #,parse_dates=[
 #################
 if True:
 	#write global file with settings from csv file: HH_global.py
+	#import pdb; pdb.set_trace()
 	import global_functions
 	global_functions.write_global(df_settings.loc[ind],ind,'none')
 	#re-write glm model for flexible devices - deactivate if no new file needs to be generated

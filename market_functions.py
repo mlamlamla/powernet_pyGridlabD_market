@@ -70,6 +70,7 @@ def include_unresp_load(dt_sim_time,retail,df_prices,df_buy_bids,df_awarded_bids
         #unresp_load = 0
 
         #Myopic
+        #import pdb; pdb.set_trace()
         if load_forecast == 'myopic':
             active_prev = df_prices['clearing_quantity'].loc[dt_sim_time - dt]
             inel_prev = df_prices['unresponsive_loads'].loc[dt_sim_time - dt]

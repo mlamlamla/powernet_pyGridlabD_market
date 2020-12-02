@@ -17,6 +17,7 @@ import time
 from HH_global import results_folder, flexible_houses, C, p_max, market_data, which_price, city, month
 from HH_global import interval, prec, price_intervals, allocation_rule, unresp_factor, load_forecast
 from HH_global import FIXED_TARIFF, include_SO, EV_data
+from HH_global import RR_loss
 
 #retail_kWh = 0.03245935410676796 # (july) # 0.02391749988554048 (year) #USD/kWh
 #retail_kWh = 0.02254690804746962 #mid-Dec
@@ -141,6 +142,7 @@ def on_precommit(t):
 		#Update physical values for new period
 		#global df_house_state;
 		df_house_state = HHfct.update_house(dt_sim_time,df_house_state)
+		#import pdb; pdb.set_trace()
 		if len(batterylist) > 0:
 			df_battery_state = Bfct.update_battery(df_battery_state)
 		if len(EVlist) > 0:
@@ -193,11 +195,19 @@ def on_precommit(t):
 		#df_awarded_bids = df_awarded_bids.append(pandas.DataFrame(columns=df_awarded_bids.columns,data=[[dt_sim_time,'unresp_load',float(p_max),unresp_load,'S']]),ignore_index=True)
 
 		#Include supply
-		supply_costs = float(min(df_WS['RT'].loc[dt_sim_time],retail.Pmax))
+		try:
+			supply_costs = float(min(df_WS['RT'].loc[dt_sim_time],retail.Pmax))
+		except:
+			print('LMP duplicate, use latest update')
+			print(df_WS['RT'].loc[dt_sim_time])
+			supply_costs = float(min(df_WS['RT'].loc[dt_sim_time].iloc[-1],retail.Pmax))
+
+		supply_costs = supply_costs + RR_loss*1000
 		retail.sell(C,supply_costs,gen_name='WS') #in [USD/kW] #How can I tweak clearing that we can name biider 'WS'?
-		retail.buy(C,supply_costs-0.01,appliance_name='WS_export') #in [USD/kW] #How can I tweak clearing that we can name biider 'WS'?
 		df_supply_bids = df_supply_bids.append(pandas.DataFrame(columns=df_supply_bids.columns,data=[[dt_sim_time,'WS',supply_costs,C]]),ignore_index=True)
 		print('Supply costs: '+str(supply_costs))
+		retail.buy(C,supply_costs-0.01,appliance_name='WS_export') #in [USD/kW] #How can I tweak clearing that we can name biider 'WS'?
+		df_buy_bids = df_buy_bids.append(pandas.DataFrame(columns=df_buy_bids.columns,data=[[dt_sim_time,'WS_export',supply_costs-0.01,C]]),ignore_index=True)
 
 		#Market clearing
 		retail.clear()

@@ -83,7 +83,7 @@ def estimate_houseparameters(house, df_house_year, start, end, df_estimates):
 	return df_estimates
 
 def get_retailrate(start,end):
-
+	#import pdb; pdb.set_trace()
 	#Cacluclate retail arte
 	df_slack = pd.read_csv(folder+'/load_node_149.csv',skiprows=range(8))
 	df_slack['# timestamp'] = df_slack['# timestamp'].map(lambda x: str(x)[:-4])
@@ -99,8 +99,9 @@ def get_retailrate(start,end):
 	df_WS = df_WS.loc[start:end]
 
 	df_WS['system_load'] = df_slack['measured_real_power']
+	supply_wlosses = (df_WS['system_load']/1000./12.).sum() # MWh
 	df_WS['supply_cost'] = df_WS['system_load']/1000.*df_WS['RT']/12.
-	supply_cost = df_WS['supply_cost'].sum()
+	supply_cost_wlosses = df_WS['supply_cost'].sum()
 
 	df_total_load = pd.read_csv(folder+'/total_load_all.csv',skiprows=range(8)) #in kW
 	df_total_load['# timestamp'] = df_total_load['# timestamp'].map(lambda x: str(x)[:-4])
@@ -109,6 +110,11 @@ def get_retailrate(start,end):
 	df_total_load.set_index('# timestamp',inplace=True)
 	df_total_load = df_total_load.loc[start:end]
 	total_load = (df_total_load.sum(axis=1)/12.).sum() #kWh
+
+	df_WS['res_load'] = df_total_load.sum(axis=1)
+	supply_wolosses = (df_WS['res_load']/1000./12.).sum() # only residential load, not what is measured at trafo
+	df_WS['res_cost'] = df_WS['res_load']/1000.*df_WS['RT']/12.
+	supply_cost_wolosses = df_WS['res_cost'].sum()
 
 	try:
 		df_inv_load = pd.read_csv(folder+'/total_P_Out.csv',skiprows=range(8)) #in W
@@ -122,8 +128,10 @@ def get_retailrate(start,end):
 		PV_supply = 0.0
 
 	net_demand  = total_load - PV_supply
+	retail_kWh = supply_cost_wlosses/net_demand
+	retail_kWh_wolosses = supply_cost_wolosses/net_demand
 
-	retail_kWh = supply_cost/net_demand
+	#import pdb; pdb.set_trace()
 	return retail_kWh
 
 
@@ -162,7 +170,11 @@ use_existing_beta = False
 folder = 'Diss/Diss_' + "{:04d}".format(ind_base) # + '_5min'
 results_folder = 'Diss'
 city = 'Austin'
-market_file = 'Ercot_HBSouth.csv'
+#market_file = 'Ercot_HBSouth.csv'
+market_file = 'Ercot_LZ_SOUTH.csv'
+
+start = pd.Timestamp(2016,1,4)
+end = pd.Timestamp(2016,1,10,23,55)
 
 start_backup = pd.Timestamp(2016,1,1)
 end_backup = pd.Timestamp(2017,1,1)
@@ -231,13 +243,15 @@ glm_in.close()
 
 df_settings_year = df_settings_week.copy() # for missing values
 
-start = pd.Timestamp(2016,1,4)
-end = pd.Timestamp(2016,1,11)
+#start = pd.Timestamp(2016,8,1)
+#end = pd.Timestamp(2016,8,8)
 
 while True:
 	print(start)
 	if end.year == 2017:
 		break
+	#if start.month == 8:
+	#	break
 
 	retail_kWh = get_retailrate(start,end)
 	#import pdb; pdb.set_trace()
@@ -288,7 +302,7 @@ while True:
 			#import pdb; pdb.set_trace()
 			df_settings_week['P_heat'].loc[house] = df_settings_year['P_heat'].loc[house]
 			df_settings_week['gamma_heat'].loc[house] = df_settings_year['gamma_heat'].loc[house]
-
+		#import pdb; pdb.set_trace()
 	# Include alpha
 
 	df_settings_ext = df_settings_week.copy()

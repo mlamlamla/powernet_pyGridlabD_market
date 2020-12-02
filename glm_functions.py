@@ -14,7 +14,7 @@ import random
 from HH_global import city, player_dir, results_folder
 from HH_global import slack_node, start_time_str, end_time_str, interval, flexible_houses, EV_share, PV_share, Batt_share, tmy_file
 
-use_NOAA = True
+use_NOAA = False
 time_step = 300
 
 #Climate zone for Austin / Texas
