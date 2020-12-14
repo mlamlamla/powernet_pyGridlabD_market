@@ -24,7 +24,8 @@ def analyze_year(folder,directory,s_settings,interval):
 			os.mkdir(directory)
 		df_systemdata = get_systemdata(folder,s_settings['market_data'],directory)
 	print('HVAC consumption share: '+str(df_systemdata['hvac_load_houses'].sum()/df_systemdata['total_load_houses'].sum()*100))
-	#import pdb; pdb.set_trace()
+	print('Grid losses: '+str(100*(1.-df_systemdata['total_load_houses'].sum()/df_systemdata['measured_real_power'].sum())))
+	import pdb; pdb.set_trace()
 	#import pdb; pdb.set_trace()
 	procurement_cost = ((df_systemdata['measured_real_power']/(60./interval))*df_systemdata['RT']/1000.).sum()
 	consumer_kWh = (df_systemdata['total_load_houses']/(60./interval)).sum()
@@ -64,6 +65,7 @@ def analyze_year(folder,directory,s_settings,interval):
 
 	#08: Weekly mean and maximum
 	get_weeklymeanmax(directory,df_systemdata)
+	get_weeklymeanmax2(directory,df_systemdata)
 
 	#09: Plot load duration curve of day peaks
 	get_loaddurationcurve_days(directory,df_systemdata)
@@ -425,6 +427,58 @@ def get_weeklymeanmax(directory,df_systemdata):
 	df_system_week_txt = df_system_week[['proc_cost_MWh','week_max_price','week_mean_price','week_max','week_mean']]
 	text_file.write(df_system_week_txt.to_latex())
 	text_file.close()
+
+def get_weeklymeanmax2(directory,df_systemdata):
+	df_systemdata['proc_cost'] = (df_systemdata['measured_real_power']/12.)*df_systemdata['RT']
+	av_proc_cost = df_systemdata['proc_cost'].sum()/(df_systemdata['measured_real_power']/12.).sum()
+	print('Average procurement cost: '+str(av_proc_cost))
+
+	df_systemdata['week'] = df_systemdata.index.week
+	df_system_week = pd.DataFrame(index=range(df_systemdata['week'].min(),df_systemdata['week'].max()+1),columns=['week_max'],data=df_systemdata.groupby('week').max()['measured_real_power'].values)
+	
+	df_systemdata['data'] = df_systemdata.index
+	df_system_week['start'] = df_systemdata.groupby('week')['data'].min()
+	df_system_week['end'] = df_systemdata.groupby('week')['data'].max()
+	df_system_week['time'] = ''
+	for ind in df_system_week.index:
+		df_system_week.at[ind,'time'] = "{:02d}".format(df_system_week['start'].loc[ind].month) +'/' + "{:02d}".format(df_system_week['start'].loc[ind].day) + ' - ' + "{:02d}".format(df_system_week['end'].loc[ind].month) +'/' + "{:02d}".format(df_system_week['end'].loc[ind].day)
+	df_system_week['week_max'] = df_system_week['week_max']/1000.
+	df_system_week['week_mean'] = df_systemdata.groupby('week').mean()['measured_real_power'].values/1000.
+	df_system_week['week_median'] = df_systemdata.groupby('week').median()['measured_real_power'].values
+	df_system_week['week_max_price'] = df_systemdata.groupby('week').max()['RT'].values
+	df_system_week['week_mean_price'] = df_systemdata.groupby('week').mean()['RT'].values
+	df_system_week['week_median_price'] = df_systemdata.groupby('week').median()['RT'].values
+	#import pdb; pdb.set_trace()
+	df_system_week['week_var_price'] = df_systemdata.groupby('week').var()['RT'].values
+	df_system_week['week_std_price'] = df_systemdata.groupby('week').std()['RT'].values
+	df_system_week['proc_cost'] = df_systemdata.groupby('week').sum()['proc_cost'].values
+	df_system_week['procurement'] = df_systemdata.groupby('week').sum()['measured_real_power'].values/12.
+	df_system_week = df_system_week.loc[df_system_week.index != 53] #Drop first week of January (partial)
+	df_system_week = df_system_week.loc[df_system_week.index != 52] #Drop last week of Dec (partial)
+	df_system_week['proc_cost_MWh'] = df_system_week['proc_cost']/df_system_week['procurement']
+	
+	df_system_week.sort_values('week_max',inplace=True) # --> 51,50,3; 51 is a holiday, and 3 has the maximum medium load between the three
+	df_system_week.sort_values('week_mean',inplace=True) # --> 51,50,3; 51 is a holiday, and 3 has the maximum medium load between the three
+	df_system_week.sort_values('week_median',inplace=True) # --> 51,50,3; 51 is a holiday, and 3 has the maximum medium load between the three
+	#Highest summer week: 29 / 18. - 24.07.
+	#And when are the highest prices?
+	df_system_week.sort_values('week_var_price',inplace=True)
+	#import pdb; pdb.set_trace()
+	
+	df_system_week.sort_index(inplace=True)
+	for week_ind in df_system_week.index:
+		print('Start week '+str(week_ind)+': '+str(df_systemdata.loc[df_systemdata['week'] == week_ind].index[0]))
+	df_system_week.set_index('time',inplace=True)
+	df_system_week[['proc_cost_MWh','week_max_price','week_mean_price']] = df_system_week[['proc_cost_MWh','week_max_price','week_mean_price']].round(2)
+	df_system_week[['week_max','week_mean','week_std_price']] = df_system_week[['week_max','week_mean','week_std_price']].round(3)
+	#df_system_week.drop('week_median',axis=1,inplace=True)
+	#df_system_week.drop('week_median_price',axis=1,inplace=True)
+	text_file = open(directory+"/base_case_results2.txt", "w")
+
+	df_system_week_txt = df_system_week[['proc_cost_MWh','week_max_price','week_std_price','week_max']]
+	text_file.write(df_system_week_txt.to_latex())
+	text_file.close()
+	#import pdb; pdb.set_trace()
 
 #09
 def get_loaddurationcurve_days(directory,df_systemdata):

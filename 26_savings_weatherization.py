@@ -8,7 +8,7 @@ max_y = 145
 
 # Energy procurement cost scenario
 run = 'Diss'
-ind_WS = 137
+ind_WS = 124
 ind_b = 90
 
 df_settings = pd.read_csv('settings_Diss.csv',index_col=[0])
@@ -18,20 +18,6 @@ df_HVAC = pd.read_csv(run+'/HVAC_settings/'+df_settings['settings_file'].loc[ind
 #df_HVAC = pd.read_csv('Diss/old/HVAC_settings_2016-08-01_2016-08-08_ext.csv',index_col=[0])
 start = pd.to_datetime(df_settings['start_time'].loc[ind_WS]) + pd.Timedelta(days=1)
 end = pd.to_datetime(df_settings['end_time'].loc[ind_WS])
-#import pdb; pdb.set_trace()
-
-# ind_WS = 65
-#start = pd.Timestamp(2016,1,1)
-#end = pd.Timestamp(2017,1,1)
-
-# ind_WS = 66
-# start = pd.Timestamp(2016,9,12)
-# end = pd.Timestamp(2016,9,19)
-
-# Capacity scenario
-# ind_WS = 64
-# start = pd.Timestamp(2016,12,19)
-# end = pd.Timestamp(2016,12,26)
 
 recread_data = True 
 recalculate_df_welfare = True
@@ -225,49 +211,21 @@ print(df_welfare['u_change'].mean())
 print('Total utility change')
 print(df_welfare['u_change'].sum())
 
-# #Temperature of a single house vs. price: Dow does temperature depend on price?
-# fig = ppt.figure(figsize=(8,4),dpi=150)   
-# ppt.ioff()
-# ax = fig.add_subplot(111)
-# lns = []
-# lns += ppt.plot(df_T[df_T.columns[house_no]].loc[start:end],label='House '+str(house_no))
-# ax.set_xlabel('Time')
-# ax.set_ylabel('Temperature')
-# ax2 = ax.twinx()
-# lns += ax2.plot(df_prices['clearing_price'].loc[start:end],'r',label='WS price')
-# labs = [l.get_label() for l in lns]
-# L = ax.legend(lns, labs, loc='lower left', ncol=1)
-# ppt.savefig(folder_WS+'/temperature_vs_price_byhouse.png', bbox_inches='tight')
-
-# #HVAC load vs. price: Does aggregate HVAC load get reduced if price increases?
-# fig = ppt.figure(figsize=(8,4),dpi=150)   
-# ppt.ioff()
-# ax = fig.add_subplot(111)
-# lns = []
-# lns += ppt.plot(df_hvac_load.sum(axis=1).loc[start:end],label='Total HVAC load')
-# ax.set_xlabel('Time')
-# ax.set_ylabel('HVAC load')
-# ax2 = ax.twinx()
-# lns += ax2.plot(df_prices['clearing_price'].loc[start:end],'r',label='WS price')
-# labs = [l.get_label() for l in lns]
-# L = ax.legend(lns, labs, loc='lower left', ncol=1)
-# ppt.savefig(folder_WS+'/hvacload_vs_price_byhouse.png', bbox_inches='tight')
 
 #Histogram utility change
 fig = ppt.figure(figsize=(6,4),dpi=150)   
 ppt.ioff()
 ax = fig.add_subplot(111)
-lns = ppt.hist(df_welfare['u_change'],bins=20,color='0.75',edgecolor='0.5')
+lns = ppt.scatter(df_welfare['beta'],df_welfare['u_change'])
 #ax.set_ylim(0,75)
-if df_welfare['u_change'].min() > 0.0:
-	ax.set_xlim(0,df_welfare['u_change'].max()*1.05)
-else:
-	ax.vlines(0,0,max_y,'k',lw=1)
-ax.set_xlabel('Utility change [USD]')
-if max_y > 0.0:
-	ax.set_ylim(0,max_y)
-ax.set_ylabel('Number of houses')
-ppt.savefig(folder_WS+'/hist_uchange_'+str(ind_WS)+'.png', bbox_inches='tight')
-ppt.savefig(folder_WS+'/hist_uchange_'+str(ind_WS)+'.pdf', bbox_inches='tight')
-#import pdb; pdb.set_trace()
-len(df_welfare.loc[df_welfare['u_change'] < 0.0])/len(df_welfare)
+# if df_welfare['u_change'].min() > 0.0:
+# 	ax.set_xlim(0,df_welfare['u_change'].max()*1.05)
+# else:
+# 	ax.vlines(0,0,max_y,'k',lw=1)
+# ax.set_xlabel('Utility change [USD]')
+# if max_y > 0.0:
+# 	ax.set_ylim(0,max_y)
+# ax.set_ylabel('Number of houses')
+ppt.savefig(folder_WS+'/beta_uchange_'+str(ind_WS)+'.png', bbox_inches='tight')
+ppt.savefig(folder_WS+'/beta_uchange_'+str(ind_WS)+'.pdf', bbox_inches='tight')
+import pdb; pdb.set_trace()

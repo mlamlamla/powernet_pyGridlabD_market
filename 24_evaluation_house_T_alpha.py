@@ -3,12 +3,13 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as ppt
+from sklearn.linear_model import LinearRegression
 
 max_y = 145
 
 # Energy procurement cost scenario
 run = 'Diss'
-ind_WS = 137
+ind_WS = 124
 ind_b = 90
 
 df_settings = pd.read_csv('settings_Diss.csv',index_col=[0])
@@ -172,13 +173,17 @@ if recalculate_df_welfare:
 	df_u = df_T.copy()
 	df_u_b = df_T_b.copy()
 	#df_welfare = pd.DataFrame(index=df_u.columns,columns=['fixed_u','fixed_cost','fixed_T_mean','fixed_T_var','fixed_av_retail','LEM_u','LEM_cost','LEM_T_mean','LEM_T_var','LEM_av_retail'])
-	df_welfare = pd.DataFrame(index=df_u.columns,columns=['fixed_u','fixed_cost','fixed_T_mean','fixed_T_min','fixed_T_max','fixed_T_min5','fixed_T_max95','fixed_T_var','fixed_av_retail','LEM_u','LEM_cost','LEM_T_mean','LEM_T_min','LEM_T_max','LEM_T_min5','LEM_T_max95','LEM_T_var','LEM_av_retail'])
+	df_welfare = pd.DataFrame(index=df_u.columns,columns=['T_com','T_cool','T_heat','fixed_u','fixed_cost','fixed_T_mean','fixed_T_min','fixed_T_max','fixed_T_min5','fixed_T_max95','fixed_T_var','fixed_av_retail','LEM_u','LEM_cost','LEM_T_mean','LEM_T_min','LEM_T_max','LEM_T_min5','LEM_T_max95','LEM_T_var','LEM_av_retail'])
 	for col in df_u.columns:
 		#print(col)
 		#import pdb; pdb.set_trace()
 
 		alpha = df_HVAC['alpha'].loc[col]
 		T_com = df_HVAC['comf_temperature'].loc[col]
+		df_welfare['T_com'].loc[col] = T_com
+		df_welfare['T_cool'].loc[col] = df_HVAC['cooling_setpoint'].loc[col]
+		df_welfare['T_heat'].loc[col] = df_HVAC['heating_setpoint'].loc[col]
+
 		#import pdb; pdb.set_trace()
 		df_u[col] = (df_u[col] - T_com)
 		df_u[col] = -alpha*df_u[col].pow(2)
@@ -225,49 +230,141 @@ print(df_welfare['u_change'].mean())
 print('Total utility change')
 print(df_welfare['u_change'].sum())
 
-# #Temperature of a single house vs. price: Dow does temperature depend on price?
-# fig = ppt.figure(figsize=(8,4),dpi=150)   
-# ppt.ioff()
-# ax = fig.add_subplot(111)
-# lns = []
-# lns += ppt.plot(df_T[df_T.columns[house_no]].loc[start:end],label='House '+str(house_no))
-# ax.set_xlabel('Time')
-# ax.set_ylabel('Temperature')
-# ax2 = ax.twinx()
-# lns += ax2.plot(df_prices['clearing_price'].loc[start:end],'r',label='WS price')
-# labs = [l.get_label() for l in lns]
-# L = ax.legend(lns, labs, loc='lower left', ncol=1)
-# ppt.savefig(folder_WS+'/temperature_vs_price_byhouse.png', bbox_inches='tight')
+# Temperature mean by preference
 
-# #HVAC load vs. price: Does aggregate HVAC load get reduced if price increases?
-# fig = ppt.figure(figsize=(8,4),dpi=150)   
-# ppt.ioff()
-# ax = fig.add_subplot(111)
-# lns = []
-# lns += ppt.plot(df_hvac_load.sum(axis=1).loc[start:end],label='Total HVAC load')
-# ax.set_xlabel('Time')
-# ax.set_ylabel('HVAC load')
-# ax2 = ax.twinx()
-# lns += ax2.plot(df_prices['clearing_price'].loc[start:end],'r',label='WS price')
-# labs = [l.get_label() for l in lns]
-# L = ax.legend(lns, labs, loc='lower left', ncol=1)
-# ppt.savefig(folder_WS+'/hvacload_vs_price_byhouse.png', bbox_inches='tight')
-
-#Histogram utility change
 fig = ppt.figure(figsize=(6,4),dpi=150)   
 ppt.ioff()
 ax = fig.add_subplot(111)
-lns = ppt.hist(df_welfare['u_change'],bins=20,color='0.75',edgecolor='0.5')
-#ax.set_ylim(0,75)
-if df_welfare['u_change'].min() > 0.0:
-	ax.set_xlim(0,df_welfare['u_change'].max()*1.05)
-else:
-	ax.vlines(0,0,max_y,'k',lw=1)
-ax.set_xlabel('Utility change [USD]')
-if max_y > 0.0:
-	ax.set_ylim(0,max_y)
-ax.set_ylabel('Number of houses')
-ppt.savefig(folder_WS+'/hist_uchange_'+str(ind_WS)+'.png', bbox_inches='tight')
-ppt.savefig(folder_WS+'/hist_uchange_'+str(ind_WS)+'.pdf', bbox_inches='tight')
-#import pdb; pdb.set_trace()
-len(df_welfare.loc[df_welfare['u_change'] < 0.0])/len(df_welfare)
+lns = ppt.scatter(np.log(df_welfare['alpha']),(df_welfare['LEM_T_mean'])/(df_welfare['comf_temperature']),marker='x',color='0.6')
+ax.set_xlabel('$log(\\alpha)$')
+#ax.set_ylim(1.0,3.5)
+ax.set_ylabel('$\\Delta \\theta^{LEM} / \\Delta \\theta^{fixed}$')
+ppt.savefig(folder_WS + '/TmeanTcom_alpha_'+str(ind_WS)+'.png', bbox_inches='tight')
+ppt.savefig(folder_WS + '/TmeanTcom_alpha_'+str(ind_WS)+'.pdf', bbox_inches='tight')
+
+fig = ppt.figure(figsize=(6,4),dpi=150)   
+ppt.ioff()
+ax = fig.add_subplot(111)
+lns = ppt.scatter(np.log(df_welfare['alpha']),(df_welfare['fixed_T_mean'])/(df_welfare['comf_temperature']),marker='x',color='0.6')
+ax.set_xlabel('$log(\\alpha)$')
+#ax.set_ylim(1.0,3.5)
+ax.set_ylabel('$\\Delta \\theta^{LEM} / \\Delta \\theta^{fixed}$')
+ppt.savefig(folder_WS + '/TmeanFixedTcom_alpha_'+str(ind_WS)+'.png', bbox_inches='tight')
+ppt.savefig(folder_WS + '/TmeanFixedTcom_alpha_'+str(ind_WS)+'.pdf', bbox_inches='tight')
+
+fig = ppt.figure(figsize=(6,4),dpi=150)   
+ppt.ioff()
+ax = fig.add_subplot(111)
+lns = ppt.scatter(np.log(df_welfare['alpha']),(df_welfare['LEM_T_mean'])/(df_welfare['T_cool']),marker='x',color='0.6')
+ax.set_xlabel('$log(\\alpha)$')
+#ax.set_ylim(1.0,3.5)
+ax.set_ylabel('$\\Delta \\theta^{LEM} / \\Delta \\theta^{fixed}$')
+ppt.savefig(folder_WS + '/TmeanTcool_alpha_'+str(ind_WS)+'.png', bbox_inches='tight')
+ppt.savefig(folder_WS + '/TmeanTcool_alpha_'+str(ind_WS)+'.pdf', bbox_inches='tight')
+
+fig = ppt.figure(figsize=(6,4),dpi=150)   
+ppt.ioff()
+ax = fig.add_subplot(111)
+lns = ppt.scatter(np.log(df_welfare['alpha']),(df_welfare['fixed_T_mean'])/(df_welfare['T_cool']),marker='x',color='0.6')
+ax.set_xlabel('$log(\\alpha)$')
+#ax.set_ylim(1.0,3.5)
+ax.set_ylabel('$\\Delta \\theta^{LEM} / \\Delta \\theta^{fixed}$')
+ppt.savefig(folder_WS + '/TmeanFixedTcool_alpha_'+str(ind_WS)+'.png', bbox_inches='tight')
+ppt.savefig(folder_WS + '/TmeanFixedTcool_alpha_'+str(ind_WS)+'.pdf', bbox_inches='tight')
+
+fig = ppt.figure(figsize=(6,4),dpi=150)   
+ppt.ioff()
+ax = fig.add_subplot(111)
+lns = ppt.scatter(np.log(df_welfare['alpha']),(df_welfare['LEM_T_mean'])/(df_welfare['fixed_T_mean']),marker='x',color='0.6')
+ax.set_xlabel('$log(\\alpha)$')
+#ax.set_ylim(1.0,3.5)
+ax.set_ylabel('$\\Delta \\theta^{LEM} / \\Delta \\theta^{fixed}$')
+ppt.savefig(folder_WS + '/TLEMTfixed_alpha_'+str(ind_WS)+'.png', bbox_inches='tight')
+ppt.savefig(folder_WS + '/TLEMTfixed_alpha_'+str(ind_WS)+'.pdf', bbox_inches='tight')
+
+df_welfare['LEM_abs'] = abs(df_welfare['LEM_T_mean'] - df_welfare['comf_temperature'])
+df_welfare['fixed_abs'] = abs(df_welfare['fixed_T_mean'] - df_welfare['comf_temperature'])
+
+fig = ppt.figure(figsize=(6,4),dpi=150)   
+ppt.ioff()
+ax = fig.add_subplot(111)
+lns = ppt.scatter(np.log(df_welfare['alpha']),100*(df_welfare['LEM_abs'] - df_welfare['fixed_abs'])/(df_welfare['fixed_abs']),marker='x',color='0.6')
+ax.set_xlabel('Comfort preference $log(\\alpha)$')
+#ax.set_ylim(1.0,3.5)
+ax.set_ylabel('Change of average comfort gap [%]')
+ppt.savefig(folder_WS + '/relTcom_change_alpha_'+str(ind_WS)+'.png', bbox_inches='tight')
+ppt.savefig(folder_WS + '/relTcom_change_alpha_'+str(ind_WS)+'.pdf', bbox_inches='tight')
+
+reg = LinearRegression()
+reg.fit(np.log(df_welfare['alpha']).values.reshape(437,1),(100*(df_welfare['LEM_abs'] - df_welfare['fixed_abs'])/(df_welfare['fixed_abs'])).to_numpy().reshape(437,1))
+reg.coef_
+print('decrease in the log of the comfort preference $\\log \\alpha$ by 1 is associated with a drop of the comfort gap by')
+print(reg.coef_)
+
+# Temperature mean by preference
+
+# fig = ppt.figure(figsize=(6,4),dpi=150)   
+# ppt.ioff()
+# ax = fig.add_subplot(111)
+# lns = ppt.scatter(np.log(df_welfare['alpha']),(df_welfare['LEM_T_mean'])/(df_welfare['fixed_T_mean']),marker='x',color='0.6')
+# ax.set_xlabel('$log(\\alpha)$')
+# ax.set_ylim(1.0,3.5)
+# ax.set_ylabel('$\\Delta \\theta^{LEM} / \\Delta \\theta^{fixed}$')
+# ppt.savefig(folder_WS + '/TmeanTset_alpha_'+str(ind_WS)+'.png', bbox_inches='tight')
+# ppt.savefig(folder_WS + '/TmeanTset_alpha_'+str(ind_WS)+'.pdf', bbox_inches='tight')
+
+# Temperature variation by preference
+
+df_welfare['LEM_spead'] = df_welfare['LEM_T_max95']-df_welfare['LEM_T_min5']
+df_welfare['fixed_spead'] = df_welfare['fixed_T_max95']-df_welfare['fixed_T_min5']
+
+fig = ppt.figure(figsize=(6,4),dpi=150)   
+ppt.ioff()
+ax = fig.add_subplot(111)
+lns = ppt.scatter(np.log(df_welfare['alpha']),df_welfare['LEM_spead'],marker='x',color='0.6')
+ax.set_xlabel('Comfort preference $log(\\alpha)$')
+ax.set_ylim(3.0,12.0)
+#ax.set_ylabel('$\\Delta^{(5-95)} \\theta^{LEM} / \\Delta^{(5-95)} \\theta^{fixed}$')
+ax.set_ylabel('Temperature spread $[^\\degree F]$')
+ppt.savefig(folder_WS + '/spreadT5-95_alpha_'+str(ind_WS)+'.png', bbox_inches='tight')
+ppt.savefig(folder_WS + '/spreadT5-95_alpha_'+str(ind_WS)+'.pdf', bbox_inches='tight')
+
+reg2 = LinearRegression()
+reg2.fit(np.log(df_welfare['alpha']).values.reshape(437,1),(df_welfare['LEM_spead']).to_numpy().reshape(437,1))
+reg2.coef_
+print('an increase of the log of the comfort preference $\\log \\alpha$ by 1 is associated with a spread change of [F]')
+print(reg.coef_)
+
+print('Mean spread under LEM')
+print(df_welfare['LEM_spead'].mean())
+print('Mean spread under fixed RT')
+print(df_welfare['fixed_spead'].mean())
+
+fig = ppt.figure(figsize=(6,4),dpi=150)   
+ppt.ioff()
+ax = fig.add_subplot(111)
+lns = ppt.scatter(np.log(df_welfare['alpha']),df_welfare['fixed_spead'],marker='x',color='0.6')
+ax.set_xlabel('Comfort preference $log(\\alpha)$')
+ax.set_ylim(2.0,6.0)
+#ax.set_ylabel('$\\Delta^{(5-95)} \\theta^{LEM} / \\Delta^{(5-95)} \\theta^{fixed}$')
+ax.set_ylabel('Temperature spread $[^\\degree F]$')
+ppt.savefig(folder_WS + '/spreadT5-95_alpha_'+str(ind_WS)+'_fixed.png', bbox_inches='tight')
+ppt.savefig(folder_WS + '/spreadT5-95_alpha_'+str(ind_WS)+'_fixed.pdf', bbox_inches='tight')
+
+fig = ppt.figure(figsize=(6,4),dpi=150)   
+ppt.ioff()
+ax = fig.add_subplot(111)
+lns = ppt.scatter(np.log(df_welfare['alpha']),(df_welfare['LEM_spead'] - df_welfare['fixed_spead'])/(df_welfare['fixed_spead']),marker='x',color='0.6')
+ax.set_xlabel('$log(\\alpha)$')
+ax.set_ylim(1.0,3.5)
+#ax.set_ylabel('$\\Delta^{(5-95)} \\theta^{LEM} / \\Delta^{(5-95)} \\theta^{fixed}$')
+ax.set_ylabel('Experienced temperature spread ratio')
+ppt.savefig(folder_WS + '/diffT5-95_alpha_'+str(ind_WS)+'.png', bbox_inches='tight')
+ppt.savefig(folder_WS + '/diffT5-95_alpha_'+str(ind_WS)+'.pdf', bbox_inches='tight')
+
+print(((df_welfare['LEM_T_mean']/df_welfare['comf_temperature'])).loc[df_welfare['alpha'] >= df_welfare['alpha'].quantile(q=0.95)].mean())
+print(((df_welfare['LEM_T_mean']-df_welfare['comf_temperature'])).loc[df_welfare['alpha'] >= df_welfare['alpha'].quantile(q=0.95)].mean())
+print(((df_welfare['LEM_T_mean']/df_welfare['comf_temperature'])).loc[df_welfare['alpha'] <= df_welfare['alpha'].quantile(q=0.05)].mean())
+print(((df_welfare['LEM_T_mean']-df_welfare['comf_temperature'])).loc[df_welfare['alpha'] <= df_welfare['alpha'].quantile(q=0.05)].mean())
+
+import pdb; pdb.set_trace()

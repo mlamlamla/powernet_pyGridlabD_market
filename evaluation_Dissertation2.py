@@ -173,7 +173,7 @@ ppt.savefig('Diss/loadcurves_under_constraints_'+str(q)+'perc.pdf', bbox_inches=
 
 ################
 #
-#Market income
+# Market income
 #
 #################
 

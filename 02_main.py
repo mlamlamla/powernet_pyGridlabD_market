@@ -6,7 +6,7 @@ import pandas
 #import pdb; pdb.set_trace()
 
 ###USER input
-ind = 159
+ind = 202
 df_settings = pandas.read_csv('settings_Diss.csv',index_col=[0]) #,parse_dates=['start_time','end_time'])
 
 ##################
@@ -23,7 +23,7 @@ if True:
 	#print('Is timestep 300 in min_timestep?')
 	#import pdb; pdb.set_trace()
 	
-#import pdb; pdb.set_trace()
+import pdb; pdb.set_trace()
 #import glm_functions
 #out_dir = '/docker_powernet/glm_generation_Austin'
 #glm_functions.modify_k(out_dir)
