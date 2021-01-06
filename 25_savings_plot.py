@@ -8,8 +8,59 @@ from numpy.polynomial.polynomial import polyfit
 run = 'Diss'
 ind_b = 90
 folder_WS = run
+no_houses = 437
 
-df_results = pd.read_csv(run + '/' + 'weekly_welfare_changes.csv',index_col=[0])
+df_results = pd.read_csv(run + '/' + 'weekly_welfare_changes.csv',index_col=[0]) # from 25_householdsavings_compile.py
+
+print('Welfare changes all households over year')
+print(no_houses*df_results['av_uchange'].sum())
+
+#Histogram utility change
+max_y = 16
+bw = 0.25
+fig = ppt.figure(figsize=(6,4),dpi=150)   
+ppt.ioff()
+ax = fig.add_subplot(111)
+#lns = ppt.hist(df_results['av_uchange'],bins=20,color='0.75',edgecolor='0.5')
+lns = ppt.hist(df_results['av_uchange'],bins=np.arange(-1.0,round(df_results['av_uchange'].max()*1.2,0),bw),color='0.75',edgecolor='0.5')
+#ax.set_ylim(0,75)
+if df_results['av_uchange'].min() > 0.0:
+	ax.set_xlim(0,df_results['av_uchange'].max()*1.05)
+else:
+	ax.vlines(0,0,max_y,'k',lw=1)
+	ax.set_xlim(xmin=(df_results['av_uchange'].min()-2*bw),xmax=(df_results['av_uchange'].max()+2*bw))
+ax.set_xlabel('Utility change [USD]')
+if max_y > 0.0:
+	ax.set_ylim(0,max_y)
+ax.set_ylabel('Number of weeks')
+ppt.savefig(folder_WS+'/25_hist_uchange_year.png', bbox_inches='tight')
+ppt.savefig(folder_WS+'/25_hist_uchange_year.pdf', bbox_inches='tight')
+
+#Histogram utility change
+# df_results['total_uchange'] = no_houses*df_results['av_uchange']
+# max_y = 16
+# bw = 50.
+# fig = ppt.figure(figsize=(6,4),dpi=150)   
+# ppt.ioff()
+# ax = fig.add_subplot(111)
+# lns = ppt.hist(df_results['total_uchange'],bins=20,color='0.75',edgecolor='0.5')
+# #lns = ppt.hist(df_results['av_uchange'],bins=np.arange(-1.0,round(df_results['av_uchange'].max()*1.2,0),bw),color='0.75',edgecolor='0.5')
+# #ax.set_ylim(0,75)
+# # if df_results['av_uchange'].min() > 0.0:
+# # 	ax.set_xlim(0,df_results['total_uchange'].max()*1.05)
+# # else:
+# # 	ax.vlines(0,0,max_y,'k',lw=1)
+# # 	ax.set_xlim(xmin=(df_results['total_uchange'].min()-2*bw),xmax=(df_results['total_uchange'].max()+2*bw))
+# # ax.set_xlabel('Utility change [USD]')
+# # if max_y > 0.0:
+# # 	ax.set_ylim(0,max_y)
+# ax.set_ylabel('Number of weeks')
+# ppt.savefig(folder_WS+'/25_hist_absUchange_year.png', bbox_inches='tight')
+# ppt.savefig(folder_WS+'/25_hist_absUuchange_year.pdf', bbox_inches='tight')
+
+import pdb; pdb.set_trace()
+
+# Dependence on system characteristics
 
 reg = LinearRegression()
 reg.fit(df_results['RR'].to_numpy().reshape(len(df_results),1),(df_results['av_uchange']).to_numpy().reshape(len(df_results),1))

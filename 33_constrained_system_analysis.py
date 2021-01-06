@@ -14,6 +14,7 @@ df_settings = pd.read_csv('settings_Diss.csv',index_col=[0])
 ind_Cs = [130,131,132,133,134,135,136,137]
 ind_unconstrained = 127
 ind_constrained = ind_Cs[0]
+q = 0.05
 
 ind_WS = ind_unconstrained
 
@@ -83,44 +84,44 @@ retail_MWh = retail_kWh*1000.
 
 ###############
 #
-# Specific day
+# Specific day--> #31
 #
 #################
 
-fig = ppt.figure(figsize=(6,4),dpi=150)   
-ppt.ioff()
-ax = fig.add_subplot(111)
-lns = []
+# fig = ppt.figure(figsize=(6,4),dpi=150)   
+# ppt.ioff()
+# ax = fig.add_subplot(111)
+# lns = []
 
-#Load
-#Benchmark / no LEM
-lns += ax.plot(df_slack_b['measured_real_power']/1000000,color='0.75',label='Load benchmark')
-#Constrained case
-lns += ax.plot(df_slack_WS['measured_real_power']/1000000,color='0.25',label='Load LEM, C = '+str(df_settings['line_capacity'].loc[ind_constrained]/1000)+' MW')
-ax.hlines(df_settings['line_capacity'].loc[ind_constrained]/1000,start,end,'0.25',':')
+# #Load
+# #Benchmark / no LEM
+# lns += ax.plot(df_slack['measured_real_power']/1000000,color='0.75',label='Load benchmark')
+# #Constrained case
+# lns += ax.plot(df_slack_WS['measured_real_power']/1000000,color='0.25',label='Load LEM, C = '+str(df_settings['line_capacity'].loc[ind_constrained]/1000)+' MW')
+# ax.hlines(df_settings['line_capacity'].loc[ind_constrained]/1000,start,end,'0.25',':')
 
-#Price
-ax2 = ax.twinx()
-lns += ax2.plot(df_prices_1min_b['clearing_price'],color='0.75',ls='--',label='WS price')
-lns += ax2.plot(df_prices_1min_LEM['clearing_price'],color='0.25',ls='--',label='LEM price')
+# #Price
+# ax2 = ax.twinx()
+# lns += ax2.plot(df_prices_1min_b['clearing_price'],color='0.75',ls='--',label='WS price')
+# lns += ax2.plot(df_prices_1min_LEM['clearing_price'],color='0.25',ls='--',label='LEM price')
 
-ax.set_xlabel('Time')
-ax.set_xlim(start_peakday,end_peakday)
-ax.set_ylim(0.0,2.5)
-ax.xaxis.set_major_formatter(mdates.DateFormatter('%H:%M'))
-ax.set_ylabel('Aggregate system load [MW]')
-ax2.set_ylabel('Price [USD/MWh]')
-ax2.set_ylim(0.0,150.)
-labs = [l.get_label() for l in lns]
-L = ax.legend(lns, labs, loc='upper center', bbox_to_anchor=(0.5, -0.15), ncol=2)
-ppt.savefig('Diss/'++'_aggload_p_'+str(ind_constrained)+'.png', bbox_inches='tight')
-ppt.savefig('Diss/'++'_aggload_p_'+str(ind_constrained)+'.pdf', bbox_inches='tight')
+# ax.set_xlabel('Time')
+# ax.set_xlim(start_peakday,end_peakday)
+# ax.set_ylim(0.0,2.5)
+# ax.xaxis.set_major_formatter(mdates.DateFormatter('%H:%M'))
+# ax.set_ylabel('Aggregate system load [MW]')
+# ax2.set_ylabel('Price [USD/MWh]')
+# ax2.set_ylim(0.0,150.)
+# labs = [l.get_label() for l in lns]
+# L = ax.legend(lns, labs, loc='upper center', bbox_to_anchor=(0.5, -0.15), ncol=2)
+# ppt.savefig('Diss/'+'33'+'_aggload_p_'+str(ind_constrained)+'.png', bbox_inches='tight')
+# ppt.savefig('Diss/'+'33'+'_aggload_p_'+str(ind_constrained)+'.pdf', bbox_inches='tight')
 
-import pdb; pdb.set_trace()
+# import pdb; pdb.set_trace()
 
 # For different constraints
 
-df_summary = pd.DataFrame(index=ind_Cs+[ind_unconstrained],columns=['line_capacity','mean_u','mean_p','comf_T','mean_T','mean_T_95','mean_T_5','min_T','min_T_95','min_T_5','var_T','var_T_95','var_T_5'],data=0)
+df_summary = pd.DataFrame(index=ind_Cs+[ind_unconstrained],columns=['line_capacity','mean_u','mean_p','comf_T','mean_T','mean_T_95','mean_T_5','min_T','min_T_95','min_T_5','var_T','var_T_95','var_T_5','cg','cg_5','cg_95','mean_u_5','mean_u_95'],data=0)
 
 for ind in [ind_unconstrained] + ind_Cs:
 	print(ind)
@@ -135,16 +136,24 @@ for ind in [ind_unconstrained] + ind_Cs:
 	df_summary['line_capacity'].loc[ind] = C
 	df_summary['mean_u'].loc[ind] = df_welfare['u_change'].mean()
 	df_summary['mean_T'].loc[ind] = (df_welfare['LEM_T_mean']/df_welfare['comf_temperature']).mean()
-	df_summary['mean_T_95'].loc[ind] = (df_welfare['LEM_T_mean'].loc[df_welfare['alpha'] >= df_welfare['alpha'].quantile(q=0.95)]/df_welfare['comf_temperature'].loc[df_welfare['alpha'] >= df_welfare['alpha'].quantile(q=0.95)]).mean()
-	df_summary['mean_T_5'].loc[ind] = (df_welfare['LEM_T_mean'].loc[df_welfare['alpha'] <= df_welfare['alpha'].quantile(q=0.05)]/df_welfare['comf_temperature'].loc[df_welfare['alpha'] <= df_welfare['alpha'].quantile(q=0.05)]).mean()
+	df_summary['mean_T_95'].loc[ind] = (df_welfare['LEM_T_mean'].loc[df_welfare['alpha'] >= df_welfare['alpha'].quantile(q=1.0-q)]/df_welfare['comf_temperature'].loc[df_welfare['alpha'] >= df_welfare['alpha'].quantile(q=1.0-q)]).mean()
+	df_summary['mean_T_5'].loc[ind] = (df_welfare['LEM_T_mean'].loc[df_welfare['alpha'] <= df_welfare['alpha'].quantile(q=q)]/df_welfare['comf_temperature'].loc[df_welfare['alpha'] <= df_welfare['alpha'].quantile(q=q)]).mean()
 	df_summary['min_T'].loc[ind] = ((df_welfare['LEM_T_min']/df_welfare['comf_temperature'])).mean()
-	df_summary['min_T_95'].loc[ind] = ((df_welfare['LEM_T_min']/df_welfare['comf_temperature'])).loc[df_welfare['alpha'] >= df_welfare['alpha'].quantile(q=0.9)].mean()
-	df_summary['min_T_5'].loc[ind] = ((df_welfare['LEM_T_min']/df_welfare['comf_temperature'])).loc[df_welfare['alpha'] <= df_welfare['alpha'].quantile(q=0.1)].mean()
+	df_summary['min_T_95'].loc[ind] = ((df_welfare['LEM_T_min']/df_welfare['comf_temperature'])).loc[df_welfare['alpha'] >= df_welfare['alpha'].quantile(q=1.-q)].mean()
+	df_summary['min_T_5'].loc[ind] = ((df_welfare['LEM_T_min']/df_welfare['comf_temperature'])).loc[df_welfare['alpha'] <= df_welfare['alpha'].quantile(q=q)].mean()
 	#import pdb; pdb.set_trace()
 	df_summary['var_T'].loc[ind] = (df_welfare['LEM_T_var']/df_welfare['fixed_T_var']).mean()
-	df_summary['var_T_95'].loc[ind] = (df_welfare['LEM_T_var'].loc[df_welfare['alpha'] >= df_welfare['alpha'].quantile(q=0.95)]/df_welfare['fixed_T_var'].loc[df_welfare['alpha'] >= df_welfare['alpha'].quantile(q=0.95)]).mean()
-	df_summary['var_T_5'].loc[ind] = (df_welfare['LEM_T_var'].loc[df_welfare['alpha'] <= df_welfare['alpha'].quantile(q=0.05)]/df_welfare['fixed_T_var'].loc[df_welfare['alpha'] <= df_welfare['alpha'].quantile(q=0.05)]).mean()
+	df_summary['var_T_95'].loc[ind] = (df_welfare['LEM_T_var'].loc[df_welfare['alpha'] >= df_welfare['alpha'].quantile(q=1.0-q)]/df_welfare['fixed_T_var'].loc[df_welfare['alpha'] >= df_welfare['alpha'].quantile(q=1.0-q)]).mean()
+	df_summary['var_T_5'].loc[ind] = (df_welfare['LEM_T_var'].loc[df_welfare['alpha'] <= df_welfare['alpha'].quantile(q=q)]/df_welfare['fixed_T_var'].loc[df_welfare['alpha'] <= df_welfare['alpha'].quantile(q=q)]).mean()
 	df_summary['comf_T'].loc[ind] = df_welfare['comf_temperature'].mean()
+
+	#Comfort gap
+	df_summary['cg'].loc[ind] = abs((df_welfare['LEM_T_mean'] - df_welfare['comf_temperature']).mean())
+	df_summary['cg_95'].loc[ind] = abs((df_welfare['LEM_T_mean'].loc[df_welfare['alpha'] >= df_welfare['alpha'].quantile(q=1.0-q)] - df_welfare['comf_temperature'].loc[df_welfare['alpha'] >= df_welfare['alpha'].quantile(q=1.0-q)]).mean())
+	df_summary['cg_5'].loc[ind] = abs((df_welfare['LEM_T_mean'].loc[df_welfare['alpha'] <= df_welfare['alpha'].quantile(q=q)] - df_welfare['comf_temperature'].loc[df_welfare['alpha'] <= df_welfare['alpha'].quantile(q=q)]).mean())
+
+	df_summary['mean_u_95'].loc[ind] = abs((df_welfare['u_change'].loc[df_welfare['alpha'] >= df_welfare['alpha'].quantile(q=1.0-q)]).mean())
+	df_summary['mean_u_5'].loc[ind] = abs((df_welfare['u_change'].loc[df_welfare['alpha'] <= df_welfare['alpha'].quantile(q=q)]).mean())
 
 	df_prices = pd.read_csv(folder+'/df_prices.csv',index_col=[0],parse_dates=True).loc[start:end]
 	df_summary['mean_p'].loc[ind] = df_prices['clearing_price'].mean()
@@ -152,6 +161,16 @@ for ind in [ind_unconstrained] + ind_Cs:
 	print(df_welfare['LEM_T_min'].mean())
 
 print(df_summary)
+
+ind = ind_Cs[-1]
+folder = 'Diss/Diss_'+"{:04d}".format(ind)
+df_welfare = pd.read_csv(folder + '/df_welfare_withparameters.csv',index_col=[0],parse_dates=True)
+print('Total losses under system constraint compared to benchmark '+str(df_settings['line_capacity'].loc[ind]))
+df_welfare['u_change'] = (df_welfare['LEM_u'] - df_welfare['LEM_cost']) - (df_welfare['fixed_u'] - df_welfare['fixed_cost'])
+print(df_welfare['u_change'].sum())
+print('Total losses under system constraint compared to unconstrained system')
+delta_u = df_summary['mean_u'].iloc[0] - df_summary['mean_u'].iloc[-1]
+print(delta_u*len(df_welfare))
 
 #df_summary = df_summary.iloc[1:]
 df_summary['line_capacity'].loc[ind_unconstrained] = 2400
@@ -173,8 +192,31 @@ fig = ppt.figure(figsize=(6,4),dpi=150)
 ppt.ioff()
 ax = fig.add_subplot(111)
 lns = []
+lns += ax.plot(df_summary['mean_u'],color='0.15',marker='x',label='Utility change')
+ax.set_xlabel('Capacity constraint [MW]')
+ppt.xticks(df_summary.index,df_summary.index[:-1].tolist() + ['$\\infty$'])
+ax.set_ylabel('Utility change compared to\n benchmark scenario [USD]')
+ax.hlines(0.0,1.45,2.45,lw=1)
+ax.set_xlim(1.45,2.45)
+ax.set_ylim(-7.,2.)
+#labs = [l.get_label() for l in lns]
+#L = ax.legend(lns, labs, loc='upper center', bbox_to_anchor=(0.5, -0.15), ncol=2)
+ppt.savefig('Diss/constraint_absU_p_'+str(ind_unconstrained)+'.png', bbox_inches='tight')
+ppt.savefig('Diss/constraint_absU_p_'+str(ind_unconstrained)+'.pdf', bbox_inches='tight')
+
+print(df_summary[['mean_u','diff_u','mean_p']])
+
+print('Max load: '+str(df_slack['measured_real_power'].max()))
+print('Load reduction for system constraint of 2.0 MW: '+str(100.*(2000.0-df_slack['measured_real_power'].max())/df_slack['measured_real_power'].max()) + '%')
+#import pdb; pdb.set_trace()
+
+#end = pd.Timestamp(2016,12,20)
+fig = ppt.figure(figsize=(6,4),dpi=150)   
+ppt.ioff()
+ax = fig.add_subplot(111)
+lns = []
 lns += ax.plot(df_summary['diff_u'],color='0.15',marker='x',label='Utility change')
-ax.set_xlabel('Capacity constraint')
+ax.set_xlabel('Capacity constraint [MW]')
 ppt.xticks(df_summary.index,df_summary.index[:-1].tolist() + ['$\\infty$'])
 ax.set_ylabel('Utility change compared to\n an unconstrained system [USD]')
 
@@ -199,8 +241,8 @@ ppt.ioff()
 ax = fig.add_subplot(111)
 lns = []
 lns += ax.plot(df_summary['min_T'],color='0.15',marker='x',label='All customers')
-lns += ax.plot(df_summary['min_T_95'],color='0.15',marker='x',ls='--',label='Customers with $\\alpha \geq \\alpha^{90}$')
-lns += ax.plot(df_summary['min_T_5'],color='0.15',marker='x',ls=':',label='Customers with $\\alpha \leq \\alpha^{10}$')
+lns += ax.plot(df_summary['min_T_95'],color='0.15',marker='x',ls='--',label='Customers with $\\alpha \geq \\alpha^{'+str(int(100*(1.-q)))+'}$')
+lns += ax.plot(df_summary['min_T_5'],color='0.15',marker='x',ls=':',label='Customers with $\\alpha \leq \\alpha^{'+str(int(100*(q)))+'}$')
 ax.set_xlabel('Capacity constraint [MW]')
 ppt.xticks(df_summary.index,df_summary.index[:-1].tolist() + ['$\\infty$'])
 ax.set_ylabel('$\\theta^{min}/\\theta^{comf}$')
@@ -221,4 +263,52 @@ print('Mean heating setpoint:')
 print(df_welfare['heating_setpoint'].mean())
 print('Min temperature drop')
 print((df_summary['min_T']*df_summary['comf_T']).iloc[0] - (df_summary['min_T']*df_summary['comf_T']).iloc[-1])
+#import pdb; pdb.set_trace()
+
+# Comfort gap
+
+fig = ppt.figure(figsize=(6,4),dpi=150)   
+ppt.ioff()
+ax = fig.add_subplot(111)
+lns = []
+lns += ax.plot(df_summary['cg'],color='0.15',marker='x',label='All customers')
+lns += ax.plot(df_summary['cg_95'],color='0.15',marker='x',ls='--',label='Customers with $\\alpha \geq \\alpha^{'+str(int(100*(1.-q)))+'}$')
+lns += ax.plot(df_summary['cg_5'],color='0.15',marker='x',ls=':',label='Customers with $\\alpha \leq \\alpha^{'+str(int(100*(q)))+'}$')
+ax.set_xlabel('Capacity constraint [MW]')
+ppt.xticks(df_summary.index,df_summary.index[:-1].tolist() + ['$\\infty$'])
+ax.set_ylabel('Comfort gap $[^\circ F]]$')
+ax2 = ax.twinx()
+lns += ax2.plot(df_summary['mean_p'],color='0.5',marker='x',label='Mean LEM price')
+ax2.set_ylabel('Price [USD/MWh]')
+#ax2.set_ylim(0.0,100.)
+labs = [l.get_label() for l in lns]
+#L = ax.legend(lns, labs, loc='upper center', bbox_to_anchor=(0.5, -0.15), ncol=2)
+L = ax.legend(lns, labs, loc='center right', ncol=1)
+ppt.savefig('Diss/constraint_comfortgap_'+str(ind_unconstrained)+'.png', bbox_inches='tight')
+ppt.savefig('Diss/constraint_comfortgap_'+str(ind_unconstrained)+'.pdf', bbox_inches='tight')
+
+# Net utility + Comfort gap
+
+fig = ppt.figure(figsize=(6,4),dpi=150)   
+ppt.ioff()
+ax = fig.add_subplot(111)
+lns = []
+lns += ax.plot(df_summary['cg'],color='0.15',marker='x',label='All customers')
+lns += ax.plot(df_summary['cg_95'],color='0.15',marker='x',ls='--',label='Customers with $\\alpha \geq \\alpha^{'+str(int(100*(1.-q)))+'}$')
+lns += ax.plot(df_summary['cg_5'],color='0.15',marker='x',ls=':',label='Customers with $\\alpha \leq \\alpha^{'+str(int(100*(q)))+'}$')
+ax.set_xlabel('Capacity constraint [MW]')
+ppt.xticks(df_summary.index,df_summary.index[:-1].tolist() + ['$\\infty$'])
+ax.set_ylabel('Comfort gap $[^\circ F]]$')
+ax2 = ax.twinx()
+lns += ax.plot(df_summary['mean_u'],color='r',marker='x',label='Customer welfare change')
+ax.plot(df_summary['mean_u_95'],color='r',marker='x',ls='--',label='Customers with $\\alpha \geq \\alpha^{'+str(int(100*(1.-q)))+'}$')
+ax.plot(df_summary['mean_u_5'],color='r',marker='x',ls=':',label='Customers with $\\alpha \leq \\alpha^{'+str(int(100*(q)))+'}$')
+ax2.set_ylabel('Utility change compared to\n benchmark scenario [USD]')
+#ax2.set_ylim(0.0,100.)
+labs = [l.get_label() for l in lns]
+#L = ax.legend(lns, labs, loc='upper center', bbox_to_anchor=(0.5, -0.15), ncol=2)
+L = ax.legend(lns, labs, loc='center right', ncol=1)
+ppt.savefig('Diss/constraint_netU_comfortgap_'+str(ind_unconstrained)+'.png', bbox_inches='tight')
+ppt.savefig('Diss/constraint_netU_comfortgap_'+str(ind_unconstrained)+'.pdf', bbox_inches='tight')
+
 import pdb; pdb.set_trace()

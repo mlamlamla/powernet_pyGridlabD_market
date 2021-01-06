@@ -229,6 +229,23 @@ print('Average utility change')
 print(df_welfare['u_change'].mean())
 print('Total utility change')
 print(df_welfare['u_change'].sum())
+print()
+
+print('Net u change (only temperature)')
+df_welfare['u_change_net'] = (df_welfare['LEM_u'] - df_welfare['fixed_u'])
+print('On average: '+str(df_welfare['u_change_net'].mean()))
+print('5\% low preference customers: '+str(df_welfare['u_change_net'].loc[df_welfare['alpha'] < df_welfare['alpha'].quantile(0.05)].mean()))
+print('5\% highest preference customers: '+str(df_welfare['u_change_net'].loc[df_welfare['alpha'] > df_welfare['alpha'].quantile(0.95)].mean()))
+
+fig = ppt.figure(figsize=(6,4),dpi=150)   
+ppt.ioff()
+ax = fig.add_subplot(111)
+lns = ppt.scatter(np.log(df_welfare['alpha']),df_welfare['u_change_net'],marker='x',color='0.6')
+ax.set_xlabel('$log(\\alpha)$')
+#ax.set_ylim(1.0,3.5)
+ax.set_ylabel('Comfort change $[USD]$')
+ppt.savefig(folder_WS + '/unet_alpha_'+str(ind_WS)+'.png', bbox_inches='tight')
+ppt.savefig(folder_WS + '/unet_alpha_'+str(ind_WS)+'.pdf', bbox_inches='tight')
 
 # Temperature mean by preference
 
@@ -288,6 +305,35 @@ df_welfare['fixed_abs'] = abs(df_welfare['fixed_T_mean'] - df_welfare['comf_temp
 fig = ppt.figure(figsize=(6,4),dpi=150)   
 ppt.ioff()
 ax = fig.add_subplot(111)
+lns = ppt.scatter(np.log(df_welfare['alpha']),(df_welfare['LEM_abs'] - df_welfare['fixed_abs']),marker='x',color='0.6')
+ax.set_xlabel('Comfort preference $log(\\alpha)$')
+#ax.set_ylim(1.0,3.5)
+ax.set_ylabel('Change of average comfort gap $[\\circ F]$')
+ppt.savefig(folder_WS + '/absTcom_change_alpha_'+str(ind_WS)+'.png', bbox_inches='tight')
+ppt.savefig(folder_WS + '/absTcom_change_alpha_'+str(ind_WS)+'.pdf', bbox_inches='tight')
+
+reg3 = LinearRegression()
+reg3.fit(np.log(df_welfare['alpha']).values.reshape(437,1),((df_welfare['LEM_abs'] - df_welfare['fixed_abs'])).to_numpy().reshape(437,1))
+reg3.coef_
+print('decrease in the log of the comfort preference $\\log \\alpha$ by 1 is associated with a drop of the absolute comfort gap by [F]')
+print(reg3.coef_)
+
+print('Average comfort gap change for lowest 5\% customers')
+print((df_welfare['LEM_abs'] - df_welfare['fixed_abs']).loc[df_welfare['alpha'] < df_welfare['alpha'].quantile(0.05)].mean())
+print('Average comfort gap change for highest 5\% customers')
+print((df_welfare['LEM_abs'] - df_welfare['fixed_abs']).loc[df_welfare['alpha'] > df_welfare['alpha'].quantile(0.95)].mean())
+
+import pdb; pdb.set_trace()
+
+reg4 = LinearRegression()
+reg4.fit(np.log(df_welfare['alpha']).values.reshape(437,1),((df_welfare['LEM_abs'] - df_welfare['fixed_abs'])).pow(2).to_numpy().reshape(437,1))
+reg4.coef_
+print('decrease in the log of the comfort preference $\\log \\alpha$ by 1 is associated with a drop of the square absolute comfort gap by [F]')
+print(reg4.coef_)
+
+fig = ppt.figure(figsize=(6,4),dpi=150)   
+ppt.ioff()
+ax = fig.add_subplot(111)
 lns = ppt.scatter(np.log(df_welfare['alpha']),100*(df_welfare['LEM_abs'] - df_welfare['fixed_abs'])/(df_welfare['fixed_abs']),marker='x',color='0.6')
 ax.set_xlabel('Comfort preference $log(\\alpha)$')
 #ax.set_ylim(1.0,3.5)
@@ -298,7 +344,7 @@ ppt.savefig(folder_WS + '/relTcom_change_alpha_'+str(ind_WS)+'.pdf', bbox_inches
 reg = LinearRegression()
 reg.fit(np.log(df_welfare['alpha']).values.reshape(437,1),(100*(df_welfare['LEM_abs'] - df_welfare['fixed_abs'])/(df_welfare['fixed_abs'])).to_numpy().reshape(437,1))
 reg.coef_
-print('decrease in the log of the comfort preference $\\log \\alpha$ by 1 is associated with a drop of the comfort gap by')
+print('decrease in the log of the comfort preference $\\log \\alpha$ by 1 is associated with a drop of the relative comfort gap by')
 print(reg.coef_)
 
 # Temperature mean by preference
