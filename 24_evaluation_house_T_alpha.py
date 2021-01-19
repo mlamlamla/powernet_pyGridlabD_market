@@ -9,8 +9,9 @@ max_y = 145
 
 # Energy procurement cost scenario
 run = 'Diss'
-ind_WS = 124
+ind_WS = 289 #350 #124
 ind_b = 90
+recalculate_df_welfare = True
 
 df_settings = pd.read_csv('settings_Diss.csv',index_col=[0])
 #df_HVAC = pd.read_csv(run+'/HVAC_settings_'+str(start).split(' ')[0]+'_'+str(end).split(' ')[0]+'_OLS4.csv',index_col=[0])
@@ -35,7 +36,6 @@ end = pd.to_datetime(df_settings['end_time'].loc[ind_WS])
 # end = pd.Timestamp(2016,12,26)
 
 recread_data = True 
-recalculate_df_welfare = True
 
 house_no = 0
 
@@ -88,8 +88,13 @@ df_slack = df_slack/1000 #kW
 
 df_WS = pd.read_csv('glm_generation_'+city+'/'+market_file,parse_dates=[0])
 df_WS.rename(columns={'Unnamed: 0':'timestamp'},inplace=True)
+df_WS.drop_duplicates(subset='timestamp',keep='last',inplace=True)
 df_WS.set_index('timestamp',inplace=True)
 df_WS = df_WS.loc[start:end]
+
+assert len(df_slack) == len(df_WS)
+assert set(df_slack.index) == set(df_slack.index)
+
 
 # df_WS['system_load'] = df_slack['measured_real_power']
 # df_WS['supply_cost'] = df_WS['system_load']/1000.*df_WS['RT']/12.
@@ -318,11 +323,16 @@ reg3.coef_
 print('decrease in the log of the comfort preference $\\log \\alpha$ by 1 is associated with a drop of the absolute comfort gap by [F]')
 print(reg3.coef_)
 
+print('Average comfort gap under fixed regime: ' + str(df_welfare['fixed_abs'].mean()))
+print('Average comfort gap under LEM regime: ' + str(df_welfare['LEM_abs'].mean()))
+print('Average comfort gap change [%]: ' + str(100.*(df_welfare['LEM_abs'] - df_welfare['fixed_abs']).mean()/df_welfare['fixed_abs'].mean()))
 print('Average comfort gap change for lowest 5\% customers')
 print((df_welfare['LEM_abs'] - df_welfare['fixed_abs']).loc[df_welfare['alpha'] < df_welfare['alpha'].quantile(0.05)].mean())
 print('Average comfort gap change for highest 5\% customers')
 print((df_welfare['LEM_abs'] - df_welfare['fixed_abs']).loc[df_welfare['alpha'] > df_welfare['alpha'].quantile(0.95)].mean())
 
+df_welfare[['fixed_u', 'fixed_cost','LEM_u', 'LEM_cost','u_change']].mean()
+df_welfare[['fixed_u', 'fixed_cost','LEM_u', 'LEM_cost','u_change']].sort_values('u_change')
 import pdb; pdb.set_trace()
 
 reg4 = LinearRegression()
@@ -379,7 +389,7 @@ reg2 = LinearRegression()
 reg2.fit(np.log(df_welfare['alpha']).values.reshape(437,1),(df_welfare['LEM_spead']).to_numpy().reshape(437,1))
 reg2.coef_
 print('an increase of the log of the comfort preference $\\log \\alpha$ by 1 is associated with a spread change of [F]')
-print(reg.coef_)
+print(reg2.coef_)
 
 print('Mean spread under LEM')
 print(df_welfare['LEM_spead'].mean())

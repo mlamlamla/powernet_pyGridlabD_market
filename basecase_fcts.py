@@ -25,7 +25,7 @@ def analyze_year(folder,directory,s_settings,interval):
 		df_systemdata = get_systemdata(folder,s_settings['market_data'],directory)
 	print('HVAC consumption share: '+str(df_systemdata['hvac_load_houses'].sum()/df_systemdata['total_load_houses'].sum()*100))
 	print('Grid losses: '+str(100*(1.-df_systemdata['total_load_houses'].sum()/df_systemdata['measured_real_power'].sum())))
-	import pdb; pdb.set_trace()
+	#import pdb; pdb.set_trace()
 	#import pdb; pdb.set_trace()
 	procurement_cost = ((df_systemdata['measured_real_power']/(60./interval))*df_systemdata['RT']/1000.).sum()
 	consumer_kWh = (df_systemdata['total_load_houses']/(60./interval)).sum()
@@ -114,6 +114,9 @@ def get_systemdata(folder,market_data,directory):
     df_total_load = pd.DataFrame(index=df_total_load.index,columns=['total_load_houses'],data=df_total_load.sum(axis=1))
     print('Max total residential load: '+str(df_total_load['total_load_houses'].iloc[15:].max()))
 
+    assert len(df_slack) == len(df_total_load)
+    assert set(df_slack.index) == set(df_total_load.index)
+
     df_systemdata = df_slack.merge(df_total_load, how='outer', left_index=True, right_index=True)
     
     #Total hvac load
@@ -171,6 +174,13 @@ def get_systemdata(folder,market_data,directory):
     end = df_systemdata.index[-1]
     #import pdb; pdb.set_trace()
     df_WS = pd.read_csv('glm_generation_Austin/'+market_data,index_col=[0],parse_dates=True)
+    df_WS['time'] = df_WS.index
+    df_WS.drop_duplicates(subset='time',keep='last',inplace=True)
+    df_WS.drop('time',axis=1,inplace=True)
+
+    assert len(df_WS) == len(df_systemdata)
+    assert set(df_WS.index) == set(df_systemdata.index)
+
     df_systemdata = df_systemdata.merge(df_WS,how='outer',left_index=True,right_index=True)
     df_systemdata['DA'].fillna(method='ffill',inplace=True)
     df_systemdata['RT'].fillna(method='ffill',inplace=True)

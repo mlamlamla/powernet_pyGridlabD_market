@@ -13,8 +13,10 @@ def get_retailrate(folder,start,end,city,market_file):
 
     df_WS = pd.read_csv('glm_generation_'+city+'/'+market_file,parse_dates=[0])
     df_WS.rename(columns={'Unnamed: 0':'timestamp'},inplace=True)
+    df_WS.drop_duplicates(subset='timestamp',keep='last',inplace=True)
     df_WS.set_index('timestamp',inplace=True)
     df_WS = df_WS.loc[start:end]
+    assert len(df_slack) == len(df_WS)
 
     df_WS['system_load'] = df_slack['measured_real_power']
     supply_wlosses = (df_WS['system_load']/1000./12.).sum() # MWh

@@ -1,7 +1,7 @@
 import os
 
 #Result file
-results_folder = 'Diss/Diss_0202'
+results_folder = 'Diss/Diss_0364'
 if not os.path.exists(results_folder):
 	os.makedirs(results_folder)
 
@@ -15,7 +15,7 @@ tmy_file = '722540TYA.tmy3'
 slack_node = 'node_149'
 
 #Flexible appliances
-settings_file = 'HVAC_settings_2016-12-05_2016-12-11_90_OLS.csv'
+settings_file = 'HVAC_settings_2016-08-01_2016-08-07_90_OLS2.csv'
 flexible_houses = 0
 PV_share = 0.0
 EV_share = 0.0
@@ -26,16 +26,16 @@ assert PV_share >= Batt_share, 'More batteries than PV'
 #Market parameters
 C = 100000.0
 market_data = 'Ercot_LZ_South.csv'
-RR_loss = 0.0012619826022525656
+RR_loss = 0.0018592849632202701
 p_max = 10000.0
 load_forecast = 'myopic'
-unresp_factor = 0.0
+unresp_factor = 1.0
 FIXED_TARIFF = False
 interval = 300
 allocation_rule = 'by_price'
 
 #Appliance specifications
-delta = 3.0 #temperature bandwidth - HVAC inactivity
+delta = 0.0 #temperature bandwidth - HVAC inactivity
 ref_price = 'forward'
 price_intervals = 36 #p average calculation 
 which_price = 'none' #battery scheduling

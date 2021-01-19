@@ -8,6 +8,7 @@ ind_b = 90 #year-long simulation without LEM or constraint
 df_settings = pd.read_csv('settings_Diss.csv',index_col=[0])
 
 ind_constrained = 134
+ind_constrained = 213 # Constrained at 1.8 MW
 
 city = 'Austin'
 folder_b = run + '/Diss_'+"{:04d}".format(ind_b) #+'_5min'
@@ -35,8 +36,12 @@ df_slack = df_slack/1000 #kW
 
 df_WS = pd.read_csv('glm_generation_'+city+'/'+market_file,parse_dates=[0])
 df_WS.rename(columns={'Unnamed: 0':'timestamp'},inplace=True)
+df_WS.drop_duplicates(subset='timestamp',keep='last',inplace=True)
 df_WS.set_index('timestamp',inplace=True)
 df_WS = df_WS.loc[start:end]
+
+assert len(df_WS) == len(df_slack)
+assert set(df_WS.index) == set(df_slack.index)
 
 df_WS['system_load_b'] = df_slack['measured_real_power']
 
@@ -51,6 +56,8 @@ df_slack = df_slack.loc[start:end]
 df_slack = df_slack/1000 #kW
 
 df_prices = pd.read_csv(folder_WS + '/df_prices.csv',index_col=[0],parse_dates=True).loc[start:end]
+assert len(df_prices) == len(df_slack)
+assert set(df_prices.index) == set(df_slack.index)
 
 df_WS['system_load_WS'] = df_slack['measured_real_power']
 df_WS['LEM_prices'] = df_prices['clearing_price']
@@ -91,5 +98,8 @@ labs = [l.get_label() for l in lns]
 L = ax.legend(lns, labs, loc='upper center', bbox_to_anchor=(0.5, -0.15), ncol=2)
 ppt.savefig('Diss/Diss_'+"{:04d}".format(ind_constrained)+'/aggload_p_'+str(ind_constrained)+'.png', bbox_inches='tight')
 ppt.savefig('Diss/Diss_'+"{:04d}".format(ind_constrained)+'/aggload_p_'+str(ind_constrained)+'.pdf', bbox_inches='tight')
+
+print('Loss component (check with HH_global): ' + str((df_WS['LEM_prices'] - df_WS['RT']).min()))
+print('Maximum price deviation: ' + str((df_WS['LEM_prices'] - df_WS['RT']).max()))
 
 import pdb; pdb.set_trace()

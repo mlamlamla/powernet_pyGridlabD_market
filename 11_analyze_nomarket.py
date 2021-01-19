@@ -14,7 +14,8 @@ s_settings = df_settings.loc[ind]
 interval = 300
 
 # Evaluate
-#bfcts.analyze_year(folder_input,folder_output,s_settings,interval)
+bfcts.analyze_year(folder_input,folder_output,s_settings,interval)
+import pdb; pdb.set_trace()
 
 # Average length HVAC ops
 folder = 'Diss/Diss_0202'

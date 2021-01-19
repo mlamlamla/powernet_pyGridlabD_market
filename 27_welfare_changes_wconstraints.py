@@ -12,6 +12,9 @@ df_settings = pd.read_csv('settings_Diss.csv',index_col=[0])
 inds = [127,130,131,132,133,134,135,136,137]
 inds = [128,138,139,140,141,142,143,144,145]
 inds = [129,146,147,148,149,150,151,152,153]
+inds = [206,209,210,211,212,213,214,215,216]
+inds = [292,295,296,297,298,299,300,301,302]
+
 df_settings = df_settings.loc[inds]
 
 df_results = pd.DataFrame(index=df_settings.index,columns=['C','sum_fixed_comfort','sum_LEM_comfort','supply_cost_fixed','supply_cost_LEM','C>=_fixed','C>=_LEM'],data=0.0)
@@ -103,8 +106,12 @@ for ind_WS in df_settings.index:
 
 	df_WS = pd.read_csv('glm_generation_'+city+'/'+market_file,parse_dates=[0])
 	df_WS.rename(columns={'Unnamed: 0':'timestamp'},inplace=True)
+	df_WS.drop_duplicates(subset='timestamp',keep='last',inplace=True)
 	df_WS.set_index('timestamp',inplace=True)
 	df_WS = df_WS.loc[start:end]
+
+	assert len(df_WS) == len(df_slack)
+	assert set(df_WS.index) == set(df_slack.index)
 
 	df_WS['system_load_fixed'] = df_slack['measured_real_power']
 	df_WS['supply_cost_fixed'] = df_WS['system_load_fixed']/1000.*df_WS['RT']/12.

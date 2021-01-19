@@ -6,6 +6,8 @@ import matplotlib.pyplot as ppt
 from sklearn.linear_model import LinearRegression
 import pdb; pdb.set_trace()
 
+print('This code only looks at household savings wrt HVAC systems')
+
 # Default
 run = 'Diss'
 ind_b = 90

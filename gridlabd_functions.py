@@ -33,7 +33,9 @@ def on_init(t):
 
 	#Instead of mysql
 	global df_buy_bids, df_supply_bids, df_awarded_bids;
+	#df_buy_bids = pandas.DataFrame(columns=['timestamp','appliance_name','bid_price','bid_quantity','state'])
 	df_buy_bids = pandas.DataFrame(columns=['timestamp','appliance_name','bid_price','bid_quantity'])
+
 	df_supply_bids = pandas.DataFrame(columns=['timestamp','appliance_name','bid_price','bid_quantity'])
 	df_awarded_bids = pandas.DataFrame(columns=['timestamp','appliance_name','bid_price','bid_quantity','S_D'])
 
@@ -77,9 +79,14 @@ def on_init(t):
 			df_PV_forecast = None
 
 	global df_prices, df_WS;
-	df_prices = pandas.DataFrame(columns=['p_mean','p_std','clearing_price','clearing_quantity','unresponsive_loads','slack_t-1'])
+	#df_prices = pandas.DataFrame(columns=['p_mean','p_std','clearing_price','clearing_quantity','unresponsive_loads','slack_t-1'])
+	df_prices = pandas.DataFrame(columns=['clearing_price','clearing_quantity','unresponsive_loads'])
 	df_WS = pandas.read_csv('glm_generation_'+city+'/'+market_data,parse_dates=[-1],index_col=[0])
 	df_WS = pandas.DataFrame(index=pandas.to_datetime(df_WS.index.astype(str)),columns=df_WS.columns,data=df_WS.values.astype(float))
+	#import pdb; pdb.set_trace()
+	df_WS['time'] = df_WS.index
+	df_WS.drop_duplicates(subset='time',keep='last',inplace=True)
+	df_WS.drop('time',axis=1,inplace=True)
 	
 	# Align weekdays of Pecan Street Data and WS: For yearly data only (TESS, not powernet)
 	# year_sim = parser.parse(gridlabd.get_global('clock')).replace(tzinfo=None).year
@@ -108,7 +115,7 @@ def on_precommit(t):
 		return t
 	
 	else: #interval in minutes #is not start time
-		print('Start precommit: '+str(dt_sim_time))
+		#print('Start precommit: '+str(dt_sim_time))
 		global step;
 		global df_house_state, df_battery_state, df_EV_state, df_PV_state;
 		global df_buy_bids, df_supply_bids, df_awarded_bids; 
@@ -120,10 +127,10 @@ def on_precommit(t):
 		if step == 0:
 			global time_daystart 
 			time_daystart = time.time()
-		if step > 0 and (dt_sim_time.hour == 0) and (dt_sim_time.minute == 0):
+		if step > 0 and (dt_sim_time.hour%12 == 0) and (dt_sim_time.minute == 0):
 			#i = int(step/(saving_interval*12)) #for 5min interval
 			dt_sim_time_prev = dt_sim_time - pandas.Timedelta(days=1)
-			specifier = str(dt_sim_time_prev.year)+format(dt_sim_time_prev.month,'02d')+format(dt_sim_time_prev.day,'02d')
+			specifier = str(dt_sim_time_prev.year)+format(dt_sim_time_prev.month,'02d')+format(dt_sim_time_prev.day,'02d')+format(dt_sim_time_prev.hour,'02d')
 
 			df_supply_bids.to_csv(results_folder+'/df_supply_bids_'+specifier+'.csv')
 			df_buy_bids.to_csv(results_folder+'/df_buy_bids_'+specifier+'.csv')
@@ -132,11 +139,12 @@ def on_precommit(t):
 
 			dt_sim_time_lastperiod = dt_sim_time - pandas.Timedelta(seconds=interval)
 			df_awarded_bids = df_awarded_bids.loc[df_awarded_bids['timestamp'] == dt_sim_time_lastperiod]
-			df_buy_bids = pandas.DataFrame(columns=['timestamp','appliance_name','bid_price','bid_quantity'])
+			#df_buy_bids = pandas.DataFrame(columns=['timestamp','appliance_name','bid_price','bid_quantity','state'])
+			df_buy_bids = pandas.DataFrame(columns=df_buy_bids.columns)
 			df_supply_bids = pandas.DataFrame(columns=['timestamp','appliance_name','bid_price','bid_quantity'])
 			#df_awarded_bids = pandas.DataFrame(columns=['timestamp','appliance_name','bid_price','bid_quantity','S_D'])
 			time_dayend = time.time()
-			print('Time needed for past simulation day '+str(dt_sim_time)+': '+str((time_dayend - time_daystart)/60.)+' min')
+			print('Time needed for past simulation day '+str(dt_sim_time_prev)+': '+str((time_dayend - time_daystart)/60.)+' min')
 			time_daystart = time_dayend
 
 		#Update physical values for new period
@@ -205,18 +213,23 @@ def on_precommit(t):
 		supply_costs = supply_costs + RR_loss*1000
 		retail.sell(C,supply_costs,gen_name='WS') #in [USD/kW] #How can I tweak clearing that we can name biider 'WS'?
 		df_supply_bids = df_supply_bids.append(pandas.DataFrame(columns=df_supply_bids.columns,data=[[dt_sim_time,'WS',supply_costs,C]]),ignore_index=True)
-		print('Supply costs: '+str(supply_costs))
+		#print('Supply costs: '+str(supply_costs))
 		retail.buy(C,supply_costs-0.01,appliance_name='WS_export') #in [USD/kW] #How can I tweak clearing that we can name biider 'WS'?
+		#df_buy_bids = df_buy_bids.append(pandas.DataFrame(columns=df_buy_bids.columns,data=[[dt_sim_time,'WS_export',supply_costs-0.01,C,'None']]),ignore_index=True)
 		df_buy_bids = df_buy_bids.append(pandas.DataFrame(columns=df_buy_bids.columns,data=[[dt_sim_time,'WS_export',supply_costs-0.01,C]]),ignore_index=True)
 
 		#Market clearing
 		retail.clear()
 		Pd = retail.Pd # cleared demand price
+		# if Pd > supply_costs + 0.01:
+		# 	print('Pd deviates from supply costs despite unconstrained system')
+		# 	import pdb; pdb.set_trace()
 		#Pd = retail_kWh*1000 #USD/MWh
-		print('Clearing price: '+str(Pd))
+		#print('Clearing price: '+str(Pd))
 		Qd = retail.Qd #in kW
-		print('Clearing quantity: '+str(Qd))
-		df_temp = pandas.DataFrame(index=[dt_sim_time],columns=['p_mean','p_std','clearing_price','clearing_quantity','unresponsive_loads','slack_t-1'],data=[[mean_p,var_p,Pd,Qd,unresp_load,load_SLACK]])
+		#print('Clearing quantity: '+str(Qd))
+		#df_temp = pandas.DataFrame(index=[dt_sim_time],columns=['p_mean','p_std','clearing_price','clearing_quantity','unresponsive_loads','slack_t-1'],data=[[mean_p,var_p,Pd,Qd,unresp_load,load_SLACK]])
+		df_temp = pandas.DataFrame(index=[dt_sim_time],columns=['clearing_price','clearing_quantity','unresponsive_loads'],data=[[Pd,Qd,unresp_load]])
 		df_prices = df_prices.append(df_temp)
 		###
 		#Redistribute prices and quantities to market participants

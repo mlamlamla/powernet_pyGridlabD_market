@@ -8,6 +8,7 @@ import numpy as np
 import matplotlib.pyplot as ppt
 from sklearn import linear_model
 from sklearn.metrics import mean_squared_error, r2_score
+pd.options.mode.chained_assignment = None  # default='warn'
 ppt.rcParams['mathtext.fontset'] = 'stix'
 ppt.rcParams['font.family'] = 'STIXGeneral'
 
@@ -27,12 +28,19 @@ def estimate_houseparameters(house, df_house_year, start, end, df_estimates):
 		P_heat = 0.0
 	else:
 		df_house['P_heat'] = P_heat
-	P_cool = (df_house['COOL']*df_house['P_t']).sum()/df_house['COOL'].sum() # average cool P
-	if np.isnan(P_cool):
+	#import pdb; pdb.set_trace()
+	#P_cool = (df_house['COOL']*df_house['P_t']).sum()/df_house['COOL'].sum() # average cool P
+	# if np.isnan(P_cool):
+	# 	df_house['P_cool'] = 0.0 # If no cooling takes place in the period of interest
+	# 	P_cool = 0.0
+	# else:
+	# 	df_house['P_cool'] = P_cool
+	if df_house['COOL'].sum() > 0:
+		P_cool = (df_house['COOL']*df_house['P_t']).sum()/df_house['COOL'].sum() # average cool P
+		df_house['P_cool'] = P_cool
+	else:
 		df_house['P_cool'] = 0.0 # If no cooling takes place in the period of interest
 		P_cool = 0.0
-	else:
-		df_house['P_cool'] = P_cool
 
 	# Prepare independent variables
 	# theta_t+1 - theta^out = beta * (theta_t - theta^out) + gamma_HEAT * (HEAT*P_heat) + gamma_COOL * (COOL*P_cool)
@@ -95,8 +103,11 @@ def get_retailrate(start,end):
 
 	df_WS = pd.read_csv('glm_generation_'+city+'/'+market_file,parse_dates=[0])
 	df_WS.rename(columns={'Unnamed: 0':'timestamp'},inplace=True)
+	df_WS.drop_duplicates(subset='timestamp',keep='last',inplace=True)
 	df_WS.set_index('timestamp',inplace=True)
 	df_WS = df_WS.loc[start:end]
+
+	assert len(df_slack) == len(df_WS)
 
 	df_WS['system_load'] = df_slack['measured_real_power']
 	supply_wlosses = (df_WS['system_load']/1000./12.).sum() # MWh
@@ -326,7 +337,7 @@ while True:
 			df_settings_ext['alpha'].loc[ind] = retail_kWh*(1.-df_settings_ext['beta'].loc[ind])/(df_settings_ext['cooling_setpoint'].loc[ind] - df_settings_ext['comf_temperature'].loc[ind])*1./(2*df_settings_ext['gamma_cool'].loc[ind])
 		
 	#import pdb; pdb.set_trace()
-	df_settings_ext.to_csv(results_folder +'/HVAC_settings/HVAC_settings_' +str(start).split(' ')[0]+'_'+str(end).split(' ')[0]+'_'+str(ind_base)+'_OLS.csv')
+	df_settings_ext.to_csv(results_folder +'/HVAC_settings/HVAC_settings_' +str(start).split(' ')[0]+'_'+str(end).split(' ')[0]+'_'+str(ind_base)+'_OLS2.csv')
 	#import pdb; pdb.set_trace()
 
 	start += pd.Timedelta(weeks=1)

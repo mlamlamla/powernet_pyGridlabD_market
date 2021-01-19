@@ -12,10 +12,13 @@ ind_b = 90 #year-long simulation without LEM or constraint
 ind_unconstrained = 127
 ind_Cs = [130,132,134,136] #54 - 62 for Dec
 
+ind_unconstrained = 206
+ind_Cs = [209,211,213,215] #54 - 62 for Dec
+
 # Graph settings
 q = 5
 L_min = 1.5
-L_max = 2.8
+L_max = 2.6
 
 ################
 #
@@ -91,5 +94,5 @@ ax.set_ylim(L_min,L_max)
 ax.set_ylabel('Aggregate system load [MW]')
 labs = [l.get_label() for l in lns]
 L = ax.legend(lns, labs, loc='upper center', bbox_to_anchor=(0.5, -0.15), ncol=3)
-ppt.savefig('Diss/32_loadcurves_under_constraints_'+str(q)+'perc.png', bbox_inches='tight')
-ppt.savefig('Diss/32_loadcurves_under_constraints_'+str(q)+'perc.pdf', bbox_inches='tight')
+ppt.savefig('Diss/32_loadcurves_under_constraints_'+str(q)+'perc_'+str(ind_unconstrained)+'.png', bbox_inches='tight')
+ppt.savefig('Diss/32_loadcurves_under_constraints_'+str(q)+'perc_'+str(ind_unconstrained)+'.pdf', bbox_inches='tight')
